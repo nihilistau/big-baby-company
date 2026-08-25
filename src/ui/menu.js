@@ -89,7 +89,8 @@ function startTab(ctx, meta, save) {
     <section class="opt-group">
       <h3 class="section-h">Seed</h3>
       <div class="seed-row">
-        <input class="seed-input" type="text" data-act="set-seed" value="${escapeHtml(ui.seed || "")}"
+        <input class="seed-input" type="text" id="run-seed" name="run-seed"
+               data-act="set-seed" value="${escapeHtml(ui.seed || "")}"
                placeholder="leave blank for random" aria-label="Run seed" />
         <button class="btn ghost small" data-act="reroll-seed">Reroll</button>
       </div>
