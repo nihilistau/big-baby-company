@@ -7,8 +7,18 @@ import { endingFor, rankFor } from "../src/sim/endings.js";
 import { createState, currentTitle, emptyTitle } from "../src/sim/state.js";
 import { mulberry32 } from "../src/sim/rng.js";
 import * as Actions from "../src/sim/actions.js";
-import { projectLaunch } from "../src/sim/economy.js";
-import { COPIES, DRIFT, FEEDBACK, standingDrift } from "../src/sim/balance.js";
+import { projectLaunch, titleJank } from "../src/sim/economy.js";
+import * as Q from "../src/sim/quarter.js";
+import {
+  COPIES,
+  CRUNCH,
+  DRIFT,
+  FEEDBACK,
+  MORALE,
+  moraleDrift,
+  moraleJank,
+  standingDrift,
+} from "../src/sim/balance.js";
 import { content, inProduction, place, FUN_CARDS } from "./helpers.js";
 
 describe("synergies", () => {
@@ -425,13 +435,87 @@ describe("trust settles instead of ramping to the ceiling", () => {
     expect(dropping.trust).toBe(79);
   });
 
-  it("keeps morale out of the reputation curve", () => {
-    // Morale is a resource you spend by crunching, not a reputation. Its
-    // recovery to full is deliberate and threshold-based consequences depend
-    // on it actually getting there.
-    const state = createState({ seed: "morale-untouched" });
+  it("resists morale near the ceiling too, now that morale buys something", () => {
+    // While morale did nothing but gate disasters below 30 it was reasonable
+    // to let it refill for free. Now it feeds jank, so the last few points
+    // have to cost something or a studio just parks at 100 and collects.
+    const state = createState({ seed: "morale-ceiling" });
     state.morale = 95;
     applyEffects(state, { morale: 10 }, content, mulberry32(1));
-    expect(state.morale).toBe(100);
+    expect(state.morale).toBeLessThan(100);
+    expect(state.morale).toBeGreaterThan(95);
+  });
+
+  it("still lets morale fall all the way to its disaster thresholds", () => {
+    // Losses are never resisted, so quit, leak and sabotage stay reachable.
+    const state = createState({ seed: "morale-floor" });
+    state.morale = 40;
+    applyEffects(state, { morale: -25 }, content, mulberry32(1));
+    expect(state.morale).toBe(15);
+    expect(state.morale).toBeLessThan(MORALE.quitThreshold);
+    expect(state.morale).toBeLessThanOrEqual(MORALE.sabotageThreshold);
+  });
+});
+
+describe("morale is a meter you spend, not a gauge that refills", () => {
+  // Morale used to touch nothing in the launch pipeline — not score, not
+  // copies, not money — and every consequence it had was a threshold at 30 or
+  // below. Combined with a flat +2 a quarter recovery it parked at 100 for any
+  // studio that was not point-starved, which made ergonomic chairs, sabbatical
+  // policy, profit share, raises and perks all pointless purchases.
+  //
+  // It also went unmeasured: the balance bots gated crunch on
+  // `!canAdvance(...)`, which is only true on a completely empty box, so no
+  // archetype ever crunched once in a sweep.
+
+  it("turns how the team is doing into jank, both ways", () => {
+    expect(moraleJank(MORALE.jankPivot)).toBe(0);
+    expect(moraleJank(100)).toBeLessThan(0); // looked after: a cleaner build
+    expect(moraleJank(20)).toBeGreaterThan(0); // ground down: a broken one
+
+    // Worth roughly a crunch across its range, so it is a real term without
+    // dominating the ones the player acts on directly.
+    const span = moraleJank(0) - moraleJank(100);
+    expect(span).toBeGreaterThan(CRUNCH.jank);
+    expect(span).toBeLessThan(CRUNCH.jank * 3);
+  });
+
+  it("recovery eases off as morale rises instead of refilling to full", () => {
+    expect(moraleDrift(0)).toBeCloseTo(MORALE.recovery, 5);
+    expect(moraleDrift(100)).toBe(0);
+    for (let m = 1; m <= 100; m++) {
+      expect(moraleDrift(m)).toBeLessThan(moraleDrift(m - 1));
+    }
+  });
+
+  it("prices a shipped box against how the team was treated", () => {
+    const build = (morale) =>
+      place(inProduction({ act: 2, slots: 5, morale, cash: 300000 }), FUN_CARDS);
+    const happy = build(100);
+    const ground = build(20);
+
+    const happyJank = titleJank(happy, content);
+    const groundJank = titleJank(ground, content);
+    expect(groundJank).toBeGreaterThan(happyJank);
+
+    // And it reaches the launch, rather than stopping at the jank number.
+    expect(projectLaunch(ground, content).copies)
+      .toBeLessThan(projectLaunch(happy, content).copies);
+  });
+
+  it("snapshots morale into the box at lock, like staff jank", () => {
+    // So that recovering morale after the box closes cannot retroactively
+    // un-bug a build that was made by exhausted people.
+    const state = place(inProduction({ act: 2, slots: 5, morale: 25 }), FUN_CARDS);
+    const locked = Q.advance(state, content);
+    expect(locked.ok).toBe(true);
+
+    const title = locked.state.titles[locked.state.titleIndex];
+    expect(title.locked).toBe(true);
+    expect(title.moraleJank).toBeGreaterThan(0);
+
+    const before = titleJank(locked.state, content, title);
+    locked.state.morale = 100;
+    expect(titleJank(locked.state, content, title)).toBe(before);
   });
 });

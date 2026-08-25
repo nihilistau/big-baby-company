@@ -44,13 +44,11 @@ export function applyEffects(state, effects, content, rng, ctx = {}) {
   for (const key of ["standing", "trust", "heat", "morale"]) {
     if (effects[key]) {
       const before = state[key];
-      // Reputation resists near its ceiling wherever the change comes from.
-      // Events are the largest single source of reputation in the game and
-      // used to bypass the curve entirely, as did upkeep and marketing — which
-      // left launch results as the only thing it governed, about a tenth of
-      // the actual flow. Morale is not reputation and keeps its own recovery.
-      const delta =
-        key === "morale" ? effects[key] : FEEDBACK.resist(key, state[key], effects[key]);
+      // Resists near the ceiling wherever the change comes from. Events are
+      // the largest single source of reputation in the game and used to bypass
+      // the curve entirely, as did upkeep and marketing — which left launch
+      // results as the only thing it governed, about a tenth of the flow.
+      const delta = FEEDBACK.resist(key, state[key], effects[key]);
       state[key] = clamp100(state[key] + delta);
       if (state[key] !== before) out.push({ kind: key, delta: state[key] - before });
     }

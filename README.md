@@ -9,7 +9,7 @@
 **A satirical studio-management roguelite about what happens when the number
 you're being paid for stops being the number people are buying.**
 
-`v1.0.4` · Browser · Single-player · ~60–90 minutes per run · Zero runtime dependencies
+`v1.0.5` · Browser · Single-player · ~60–90 minutes per run · Zero runtime dependencies
 
 ### [▶ Play it in your browser](https://nihilistau.github.io/big-baby-company/)
 
@@ -175,7 +175,7 @@ Four numbers, each one making a different decision hard.
 | ◆ **Standing** | Investor wires, better deal terms, award nominations | It decays every quarter in proportion to how much you have. The industry's memory is short and its rent scales with your reputation. |
 | ♥ **Trust** | A multiplier on every copy you will ever sell | Slowly, by shipping fashionable nonsense. Quickly, by shipping something broken. |
 | ▲ **Heat** | Free reach — up to a third more copies | It rolls against the backlash table at every launch. High heat is the most profitable state in the game, right up until it isn't. |
-| ☺ **Morale** | Nothing directly, which is the point | Crunch. Scope. Below 30 people quit mid-production, leak builds to the press, or quietly put back the thing you cut. |
+| ☺ **Morale** | A cleaner build. Tired people ship broken games, and it lands as jank the moment the box closes | Crunch. Scope. Below 30 people quit mid-production, leak builds to the press, or quietly put back the thing you cut. |
 
 Gains resist near the ceiling and losses never do, so no meter can be maxed once
 and forgotten — and a dent takes real time to heal. Every source of reputation
@@ -411,7 +411,7 @@ second filing is the end.
 Vanilla ES modules. Vite. **Zero runtime dependencies.**
 
 ```
-9,940 lines of JavaScript · 146 tests · 54 art assets · 4,800 lines of content JSON
+10,085 lines of JavaScript · 151 tests · 54 art assets · 4,800 lines of content JSON
 ```
 
 The simulation is pure and synchronous — `advance(state, content)` takes a
@@ -426,7 +426,7 @@ is synthesised at runtime — there is not a single audio file in this project.
 ### Verify it yourself
 
 ```bash
-npm test                            # 146 tests: sim, content integrity, fuzz, UI
+npm test                            # 151 tests: sim, content integrity, fuzz, UI
 node tools/balance-sim.mjs          # Monte-Carlo balance sweep across six archetypes
 node tools/ch11-probe.mjs           # where a careful player actually goes broke
 node tools/meter-probe.mjs          # what moves each meter, and which are pinned

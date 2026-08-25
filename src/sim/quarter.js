@@ -6,6 +6,8 @@ import {
   OPEX,
   PENTHOUSE_WIRES,
   SCOPE_MORALE,
+  moraleDrift,
+  moraleJank,
   UNFINISHED,
   standingDrift,
 } from "./balance.js";
@@ -186,7 +188,7 @@ export function advance(state, content) {
   next.heat = clamp100(next.heat + DRIFT.heat);
   const crunchedThisQuarter = (currentTitle(next)?.crunchCount || 0) > 0;
   next.morale = clamp100(
-    next.morale + (crunchedThisQuarter ? -diff.moraleDecay : DRIFT.morale)
+    next.morale + (crunchedThisQuarter ? -diff.moraleDecay : moraleDrift(next.morale))
   );
 
   // 7. Phase work.
@@ -244,12 +246,11 @@ function applyUpkeep(state, content, events) {
   // resisted down to +2. Trust saturated by Act II and stopped being a
   // decision. Gains resist; the staff who cost you reputation still cost the
   // full amount.
-  for (const meter of ["standing", "trust", "heat"]) {
+  for (const meter of ["standing", "trust", "heat", "morale"]) {
     if (add[meter]) {
       state[meter] = clamp100(state[meter] + FEEDBACK.resist(meter, state[meter], add[meter]));
     }
   }
-  state.morale = clamp100(state.morale + add.morale);
   if (add.cash) {
     state.cash += add.cash;
     pushLedger(state, { label: "Studio income", amount: add.cash });
@@ -295,6 +296,12 @@ function lockBox(state, content, events) {
 
   const scopePain = Math.max(0, (state.titles[idx].slots || 0) - 4) * SCOPE_MORALE;
   if (scopePain) state.morale = clamp100(state.morale + scopePain);
+
+  // Snapshot how the team is doing into the build, after the scope hit lands.
+  // Kept separate from the accumulated jank reservoir for the same reason as
+  // staff jank: mixing them would either hide a negative buffer that silently
+  // absorbs later crunch, or clamp a reduction away to nothing.
+  state.titles[idx].moraleJank = moraleJank(state.morale);
 
   const boxHeat = titleHeat(state, content, state.titles[idx]);
   if (boxHeat) state.heat = clamp100(state.heat + FEEDBACK.resist("heat", state.heat, boxHeat));

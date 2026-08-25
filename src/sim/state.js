@@ -34,6 +34,7 @@ export function emptyTitle(index, actHint = 1) {
     auras: emptyAxes(),
     jank: 0,
     staffJank: 0,
+    moraleJank: 0,
     hype: 0,
     crunchCount: 0,
     polishCount: 0,

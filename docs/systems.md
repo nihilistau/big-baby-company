@@ -105,7 +105,7 @@ look. A perfect run tops out around ×2.5, not ×5.
 
 ```
 grossUnits = copies × price × priceModifiers
-inGame     = copies × monetisationRate × 52 × synergyMoneyMul
+inGame     = copies × monetisationRate × 58 × synergyMoneyMul
 revenue    = (grossUnits + inGame) × revenueShare
 ```
 
@@ -114,7 +114,7 @@ minus any permanent creditor share from a Chapter 11 filing. Floored at 15%.
 
 **Monetisation cards** carry a per-player rate independent of box price — which
 is why a free-to-enter live-service title can out-earn a $70 one. `Live Service
-Pivot` alone is 0.9. The $52 a head is what keeps that route viable now that
+Pivot` alone is 0.9. The $58 a head is what keeps that route viable now that
 trust is a real multiplier: a monetisation studio settles at trust 22 against an
 audience studio's 73, so it sells far fewer copies and has to earn more from
 each one. That is the trade, stated in arithmetic.
@@ -167,6 +167,7 @@ Jank is accumulated brokenness. It comes from:
 | Empty slots | **+11 each** |
 | Events | varies |
 | Polish | −18 per dev point spent |
+| Morale at lock | `(75 − morale) × 0.28` — −7 to +21 |
 | Talent at lock | Rusty −12, Sal −18 |
 | Upgrades | Engine License −10, Engine Team −18, QA Lab ×0.55 |
 
@@ -230,8 +231,30 @@ once.
 
 ## 7. Morale
 
-Starts at 72. Drifts **+2** per quiet quarter, **−(2/3/5)** per crunching
-quarter by difficulty. Scope costs **−2.5 per slot beyond four** at lock.
+Starts at 72. Recovers on a quiet quarter at `4.2 × (1 − morale/100)` — fast
+when the team is wrecked, almost nothing near the top. Crunching costs
+**−(2/3/5)** for the quarter by difficulty, and each crunch itself is **−13**.
+Scope costs **−2.5 per slot beyond four** at lock.
+
+**Morale becomes jank when the box closes:**
+
+```
+jank += (75 − morale) × 0.28
+```
+
+| Morale at lock | Jank |
+|---|---|
+| 100 | −7 |
+| 75 | 0 |
+| 50 | +7 |
+| 25 | +14 |
+| 0 | +21 |
+
+Tired people ship broken games. That is worth about a crunch across its range,
+against a crunch at +12 and an empty slot at +11 — a real term without
+dominating the ones you act on directly. Like staff jank it is **snapshotted at
+lock**, so cheering everyone up after the box closes cannot un-bug a build made
+by exhausted people.
 
 | Threshold | What happens at box lock |
 |---|---|
@@ -241,6 +264,19 @@ quarter by difficulty. Scope costs **−2.5 per slot beyond four** at lock.
 
 Morale is the only meter that acts on its own. It's what makes crunch a
 decision rather than a purchase.
+
+> **Design note.** Morale used to touch *nothing* in the launch pipeline — not
+> score, not copies, not money — and every consequence it had was a threshold at
+> 30 or below. Combined with a flat **+2 a quarter** recovery it parked at 100
+> for any studio that was not point-starved, which made ergonomic chairs, the
+> sabbatical policy, profit share, raises and perks all pointless purchases.
+> There was no reason to bank it and no cost to sitting at the top.
+>
+> It also went unmeasured for a long time: the balance bots gated crunch on
+> `!canAdvance(...)`, which is only true on a completely empty box, so **no
+> archetype ever crunched once in a sweep** and the harness was validating a
+> strategy space with no crunch, no morale pressure and no crunch-driven jank
+> in it. Fixing the bot came first; the numbers above are measured with it.
 
 ---
 
@@ -283,7 +319,7 @@ All three pass through **resistance** for gains only — losing reputation is
 never resisted, which is what "earned slowly, lost fast" means in arithmetic:
 
 ```
-gain × (1 − value / ceiling)      ceiling: trust 100 · heat 110 · standing none
+gain × (1 − value / ceiling)   ceiling: trust 100 · morale 100 · heat 110 · standing none
 ```
 
 **Every source goes through it**, not just launches. Upkeep, marketing channels
@@ -443,12 +479,12 @@ Current standing at 3,000 runs, Standard difficulty:
 
 ```
 archetype       median        top-rank   broke   ch11
-pcmax              $9,852         0.0%   48.8%  45.8%   ← the trap, working
-funmax         $2,538,292        11.0%    1.8%  44.0%
-goremax        $2,482,481        27.0%    2.2%  45.4%   ← highest variance
-moneymax         $658,100         0.0%    0.0%  92.6%   ← safe, low ceiling
-pcthenfun      $2,318,954         6.0%    0.6%  68.0%   ← the designed line
-balanced       $2,428,286         2.0%    0.0%   8.2%
+pcmax            $117,829         0.0%   42.2%  35.8%   ← the trap, working
+funmax         $2,484,934         9.4%    1.8%  45.0%
+goremax        $2,314,475        22.8%    2.6%  48.2%   ← highest variance
+moneymax         $589,522         0.0%    0.0%  90.6%   ← safe, low ceiling
+pcthenfun      $2,123,445         5.4%    0.4%  83.6%   ← the designed line
+balanced       $2,409,268         2.2%    0.4%   8.2%
 ```
 
 `node tools/meter-probe.mjs` attributes every meter delta to the phase that
@@ -458,27 +494,30 @@ clamped and play can no longer move it. A low meter is fine. A stuck one is a
 system that has quietly switched itself off.
 
 ```
-                standing            trust
-archetype    median  pinned    median  pinned
-pcmax            60      0%        14      0%
-funmax           24     14%        73      8%
-goremax          11     17%        67      3%
-moneymax          0     49%        22      0%   ← sells the audience for cash
-pcthenfun        63      0%        59      3%
-balanced         22     22%        80     12%
+             standing        trust          heat         morale
+archetype  median pin    median pin    median pin    median pin
+pcmax          68   0%       14   0%       10  28%       47   0%
+funmax         25  14%       73   9%        6  27%       72   1%
+goremax         9  18%       66   3%       74  15%       66   0%
+moneymax        0  50%       21   0%       68   0%       54   0%
+pcthenfun      50   0%       56   2%        2  34%       52   0%
+balanced       22  23%       80  12%        2  39%       76   1%
 ```
 
-Both numbers used to be far worse. Standing sat pinned at zero for **75%** of
-the campaign for `funmax`, `goremax` and `balanced` before the decay was made
-proportional. Trust sat pinned at the ceiling for **39%** of it before the
-resistance curve was given a reachable ceiling and every source was routed
-through it.
+Where those numbers started:
+
+| Meter | Worst archetype, before | Now |
+|---|---|---|
+| Standing | 75% pinned at zero | 0–23% (moneymax aside) |
+| Trust | 44% pinned at the ceiling | 0–12% |
+| Morale | 54% pinned at the ceiling | 0–1% |
 
 Two things are deliberately still lopsided:
 
-- **`moneymax` standing, 49% pinned.** Selling the audience for cash is
+- **`moneymax` standing, 50% pinned.** Selling the audience for cash is
   supposed to cost you the industry's respect as well as theirs. It is the only
   archetype/meter pair still parked, and it is parked for a reason.
-- **Morale, 38–54% pinned at 95+.** Every morale consequence is threshold-based
-  and the lowest threshold is 30, so a studio that never crunches never
-  interacts with the system at all. Untouched so far.
+- **Heat at zero for 27–39% of a non-gore run.** Unlike the others this is a
+  choice rather than a dead system: heat is something you go and get by
+  shipping gore, memes or monetisation. A studio that ships none of those
+  should have none of it.

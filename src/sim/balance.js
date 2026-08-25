@@ -52,7 +52,7 @@ export const DRIFT = {
   standingPivot: 50,
   trust: -3,
   heat: -5,
-  morale: +2, // recovers when you are not crunching
+  // Morale recovery is not a flat rate; see MORALE.recovery and moraleDrift.
 };
 
 /**
@@ -170,7 +170,35 @@ export const MORALE = {
   raiseMorale: 18,
   perkCost: 12000,
   perkMorale: 10,
+
+  // Tired people ship broken games. Morale is measured against a neutral point
+  // and turned into jank at lock: a studio that is looked after ships cleaner
+  // than one that is ground down, independent of how much crunch went in.
+  //
+  // Until this existed morale was the only meter with no upside at all. It
+  // touched nothing in the launch pipeline — not score, not copies, not money —
+  // and every consequence it had was a threshold at 30 or below. There was no
+  // reason to bank it, no cost to sitting at 100, and for any studio that was
+  // not point-starved it was decoration. Now it is worth roughly -7 to +21
+  // jank across its range, against a crunch at +12 and an empty slot at +11.
+  jankPivot: 75,
+  jankPerPoint: 0.28,
+
+  // Recovery scales down as morale rises rather than being a flat +2 a quarter
+  // to the ceiling. A flat rate meant morale repaired itself for free and
+  // parked at 100 for anyone who did not crunch, which made every lever the
+  // game sells for it — ergonomic chairs, a sabbatical policy, profit share,
+  // raises, perks — pointless. Now a studio settles where its scope, its hires
+  // and its spending put it, and a big box genuinely grinds people down.
+  recovery: 4.2, // per quiet quarter at morale 0, easing to nothing at 100
 };
+
+/** Per-quarter morale recovery on a quarter with no crunch in it. */
+export const moraleDrift = (morale) => MORALE.recovery * (1 - morale / 100);
+
+/** Jank contributed by how the team is doing, snapshotted when the box locks. */
+export const moraleJank = (morale) =>
+  (MORALE.jankPivot - morale) * MORALE.jankPerPoint;
 
 // How launch results feed back into the persistent stats. Kept here so the
 // feedback loop is tunable without touching quarter.js.
@@ -218,7 +246,13 @@ export const FEEDBACK = {
   //
   // A meter with no entry here takes its gains in full.
   // Verified with `node tools/meter-probe.mjs`.
-  resistanceCeiling: { trust: 100, heat: 110 },
+  //   morale   100  Only since morale acquired an upside. While it did nothing
+  //                 but gate disasters below 30 it was fine to let it refill
+  //                 for free; now that it feeds jank there has to be a cost to
+  //                 the last few points, or a studio parks at 100 and collects
+  //                 the bonus. Losses are unresisted as ever, so the quit,
+  //                 leak and sabotage thresholds are as reachable as before.
+  resistanceCeiling: { trust: 100, heat: 110, morale: 100 },
   resist: (meter, value, delta) => {
     const ceiling = FEEDBACK.resistanceCeiling[meter];
     if (!ceiling || delta <= 0) return delta;
@@ -251,7 +285,7 @@ export const UNFINISHED = {
 };
 
 // Revenue per player from monetisation surfaces, independent of box price.
-export const MONETIZATION_PER_PLAYER = 52;
+export const MONETIZATION_PER_PLAYER = 58;
 
 // Dev points you gain simply by being a bigger operation each act.
 export const ACT_DEV_POINTS = { 1: 0, 2: 1, 3: 2 };

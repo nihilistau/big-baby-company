@@ -6,6 +6,7 @@ import {
   JANK,
   HEAT_SOURCES,
   MONETIZATION_PER_PLAYER,
+  moraleJank,
   MONEY,
   POLISH,
   SCORE,
@@ -136,10 +137,14 @@ export function titleJank(state, content, titleOverride = null) {
   // week before launch cannot retroactively re-bug the build.
   if (title.locked) {
     jank += title.staffJank || 0;
+    jank += title.moraleJank || 0;
   } else {
     for (const s of state.staff) {
       jank += content.staff[s.id]?.atLock?.jank || 0;
     }
+    // Live projection of how the team is doing, so the hover preview and the
+    // production panel show what crunching another point will actually cost.
+    jank += moraleJank(state.morale);
   }
   return Math.max(0, Math.round(jank));
 }

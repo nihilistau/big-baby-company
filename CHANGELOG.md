@@ -6,6 +6,65 @@ All notable changes to Big Baby Company. Format follows
 
 ---
 
+## [1.0.5] — 2026-08-26
+
+### Fixed
+
+- **The balance harness never crunched, in any archetype, in any run.** The
+  bots gated crunch on `!canAdvance(...)`, which is only true on a completely
+  empty box — `canLockBox` passes on a single card. So the loop never ran and
+  every sweep was validating a strategy space with **no crunch, no morale
+  pressure and no crunch-driven jank in it at all**, which is a third of the
+  production phase's decisions. Everything below was found only after fixing
+  it. The bots now crunch when the slots are worth more than the damage and
+  stop short of the threshold where people start quitting.
+
+### Changed
+
+- **Morale does something now.** It used to touch nothing in the launch
+  pipeline — not score, not copies, not money — and every consequence it had was
+  a threshold at 30 or below. It is now worth `(75 − morale) × 0.28` jank at
+  lock: about −7 for a studio that is looked after and +21 for one that has
+  been ground down, against a crunch at +12 and an empty slot at +11. Tired
+  people ship broken games. Snapshotted at lock like staff jank, so cheering
+  everyone up after the box closes cannot un-bug a build.
+- **Morale recovery eases off as morale rises**, at `4.2 × (1 − morale/100)` a
+  quiet quarter rather than a flat +2 to the ceiling. The flat rate meant morale
+  repaired itself for free and parked at 100 for anyone not point-starved, which
+  made every lever the game sells for it — ergonomic chairs, sabbatical policy,
+  profit share, raises, perks — a pointless purchase.
+- **Morale gains resist near the ceiling** like the other meters. That exemption
+  was reasonable while morale did nothing but gate disasters; now that it buys a
+  cleaner build there has to be a cost to the last few points. Losses are
+  unresisted as ever, so the quit, leak and sabotage thresholds are exactly as
+  reachable as before.
+- Quarters spent pinned at 95+: **38–54% → 0–1%**. Morale now spans 21–91
+  across archetypes and every one of them trends downward over a run, which is
+  what a resource you spend is supposed to do.
+- **Monetisation is $58 a head, up from $52.** Morale jank costs a monetisation
+  studio copies on top of everything else, and without this `moneymax` dropped
+  back under the King Baby threshold at the sample size CI runs.
+- `DRIFT.morale` is gone; morale recovery lives in `MORALE.recovery` and
+  `moraleDrift()`.
+
+### Added
+
+- Six regression tests: the jank curve both ways and its magnitude against a
+  crunch, the easing recovery, that a ground-down team measurably ships worse
+  and sells fewer copies, that morale is snapshotted at lock, that gains resist
+  at the ceiling, and that losses still reach the disaster thresholds.
+
+### Known
+
+- **`moneymax` standing sits pinned at zero for 50% of a run.** Selling the
+  audience for cash is supposed to cost the industry's respect too. Deliberate.
+- **Heat sits at zero for 27–39% of a non-gore run.** Unlike the others this is
+  a choice rather than a dead system — heat is something you go and get by
+  shipping gore, memes or monetisation, and a studio that ships none of those
+  should have none of it.
+
+---
+
 ## [1.0.4] — 2026-08-26
 
 ### Changed
@@ -335,6 +394,7 @@ game the demo was a mock-up of.
 - Hub scenes with invisible hotspots, overlay panels, localStorage save.
 - Vite + vanilla JS, Vitest, painterly generated art.
 
+[1.0.5]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.5
 [1.0.4]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.4
 [1.0.3]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.3
 [1.0.2]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.2

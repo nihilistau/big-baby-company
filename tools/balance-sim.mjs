@@ -19,6 +19,7 @@ import { createState, currentTitle } from "../src/sim/state.js";
 import * as Actions from "../src/sim/actions.js";
 import * as Q from "../src/sim/quarter.js";
 import { pointsLeft } from "../src/sim/economy.js";
+import { MORALE } from "../src/sim/balance.js";
 import { mulberry32, hashSeed } from "../src/sim/rng.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -189,14 +190,23 @@ function playProduction(state, arch) {
     if (!next) break;
   }
 
-  // Crunch to fill the box if we can't otherwise, while cash allows.
+  // Crunch to fill the box, while cash and morale allow.
+  //
+  // This used to gate on `!Q.canAdvance(...)`, which is only true when the box
+  // is completely empty — canLockBox passes on a single card. So the loop never
+  // ran, no archetype ever crunched once in a whole sweep, and the harness was
+  // silently validating a strategy space with no crunch, no morale pressure and
+  // no crunch-driven jank anywhere in it.
+  //
+  // A real player crunches when the slots are worth more than the damage: every
+  // empty slot costs +11 jank, −3 score, ×0.93 copies and −2 trust, so filling
+  // one is worth a point. Stop short of the threshold where people start
+  // quitting, which is what a player watching the meter would do.
   guard = 0;
-  while (
-    title.cards.length < title.slots &&
-    !Q.canAdvance(state, content) &&
-    guard++ < 6
-  ) {
-    if (state.cash < 40000) break;
+  while (title.cards.length < title.slots && guard++ < 6) {
+    if (pointsLeft(state, content) >= 1) break; // points left; no need to crunch
+    if (state.cash < 60000) break;
+    if (state.morale <= MORALE.quitThreshold + 8) break;
     if (!Actions.crunch(state, content).ok) break;
     const next = pool.find((p) => Actions.placeCard(state, p.f.id, content).ok);
     if (!next) break;

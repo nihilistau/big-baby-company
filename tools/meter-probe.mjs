@@ -27,6 +27,7 @@ import { createState, currentTitle } from "../src/sim/state.js";
 import * as Actions from "../src/sim/actions.js";
 import * as Q from "../src/sim/quarter.js";
 import { pointsLeft } from "../src/sim/economy.js";
+import { MORALE } from "../src/sim/balance.js";
 import { mulberry32, hashSeed } from "../src/sim/rng.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -174,9 +175,14 @@ function playProduction(state, arch) {
   while (title.cards.length < title.slots && guard++ < 60) {
     if (!cards.find((p) => Actions.placeCard(state, p.f.id, content).ok)) break;
   }
+  // Crunch to fill the box. Mirrors balance-sim: the old `!Q.canAdvance(...)`
+  // gate is only true on a completely empty box, so no bot ever crunched and
+  // morale was never exercised by either tool.
   guard = 0;
-  while (title.cards.length < title.slots && !Q.canAdvance(state, content) && guard++ < 6) {
-    if (state.cash < 40000) break;
+  while (title.cards.length < title.slots && guard++ < 6) {
+    if (pointsLeft(state, content) >= 1) break;
+    if (state.cash < 60000) break;
+    if (state.morale <= MORALE.quitThreshold + 8) break;
     if (!Actions.crunch(state, content).ok) break;
     if (!cards.find((p) => Actions.placeCard(state, p.f.id, content).ok)) break;
   }
