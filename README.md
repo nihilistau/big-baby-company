@@ -9,7 +9,7 @@
 **A satirical studio-management roguelite about what happens when the number
 you're being paid for stops being the number people are buying.**
 
-`v1.0.2` · Browser · Single-player · ~60–90 minutes per run · Zero runtime dependencies
+`v1.0.3` · Browser · Single-player · ~60–90 minutes per run · Zero runtime dependencies
 
 ### [▶ Play it in your browser](https://nihilistau.github.io/big-baby-company/)
 
@@ -35,8 +35,10 @@ anyway. It works beautifully.
 It works right up until the quarter it doesn't.
 
 <div align="center">
-<img src="docs/screenshots/02-hq-hotspots.webp" alt="The Big Baby Company office, Act I" width="900" />
-<br><em>Act I. Everything is going extremely well.</em>
+<img src="docs/screenshots/act1.gif" alt="Act I — pitch a game, fill the box, ship it" width="900" />
+<br><em>Act I. Everything is going extremely well. One fashionable feature is
+worth <b>+21 industry score</b> and <b>every single copy you were going to
+sell</b>. The wire does not care.</em>
 </div>
 
 ---
@@ -360,6 +362,8 @@ and you keep the building and one more title to prove a point.
 
 <img src="docs/screenshots/09-acquisition.webp" alt="The acquisition offer" width="100%" />
 
+<img src="docs/screenshots/10-loft.webp" alt="The loft studio" width="100%" />
+
 </td></tr>
 </table>
 
@@ -403,7 +407,7 @@ second filing is the end.
 Vanilla ES modules. Vite. **Zero runtime dependencies.**
 
 ```
-9,314 lines of JavaScript · 137 tests · 54 art assets · 4,800 lines of content JSON
+9,762 lines of JavaScript · 141 tests · 54 art assets · 4,800 lines of content JSON
 ```
 
 The simulation is pure and synchronous — `advance(state, content)` takes a
@@ -418,9 +422,10 @@ is synthesised at runtime — there is not a single audio file in this project.
 ### Verify it yourself
 
 ```bash
-npm test                            # 137 tests: sim, content integrity, fuzz, UI
+npm test                            # 141 tests: sim, content integrity, fuzz, UI
 node tools/balance-sim.mjs          # Monte-Carlo balance sweep across six archetypes
 node tools/ch11-probe.mjs           # where a careful player actually goes broke
+node tools/standing-probe.mjs       # what moves standing, and who is pinned at zero
 node tools/gen-art.mjs --check      # every asset present, correct, consistent
 npm run verify                      # all of the above
 ```

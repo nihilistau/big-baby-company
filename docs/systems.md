@@ -270,7 +270,7 @@ A **Playtest Lab** upgrade reveals which will fire before you ship.
 After every launch:
 
 ```
-standing += (score − 45) × 0.34 + min(14, copies/6500) + synergyStanding
+standing += (score − 45) × 0.34 + min(18, copies/actBase × 3) + synergyStanding
 trust    += (fun + gore×0.55 + ordinary×0.85 − pc×0.95) × 0.62
             + jank × −0.14 + emptySlots × −2 + synergyTrust
 heat     += gore × 2.4 + synergyHeat
@@ -280,9 +280,44 @@ All three pass through **resistance**: `delta × (1 − value/130)` for gains
 only. Without it, every long run converged on all-four-maxed by Act III and the
 second half stopped having decisions in it.
 
-The `min(14, copies/6500)` standing term matters more than it looks —
-commercial success buys grudging respect, which is what keeps the standing
-system alive for a studio the industry despises.
+The copies term matters more than it looks — commercial success buys grudging
+respect, and it is what keeps the standing system alive for a studio the
+industry despises. It is measured as a **multiple of what the act expects to
+sell**, so an Act I hit is worth the same respect as an Act III one:
+
+| Sales, as a multiple of the act's base demand | Standing |
+|---|---|
+| 1× | +3 |
+| 3× | +9 |
+| 5× | +15 |
+| 6× and up | +18 (capped) |
+
+A studio the press scores at zero loses `(0 − 45) × 0.34 = −15.3` standing per
+launch, so roughly **five times the act's baseline is break-even** and a real
+hit climbs. Below that you have to buy reputation directly — the awards circuit
+is +12 a launch, a festival showing +7, a PR firm +5 a quarter.
+
+> **Design note.** This was a flat `copies / 6500`, which needed 91,000 copies
+> in a single launch to reach its own cap and in practice returned 1 to 3
+> against a penalty of 8 to 15. It never delivered the respect it promised.
+
+### Standing decay
+
+Standing decays every quarter **in proportion to how much of it you hold**:
+
+```
+standing += -3 × (standing / 50)      per quarter
+```
+
+Nothing at the floor, −3 at 50, −6 at the ceiling.
+
+> **Design note.** This was a flat −3 a quarter — −9 a title cycle at every
+> level — which was simultaneously fatal at the bottom and toothless at the
+> top. Any studio not feeding the industry PC content sat pinned at 0 for about
+> three quarters of the campaign, where the wire multiplier is already clamped
+> and deal quality stops responding, so half the system was inert for anyone
+> playing the game's own preferred arc. A darling near 100 paid the same −3 and
+> could simply coast. `tools/standing-probe.mjs` measures it.
 
 ---
 
@@ -358,14 +393,34 @@ lands.
 reports which act bankrupts them. Clustering in Act II is the intended beat;
 clustering in Act III is a bug.
 
-Current standing at 800 runs, Standard difficulty:
+Current standing at 1,200 runs, Standard difficulty:
 
 ```
 archetype       median        top-rank   broke   ch11
-pcmax          −$136,639          0.0%   63.2%  61.7%   ← the trap, working
-funmax        $2,235,057          3.8%    3.0%  47.4%
-goremax       $2,505,165         27.8%    3.0%  46.6%   ← highest variance
-moneymax        $660,218          0.0%    0.0%  92.5%   ← safe, low ceiling
-pcthenfun     $1,941,580          1.5%    0.8%  69.9%   ← the designed line
-balanced      $1,774,228          —       0.0%   5.0%
+pcmax             $25,282         0.0%   47.5%  39.5%   ← the trap, working
+funmax         $2,329,285         4.0%    2.5%  45.5%
+goremax        $2,583,963        29.0%    2.0%  42.5%   ← highest variance
+moneymax         $640,699         0.0%    0.0%  90.0%   ← safe, low ceiling
+pcthenfun      $1,947,329         1.0%    1.5%  78.0%   ← the designed line
+balanced       $1,773,490           —     0.0%   4.5%
 ```
+
+`node tools/standing-probe.mjs` separately attributes every standing delta to
+the phase that produced it, and reports what share of the campaign each
+archetype spends pinned at zero — the state in which the meter is inert,
+because the wire multiplier is already clamped and deal quality has stopped
+responding.
+
+```
+archetype    per-cycle net    act III median    floored
+pcmax                 +1.7                56         0%
+funmax                −2.4                12        21%
+goremax               −3.8                 3        27%   ← astroturf, by choice
+pcthenfun             −0.6                38         1%
+balanced              −3.1                 9        29%
+```
+
+Before the decay was made proportional, `funmax`, `goremax` and `balanced` all
+sat at **75%** floored. A low-standing studio is correct — the industry really
+has written them off — but a *pinned* one means the meter has stopped being a
+decision.

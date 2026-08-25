@@ -6,6 +6,51 @@ All notable changes to Big Baby Company. Format follows
 
 ---
 
+## [1.0.3] — 2026-08-26
+
+### Changed
+
+- **Standing decays in proportion to how much of it you hold**, rather than at
+  a flat −3 a quarter. The flat rate was −9 a title cycle at every level, which
+  was simultaneously fatal at the bottom and toothless at the top: it swamped
+  every positive term below roughly standing 60, so `funmax`, `goremax` and
+  `balanced` each spent about **75% of the campaign pinned at exactly zero** —
+  the state where the wire multiplier is already clamped and deal quality has
+  stopped responding. Half the reputation system was inert for anyone not
+  feeding the industry PC content, including the game's own designed arc.
+  Meanwhile a darling sitting near 100 paid the same −3 and could coast.
+  The rate is now −3 at standing 50, about −6 near the ceiling and nothing at
+  the floor. Floored quarters: **75% → 21–29%**.
+- **Commercial success is now priced against what the act expects to sell.**
+  The standing-for-copies term was a flat `copies / 6500` that needed 91,000
+  copies in a single launch to reach its own cap; real launches returned 1 to 3
+  against a score penalty of 8 to 15, so the "commercial success buys grudging
+  respect" the code promised never actually arrived. It is now a multiple of
+  the act's base demand, capped at 18 — about five times baseline breaks even
+  against a zero industry score, and a genuine hit climbs.
+- Knock-on: the PC spiral is slightly less punishing, because standing drives
+  the investor wire and PC studios now hold more of it. It remains far and away
+  the worst strategy in the game — median $25k against `funmax`'s $2.33M, a 0%
+  top-rank share and 47.5% bankrupt — so the premise is intact.
+
+### Added
+
+- `tools/standing-probe.mjs`, which attributes every standing delta to the
+  phase that produced it and reports what share of a campaign each archetype
+  spends pinned at zero. This is how the above was found and tuned rather than
+  guessed at.
+- An animated Act I sequence in the README, replacing the static office shot.
+  Act I is the more brutal illustration of the joke than Act III is: a single
+  fashionable feature is worth **+21 industry score and every copy you were
+  going to sell** — `360 − 360`.
+
+### Removed
+
+- `01-title.webp` and `02-hq-hotspots.webp`, both superseded by animated
+  captures of the same content.
+
+---
+
 ## [1.0.2] — 2026-08-26
 
 ### Fixed
@@ -225,6 +270,7 @@ game the demo was a mock-up of.
 - Hub scenes with invisible hotspots, overlay panels, localStorage save.
 - Vite + vanilla JS, Vitest, painterly generated art.
 
+[1.0.3]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.3
 [1.0.2]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.2
 [1.0.1]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.1
 [1.0.0]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.0

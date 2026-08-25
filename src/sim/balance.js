@@ -48,11 +48,34 @@ export const START = {
 
 // Per-quarter drift applied at End Quarter, before anything else.
 export const DRIFT = {
-  standing: -3,
+  standing: -3, // the rate at `standingPivot`; see standingDrift below
+  standingPivot: 50,
   trust: -3,
   heat: -5,
   morale: +2, // recovers when you are not crunching
 };
+
+/**
+ * Standing decays in proportion to how much of it you hold, rather than as a
+ * flat tax.
+ *
+ * A flat -3 was simultaneously fatal at the bottom and toothless at the top.
+ * A studio the industry had written off could never climb out of zero however
+ * well it sold — -9 a cycle swallowed every gain — so `funmax`, `goremax` and
+ * `balanced` all spent about three quarters of the campaign pinned at 0, where
+ * the wire multiplier is already clamped and deal quality stops responding.
+ * Half the system was inert for anyone not feeding the industry PC content.
+ * Meanwhile a darling near 100 paid the same -3 and could simply coast.
+ *
+ * Scaling by `standing / pivot` makes the rate -3 at 50, about -6 near the
+ * ceiling and nearly nothing near the floor, which turns standing into an
+ * equilibrium a studio settles at rather than a countdown every studio
+ * eventually loses.
+ *
+ * Measured by `tools/standing-probe.mjs`.
+ */
+export const standingDrift = (standing) =>
+  DRIFT.standing * (standing / DRIFT.standingPivot);
 
 // Rent, tools, licences, the accountant. Scales with how big you've got, so
 // growth is never free and a bloated studio bleeds between launches.
@@ -159,7 +182,21 @@ export const FEEDBACK = {
   heatPerGore: 2.4,
   // Commercial success buys grudging respect. Without this, a FUN or GORE
   // studio sits at zero standing forever and half the system goes inert.
-  standingPerCopies: (copies) => Math.min(14, copies / 6500),
+  //
+  // Measured against the act's baseline demand rather than a flat divisor.
+  // The flat `copies / 6500` was calibrated somewhere above what launches
+  // actually sell — it needed 91,000 copies in one launch to reach its own
+  // cap, so in practice it returned 1 to 3 against a score term of -8 to -15
+  // and never delivered the respect the line above promises. As a multiple of
+  // what the act expects to sell, a genuine hit now offsets a low industry
+  // score, which is the whole point of the term.
+  standingPerCopiesCap: 18,
+  standingPerCopiesRate: 3.0,
+  standingPerCopies: (copies, act) =>
+    Math.min(
+      FEEDBACK.standingPerCopiesCap,
+      (copies / COPIES.base[act]) * FEEDBACK.standingPerCopiesRate
+    ),
   // Reputation gets stickier the closer you are to the ceiling.
   resistance: (value, delta) => (delta > 0 ? delta * (1 - value / 130) : delta),
 };

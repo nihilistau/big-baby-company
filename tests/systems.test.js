@@ -8,6 +8,7 @@ import { createState, currentTitle, emptyTitle } from "../src/sim/state.js";
 import { mulberry32 } from "../src/sim/rng.js";
 import * as Actions from "../src/sim/actions.js";
 import { projectLaunch } from "../src/sim/economy.js";
+import { COPIES, DRIFT, FEEDBACK, standingDrift } from "../src/sim/balance.js";
 import { content, inProduction, place, FUN_CARDS } from "./helpers.js";
 
 describe("synergies", () => {
@@ -284,5 +285,82 @@ describe("talent contributions are counted exactly once", () => {
     const out = applyStaffAtLock(title, [{ id: "sal" }, { id: "rusty" }], content);
     expect(out.jank).toBeGreaterThanOrEqual(0);
     expect(out.staffJank).toBe(-30);
+  });
+});
+
+describe("standing stays a live meter", () => {
+  // Standing used to decay at a flat -3 a quarter — -9 a title cycle at every
+  // level. That was fatal at the bottom and toothless at the top: any studio
+  // not feeding the industry PC content sat pinned at 0 for roughly three
+  // quarters of the campaign, where the wire multiplier is already clamped and
+  // deal quality stops responding, while a darling near 100 paid the same -3
+  // and coasted. Measured by tools/standing-probe.mjs.
+
+  it("decays in proportion to how much standing is held", () => {
+    expect(Math.abs(standingDrift(0))).toBe(0);
+    expect(standingDrift(DRIFT.standingPivot)).toBe(DRIFT.standing);
+    expect(standingDrift(100)).toBeCloseTo(DRIFT.standing * 2, 5);
+    // Strictly monotonic, so there is no band where holding standing is free.
+    for (let v = 1; v <= 100; v++) {
+      expect(standingDrift(v)).toBeLessThan(standingDrift(v - 1));
+    }
+  });
+
+  it("cannot grind a studio that is already at the floor", () => {
+    // The specific regression: at standing 0 the old rate still charged -9 a
+    // cycle against a clamp, so every gain was eaten before it could show.
+    expect(Math.abs(standingDrift(0)) * 3).toBe(0);
+    expect(Math.abs(DRIFT.standing) * 3).toBeGreaterThan(0);
+  });
+
+  it("prices commercial success against what the act expects to sell", () => {
+    const { standingPerCopies, standingPerCopiesCap } = FEEDBACK;
+
+    for (const act of [1, 2, 3]) expect(standingPerCopies(0, act)).toBe(0);
+
+    // The same multiple of the act's baseline is worth the same respect. The
+    // old flat divisor made an Act I hit worth nothing and needed 91,000
+    // copies in one launch to reach its own cap.
+    const atBaseline = [1, 2, 3].map((act) => standingPerCopies(COPIES.base[act], act));
+    expect(new Set(atBaseline).size).toBe(1);
+    expect(atBaseline[0]).toBeGreaterThan(0);
+
+    // A studio the press scores at zero eats this much standing every launch.
+    const scoreFloorPenalty = Math.abs(
+      (0 - FEEDBACK.standingPivot) * FEEDBACK.standingGain
+    );
+    // Selling what the act expects does not buy the industry back...
+    expect(standingPerCopies(COPIES.base[3], 3)).toBeLessThan(scoreFloorPenalty);
+    // ...but a genuine hit does. That is the "grudging respect" the term is for.
+    expect(standingPerCopies(COPIES.base[3] * 6, 3)).toBeGreaterThan(scoreFloorPenalty);
+
+    // Bounded, so a runaway seller cannot simply buy the whole meter.
+    expect(standingPerCopies(COPIES.base[3] * 1000, 3)).toBe(standingPerCopiesCap);
+  });
+
+  it("leaves a route off the floor for a studio willing to pay for one", () => {
+    // Zero standing and no PC in the box: the studio that used to be stuck.
+    // Note the trap this has to escape — standing feeds the industry score
+    // through SCORE.standingTilt, and the score feeds standing straight back,
+    // so at the floor the loop pushes down on itself.
+    const state = place(
+      inProduction({ act: 3, slots: 5, standing: 0, trust: 90, cash: 400000 }),
+      FUN_CARDS
+    );
+    const result = projectLaunch(state, content);
+    const launchSwing =
+      (result.score - FEEDBACK.standingPivot) * FEEDBACK.standingGain +
+      FEEDBACK.standingPerCopies(result.copies, 3);
+
+    // Shipping a merely good game does not win the industry round...
+    expect(result.copies).toBeGreaterThan(0);
+    expect(launchSwing).toBeLessThan(0);
+
+    // ...but the levers the game actually sells are enough to climb, and at
+    // the floor nothing is dragging you back while you do it.
+    const awards = content.channelsList.find((c) => c.id === "awards");
+    const prFirmPerCycle = content.upgrades["pr-firm"].perQuarter.standing * 3;
+    expect(launchSwing + awards.standing + prFirmPerCycle).toBeGreaterThan(0);
+    expect(Math.abs(standingDrift(0))).toBe(0);
   });
 });

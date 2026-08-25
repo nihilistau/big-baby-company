@@ -7,6 +7,7 @@ import {
   PENTHOUSE_WIRES,
   SCOPE_MORALE,
   UNFINISHED,
+  standingDrift,
 } from "./balance.js";
 import {
   clamp100,
@@ -180,7 +181,7 @@ export function advance(state, content) {
   applyUpkeep(next, content, events);
 
   // 6. Ambient drift. Reputation is a thing you have to keep paying for.
-  next.standing = clamp100(next.standing + DRIFT.standing);
+  next.standing = clamp100(next.standing + standingDrift(next.standing));
   next.trust = clamp100(next.trust + DRIFT.trust);
   next.heat = clamp100(next.heat + DRIFT.heat);
   const crunchedThisQuarter = (currentTitle(next)?.crunchCount || 0) > 0;
@@ -346,7 +347,7 @@ function resolveLaunch(state, content, events) {
   // stat can be parked at 100 and forgotten about.
   const standingSwing =
     (result.score - FEEDBACK.standingPivot) * FEEDBACK.standingGain +
-    FEEDBACK.standingPerCopies(result.copies) +
+    FEEDBACK.standingPerCopies(result.copies, title.act) +
     result.bundle.standing;
   state.standing = clamp100(
     state.standing + FEEDBACK.resistance(state.standing, standingSwing)
