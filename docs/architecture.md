@@ -51,7 +51,7 @@ data/                     all content
 tools/
   balance-sim.mjs           Monte-Carlo balance harness
   ch11-probe.mjs            frugal-player bankruptcy probe
-  standing-probe.mjs        standing attribution, by phase
+  meter-probe.mjs           meter attribution, by phase
   gen-art.mjs               manifest-driven art generation
   art-manifest.json         style preamble + every asset's prompt
 tests/                    sim, content integrity, fuzz, jsdom UI
@@ -219,7 +219,7 @@ hundred lines and adds zero bytes to the bundle.
 ## Testing
 
 ```bash
-npm test        # 141 tests across 9 files
+npm test        # 146 tests across 9 files
 ```
 
 | File | Covers |
@@ -248,7 +248,7 @@ It found the talent-jank double-count within seconds of being written.
 ```bash
 npm run balance                 # 2000 runs, six archetypes
 node tools/ch11-probe.mjs       # where a frugal player actually goes broke
-node tools/standing-probe.mjs   # what moves standing, and who is pinned at zero
+node tools/meter-probe.mjs      # what moves each meter, and which are pinned
 ```
 
 `balance-sim.mjs` **fails** if any non-control strategy is unwinnable or

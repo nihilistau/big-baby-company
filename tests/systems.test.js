@@ -294,7 +294,7 @@ describe("standing stays a live meter", () => {
   // not feeding the industry PC content sat pinned at 0 for roughly three
   // quarters of the campaign, where the wire multiplier is already clamped and
   // deal quality stops responding, while a darling near 100 paid the same -3
-  // and coasted. Measured by tools/standing-probe.mjs.
+  // and coasted. Measured by tools/meter-probe.mjs.
 
   it("decays in proportion to how much standing is held", () => {
     expect(Math.abs(standingDrift(0))).toBe(0);
@@ -338,7 +338,7 @@ describe("standing stays a live meter", () => {
     expect(standingPerCopies(COPIES.base[3] * 1000, 3)).toBe(standingPerCopiesCap);
   });
 
-  it("leaves a route off the floor for a studio willing to pay for one", () => {
+  it("leaves a route off the floor for a studio the industry has written off", () => {
     // Zero standing and no PC in the box: the studio that used to be stuck.
     // Note the trap this has to escape — standing feeds the industry score
     // through SCORE.standingTilt, and the score feeds standing straight back,
@@ -348,19 +348,90 @@ describe("standing stays a live meter", () => {
       FUN_CARDS
     );
     const result = projectLaunch(state, content);
-    const launchSwing =
+    const swingFor = (copies) =>
       (result.score - FEEDBACK.standingPivot) * FEEDBACK.standingGain +
-      FEEDBACK.standingPerCopies(result.copies, 3);
+      FEEDBACK.standingPerCopies(copies, 3);
 
-    // Shipping a merely good game does not win the industry round...
     expect(result.copies).toBeGreaterThan(0);
-    expect(launchSwing).toBeLessThan(0);
+    // Selling roughly what the act expects still loses the industry round...
+    expect(swingFor(COPIES.base[3])).toBeLessThan(0);
+    // ...and a hit wins it back. Those two together are the design statement:
+    // the industry can be won round, but only by outselling it.
+    expect(swingFor(COPIES.base[3] * 6)).toBeGreaterThan(0);
 
-    // ...but the levers the game actually sells are enough to climb, and at
-    // the floor nothing is dragging you back while you do it.
+    // Nothing drags a studio back down while it climbs off the floor, and the
+    // levers the game sells stack on top of a real launch.
+    expect(Math.abs(standingDrift(0))).toBe(0);
     const awards = content.channelsList.find((c) => c.id === "awards");
     const prFirmPerCycle = content.upgrades["pr-firm"].perQuarter.standing * 3;
-    expect(launchSwing + awards.standing + prFirmPerCycle).toBeGreaterThan(0);
-    expect(Math.abs(standingDrift(0))).toBe(0);
+    expect(awards.standing + prFirmPerCycle).toBeGreaterThan(0);
+  });
+});
+
+describe("trust settles instead of ramping to the ceiling", () => {
+  // Trust used to climb from 30 to the cap over about twenty quarters and stay
+  // there: Act III p10 was 90, so even the worst late quarter was saturated.
+  // Two things caused it. The resistance ceiling was 130 while the meter caps
+  // at 100, so the curve had no equilibrium in the legal range; and three of
+  // the four ways trust changes bypassed the curve entirely, leaving it to
+  // govern about a tenth of the actual flow. Measured by tools/meter-probe.mjs.
+
+  it("resists gains all the way to the ceiling, and not beyond it", () => {
+    const ceiling = FEEDBACK.resistanceCeiling.trust;
+    expect(ceiling).toBe(100); // the meter's own cap, so the curve can bite
+
+    expect(FEEDBACK.resist("trust", 0, 10)).toBeCloseTo(10, 5);
+    expect(FEEDBACK.resist("trust", 50, 10)).toBeCloseTo(5, 5);
+    expect(FEEDBACK.resist("trust", ceiling, 10)).toBe(0);
+    // Never negative, however far past the ceiling a scripted beat pushes.
+    expect(FEEDBACK.resist("trust", 120, 10)).toBe(0);
+  });
+
+  it("never resists a loss, so trust is earned slowly and lost fast", () => {
+    for (const meter of ["standing", "trust", "heat"]) {
+      for (const value of [0, 40, 90, 100]) {
+        expect(FEEDBACK.resist(meter, value, -12)).toBe(-12);
+      }
+    }
+  });
+
+  it("has an equilibrium below the cap for a studio the audience loves", () => {
+    // Solve the curve against the drift rather than trusting a single run:
+    // gain(T) = raw * (1 - T/ceiling), loss = 3 quarters of flat drift.
+    const ceiling = FEEDBACK.resistanceCeiling.trust;
+    const driftPerCycle = Math.abs(DRIFT.trust) * 3;
+    const rawPerCycle = 50; // measured for a late-game audience studio
+    const equilibrium = ceiling * (1 - driftPerCycle / rawPerCycle);
+
+    expect(equilibrium).toBeLessThan(100);
+    expect(equilibrium).toBeGreaterThan(50); // still a reward, just not a cap
+    // At the old ceiling of 130 the same income had no equilibrium at all.
+    expect(130 * (1 - driftPerCycle / rawPerCycle)).toBeGreaterThan(100);
+  });
+
+  it("routes every source of reputation through the same curve", () => {
+    // The regression: upkeep, marketing channels and event effects each used
+    // to apply raw, which let a flat bonus override the curve completely.
+    const state = createState({ seed: "trust-sources" });
+    state.trust = 99;
+    const before = state.trust;
+    applyEffects(state, { trust: 20 }, content, mulberry32(1));
+    expect(state.trust - before).toBeLessThan(2);
+
+    // And a loss of the same size still lands in full.
+    const dropping = createState({ seed: "trust-sources" });
+    dropping.trust = 99;
+    applyEffects(dropping, { trust: -20 }, content, mulberry32(1));
+    expect(dropping.trust).toBe(79);
+  });
+
+  it("keeps morale out of the reputation curve", () => {
+    // Morale is a resource you spend by crunching, not a reputation. Its
+    // recovery to full is deliberate and threshold-based consequences depend
+    // on it actually getting there.
+    const state = createState({ seed: "morale-untouched" });
+    state.morale = 95;
+    applyEffects(state, { morale: 10 }, content, mulberry32(1));
+    expect(state.morale).toBe(100);
   });
 });

@@ -6,6 +6,71 @@ All notable changes to Big Baby Company. Format follows
 
 ---
 
+## [1.0.4] — 2026-08-26
+
+### Changed
+
+- **Audience trust settles instead of ramping to the ceiling.** It climbed from
+  30 to the cap over about twenty quarters and stayed: in Act III its 10th
+  percentile was **90**, so even the worst late quarter was saturated and the
+  meter had stopped being a decision for the last third of the campaign. Two
+  causes, both fixed.
+
+  The resistance ceiling was **130 while every meter caps at 100**, so the curve
+  had no equilibrium anywhere in the legal range — solving `gain = drift` put it
+  at trust 107. At 97 a gain still landed at 25% strength, more than the drift
+  took away, so nothing but the clamp ever stopped the climb. The ceiling is now
+  per-meter and matches the cap.
+
+  And most trust bypassed the curve regardless. Only launch results were
+  resisted; staff and upgrade upkeep, marketing channels and event effects all
+  applied raw. Measured for a late-game audience studio, that left the curve
+  governing **11%** of the actual flow — a community team and one beloved
+  designer paid a flat +11 a quarter while a genuinely good launch swung +8 and
+  was resisted down to +2. Trust was a reward for hiring, not for shipping.
+  Every source now resists.
+
+  Quarters spent saturated: **39% → 4%**. Act III trust now spans 54–94 for an
+  audience studio rather than sitting at 97, and the launch phase is the
+  dominant term.
+- **Standing has no gain resistance at all now**, because it does not need two
+  ceilings. Its proportional decay already holds it down, and stacking a second
+  damping term on top collapsed it to zero for every archetype. Each meter is
+  held by exactly one mechanism: standing by proportional decay, trust by gain
+  resistance, heat by both plus its own hard −5 a quarter.
+- **The trust multiplier on copies is `0.6 + trust/85`** (was `/125`). It was
+  calibrated for a meter parked at 97; now that trust actually varies, the curve
+  maps the range it varies over. In normal play the multiplier now swings across
+  roughly ×1.07–×1.68 instead of ×1.32–×1.40.
+- **Commercial success pays more standing** — `copies/actBase × 4.6`, capped at
+  22, up from ×3.0 capped at 18 — restoring the parity the trust change took
+  away, since a smaller trust multiplier means fewer copies means less respect.
+- **Monetisation is $52 a head, up from $26.** A monetisation studio settles at
+  trust 22 against an audience studio's 73, so it sells far fewer copies and has
+  to earn more from each. Without this, `moneymax` could no longer reach King
+  Baby at all and the balance harness failed its viability assertion.
+
+### Added
+
+- `tools/meter-probe.mjs`, generalised from `standing-probe.mjs`: attributes
+  every delta on all four meters to the phase that produced it, and reports
+  what share of a campaign each spends **pinned** — parked where its own
+  multiplier is saturated or clamped and play can no longer move it. That
+  number is the one worth watching; a low meter is fine, a stuck one is a
+  system that has switched itself off.
+- Five regression tests covering the resistance curve, the equilibrium, the
+  losses-never-resist rule, and morale's exemption from it.
+
+### Known
+
+- **`moneymax` standing sits pinned at zero for 49% of a run.** Selling the
+  audience for cash is supposed to cost the industry's respect too. Deliberate.
+- **Morale is pinned at 95+ for 38–54% of every run.** Every morale consequence
+  is threshold-based and the lowest threshold is 30, so a studio that never
+  crunches never touches the system. Not addressed here.
+
+---
+
 ## [1.0.3] — 2026-08-26
 
 ### Changed
@@ -270,6 +335,7 @@ game the demo was a mock-up of.
 - Hub scenes with invisible hotspots, overlay panels, localStorage save.
 - Vite + vanilla JS, Vitest, painterly generated art.
 
+[1.0.4]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.4
 [1.0.3]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.3
 [1.0.2]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.2
 [1.0.1]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.1

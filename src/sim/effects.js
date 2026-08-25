@@ -1,4 +1,5 @@
 import { clamp100, currentTitle, pushLedger } from "./state.js";
+import { FEEDBACK } from "./balance.js";
 import { pick, roll } from "./rng.js";
 
 /**
@@ -43,7 +44,14 @@ export function applyEffects(state, effects, content, rng, ctx = {}) {
   for (const key of ["standing", "trust", "heat", "morale"]) {
     if (effects[key]) {
       const before = state[key];
-      state[key] = clamp100(state[key] + effects[key]);
+      // Reputation resists near its ceiling wherever the change comes from.
+      // Events are the largest single source of reputation in the game and
+      // used to bypass the curve entirely, as did upkeep and marketing — which
+      // left launch results as the only thing it governed, about a tenth of
+      // the actual flow. Morale is not reputation and keeps its own recovery.
+      const delta =
+        key === "morale" ? effects[key] : FEEDBACK.resist(key, state[key], effects[key]);
+      state[key] = clamp100(state[key] + delta);
       if (state[key] !== before) out.push({ kind: key, delta: state[key] - before });
     }
   }

@@ -1,15 +1,22 @@
 #!/usr/bin/env node
 /**
- * Standing attribution probe.
+ * Meter attribution probe.
  *
- * Standing is the only meter with no floor-side resistance, and it is fed by
- * several terms pulling in different directions. When it flatlines it is not
- * obvious which term is responsible, so this walks full campaigns and
- * attributes every delta to its source.
+ * The four persistent meters are each fed by several terms pulling in
+ * different directions, so when one flatlines it is not obvious which term is
+ * responsible. This walks full campaigns and attributes every delta to the
+ * phase that produced it.
  *
- *   node tools/standing-probe.mjs                    # all archetypes
- *   node tools/standing-probe.mjs --archetype funmax --verbose
- *   node tools/standing-probe.mjs --runs 200
+ * A meter is "pinned" when it has stopped being a decision: parked against one
+ * end of its range, where its own multiplier is saturated or clamped and play
+ * can no longer move it. Standing pins at the floor, trust and morale at the
+ * ceiling. That is the number to watch — a low meter is fine, a stuck one is
+ * a system that has quietly switched itself off.
+ *
+ *   node tools/meter-probe.mjs                       # every meter
+ *   node tools/meter-probe.mjs --meter trust
+ *   node tools/meter-probe.mjs --meter standing --runs 200
+ *   node tools/meter-probe.mjs --meter trust --verbose
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -60,6 +67,13 @@ const ARCHETYPES = {
     channelPref: ["influencers", "astroturf", "trailers", "none"],
     hireInjectors: false,
     upgradePref: ["extra-desk", "marketing-dept", "legal-retainer", "storefront-deal"],
+  },
+  moneymax: {
+    axis: "money",
+    dealPref: ["publisher-aggressive", "publisher-standard", "investor-growth", "self-fund"],
+    channelPref: ["astroturf", "influencers", "trailers", "none"],
+    hireInjectors: true,
+    upgradePref: ["marketing-dept", "storefront-deal", "publishing-arm", "merch-line", "extra-desk"],
   },
   pcthenfun: {
     axis: "pc",
@@ -203,10 +217,39 @@ function resolveEvent(state, arch, rng) {
   Actions.chooseEventOption(state, best, content);
 }
 
+const METERS = {
+  standing: {
+    // At zero the wire multiplier is already clamped at its floor and deal
+    // quality has stopped responding to anything the player does.
+    pinned: (v) => v <= 0,
+    pinnedAt: "0",
+  },
+  trust: {
+    // trustMul spans 0.60 to 1.40 across 0..100. By 90 it is at 1.32, inside
+    // 10% of its ceiling, so further trust buys almost nothing and losing some
+    // costs almost nothing.
+    pinned: (v) => v >= 90,
+    pinnedAt: "90+",
+  },
+  heat: {
+    // Below the backlash floor no roll ever fires, so heat is inert scenery.
+    pinned: (v) => v <= 0,
+    pinnedAt: "0",
+  },
+  morale: {
+    // Every consequence is threshold-based and the lowest threshold is 30.
+    pinned: (v) => v >= 95,
+    pinnedAt: "95+",
+  },
+};
+
+const METER_KEYS = Object.keys(METERS);
+
 /**
- * Play one campaign, recording standing at every quarter boundary plus the
+ * Play one campaign, recording every meter at each quarter boundary plus the
  * total change contributed while each phase was resolving. Phase totals are
- * measured rather than recomputed, so they stay correct if the sim changes.
+ * measured from the state rather than recomputed from the formulas, so they
+ * stay correct if the sim changes underneath.
  */
 function probe(seed, archName) {
   const arch = ARCHETYPES[archName];
@@ -214,7 +257,8 @@ function probe(seed, archName) {
   let state = createState({ seed, difficulty: "standard" });
   Q.beginRun(state, content);
 
-  const byPhase = { pitch: 0, production: 0, launch: 0 };
+  const byPhase = {};
+  for (const m of METER_KEYS) byPhase[m] = { pitch: 0, production: 0, launch: 0 };
   const series = [];
   let guard = 0;
 
@@ -225,7 +269,8 @@ function probe(seed, archName) {
       continue;
     }
     const phase = state.phase;
-    const before = state.standing;
+    const before = {};
+    for (const m of METER_KEYS) before[m] = state[m];
 
     resolveEvent(state, arch, rng);
     if (phase === "pitch") playPitch(state, arch);
@@ -236,22 +281,15 @@ function probe(seed, archName) {
     if (!result.ok) break;
     state = result.state;
 
-    byPhase[phase] += state.standing - before;
-    series.push({ q: state.quarter, act: state.act, standing: state.standing });
+    const point = { q: state.quarter, act: state.act };
+    for (const m of METER_KEYS) {
+      byPhase[m][phase] += state[m] - before[m];
+      point[m] = state[m];
+    }
+    series.push(point);
   }
 
-  return {
-    archetype: archName,
-    byPhase,
-    series,
-    final: state.standing,
-    // Standing is dead once it can no longer influence anything: at zero the
-    // wire multiplier is already clamped at its floor and deal quality stops
-    // responding, so quarters spent there are quarters the meter is inert.
-    quartersAtFloor: series.filter((p) => p.standing <= 0).length,
-    quarters: series.length,
-    act3: series.filter((p) => p.act === 3).map((p) => p.standing),
-  };
+  return { archetype: archName, byPhase, series, quarters: series.length };
 }
 
 // --- Reporting ------------------------------------------------------------
@@ -263,7 +301,14 @@ const arg = (name, def) => {
 };
 const runs = Number(arg("runs", 120));
 const only = arg("archetype", null);
+const meterArg = arg("meter", null);
 const verbose = argv.includes("--verbose");
+
+if (meterArg && !METERS[meterArg]) {
+  console.error(`unknown meter "${meterArg}" — expected one of ${METER_KEYS.join(", ")}`);
+  process.exit(1);
+}
+const meters = meterArg ? [meterArg] : METER_KEYS;
 
 const WORDS = ["amber", "cobalt", "gilded", "hollow", "marrow", "nectar", "opal",
   "pewter", "quartz", "rustle", "saffron", "tumble", "umber", "velvet", "wicker"];
@@ -275,58 +320,70 @@ const seedAt = (i) => {
 
 const names = only ? [only] : Object.keys(ARCHETYPES);
 const mean = (a) => (a.length ? a.reduce((x, y) => x + y, 0) / a.length : 0);
-const median = (a) => {
+const quantile = (a, f) => {
   if (!a.length) return 0;
   const s = [...a].sort((x, y) => x - y);
-  return s[Math.floor(s.length / 2)];
+  return s[Math.min(s.length - 1, Math.floor(s.length * f))];
 };
 
-console.log(`\nStanding probe — ${runs} runs per archetype, difficulty=standard\n`);
-console.log(
-  "archetype".padEnd(12) +
-  "per-cycle contribution".padEnd(34) +
-  "act III standing".padEnd(26) +
-  "floored"
-);
-console.log(
-  "".padEnd(12) +
-  "pitch    prod     launch   net".padEnd(34) +
-  "median   p90      max".padEnd(26) +
-  ""
-);
-console.log("-".repeat(86));
-
+// One pass over the campaigns; every meter is read off the same runs.
+const byArchetype = new Map();
 for (const name of names) {
   const results = [];
   for (let i = 0; i < runs; i++) results.push(probe(seedAt(i), name));
+  byArchetype.set(name, results);
+}
 
-  const cycles = mean(results.map((r) => r.quarters)) / 3;
-  const p = (k) => (mean(results.map((r) => r.byPhase[k])) / cycles).toFixed(1);
-  const net = (
-    mean(results.map((r) => r.byPhase.pitch + r.byPhase.production + r.byPhase.launch)) / cycles
-  ).toFixed(1);
+console.log(`\nMeter probe — ${runs} runs per archetype, difficulty=standard`);
 
-  const act3 = results.flatMap((r) => r.act3);
-  const sorted = [...act3].sort((a, b) => a - b);
-  const p90 = sorted.length ? sorted[Math.floor(sorted.length * 0.9)] : 0;
-  const floored = mean(results.map((r) => r.quartersAtFloor / (r.quarters || 1)));
-
+for (const meter of meters) {
+  const spec = METERS[meter];
+  console.log(`\n── ${meter.toUpperCase()}  (pinned at ${spec.pinnedAt})\n`);
   console.log(
-    name.padEnd(12) +
-    `${p("pitch").padStart(6)}${p("production").padStart(9)}${p("launch").padStart(9)}${String(net).padStart(7)}`.padEnd(34) +
-    `${String(median(act3)).padStart(6)}${String(p90).padStart(9)}${String(Math.max(0, ...act3)).padStart(8)}`.padEnd(26) +
-    `${(floored * 100).toFixed(0)}%`
+    "archetype".padEnd(13) +
+    "per-cycle contribution".padEnd(34) +
+    "act III".padEnd(26) +
+    "pinned"
   );
+  console.log(
+    "".padEnd(13) +
+    "pitch    prod     launch   net".padEnd(34) +
+    "p10      median   p90".padEnd(26) +
+    ""
+  );
+  console.log("-".repeat(87));
+
+  for (const name of names) {
+    const results = byArchetype.get(name);
+    const cycles = mean(results.map((r) => r.quarters)) / 3;
+    const phase = (k) => (mean(results.map((r) => r.byPhase[meter][k])) / cycles).toFixed(1);
+    const net = (
+      mean(results.map((r) =>
+        r.byPhase[meter].pitch + r.byPhase[meter].production + r.byPhase[meter].launch
+      )) / cycles
+    ).toFixed(1);
+
+    const act3 = results.flatMap((r) => r.series.filter((p) => p.act === 3).map((p) => p[meter]));
+    const all = results.flatMap((r) => r.series.map((p) => p[meter]));
+    const pinned = all.length ? all.filter(spec.pinned).length / all.length : 0;
+
+    console.log(
+      name.padEnd(13) +
+      `${phase("pitch").padStart(6)}${phase("production").padStart(9)}${phase("launch").padStart(9)}${String(net).padStart(7)}`.padEnd(34) +
+      `${String(quantile(act3, 0.1)).padStart(6)}${String(quantile(act3, 0.5)).padStart(9)}${String(quantile(act3, 0.9)).padStart(8)}`.padEnd(26) +
+      `${(pinned * 100).toFixed(0)}%`
+    );
+  }
 
   if (verbose) {
-    const r = results[0];
+    const r = byArchetype.get(names[0])[0];
     console.log(`\n  ${r.archetype} · seed ${seedAt(0)}`);
-    console.log("  " + r.series.map((s) => `Q${s.q}:${s.standing}`).join("  "));
-    console.log();
+    console.log("  " + r.series.map((p) => `Q${p.q}:${p[meter]}`).join("  "));
   }
 }
 
 console.log(
-  "\nfloored = share of quarters at standing 0, where the wire multiplier is\n" +
-  "already clamped and deal quality stops responding.\n"
+  "\npinned = share of all quarters parked against the end of the range where\n" +
+  "the meter stops responding to play. A low meter is fine; a stuck one means\n" +
+  "that system has switched itself off.\n"
 );

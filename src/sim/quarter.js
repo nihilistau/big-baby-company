@@ -237,9 +237,18 @@ function applyUpkeep(state, content, events) {
   for (const id of state.studio.upgrades) collect(content.upgrades[id]?.perQuarter);
   for (const s of state.staff) collect(content.staff[s.id]?.perQuarter);
 
-  state.standing = clamp100(state.standing + add.standing);
-  state.trust = clamp100(state.trust + add.trust);
-  state.heat = clamp100(state.heat + add.heat);
+  // Reputation upkeep resists like every other reputation change. Applied raw,
+  // this was by far the largest term in the whole trust economy and the least
+  // earned: a community team and one beloved designer paid a flat +11 a
+  // quarter, +33 a title cycle, while an actual good launch swung +8 and got
+  // resisted down to +2. Trust saturated by Act II and stopped being a
+  // decision. Gains resist; the staff who cost you reputation still cost the
+  // full amount.
+  for (const meter of ["standing", "trust", "heat"]) {
+    if (add[meter]) {
+      state[meter] = clamp100(state[meter] + FEEDBACK.resist(meter, state[meter], add[meter]));
+    }
+  }
   state.morale = clamp100(state.morale + add.morale);
   if (add.cash) {
     state.cash += add.cash;
@@ -288,7 +297,7 @@ function lockBox(state, content, events) {
   if (scopePain) state.morale = clamp100(state.morale + scopePain);
 
   const boxHeat = titleHeat(state, content, state.titles[idx]);
-  if (boxHeat) state.heat = clamp100(state.heat + FEEDBACK.resistance(state.heat, boxHeat));
+  if (boxHeat) state.heat = clamp100(state.heat + FEEDBACK.resist("heat", state.heat, boxHeat));
 
   let title = applyStaffAtLock(state.titles[idx], state.staff, content, { sabotage });
   title = applyMandate(title, content);
@@ -350,7 +359,7 @@ function resolveLaunch(state, content, events) {
     FEEDBACK.standingPerCopies(result.copies, title.act) +
     result.bundle.standing;
   state.standing = clamp100(
-    state.standing + FEEDBACK.resistance(state.standing, standingSwing)
+    state.standing + FEEDBACK.resist("standing", state.standing, standingSwing)
   );
 
   const trustSwing =
@@ -359,10 +368,10 @@ function resolveLaunch(state, content, events) {
       FEEDBACK.trustCoeff +
     result.jank * FEEDBACK.trustJank +
     result.bundle.trust;
-  state.trust = clamp100(state.trust + FEEDBACK.resistance(state.trust, trustSwing));
+  state.trust = clamp100(state.trust + FEEDBACK.resist("trust", state.trust, trustSwing));
 
   const heatSwing = result.bundle.heat + result.gore * FEEDBACK.heatPerGore;
-  state.heat = clamp100(state.heat + FEEDBACK.resistance(state.heat, heatSwing));
+  state.heat = clamp100(state.heat + FEEDBACK.resist("heat", state.heat, heatSwing));
   if (!result.quotaMet) {
     state.standing = clamp100(state.standing - 10);
     state.quotaMisses++;
@@ -413,9 +422,17 @@ function applyMarketing(state, content, rng, events) {
   title.marketing.scoreAdd = channel.scoreAdd ?? 0;
   title.marketing.resolved = true;
 
-  state.standing = clamp100(state.standing + (channel.standing || 0));
-  state.heat = clamp100(state.heat + (channel.heat || 0));
-  state.trust = clamp100(state.trust + (channel.trust || 0));
+  // Through the same resistance curve as every other reputation change. These
+  // three were applied raw, which let a flat channel bonus override the curve
+  // entirely: `honest` paid its full +12 trust at trust 97, where a launch
+  // swing of the same size was worth 3. That single bypass was most of why
+  // audience trust saturated and stopped being a decision by Act II.
+  // Resistance damps gains only, so the channels that cost you trust or
+  // standing still cost the full amount.
+  for (const meter of ["standing", "heat", "trust"]) {
+    const delta = channel[meter] || 0;
+    if (delta) state[meter] = clamp100(state[meter] + FEEDBACK.resist(meter, state[meter], delta));
+  }
 
   if (channel.risk && spend > 0 && roll(rng, channel.risk.chance)) {
     const outcomes = applyEffects(state, channel.risk.effects, content, rng, {
