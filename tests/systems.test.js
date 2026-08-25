@@ -7,13 +7,16 @@ import { endingFor, rankFor } from "../src/sim/endings.js";
 import { createState, currentTitle, emptyTitle } from "../src/sim/state.js";
 import { mulberry32 } from "../src/sim/rng.js";
 import * as Actions from "../src/sim/actions.js";
-import { projectLaunch, titleJank } from "../src/sim/economy.js";
+import { projectLaunch, titleHeat, titleJank } from "../src/sim/economy.js";
 import * as Q from "../src/sim/quarter.js";
 import {
   COPIES,
   CRUNCH,
   DRIFT,
   FEEDBACK,
+  HEAT,
+  HEAT_SOURCES,
+  heatDrift,
   MORALE,
   moraleDrift,
   moraleJank,
@@ -517,5 +520,58 @@ describe("morale is a meter you spend, not a gauge that refills", () => {
     const before = titleJank(locked.state, content, title);
     locked.state.morale = 100;
     expect(titleJank(locked.state, content, title)).toBe(before);
+  });
+});
+
+describe("heat is a dial, not a switch", () => {
+  // Heat cooled at a flat -5 a quarter, -15 a title cycle, at every level. A
+  // fun studio shipping two meme cards generates +6.4 a cycle and one that
+  // crunches twice +7.8, so both were swallowed whole and sat pinned at zero
+  // while a full gore box made +41 and ran away. There was no middle, and half
+  // the catalogue carries meme or monetisation tags whose only effect is heat.
+
+  it("cools in proportion to how much heat is held", () => {
+    expect(Math.abs(heatDrift(0))).toBe(0);
+    expect(heatDrift(DRIFT.heatPivot)).toBe(DRIFT.heat);
+    expect(heatDrift(100)).toBeCloseTo(DRIFT.heat * 2, 5);
+    for (let h = 1; h <= 100; h++) {
+      expect(heatDrift(h)).toBeLessThan(heatDrift(h - 1));
+    }
+  });
+
+  it("lets a mildly controversial box outrun its own cooling", () => {
+    // Two meme-tagged cards, which is the smallest deliberate bet on heat.
+    const perCycle = 2 * HEAT_SOURCES.perMemeTag;
+    const cooling = (level) => Math.abs(heatDrift(level)) * 3;
+
+    expect(perCycle).toBeGreaterThan(cooling(15)); // climbs off the floor
+    expect(perCycle).toBeLessThan(cooling(70)); // but never reaches notoriety
+    // At the old flat rate it lost to the decay at every level in the range.
+    expect(perCycle).toBeLessThan(Math.abs(DRIFT.heat) * 3);
+  });
+
+  it("pays on a curve, so the middle of the range is not free money", () => {
+    const bottom = COPIES.heatMul(25) - COPIES.heatMul(0);
+    const top = COPIES.heatMul(100) - COPIES.heatMul(75);
+    expect(top).toBeGreaterThan(bottom * 4);
+    expect(COPIES.heatMul(0)).toBe(1);
+    expect(COPIES.heatMul(100)).toBeGreaterThan(COPIES.heatMul(50));
+  });
+
+  it("starts charging for heat roughly where it starts paying for it", () => {
+    // The floor has to sit under where a deliberately edgy studio settles, or
+    // there is a wide band collecting copies at no risk at all.
+    expect(HEAT.chance(HEAT.backlashFloor)).toBe(0);
+    expect(HEAT.chance(HEAT.backlashFloor - 1)).toBe(0);
+    expect(HEAT.backlashFloor).toBeLessThan(20);
+    expect(HEAT.chance(70)).toBeGreaterThan(0.5);
+    expect(HEAT.chance(100)).toBeLessThanOrEqual(1);
+  });
+
+  it("still leaves a clean studio alone", () => {
+    // Controversy stays opt-in: shipping nothing edgy is never punished.
+    const clean = place(inProduction({ act: 2, slots: 5, heat: 0 }), FUN_CARDS);
+    expect(titleHeat(clean, content)).toBeLessThan(HEAT.backlashFloor);
+    expect(HEAT.chance(0)).toBe(0);
   });
 });

@@ -91,7 +91,7 @@ you twice.
 | | Formula | Range |
 |---|---|---|
 | Trust | `0.6 + trust/85` | ×0.60 – ×1.78 |
-| Heat | `1 + heat/300` | ×1.00 – ×1.33 |
+| Heat | `1 + (heat/100)² × 0.5` | ×1.00 – ×1.50 |
 | Hype | `0.75 + hype/160` | ×0.75 – ×1.375 |
 | Jank | `max(0.2, 1 − jank/130)` | ×1.00 – ×0.23 |
 | Franchise | `1 + depth × 0.18` | +18% per prior title in the line |
@@ -208,10 +208,42 @@ to compound rather than one launch to outrun its own decay.
 | Per crunch | +3.0 |
 | Per jank | +0.06 |
 | Dunk | +18 |
-| Drift | −5 per quarter |
+| Cooling | `−5 × (heat/50)` per quarter |
 
-**The roll:** below 30 heat, never. Above it,
-`chance = (heat − 30) / 80`, so 100 heat is an ~87% chance every launch.
+**The reward** is a copies multiplier on a curve, not a line:
+
+```
+copies × (1 + (heat/100)² × 0.5)     ×1.02 at 20 · ×1.13 at 50 · ×1.50 at 100
+```
+
+**The roll:** below **14** heat, never. Above it, `chance = (heat − 14) / 96`,
+so 70 heat is a 58% chance every launch and 100 is ~90%.
+
+| Heat | Copies | Backlash chance |
+|---|---|---|
+| 0 | ×1.00 | never |
+| 20 | ×1.02 | 6% |
+| 50 | ×1.13 | 38% |
+| 70 | ×1.25 | 58% |
+| 100 | ×1.50 | 90% |
+
+> **Design note.** Cooling was a flat −5 a quarter — −15 a title cycle at every
+> level — which made heat a switch rather than a dial. Against what a box can
+> actually generate: a fun studio shipping two meme cards makes **+6.4** a
+> cycle, one that crunches twice **+7.8**. Both swallowed whole, so they sat
+> pinned at zero while a full gore box made **+41** and ran away. There was no
+> middle, and **25 of 79 cards are meme-tagged and 14 monetisation-tagged** —
+> half the catalogue carried heat tags that did nothing for most studios.
+>
+> Two knock-ons came with fixing it. The backlash floor of 30 had been fine
+> while nothing lived between 0 and 60, but once the middle of the range opened
+> up it left a wide band collecting copies at no risk at all; it now sits at 14,
+> just under where a mildly edgy studio settles. And the copies multiplier was
+> linear, which meant a studio idling at heat 25 collected most of the reward
+> for none of the risk — the opposite of a push-your-luck axis. On a curve, heat
+> only really pays when you push it.
+>
+> The backlash table now fires **1.5 times a run** rather than 0.6.
 
 | Outcome | Weight | Effect |
 |---|---|---|
@@ -479,12 +511,12 @@ Current standing at 3,000 runs, Standard difficulty:
 
 ```
 archetype       median        top-rank   broke   ch11
-pcmax            $117,829         0.0%   42.2%  35.8%   ← the trap, working
-funmax         $2,484,934         9.4%    1.8%  45.0%
-goremax        $2,314,475        22.8%    2.6%  48.2%   ← highest variance
-moneymax         $589,522         0.0%    0.0%  90.6%   ← safe, low ceiling
-pcthenfun      $2,123,445         5.4%    0.4%  83.6%   ← the designed line
-balanced       $2,409,268         2.2%    0.4%   8.2%
+pcmax             $72,481         0.0%   44.0%  38.0%   ← the trap, working
+funmax         $2,661,590        20.0%    2.0%  39.6%
+goremax        $2,161,594        20.0%    4.0%  45.6%   ← highest variance
+moneymax         $547,895         0.0%    0.0%  90.4%   ← safe, low ceiling
+pcthenfun      $2,060,096         5.6%    1.6%  83.2%   ← the designed line
+balanced       $2,468,128         4.8%    0.0%   8.4%
 ```
 
 `node tools/meter-probe.mjs` attributes every meter delta to the phase that
@@ -496,12 +528,12 @@ system that has quietly switched itself off.
 ```
              standing        trust          heat         morale
 archetype  median pin    median pin    median pin    median pin
-pcmax          68   0%       14   0%       10  28%       47   0%
-funmax         25  14%       73   9%        6  27%       72   1%
-goremax         9  18%       66   3%       74  15%       66   0%
-moneymax        0  50%       21   0%       68   0%       54   0%
-pcthenfun      50   0%       56   2%        2  34%       52   0%
-balanced       22  23%       80  12%        2  39%       76   1%
+pcmax          68   0%       13   0%       24   7%       46   0%
+funmax         24  14%       72   8%       24   0%       72   1%
+goremax         8  19%       65   2%       70   0%       67   0%
+moneymax        0  52%       21   0%       62   0%       52   0%
+pcthenfun      48   0%       53   2%       19   5%       52   0%
+balanced       21  23%       79  11%       16   1%       76   1%
 ```
 
 Where those numbers started:
@@ -509,15 +541,12 @@ Where those numbers started:
 | Meter | Worst archetype, before | Now |
 |---|---|---|
 | Standing | 75% pinned at zero | 0–23% (moneymax aside) |
-| Trust | 44% pinned at the ceiling | 0–12% |
+| Trust | 44% pinned at the ceiling | 0–11% |
 | Morale | 54% pinned at the ceiling | 0–1% |
+| Heat | 39% pinned at zero | 0–7% |
 
-Two things are deliberately still lopsided:
+All four meters now move under play. One thing is deliberately still lopsided:
 
-- **`moneymax` standing, 50% pinned.** Selling the audience for cash is
+- **`moneymax` standing, 52% pinned.** Selling the audience for cash is
   supposed to cost you the industry's respect as well as theirs. It is the only
   archetype/meter pair still parked, and it is parked for a reason.
-- **Heat at zero for 27–39% of a non-gore run.** Unlike the others this is a
-  choice rather than a dead system: heat is something you go and get by
-  shipping gore, memes or monetisation. A studio that ships none of those
-  should have none of it.

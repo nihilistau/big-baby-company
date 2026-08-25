@@ -219,7 +219,7 @@ hundred lines and adds zero bytes to the bundle.
 ## Testing
 
 ```bash
-npm test        # 151 tests across 9 files
+npm test        # 156 tests across 9 files
 ```
 
 | File | Covers |

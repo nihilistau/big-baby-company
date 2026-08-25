@@ -6,6 +6,7 @@ import {
   OPEX,
   PENTHOUSE_WIRES,
   SCOPE_MORALE,
+  heatDrift,
   moraleDrift,
   moraleJank,
   UNFINISHED,
@@ -185,7 +186,7 @@ export function advance(state, content) {
   // 6. Ambient drift. Reputation is a thing you have to keep paying for.
   next.standing = clamp100(next.standing + standingDrift(next.standing));
   next.trust = clamp100(next.trust + DRIFT.trust);
-  next.heat = clamp100(next.heat + DRIFT.heat);
+  next.heat = clamp100(next.heat + heatDrift(next.heat));
   const crunchedThisQuarter = (currentTitle(next)?.crunchCount || 0) > 0;
   next.morale = clamp100(
     next.morale + (crunchedThisQuarter ? -diff.moraleDecay : moraleDrift(next.morale))

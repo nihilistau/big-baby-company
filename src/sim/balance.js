@@ -51,9 +51,27 @@ export const DRIFT = {
   standing: -3, // the rate at `standingPivot`; see standingDrift below
   standingPivot: 50,
   trust: -3,
-  heat: -5,
+  heat: -5, // the rate at `heatPivot`; see heatDrift below
+  heatPivot: 50,
   // Morale recovery is not a flat rate; see MORALE.recovery and moraleDrift.
 };
+
+/**
+ * Controversy cools in proportion to how much of it you have.
+ *
+ * A flat -5 a quarter was -15 a title cycle at every level, which made heat a
+ * switch rather than a dial. Measured against what a box can actually generate:
+ * a fun studio shipping two meme cards makes +6.4 a cycle, one that crunches
+ * twice makes +7.8 — both swallowed whole, so they sat pinned at zero forever
+ * while a full gore box made +41 and ran away. There was no middle. Half the
+ * catalogue carries meme or monetisation tags whose only effect is heat, and
+ * for most studios those tags did nothing at all.
+ *
+ * Scaled, a mildly edgy studio settles around 18-20 instead of 0, a gore studio
+ * still runs hot, and controversy lingers rather than evaporating on schedule —
+ * which is both better play and closer to how this actually works.
+ */
+export const heatDrift = (heat) => DRIFT.heat * (heat / DRIFT.heatPivot);
 
 /**
  * Standing decays in proportion to how much of it you hold, rather than as a
@@ -113,7 +131,12 @@ export const COPIES = {
   // Multiplier curves. Deliberately narrower than they look: they stack
   // multiplicatively, so generous individual ranges compound into nonsense.
   trustMul: (trust) => 0.6 + trust / 85, // 0.60 .. 1.78
-  heatMul: (heat) => 1 + heat / 300, // 1.00 .. 1.33
+  // Heat pays on a curve, not a line: 1.02 at heat 20, 1.13 at 50, 1.50 at
+  // 100. Linear meant a studio idling at heat 25 collected most of the reward
+  // for none of the risk, which is the opposite of a push-your-luck axis. It
+  // only mattered while heat was a switch — everyone sat at 0 or 70 — and
+  // became the dominant term the moment the middle of the range opened up.
+  heatMul: (heat) => 1 + Math.pow(heat / 100, 2) * 0.5, // 1.00 .. 1.50
   hypeMul: (hype) => 0.75 + hype / 160, // 0.75 .. 1.375
   jankMul: (jank) => Math.max(0.2, 1 - jank / 130), // 1.00 .. 0.23
 };
@@ -155,9 +178,17 @@ export const DUNK = {
 
 // --- Heat & backlash ------------------------------------------------------
 export const HEAT = {
-  backlashFloor: 30, // below this, never rolls
-  // probability of a backlash roll firing at launch
-  chance: (heat) => Math.max(0, (heat - 30) / 80),
+  // Below this, the table never rolls — controversy stays opt-in, and a clean
+  // studio is never punished at random.
+  //
+  // This was 30, which was fine while nothing lived between 0 and 60: you were
+  // either clean or notorious. Once the middle of the range opened up, 30 left
+  // a wide band where heat paid copies at no risk at all. The floor now sits
+  // just under where a mildly edgy studio settles, so turning the dial up
+  // starts costing something roughly where it starts paying something.
+  backlashFloor: 14,
+  // Probability of a backlash roll firing at launch. Reaches ~90% at 100.
+  chance: (heat) => Math.max(0, (heat - HEAT.backlashFloor) / 96),
 };
 
 // --- Morale ---------------------------------------------------------------

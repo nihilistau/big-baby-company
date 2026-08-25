@@ -6,6 +6,49 @@ All notable changes to Big Baby Company. Format follows
 
 ---
 
+## [1.0.6] — 2026-08-26
+
+### Changed
+
+- **Heat cools in proportion to how much of it you have**, `−5 × (heat/50)` a
+  quarter rather than a flat −5. The flat rate was −15 a title cycle at every
+  level, which made heat a switch rather than a dial. Measured against what a
+  box can actually generate: a fun studio shipping two meme cards makes **+6.4**
+  a cycle and one that crunches twice **+7.8** — both swallowed whole, so they
+  sat pinned at zero while a full gore box made **+41** and ran away. There was
+  no middle. **25 of 79 cards are meme-tagged and 14 monetisation-tagged**, so
+  half the catalogue carried heat tags that did nothing for most studios.
+  Quarters pinned at zero: **27–39% → 0–7%**, and every archetype now sits
+  somewhere between 16 and 70 instead of at one end or the other.
+- **The backlash floor drops from 30 to 14.** Thirty was fine while nothing
+  lived between 0 and 60 — you were either clean or notorious. Once the middle
+  of the range opened up it left a wide band collecting copies at no risk at
+  all, so the floor now sits just under where a mildly edgy studio settles.
+  Controversy stays opt-in; a clean studio is still never punished at random.
+  The backlash table — eight authored outcomes — now fires **1.5 times a run**
+  rather than 0.6.
+- **Heat pays on a curve**, `1 + (heat/100)² × 0.5`: ×1.02 at 20, ×1.13 at 50,
+  ×1.50 at 100. Linear meant a studio idling at heat 25 collected most of the
+  reward for none of the risk, which is the opposite of a push-your-luck axis.
+  It only failed to matter while heat was a switch; it became the dominant term
+  the moment the middle of the range opened up, taking `funmax`'s top-rank share
+  from 9% to 38% on its own.
+
+### Added
+
+- Five regression tests: proportional cooling, that a deliberately edgy box can
+  outrun its own decay without reaching notoriety, that the reward curve is
+  convex, that the floor sits where the reward starts, and that a clean studio
+  is still left alone.
+
+### Known
+
+- **`moneymax` standing sits pinned at zero for 52% of a run.** Selling the
+  audience for cash is supposed to cost the industry's respect too. Deliberate,
+  and now the only meter still parked anywhere.
+
+---
+
 ## [1.0.5] — 2026-08-26
 
 ### Fixed
@@ -403,6 +446,7 @@ game the demo was a mock-up of.
 - Hub scenes with invisible hotspots, overlay panels, localStorage save.
 - Vite + vanilla JS, Vitest, painterly generated art.
 
+[1.0.6]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.6
 [1.0.5]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.5
 [1.0.4]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.4
 [1.0.3]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.3
