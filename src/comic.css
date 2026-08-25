@@ -1,0 +1,339 @@
+/* =========================================================================
+   Comic-panel pass
+
+   The art is bold-ink cel-shaded now, so the chrome leans the same way: hard
+   offset shadows instead of soft blur, chunkier rules, a halftone dot field,
+   and buttons that physically press. Loaded after style.css, which owns the
+   tokens and layout.
+   ========================================================================= */
+
+:root {
+  --ink-line: rgba(0, 0, 0, 0.55);
+  /* Hard offset shadows read as printed comic panels rather than soft UI. */
+  --panel-lift: 4px 4px 0 var(--ink-line), 0 10px 30px rgba(0, 0, 0, 0.45);
+  --panel-lift-sm: 3px 3px 0 var(--ink-line), 0 6px 18px rgba(0, 0, 0, 0.4);
+  --press: 1px 1px 0 var(--ink-line);
+  --halftone: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.055) 1px, transparent 0);
+}
+
+/* Halftone dot field over the whole app, at the threshold of visibility. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  background-image: var(--halftone);
+  background-size: 4px 4px;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+}
+
+/* --- Buttons ------------------------------------------------------------- */
+
+.btn {
+  position: relative;
+  border-width: 2px;
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.18));
+  box-shadow: var(--press), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  transition:
+    transform var(--dur-fast) var(--ease),
+    box-shadow var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease),
+    filter var(--dur-fast) var(--ease);
+}
+.btn:hover:not(:disabled) {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 var(--ink-line), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+.btn:active:not(:disabled) {
+  transform: translate(1px, 1px);
+  box-shadow: 0 0 0 var(--ink-line), inset 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+.btn.primary {
+  background-image: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--accent) 100%, white 18%),
+    var(--accent)
+  );
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+.btn.primary:hover:not(:disabled) {
+  box-shadow:
+    4px 4px 0 var(--ink-line),
+    0 0 26px color-mix(in srgb, var(--accent) 45%, transparent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+.btn:disabled { box-shadow: none; transform: none; }
+
+.icon-btn {
+  border-width: 2px;
+  box-shadow: var(--press);
+  transition: transform var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease);
+}
+.icon-btn:hover { transform: translate(-1px, -1px); box-shadow: 3px 3px 0 var(--ink-line); }
+.icon-btn:active { transform: translate(1px, 1px); box-shadow: none; }
+
+/* --- Chips --------------------------------------------------------------- */
+
+.chip {
+  border-width: 1.5px;
+  box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.35);
+  animation: chip-pop var(--dur) var(--ease) backwards;
+}
+@keyframes chip-pop {
+  from { opacity: 0; transform: translateY(3px) scale(0.9); }
+}
+
+/* Value chips catch a slow sweep of light so live numbers feel alive. */
+.chip.good,
+.chip.money,
+.chip.hype {
+  position: relative;
+  overflow: hidden;
+}
+.chip.good::after,
+.chip.money::after,
+.chip.hype::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.32) 50%, transparent 65%);
+  transform: translateX(-120%);
+  animation: sheen 5.5s var(--ease) infinite;
+}
+@keyframes sheen {
+  0%, 72% { transform: translateX(-120%); }
+  86%, 100% { transform: translateX(120%); }
+}
+.card:hover .chip { border-color: color-mix(in srgb, currentColor 55%, transparent); }
+
+/* --- Chrome -------------------------------------------------------------- */
+
+.chrome {
+  background-image:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.07), transparent 55%),
+    linear-gradient(180deg, var(--bg-2), var(--bg));
+  border-bottom-width: 2px;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.35), 0 14px 34px rgba(0, 0, 0, 0.4);
+}
+.chrome-brand img { box-shadow: 2px 2px 0 var(--ink-line); }
+.cash-value {
+  text-shadow: 0 0 18px color-mix(in srgb, currentColor 40%, transparent);
+  transition: color var(--dur) var(--ease);
+}
+.est-value { text-shadow: 0 1px 0 rgba(0, 0, 0, 0.6); }
+.ghost { animation: chip-pop 160ms var(--ease) backwards; font-weight: 700; }
+
+/* Meters: gradient fill plus a travelling shine on the filled portion. */
+.meter-track {
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  height: 6px;
+}
+.meter-fill {
+  position: relative;
+  overflow: hidden;
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.35), transparent);
+}
+.meter-fill::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, 0.5) 50%, transparent 70%);
+  transform: translateX(-120%);
+  animation: sheen 7s var(--ease) infinite;
+}
+.meter.danger .meter-fill { animation: meter-alarm 1.6s var(--ease) infinite; }
+@keyframes meter-alarm {
+  50% { filter: brightness(1.6) saturate(1.3); }
+}
+.dot.now { animation: dot-pulse 2s var(--ease) infinite; }
+@keyframes dot-pulse {
+  50% { box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent) 12%, transparent); }
+}
+
+/* --- Surfaces ------------------------------------------------------------ */
+
+.panel {
+  border-left-width: 2px;
+  box-shadow: -6px 0 0 rgba(0, 0, 0, 0.4), var(--shadow-3);
+}
+.panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: var(--halftone);
+  background-size: 5px 5px;
+  opacity: 0.7;
+}
+.modal {
+  border-width: 3px;
+  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.5), var(--shadow-3);
+}
+
+.card,
+.concept,
+.deal,
+.channel,
+.upgrade,
+.staff,
+.status-cell,
+.ss,
+.opt,
+.ach-card {
+  border-width: 2px;
+  box-shadow: var(--panel-lift-sm);
+  transition:
+    transform var(--dur-fast) var(--ease),
+    box-shadow var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease),
+    background var(--dur-fast) var(--ease);
+}
+.card:hover,
+.concept:hover,
+.deal:hover,
+.channel:hover,
+.upgrade:hover:not(.unaffordable),
+.opt:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--panel-lift);
+}
+.card:active,
+.concept:active,
+.deal:active,
+.channel:active,
+.opt:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 var(--ink-line);
+}
+.card.on {
+  box-shadow: var(--panel-lift-sm), inset 0 0 26px color-mix(in srgb, var(--axis-pc) 22%, transparent);
+}
+.concept.chosen,
+.deal.chosen,
+.channel.chosen {
+  box-shadow:
+    var(--panel-lift-sm),
+    inset 0 0 0 1px var(--accent),
+    0 0 24px color-mix(in srgb, var(--accent) 20%, transparent);
+}
+.card-cost {
+  border-width: 2px;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.4);
+}
+
+.slot {
+  border-width: 2px;
+  transition:
+    transform var(--dur-fast) var(--ease),
+    box-shadow var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease),
+    background var(--dur-fast) var(--ease);
+}
+.slot.filled {
+  box-shadow: var(--panel-lift-sm), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  animation: slot-in var(--dur) var(--ease) backwards;
+}
+@keyframes slot-in {
+  from { opacity: 0; transform: translateY(-6px) rotate(-1.5deg); }
+}
+.slot.filled:hover {
+  transform: translate(-2px, -2px) rotate(-0.6deg);
+  box-shadow: var(--panel-lift);
+}
+.slot.injected {
+  box-shadow: var(--panel-lift-sm), inset 0 0 22px color-mix(in srgb, var(--axis-pc) 32%, transparent);
+}
+.dragging .slot.empty { animation: slot-wait 1.1s var(--ease) infinite; }
+@keyframes slot-wait {
+  50% { box-shadow: inset 0 0 24px color-mix(in srgb, var(--accent) 28%, transparent); }
+}
+
+/* Synergy and conflict callouts get a slight comic tilt. */
+.synergy,
+.banner {
+  border-left-width: 5px;
+  box-shadow: var(--panel-lift-sm);
+}
+.banner { transform: rotate(-0.35deg); }
+.banner.conflict { transform: rotate(0.35deg); }
+.banner-name { text-shadow: 0 2px 0 rgba(0, 0, 0, 0.5); }
+
+.staff img,
+.portrait-fallback { box-shadow: 3px 3px 0 var(--ink-line); }
+.store-cover img {
+  box-shadow: 6px 6px 0 var(--ink-line), var(--shadow-2);
+  transform: rotate(-1deg);
+}
+
+.dock {
+  border-top-width: 2px;
+  box-shadow: 0 -4px 0 rgba(0, 0, 0, 0.3);
+  background-image: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.25));
+}
+.dock-btn {
+  border-width: 2px;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.4);
+  transition:
+    transform var(--dur-fast) var(--ease),
+    box-shadow var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease);
+}
+.dock-btn:hover { transform: translate(-1px, -1px); box-shadow: 3px 3px 0 var(--ink-line); }
+.dock-btn:active { transform: translate(1px, 1px); box-shadow: none; }
+
+.fig {
+  border-width: 2px;
+  box-shadow: var(--panel-lift-sm);
+  background: rgba(255, 255, 255, 0.03);
+}
+.fig-value { text-shadow: 0 3px 0 rgba(0, 0, 0, 0.55); }
+.punch { text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.55); }
+.menu h1 { filter: drop-shadow(4px 4px 0 rgba(0, 0, 0, 0.55)); }
+.toast {
+  box-shadow: 3px 3px 0 var(--ink-line), var(--shadow-2);
+  border-width: 2px;
+  border-left-width: 4px;
+}
+.coach-card {
+  border-width: 3px;
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.5), var(--shadow-3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chip.good::after,
+  .chip.money::after,
+  .chip.hype::after,
+  .meter-fill::after { display: none; }
+  body::after { opacity: 0.35; }
+}
+
+/* Quarter-over-quarter movement on the four meters, so they stop changing
+   in silence and the player can learn what drives them. */
+.meter { position: relative; }
+.meter-delta {
+  position: absolute;
+  right: -4px;
+  top: -9px;
+  font-size: 10px;
+  font-weight: 800;
+  font-family: var(--font-display);
+  padding: 1px 5px;
+  border-radius: 99px;
+  background: rgba(0, 0, 0, 0.75);
+  animation: meter-delta 4.2s var(--ease) forwards;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.meter-delta.up { color: var(--ok); }
+.meter-delta.down { color: var(--bad); }
+@keyframes meter-delta {
+  0% { opacity: 0; transform: translateY(6px) scale(0.8); }
+  10% { opacity: 1; transform: translateY(0) scale(1); }
+  82% { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(-8px); }
+}

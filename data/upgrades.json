@@ -1,0 +1,213 @@
+[
+  {
+    "id": "extra-desk",
+    "name": "A Second Desk",
+    "cost": 70000,
+    "acts": [1, 2, 3],
+    "devPoints": 1,
+    "category": "capacity",
+    "blurb": "One more desk. One more dev point, every quarter, forever.",
+    "body": "It is a desk. It is not a strategy, a vision, or a north star. It is a flat surface with a chair at it and it will do more for this studio than the last three offsites combined."
+  },
+  {
+    "id": "third-desk",
+    "name": "A Third Desk",
+    "cost": 190000,
+    "acts": [2, 3],
+    "requires": ["extra-desk"],
+    "devPoints": 1,
+    "category": "capacity",
+    "blurb": "Another desk. Another point. The floor is getting crowded.",
+    "body": "You had to move the printer. Nobody has used the printer since Karen left, and the two facts are almost certainly related."
+  },
+  {
+    "id": "engine-license",
+    "name": "Engine License",
+    "cost": 90000,
+    "acts": [1, 2, 3],
+    "perTitle": { "jank": -10 },
+    "category": "tech",
+    "blurb": "Stop writing the renderer. Start writing the game.",
+    "body": "Six figures a year to never again debug someone's bespoke skeletal animation at 2am. The seat cost is offensive and the alternative is worse and everybody in engineering already knows this."
+  },
+  {
+    "id": "qa-lab",
+    "name": "QA Lab",
+    "cost": 140000,
+    "acts": [1, 2, 3],
+    "jankMul": 0.55,
+    "category": "tech",
+    "blurb": "A room of people who play the build on purpose. Jank at launch is nearly halved.",
+    "body": "Four testers, a matrix of hardware, and a spreadsheet nobody upstairs will ever read. The reviews get shorter and kinder and no executive will ever be able to attribute it to this line item."
+  },
+  {
+    "id": "build-farm",
+    "name": "Build Farm",
+    "cost": 110000,
+    "acts": [2, 3],
+    "perQuarter": { "morale": 4, "jank": -3 },
+    "category": "tech",
+    "blurb": "Compiles in four minutes instead of fifty. Morale climbs and nobody can say why.",
+    "body": "The single most boring purchase available and the one the team will thank you for at the wrap party. Fifty minutes, eight times a day, times nine people, is a person-year you just bought back."
+  },
+  {
+    "id": "mocap-stage",
+    "name": "Mocap Stage",
+    "cost": 220000,
+    "acts": [2, 3],
+    "perTitle": { "hype": 8 },
+    "perQuarter": { "standing": 2 },
+    "category": "art",
+    "blurb": "Real performances. Trailers stop looking cheap.",
+    "body": "A room with a lot of cameras and a floor you are not allowed to wear shoes on. The animation stops being approximated and starts being observed, and every single trailer after this looks like it cost twice what it did."
+  },
+  {
+    "id": "audio-suite",
+    "name": "Audio Suite",
+    "cost": 95000,
+    "acts": [2, 3],
+    "perTitle": { "hype": 5 },
+    "perQuarter": { "trust": 2 },
+    "category": "art",
+    "blurb": "A treated room and a good microphone. Everything sounds more expensive.",
+    "body": "Nobody reviews the audio and everybody feels it. The shotgun gets its weight, the market square gets its depth, and one track gets ripped to every video platform on earth within a day of launch."
+  },
+  {
+    "id": "marketing-dept",
+    "name": "Marketing Department",
+    "cost": 130000,
+    "acts": [1, 2, 3],
+    "unlocksMarketing": true,
+    "marketingMul": 1.25,
+    "category": "business",
+    "blurb": "Unlocks campaign channels at launch and makes every dollar of spend go 25% further.",
+    "body": "Three people, a calendar, and a genuine understanding of when to post. Before this, marketing was you, at midnight, guessing."
+  },
+  {
+    "id": "pr-firm",
+    "name": "PR Firm On Retainer",
+    "cost": 160000,
+    "acts": [1, 3],
+    "perQuarter": { "standing": 5, "heat": -5 },
+    "category": "business",
+    "blurb": "Standing climbs every quarter. Heat cools faster. They are very expensive and very good.",
+    "body": "They will get you on a panel about courage, they will kill two stories you never hear about, and they will bill you in a font you cannot argue with."
+  },
+  {
+    "id": "legal-retainer",
+    "name": "Legal Retainer",
+    "cost": 150000,
+    "acts": [1, 2, 3],
+    "absorbsBacklash": 1,
+    "category": "business",
+    "blurb": "Absorbs one backlash outright. Once used, it is gone.",
+    "body": "A firm with a nautical name and an hourly rate that makes your eyes water. The one time you need them, they will make a genuinely catastrophic week into a paragraph nobody reads."
+  },
+  {
+    "id": "community-team",
+    "name": "Community Team",
+    "cost": 85000,
+    "acts": [2, 3],
+    "perQuarter": { "trust": 5, "heat": -4 },
+    "category": "business",
+    "blurb": "Trust climbs every quarter. The mob gets talked down before it forms.",
+    "body": "Two people who answer at eleven on a Sunday with something that is neither a copy-paste nor a lawsuit. They are the cheapest trust in the game and the first thing every studio cuts."
+  },
+  {
+    "id": "ergonomic-chairs",
+    "name": "Chairs That Aren't A Joke",
+    "cost": 45000,
+    "acts": [1, 2, 3],
+    "perQuarter": { "morale": 5 },
+    "category": "people",
+    "blurb": "Morale climbs every quarter. It is embarrassing how well this works.",
+    "body": "The old ones came with the unit. Two people have back problems that predate this company and will outlast it. Forty-five thousand dollars is less than one alignment offsite and it will do more."
+  },
+  {
+    "id": "profit-share",
+    "name": "Profit Share",
+    "cost": 120000,
+    "acts": [2, 3],
+    "perQuarter": { "morale": 8 },
+    "revShareCost": 0.05,
+    "category": "people",
+    "blurb": "Give the team five percent. Morale climbs hard and nobody ever leaves.",
+    "body": "Five points off the top, permanently. In exchange, the people who make the thing have a reason to care whether it sells, which turns out to be the single most under-priced asset in this entire industry."
+  },
+  {
+    "id": "sabbatical-policy",
+    "name": "Actual Time Off",
+    "cost": 60000,
+    "acts": [2, 3],
+    "perQuarter": { "morale": 6, "jank": -2 },
+    "crunchDiscount": 0.25,
+    "category": "people",
+    "blurb": "Morale recovers faster and crunch costs less, because it costs less when people have slept.",
+    "body": "Not unlimited-and-therefore-never-taken. Actual, scheduled, enforced weeks where the laptop stays shut. The bug count goes down in a way that is statistically obvious and culturally invisible."
+  },
+  {
+    "id": "engine-team",
+    "name": "Dedicated Engine Team",
+    "cost": 240000,
+    "acts": [2, 3],
+    "requires": ["engine-license"],
+    "perTitle": { "jank": -18 },
+    "perQuarter": { "morale": 2 },
+    "category": "tech",
+    "blurb": "Two people whose entire job is the thing under the thing.",
+    "body": "They produce no screenshots, appear in no trailer, and are the reason the next four titles are on time. The first executive to look at a headcount spreadsheet will suggest cutting them."
+  },
+  {
+    "id": "playtest-lab",
+    "name": "Playtest Lab",
+    "cost": 100000,
+    "acts": [2, 3],
+    "perTitle": { "hype": 4 },
+    "perQuarter": { "trust": 3 },
+    "revealsSynergies": true,
+    "category": "tech",
+    "blurb": "Strangers play it early. Reveals which synergies and conflicts your box will actually fire.",
+    "body": "A two-way mirror and eleven people who have never met you failing to find the door for six minutes. Every single thing they do is information you cannot get any other way."
+  },
+  {
+    "id": "merch-line",
+    "name": "Merch Line",
+    "cost": 75000,
+    "acts": [2, 3],
+    "perQuarter": { "cash": 14000 },
+    "category": "business",
+    "blurb": "A small, boring, entirely reliable cheque every quarter.",
+    "body": "Shirts, a plush of the mascot, an enamel pin that outsold all three. It is not a business, it is a floor, and a floor is worth a great deal when the ceiling keeps falling in."
+  },
+  {
+    "id": "storefront-deal",
+    "name": "Front Page Placement",
+    "cost": 180000,
+    "acts": [2, 3],
+    "perTitle": { "hype": 14 },
+    "category": "business",
+    "blurb": "A standing arrangement with the storefront. Every launch starts higher.",
+    "body": "Nobody at the platform will describe this as paid placement and nobody at this studio will describe it as anything else. The banner is the banner and it works exactly as well as it looks like it should."
+  },
+  {
+    "id": "publishing-arm",
+    "name": "Publishing Arm",
+    "cost": 300000,
+    "acts": [3],
+    "perQuarter": { "cash": 40000, "standing": 2 },
+    "category": "business",
+    "blurb": "You are the chequebook now. Someone else's studio funds your quarter.",
+    "body": "Four small teams, four term sheets, four rooms full of people who talk about you the way you used to talk about the board. The money is genuinely excellent and you have started using the word 'units.'"
+  },
+  {
+    "id": "own-your-ip",
+    "name": "Buy Back The IP",
+    "cost": 250000,
+    "acts": [2, 3],
+    "ownsIP": true,
+    "perQuarter": { "cash": 12000 },
+    "category": "business",
+    "blurb": "The catalogue comes home. Protects you when the vultures circle.",
+    "body": "Three years of back-and-forth and a number that made you sit down. Everything you made in the purple years is yours again, which matters enormously the day somebody offers to buy this company."
+  }
+]

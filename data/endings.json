@@ -1,0 +1,200 @@
+{
+  "ranks": [
+    {
+      "id": "liquidated",
+      "name": "Liquidated",
+      "minCash": null,
+      "maxCash": -999999,
+      "note": "The lease is up. The chairs went at auction."
+    },
+    {
+      "id": "wendys",
+      "name": "Wendy's Is Hiring",
+      "minCash": -999998,
+      "maxCash": -1,
+      "note": "They have a robust onboarding packet."
+    },
+    {
+      "id": "ramen",
+      "name": "Ramen Indie",
+      "minCash": 0,
+      "maxCash": 249999,
+      "note": "Still here. Barely. Still here."
+    },
+    {
+      "id": "broke-even",
+      "name": "Broke Even, King",
+      "minCash": 250000,
+      "maxCash": 749999,
+      "note": "Nobody writes articles about breaking even."
+    },
+    {
+      "id": "sustainable",
+      "name": "Actually Sustainable",
+      "minCash": 750000,
+      "maxCash": 1799999,
+      "note": "Payroll is boring now. Boring is the achievement."
+    },
+    {
+      "id": "king-baby",
+      "name": "King Baby",
+      "minCash": 1800000,
+      "maxCash": 3499999,
+      "note": "The pool is real and the pool is paid for."
+    },
+    {
+      "id": "emperor",
+      "name": "Emperor Baby",
+      "minCash": 3500000,
+      "maxCash": 5999999,
+      "note": "You are on someone else's slide now."
+    },
+    {
+      "id": "dynasty",
+      "name": "The Big Baby Dynasty",
+      "minCash": 6000000,
+      "maxCash": null,
+      "note": "Eight figures. They named a conference stage after you."
+    }
+  ],
+  "endings": [
+    {
+      "id": "sold-out",
+      "name": "The Exit",
+      "priority": 100,
+      "requires": {
+        "acquisitionTaken": true
+      },
+      "art": "ending-exit",
+      "line": "The all-hands lasted four minutes. Somebody asked about the roadmap and the answer came from a man in a lanyard who had not been introduced.",
+      "punch": "Nah. It's the money, baby.",
+      "body": "Two years later the studio is a brand on a launcher and the people are at four other companies making better things with less money. You have a house with a view of a different city. On a bad night you open the first game you ever shipped and play the tutorial, and it is still good, and that is somehow worse."
+    },
+    {
+      "id": "live-service-forever",
+      "name": "The Place",
+      "priority": 90,
+      "requires": {
+        "liveService": true,
+        "minCash": 1800000
+      },
+      "art": "ending-liveservice",
+      "line": "It never ends, which was the pitch. Season nineteen has a hub world inside the hub world and a currency the finance team has stopped being able to explain.",
+      "punch": "Nah. It's the money, baby.",
+      "body": "Forty people work here forever now, on a treadmill they cannot step off, funding a company that no longer makes anything else. The revenue is genuinely extraordinary. Nobody on the team has shipped an ending in six years and two of them have started saying so out loud."
+    },
+    {
+      "id": "true-believer",
+      "name": "The Room With The Door Closed",
+      "priority": 80,
+      "requires": {
+        "minTrust": 75,
+        "minCash": 750000,
+        "acquisitionTaken": false
+      },
+      "art": "ending-independent",
+      "line": "Male or female. Body Type 1 or Body Type 2. They're pixels. The medium can hold more than one story.",
+      "punch": "And it turns out you can pay rent on that.",
+      "body": "You said no to the nine figures and the building is still yours. The catalogue is yours. Nobody has to ask permission to put a joke on page one. It is smaller than the empire you could have had and every single person who works here would rather be here, which is a sentence very few people in this industry ever get to write."
+    },
+    {
+      "id": "beloved-broke",
+      "name": "Adored, Insolvent",
+      "priority": 70,
+      "requires": {
+        "minTrust": 70,
+        "maxCash": 0
+      },
+      "art": "ending-broke",
+      "line": "Four hundred thousand people would defend you in any thread on earth. Eleven of them have offered you a spare room.",
+      "punch": "Turns out love isn't a revenue line.",
+      "body": "You made the good ones. Everybody agrees you made the good ones. The bank has a different framework for evaluating this and their framework is, unfortunately, the operative one. There is a crowdfunder and it is going well and it is not going well enough."
+    },
+    {
+      "id": "money-baby",
+      "name": "It's The Money, Baby",
+      "priority": 60,
+      "requires": {
+        "minCash": 1800000,
+        "maxTrust": 45
+      },
+      "art": "ending-money",
+      "line": "Male or female. Body Type 1 or Body Type 2. They're pixels. The medium can hold more than one story.",
+      "punch": "Nah. It's the money, baby.",
+      "body": "You worked out what the number responds to and then you pressed it, over and over, for six years. Nobody is going to write a retrospective about this. The retrospectives are for people who lost. You have a pool, and the pool was paid for by customers this time, which you did not expect to care about and do."
+    },
+    {
+      "id": "the-craftsman",
+      "name": "The Long Way",
+      "priority": 55,
+      "requires": {
+        "minTrust": 60,
+        "minCash": 250000,
+        "maxCash": 1799999
+      },
+      "art": "ending-craftsman",
+      "line": "No pool, no stage, no nine figures. Eight titles, all of them finished, none of them a lie.",
+      "punch": "It was never going to be the money.",
+      "body": "The studio is thirty people who could all earn more elsewhere and do not. Every game you made still runs, because you patched the login servers out of the old ones on a quarter when it earned nothing. Somewhere a man in his thirties has one of them on a shelf and it got him through a bad year, and he told you so once, and you think about it more than you would admit."
+    },
+    {
+      "id": "burnout",
+      "name": "The Building Emptied",
+      "priority": 50,
+      "requires": {
+        "maxMorale": 25
+      },
+      "art": "ending-burnout",
+      "line": "You won. The numbers say you won. There is nobody left in the building to tell.",
+      "punch": "Nah. It's the money, baby.",
+      "body": "Everyone who made the first four is gone. Not laid off — gone, one at a time, in polite conversations you did not attend. The current team is competent and new and they call it 'the IP.' The cash position is excellent. You have started leaving the office at six because there is no reason not to."
+    },
+    {
+      "id": "the-heat-death",
+      "name": "Permanently Trending",
+      "priority": 45,
+      "requires": {
+        "minHeat": 65
+      },
+      "art": "ending-heat",
+      "line": "You have been the main character forty-one times. The wishlist graph loved every one of them.",
+      "punch": "Nah. It's the money, baby.",
+      "body": "Every launch is a war and every war sells. You are the most-argued-about studio in the industry and roughly nine percent of the people arguing have installed anything. It works. It keeps working. Nobody at this company has had a quiet Tuesday since the purple years and nobody can propose stopping without proposing a smaller number."
+    },
+    {
+      "id": "industry-darling",
+      "name": "The Necessary Voice",
+      "priority": 40,
+      "requires": {
+        "minStanding": 80,
+        "maxCash": 249999
+      },
+      "art": "ending-darling",
+      "line": "Eleven awards. Four keynotes. A retrospective at a museum with a plaque you helped word.",
+      "punch": "Nah. It's the money, baby. It just wasn't yours.",
+      "body": "You are the most respected person in this industry and you cannot make payroll. Every panel wants you and none of them pay. Somewhere a studio that has never been nominated for anything is shipping its ninth profitable sequel to a game about a man with a shotgun, and the two of you are, technically, in the same business."
+    },
+    {
+      "id": "wendys-ending",
+      "name": "Wendy's Is Hiring",
+      "priority": 30,
+      "requires": {
+        "maxCash": -1
+      },
+      "art": "ending-wendys",
+      "line": "The chairs went at auction. Somebody bought the mascot plush mould for four hundred dollars and you hope they do something kind with it.",
+      "punch": "It was always going to be the money.",
+      "body": "Eight titles, six years, one very good idea you never quite had the quarter to make. The onboarding packet is genuinely robust. Karen filed it. On your first shift a customer recognises the name on your badge from a game he loved and he is so pleased to meet you that you have to go into the back for a minute."
+    },
+    {
+      "id": "default",
+      "name": "The Quarter After",
+      "priority": 0,
+      "requires": {},
+      "art": "ending-default",
+      "line": "Male or female. Body Type 1 or Body Type 2. They're pixels. The medium can hold more than one story.",
+      "punch": "Nah. It's the money, baby.",
+      "body": "Eight titles. A cash position. A number that will be in a spreadsheet somewhere for as long as anyone bothers to keep it, and then not. The next quarter starts on Monday and there is a concept document on the desk that somebody left there hoping you would read it."
+    }
+  ]
+}

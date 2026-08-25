@@ -1,0 +1,269 @@
+{
+  "accounts": {
+    "press": { "name": "The Vanguard", "handle": "@vanguard_games", "kind": "press" },
+    "trend": { "name": "TrendPiece", "handle": "@trendpiece", "kind": "press" },
+    "backlog": { "name": "The Backlog", "handle": "@backlog_reviews", "kind": "press" },
+    "investors": { "name": "North Star Capital", "handle": "@northstar_cap", "kind": "money" },
+    "players": { "name": "Players", "handle": "@everyone", "kind": "player" },
+    "haters": { "name": "Grum", "handle": "@grumdotexe", "kind": "hater" },
+    "chad": { "name": "Chad Vantage", "handle": "@vantagelive", "kind": "streamer" },
+    "priya": { "name": "Dr. Priya Nandi", "handle": "@nandi_plays", "kind": "academic" },
+    "anon": { "name": "Anon Dev", "handle": "@throwaway4491", "kind": "insider" },
+    "marcus": { "name": "Marcus Toll", "handle": "@tollbooth", "kind": "leaker" },
+    "wendys": { "name": "Wendy's", "handle": "@wendys", "kind": "brand" },
+    "bbc": { "name": "Big Baby Company", "handle": "@bigbabyco", "kind": "self" },
+    "nan": { "name": "Sheila, 71", "handle": "@sheila_plays", "kind": "player" },
+    "you": { "name": "You", "handle": "@thebigbaby", "kind": "self" }
+  },
+  "pools": {
+    "launch-pc-high": [
+      { "who": "press", "text": "Brave. Necessary. A text that could only exist now." },
+      { "who": "press", "text": "Finally, a game that asks the player to do the work." },
+      { "who": "investors", "text": "This is the kind of values alignment we can take to a conference." },
+      { "who": "priya", "text": "I will be teaching this. Not playing it. Teaching it." },
+      { "who": "trend", "text": "The most important game of the year, and I say that having played forty minutes of it." },
+      { "who": "press", "text": "It refuses the pleasures of the medium. That refusal is the point." },
+      { "who": "haters", "text": "there is a nine minute conversation about a pamphlet. nine. minutes." },
+      { "who": "chad", "text": "chat we are ninety minutes in and i have not pressed a button that does anything" },
+      { "who": "players", "text": "I bought this to relax after work and it has assigned me reading." },
+      { "who": "priya", "text": "A landmark in the medium's ongoing conversation with itself. Nobody else is invited." }
+    ],
+    "launch-pc-low": [
+      { "who": "press", "text": "Problematic fun. We expected more from BBC." },
+      { "who": "investors", "text": "We're not seeing the authentic voices in this build." },
+      { "who": "trend", "text": "A regression. A step backwards. A game, essentially." },
+      { "who": "priya", "text": "One hopes the next title engages more seriously with what it is doing." },
+      { "who": "press", "text": "There is no thesis here. There is a shotgun." },
+      { "who": "investors", "text": "Units are a western metric but even so." }
+    ],
+    "launch-fun-high": [
+      { "who": "haters", "text": "Wait, I had a good time? Is that allowed." },
+      { "who": "players", "text": "The gun works. I'm going to need a minute." },
+      { "who": "chad", "text": "OKAY THE SLIDE. THE SLIDE. CHAT THE SLIDE" },
+      { "who": "backlog", "text": "It's just good. That's the review. It's good and I played all of it." },
+      { "who": "players", "text": "forty minutes in the first corridor. haven't started the game. don't want to." },
+      { "who": "nan", "text": "My grandson set this up for me and I have not stopped. The jumping is lovely." },
+      { "who": "haters", "text": "i have been so mean about this studio for so long and now this. humiliating." },
+      { "who": "chad", "text": "we're doing a 12 hour stream. no i don't want to talk about sleep." }
+    ],
+    "launch-gore-high": [
+      { "who": "press", "text": "Unexamined violence. We sat with this and we're tired." },
+      { "who": "players", "text": "The parking lot was not ready for that shotgun. I was." },
+      { "who": "chad", "text": "i have been demonetised four times in one stream and it was worth every one" },
+      { "who": "trend", "text": "Who is this for? Genuinely. Who." },
+      { "who": "players", "text": "the trolley. the man. the trolley WITH the man. i'm done" },
+      { "who": "priya", "text": "There is a serious argument to be made here about catharsis. I am not going to make it." },
+      { "who": "haters", "text": "they put the blood back in. they just put it back in." }
+    ],
+    "launch-ordinary-high": [
+      { "who": "players", "text": "The lead is a bloke called Mark with a bad knee and I would die for him." },
+      { "who": "backlog", "text": "Ninety seconds of two men discussing a boiler and it's the best writing in games this year." },
+      { "who": "nan", "text": "That's my leisure centre. That's the actual sign. How did they know." },
+      { "who": "players", "text": "no chosen one. no prophecy. he has a lanyard. finally." },
+      { "who": "priya", "text": "The mundane rendered without condescension. This is genuinely hard and they've done it." },
+      { "who": "chad", "text": "why am i crying about a petrol station" }
+    ],
+    "launch-flop": [
+      { "who": "marcus", "text": "Hearing week one on this was… not what the deck said." },
+      { "who": "trend", "text": "A cautionary tale, and we haven't even got to the layoffs yet." },
+      { "who": "haters", "text": "called it. called it in the reply to the announcement. screenshot in bio." },
+      { "who": "anon", "text": "we knew. everyone knew. the graph was on the wall for a year." },
+      { "who": "investors", "text": "A learning quarter. We remain excited about the team." }
+    ],
+    "launch-hit": [
+      { "who": "marcus", "text": "Week one numbers on this are well past what anyone internally projected." },
+      { "who": "backlog", "text": "Deserved. Genuinely, unfashionably, deserved." },
+      { "who": "chad", "text": "servers are fine, game is fine, i am not fine, see you in nine hours" },
+      { "who": "players", "text": "bought it for a friend. bought it for two friends. i have a problem." },
+      { "who": "investors", "text": "Extraordinary quarter. We always believed. Check the tape." }
+    ],
+    "launch-megahit": [
+      { "who": "marcus", "text": "This is now the biggest launch anyone in this genre has ever had. By a lot." },
+      { "who": "press", "text": "We will be writing about this for a decade and we will be wrong about most of it." },
+      { "who": "haters", "text": "fine. FINE. it's good. i said it. leave me alone." },
+      { "who": "nan", "text": "There is a queue outside the shop in town. For a video game. In this weather." },
+      { "who": "trend", "text": "Its success says something troubling about all of us, probably, I'll have that by Friday." }
+    ],
+    "wire-paid": [
+      { "who": "investors", "text": "Wire's on the way. Keep being brave." },
+      { "who": "investors", "text": "Love the score. Love the headcount. Love that nobody bought it — that's a positioning win." },
+      { "who": "investors", "text": "Funds released. We'd love a photo of you near something structural for the deck." },
+      { "who": "marcus", "text": "Second wire this year into a studio with four-figure sell-through. Not a criticism. An observation." }
+    ],
+    "wire-voided": [
+      { "who": "investors", "text": "We're pivoting our portfolio toward authentic voices at other studios." },
+      { "who": "marcus", "text": "The wire didn't land. I've seen the email. It uses the word 'unfortunately' twice." },
+      { "who": "anon", "text": "payroll is friday and the round didn't close. that's all i'm saying." }
+    ],
+    "quota-missed": [
+      { "who": "investors", "text": "The score came in under. Per the term sheet, we're releasing at the reduced tranche." },
+      { "who": "investors", "text": "Disappointed but supportive. Publicly supportive. Very publicly." },
+      { "who": "marcus", "text": "Missed the metric by a hair. That's six figures gone on a rounding error in someone's aggregate." }
+    ],
+    "hire": [
+      { "who": "players", "text": "So excited to join BBC and center belonging in every build." },
+      { "who": "anon", "text": "new hire day one. already scheduled a listening circle. the cube can wait." },
+      { "who": "bbc", "text": "Thrilled to welcome our newest team member. Watch this space." },
+      { "who": "marcus", "text": "That's a serious hire. Somebody over there is trying to actually make something." }
+    ],
+    "hire-talent": [
+      { "who": "marcus", "text": "That's a proper hire. People will move studios to work with them." },
+      { "who": "anon", "text": "they got them. they actually got them. build times are going to halve." },
+      { "who": "players", "text": "wait they hired the person who did the hitstop on that other game. WAIT." }
+    ],
+    "fire": [
+      { "who": "players", "text": "Parting ways with BBC. Grateful for the journey. Blocked the CEO." },
+      { "who": "anon", "text": "another one gone. that's four this year and we've shipped one thing." },
+      { "who": "players", "text": "If you need me I'll be updating my headline to 'open to harm reduction.'" }
+    ],
+    "quit": [
+      { "who": "anon", "text": "handed my notice in. no drama. i'd just like to see my kid on a weekday." },
+      { "who": "marcus", "text": "Departure over there. Not a layoff. That's worse, in a way." },
+      { "who": "anon", "text": "seven years. four titles. one very long conversation. i'm alright actually." }
+    ],
+    "sabotage": [
+      { "who": "anon", "text": "somebody put the thing back in the build. nobody's admitting it. everyone's pleased." },
+      { "who": "marcus", "text": "Something got into that build that was definitely cut. Morale over there is doing something interesting." }
+    ],
+    "leak": [
+      { "who": "marcus", "text": "Got the build. Got the doc. Got the version of the doc with the comments still in it." },
+      { "who": "players", "text": "the leaked build has a horse in the ceiling and i've never been happier" },
+      { "who": "anon", "text": "if you're reading the leak: the third area is not finished, please be normal about it" }
+    ],
+    "crunch": [
+      { "who": "you", "text": "Slept under the desk. The box has another slot. My spine has a thesis now." },
+      { "who": "anon", "text": "third weekend. the pizza has stopped helping." },
+      { "who": "bbc", "text": "Incredible energy from the team this week. Passion is a superpower." }
+    ],
+    "crunch-heavy": [
+      { "who": "anon", "text": "there are sleeping bags in the meeting room. there is a countdown on the whiteboard. i'm 34." },
+      { "who": "marcus", "text": "Four separate people at that studio have DMed me the same photo of the office at 1am." },
+      { "who": "trend", "text": "Sources describe conditions at BBC as 'sustained.' The studio declined to comment on the word 'sustained.'" },
+      { "who": "haters", "text": "he tweeted 'passion is a superpower' at 11pm on a saturday from an office. mate." }
+    ],
+    "jank-high": [
+      { "who": "players", "text": "it crashes on the third mission. day one patch is 14gb. love this industry." },
+      { "who": "chad", "text": "that's the sixth crash. we're keeping the counter. chat named it Gerald." },
+      { "who": "backlog", "text": "Hard to score. Under the bugs there's something excellent and I can only reach it sometimes." },
+      { "who": "players", "text": "framerate in the market square is genuinely a medical event" }
+    ],
+    "jank-charm": [
+      { "who": "chad", "text": "the ragdolls are BROKEN and they are the best thing in gaming this year" },
+      { "who": "players", "text": "a man folded into a shopping trolley and stayed there. do not patch this. i will pay you." },
+      { "who": "marcus", "text": "Compilation of that game's physics bugs is outperforming its actual launch trailer 40 to 1." }
+    ],
+    "backlash": [
+      { "who": "trend", "text": "We need to talk about BBC, and we're going to, at length, for about nine days." },
+      { "who": "haters", "text": "the thread is at 4000 quote posts and not one of them has played it" },
+      { "who": "press", "text": "An open letter regarding BBC has been signed by forty industry figures. Nine took their money." },
+      { "who": "players", "text": "genuinely cannot tell if i'm angry about this or angry that i'm supposed to be" }
+    ],
+    "synergy": [
+      { "who": "chad", "text": "these two things TOGETHER. did they know? they must have known." },
+      { "who": "backlog", "text": "There's a combination in here that produces something neither part promised. Lovely design." },
+      { "who": "players", "text": "whoever put those two systems next to each other, i owe you a pint" }
+    ],
+    "conflict": [
+      { "who": "players", "text": "these two features are actively fighting each other and one of them is losing" },
+      { "who": "anon", "text": "we flagged this. we flagged this in january. it's in the doc. it's IN THE DOC." },
+      { "who": "backlog", "text": "Two good ideas in one box, cancelling out. You can see the meeting where both survived." }
+    ],
+    "debt": [
+      { "who": "you", "text": "The fridge just charged me interest." },
+      { "who": "haters", "text": "King Baby is overdrawn. Thoughts and prayers." },
+      { "who": "marcus", "text": "Filings suggest BBC's runway is measured in weeks. Filings are usually optimistic." },
+      { "who": "you", "text": "Sold the good monitor. Design is happening on a laptop that screams." }
+    ],
+    "chapter11": [
+      { "who": "marcus", "text": "BBC has filed. It's a restructure, not a funeral, but the building's half empty." },
+      { "who": "trend", "text": "A studio that raised nine figures on courage has run out of quarters." },
+      { "who": "wendys", "text": "We're hiring." },
+      { "who": "haters", "text": "i've been saying this for two years and i take absolutely no pleasure in it. some pleasure." }
+    ],
+    "heat-high": [
+      { "who": "trend", "text": "BBC is trending and nobody in the replies has installed it." },
+      { "who": "marcus", "text": "Four hundred thousand impressions and not one of them is about the game." },
+      { "who": "haters", "text": "main character of the day. congrats. genuinely a nightmare." },
+      { "who": "chad", "text": "chat i'm not reading the thread on stream. i'm not. ...okay one." }
+    ],
+    "trust-high": [
+      { "who": "players", "text": "I will buy anything with that logo on it now. That's a dangerous thing to have earned." },
+      { "who": "backlog", "text": "Four in a row where they told the truth about what it was. Nobody does that." },
+      { "who": "nan", "text": "I pre-ordered. I have never pre-ordered anything in my life." },
+      { "who": "haters", "text": "the devs are in the discord answering bug reports at midnight. i hate that this works on me." }
+    ],
+    "trust-low": [
+      { "who": "players", "text": "not pre-ordering. not this time. fool me four times." },
+      { "who": "backlog", "text": "I'll wait for the patch, the sale, and someone I trust to tell me it's finished." },
+      { "who": "haters", "text": "the trailer said the feature was in it. the feature is not in it. that's it, that's the post." },
+      { "who": "chad", "text": "not covering the launch. covering the patch, maybe, in march." }
+    ],
+    "monetization": [
+      { "who": "players", "text": "there is a store inside the thing i paid seventy dollars for. inside it." },
+      { "who": "trend", "text": "'Surprise mechanics.' They said it in a hearing. Under oath. Out loud." },
+      { "who": "haters", "text": "the good hat is nineteen ninety nine. the good hat should be a drop. i'm buying the hat." },
+      { "who": "priya", "text": "The design is not about play, it is about Tuesday. That is a sentence I did not want to write." },
+      { "who": "anon", "text": "half the team is on the store now. the store has more engineers than combat." }
+    ],
+    "dunk": [
+      { "who": "you", "text": "Manosphere haters are killing gaming. Anyway here's my pool." },
+      { "who": "haters", "text": "He livestreamed a dunk from a penthouse his customers didn't pay for." },
+      { "who": "marcus", "text": "That's the third dunk this quarter and the sell-through is still four figures." },
+      { "who": "trend", "text": "A vital intervention from one of the medium's most necessary voices, filmed beside a pool." }
+    ],
+    "layoff": [
+      { "who": "players", "text": "Excited to announce my new journey: team member at Wendy's. #OpenToWork" },
+      { "who": "players", "text": "They/them is now taking orders. Drop by if you can still afford a Frosty." },
+      { "who": "players", "text": "Wendy's has a robust onboarding packet. I filed it for them." },
+      { "who": "players", "text": "The visor is purple. I'm going to be honest, it works." },
+      { "who": "players", "text": "I tried to add a sidequest to the drive-thru. They said no." },
+      { "who": "players", "text": "The fry guy is comic relief. I recast him anyway." },
+      { "who": "wendys", "text": "Welcome aboard. All of you. Genuinely, all of you." },
+      { "who": "anon", "text": "eleven people found out on a calendar invite titled 'Quick Sync'" }
+    ],
+    "act2-start": [
+      { "who": "marcus", "text": "BBC is now one person and a CRT in a garage. I've seen the garage." },
+      { "who": "haters", "text": "the purple years are over. i'm almost sad. almost." },
+      { "who": "wendys", "text": "Our new team is settling in beautifully." },
+      { "who": "backlog", "text": "Watching this one closely. Sometimes the interesting work starts the week the money stops." }
+    ],
+    "act3-start": [
+      { "who": "marcus", "text": "The garage studio is now buying other studios. I did not have this on the card." },
+      { "who": "investors", "text": "We've always been enormous believers in this team. Always." },
+      { "who": "haters", "text": "he's the board now. he IS the fern." },
+      { "who": "priya", "text": "There is a version of this story that is inspiring and I am watching very carefully to see which one we get." }
+    ],
+    "acquisition": [
+      { "who": "marcus", "text": "Nine figures on the table for BBC. The number leaked because somebody wanted it to." },
+      { "who": "anon", "text": "all-hands at 4pm on a friday. we all know. we've all been here before." },
+      { "who": "players", "text": "please don't. please genuinely don't. you're the only one left." },
+      { "who": "trend", "text": "Consolidation continues. This one stings more than most and I'd like to explore why." }
+    ],
+    "acquisition-refused": [
+      { "who": "players", "text": "HE SAID NO. HE SAID NO TO NINE FIGURES." },
+      { "who": "marcus", "text": "Turned it down. I've checked twice. He turned it down." },
+      { "who": "anon", "text": "the all-hands lasted four minutes. he said no and everyone just sort of stood there." },
+      { "who": "backlog", "text": "Whatever happens next, that was the choice, and it was made in public." }
+    ],
+    "penthouse": [
+      { "who": "haters", "text": "there's a pool. there's a pool in the trailer for HIS LIFE." },
+      { "who": "marcus", "text": "The elevator goes to a floor that is not on the fire plan. I've asked." },
+      { "who": "you", "text": "Body Type 1 floats next to Body Type 2. None of this was paid for by customers." }
+    ],
+    "awards": [
+      { "who": "press", "text": "Three nominations for BBC. The host will make a joke about the logo. The logo deserves it." },
+      { "who": "investors", "text": "Nominations are the strongest possible signal. Stronger than units, arguably." },
+      { "who": "haters", "text": "nominated in four categories, sold nine hundred copies. beautiful industry we have here." }
+    ],
+    "morale-low": [
+      { "who": "anon", "text": "nobody's talking in standup any more. we just read the board and leave." },
+      { "who": "marcus", "text": "Three CVs from that studio landed with me this week. Same team." },
+      { "who": "anon", "text": "the good ones have all got one foot out. you can tell by who stops arguing." }
+    ],
+    "morale-high": [
+      { "who": "anon", "text": "genuinely good week. we fixed the thing and someone brought a cake. that's it, that's the post." },
+      { "who": "marcus", "text": "Everybody I know who's tried to poach from BBC this year has been turned down." },
+      { "who": "players", "text": "the credits are four hundred names and they're all in the same font size. noticed that." }
+    ]
+  }
+}

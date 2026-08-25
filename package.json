@@ -1,0 +1,23 @@
+{
+  "name": "bbc-big-baby-company",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "balance": "node tools/balance-sim.mjs --runs 2000",
+    "art:check": "node tools/gen-art.mjs --check",
+    "art:missing": "node tools/gen-art.mjs --missing",
+    "verify": "npm run test && npm run build && npm run art:check && node tools/balance-sim.mjs --runs 400"
+  },
+  "devDependencies": {
+    "jsdom": "^29.1.1",
+    "sharp": "^0.35.3",
+    "vite": "^5.4.0",
+    "vitest": "^2.1.0"
+  },
+  "description": "Satirical studio tycoon. Stuff the box, cash the wires, survive the crash."
+}

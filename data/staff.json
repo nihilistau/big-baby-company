@@ -1,0 +1,401 @@
+[
+  {
+    "id": "brie",
+    "name": "Brie Solidarity",
+    "role": "Head of Belonging",
+    "salary": 44000,
+    "acts": [
+      1,
+      3
+    ],
+    "petFeature": "pc-pronouns",
+    "petBackups": [
+      "pc-lecture",
+      "pc-glossary",
+      "pc-content-warning"
+    ],
+    "traits": [
+      "injector"
+    ],
+    "perQuarter": {
+      "standing": 4,
+      "morale": -3,
+      "trust": -2
+    },
+    "blurb": "She has a slide deck about you.",
+    "body": "Brie does not design games. She designs the people who design games. Her first day includes a listening circle and a pronoun workshop that eats a design quarter. She will inject a 100-pronoun dropdown into whatever you were making."
+  },
+  {
+    "id": "xander",
+    "name": "Xander They",
+    "role": "Narrative Lead",
+    "salary": 40000,
+    "acts": [
+      1,
+      3
+    ],
+    "petFeature": "pc-they",
+    "petBackups": [
+      "pc-hero-listens",
+      "pc-glossary"
+    ],
+    "traits": [
+      "injector"
+    ],
+    "perQuarter": {
+      "standing": 3,
+      "trust": -2
+    },
+    "blurb": "The word 'he' gives them hives.",
+    "body": "Xander rewrites every line until the cast is a chorus of they. Clarity is violence. They will make Everyone Is They the default even if you asked for a funny NPC."
+  },
+  {
+    "id": "karen",
+    "name": "Karen From HR",
+    "role": "People Operations",
+    "salary": 37000,
+    "acts": [
+      1,
+      3
+    ],
+    "petFeature": "pc-land",
+    "petBackups": [
+      "pc-content-warning",
+      "pc-representation-quota"
+    ],
+    "traits": [
+      "injector"
+    ],
+    "perQuarter": {
+      "standing": 2,
+      "morale": 3
+    },
+    "blurb": "She has a form for the form you didn't file.",
+    "body": "Karen's contribution to games is a loading screen. She will put a land acknowledgment in front of your title card and schedule you for a follow-up about tone. In fairness, nobody has ever missed a payslip under Karen."
+  },
+  {
+    "id": "ash",
+    "name": "Ash Palette",
+    "role": "Art Director",
+    "salary": 33000,
+    "acts": [
+      1,
+      3
+    ],
+    "petFeature": "pc-purple",
+    "petBackups": [
+      "pc-body",
+      "pc-women"
+    ],
+    "traits": [
+      "injector"
+    ],
+    "perQuarter": {
+      "standing": 2,
+      "hype": 2
+    },
+    "blurb": "Art director of one color.",
+    "body": "Ash ate the other swatches. The brand is purple. The sky is purple. Your fun gunfeel will look like a grape soda commercial because Ash ships the Purple Mandate on the way out the door."
+  },
+  {
+    "id": "morgan",
+    "name": "Morgan Lecture",
+    "role": "Narrative Consultant",
+    "salary": 37000,
+    "acts": [
+      1,
+      3
+    ],
+    "petFeature": "pc-lecture",
+    "petBackups": [
+      "pc-sensitivity",
+      "pc-glossary"
+    ],
+    "traits": [
+      "injector",
+      "drag"
+    ],
+    "devPoints": -1,
+    "perQuarter": {
+      "standing": 5,
+      "morale": -2
+    },
+    "blurb": "Has never shipped, has many thoughts.",
+    "body": "Morgan adds a sidequest where the player sits down and learns. Combat is the problem. Fun is the problem. Morgan is the solution, billed quarterly, and Morgan's calendar eats one of your dev points every single quarter."
+  },
+  {
+    "id": "jules",
+    "name": "Jules Casting",
+    "role": "Casting Director",
+    "salary": 40000,
+    "acts": [
+      1,
+      3
+    ],
+    "petFeature": "pc-males",
+    "petBackups": [
+      "pc-women",
+      "pc-hero-listens"
+    ],
+    "traits": [
+      "injector"
+    ],
+    "perQuarter": {
+      "standing": 3,
+      "hype": 2
+    },
+    "blurb": "Men are comic relief now.",
+    "body": "Jules will not approve a competent male lead. If you slotted Tight Gunfeel, Jules overwrites it so the guy holding the gun drops it and apologizes."
+  },
+  {
+    "id": "tobias",
+    "name": "Tobias Runway",
+    "role": "Chief Vision Officer",
+    "salary": 66000,
+    "acts": [
+      1,
+      3
+    ],
+    "petFeature": "pc-nocombat",
+    "petBackups": [
+      "pc-council",
+      "pc-committee-boss"
+    ],
+    "traits": [
+      "injector",
+      "drag",
+      "executive"
+    ],
+    "devPoints": -1,
+    "perQuarter": {
+      "standing": 8,
+      "morale": -5,
+      "trust": -3
+    },
+    "blurb": "Came from consulting. Has a framework.",
+    "body": "Tobias has never opened the build. Tobias has opened a deck called The North Star, which contains a triangle. He believes combat is a legacy affordance and will remove it in the second week, at which point the industry will call you visionary and your dev points will be down to three."
+  },
+  {
+    "id": "petra",
+    "name": "Petra Deck",
+    "role": "VP of Alignment",
+    "salary": 52000,
+    "acts": [
+      1,
+      3
+    ],
+    "petFeature": "pc-representation-quota",
+    "petBackups": [
+      "pc-council",
+      "pc-sensitivity"
+    ],
+    "traits": [
+      "injector",
+      "executive"
+    ],
+    "perQuarter": {
+      "standing": 6,
+      "morale": -3,
+      "jank": 3
+    },
+    "blurb": "Runs a pivot table over your townsfolk.",
+    "body": "Petra's whole job is a weekly slide called Where We Are, which is a chart of things other people did. She deletes two blacksmiths to correct a skew and files it as a win in the underrepresented-trades column."
+  },
+  {
+    "id": "rusty",
+    "name": "Rusty Kane",
+    "role": "Gameplay Programmer",
+    "salary": 29000,
+    "acts": [
+      1,
+      2,
+      3
+    ],
+    "petFeature": null,
+    "traits": [
+      "talent",
+      "fixer"
+    ],
+    "devPoints": 1,
+    "atLock": {
+      "jank": -12
+    },
+    "perQuarter": {
+      "morale": 2
+    },
+    "blurb": "Fixes things. Says roughly nine words a week.",
+    "body": "Rusty has shipped eleven games and been thanked in the credits of none of them. He does not attend the alignment session. He does not have opinions about the North Star. Every build he touches gets faster and quieter and nobody upstairs can explain why."
+  },
+  {
+    "id": "mei",
+    "name": "Mei Okonkwo",
+    "role": "Combat Designer",
+    "salary": 26000,
+    "acts": [
+      1,
+      2,
+      3
+    ],
+    "petFeature": null,
+    "traits": [
+      "talent"
+    ],
+    "atLock": {
+      "aura": {
+        "fun": 2
+      }
+    },
+    "perQuarter": {
+      "hype": 3,
+      "trust": 2
+    },
+    "blurb": "Tunes hit reactions until they hurt correctly.",
+    "body": "Mei left a large studio the week the council voted on her shotgun. She brings a spreadsheet of hitstop values and a barely-suppressed desire to make something that goes bang. Give her a box with combat in it and she will make the whole thing feel expensive."
+  },
+  {
+    "id": "dutch",
+    "name": "Dutch Vandal",
+    "role": "Gore Technologist",
+    "salary": 24000,
+    "acts": [
+      2,
+      3
+    ],
+    "petFeature": null,
+    "traits": [
+      "talent"
+    ],
+    "atLock": {
+      "aura": {
+        "gore": 2
+      }
+    },
+    "perQuarter": {
+      "heat": 6,
+      "hype": 3,
+      "standing": -3
+    },
+    "blurb": "Job title he wrote himself. Nobody argued.",
+    "body": "Dutch has a folder of reference footage that HR would need a lawyer to open, and a genuinely academic understanding of how a body falls. He is unfailingly polite, brings biscuits, and will make your parking lot into a crime scene worth twelve million impressions."
+  },
+  {
+    "id": "sal",
+    "name": "Sal Moretti",
+    "role": "QA Lead",
+    "salary": 22000,
+    "acts": [
+      1,
+      2,
+      3
+    ],
+    "petFeature": null,
+    "traits": [
+      "talent",
+      "fixer"
+    ],
+    "atLock": {
+      "jank": -18
+    },
+    "perQuarter": {
+      "morale": -1,
+      "trust": 3
+    },
+    "blurb": "Has filed the bug. Has filed it eleven times.",
+    "body": "Sal is the only person in the building who has played the whole game, in order, this month. She keeps a wall of tickets nobody reads and a private list of the ones that will end up in a review. Hire her and the reviews get shorter and kinder."
+  },
+  {
+    "id": "lin",
+    "name": "Lin Park",
+    "role": "Audio Director",
+    "salary": 23000,
+    "acts": [
+      1,
+      2,
+      3
+    ],
+    "petFeature": null,
+    "traits": [
+      "talent"
+    ],
+    "perQuarter": {
+      "hype": 5,
+      "trust": 3,
+      "standing": 1
+    },
+    "blurb": "Wrote track four in a week. You know the one.",
+    "body": "Lin was hired to do menu stingers and delivered forty minutes of something people will still be listening to on the way to work in nine years. Marketing does not understand why the numbers moved. Lin does, and Lin is not going to explain it at the alignment session."
+  },
+  {
+    "id": "gordo",
+    "name": "Gordo Beans",
+    "role": "Producer",
+    "salary": 31000,
+    "acts": [
+      1,
+      2,
+      3
+    ],
+    "petFeature": null,
+    "traits": [
+      "talent",
+      "fixer"
+    ],
+    "devPoints": 1,
+    "crunchDiscount": 0.5,
+    "perQuarter": {
+      "morale": 6,
+      "jank": -2
+    },
+    "blurb": "The reason anything ever ships.",
+    "body": "Gordo remembers every dependency, buys the pizza with his own card, and stands between the team and the eleventh alignment session of the month. He makes crunch half as expensive because he makes crunch half as stupid."
+  },
+  {
+    "id": "wren",
+    "name": "Wren Alvarez",
+    "role": "Community Manager",
+    "salary": 20000,
+    "acts": [
+      1,
+      2,
+      3
+    ],
+    "petFeature": null,
+    "traits": [
+      "talent"
+    ],
+    "perQuarter": {
+      "trust": 6,
+      "heat": -8,
+      "morale": 1
+    },
+    "blurb": "Posts like a person. Absorbs the incoming.",
+    "body": "Wren answers at 11pm on a Sunday with something that is neither a copy-paste nor a lawsuit. She has personally talked four separate mobs down off four separate ledges and has never once been mentioned in a post-mortem."
+  },
+  {
+    "id": "viktor",
+    "name": "Viktor Sloane",
+    "role": "Head of Monetisation",
+    "salary": 65000,
+    "acts": [
+      3
+    ],
+    "petFeature": "mon-battlepass",
+    "petBackups": [
+      "mon-cosmetics",
+      "mon-fomo-event",
+      "mon-lootbox"
+    ],
+    "traits": [
+      "injector",
+      "executive"
+    ],
+    "moneyMul": 0.45,
+    "perQuarter": {
+      "trust": -6,
+      "standing": 2,
+      "morale": -2
+    },
+    "blurb": "Came from mobile. Speaks fluent cohort.",
+    "body": "Viktor can tell you the lifetime value of your audience to two decimal places and their names to none. He is charming, he is correct about the revenue, and every meeting he attends ends with one more thing costing money."
+  }
+]

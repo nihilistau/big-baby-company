@@ -1,0 +1,1534 @@
+[
+  {
+    "id": "values-pass",
+    "title": "The values pass",
+    "acts": [1],
+    "phases": ["production"],
+    "scripted": { "quarter": 2 },
+    "body": "A sensitivity consultant will not sign off without a values pass. She is already in the kitchenette, eating the good yogurt, holding a red pen over your feature list. She says the game cannot ship into the world without doing the work. Your engine still has a cube in it.",
+    "choices": [
+      {
+        "label": "Pay $10k. Let her do the work.",
+        "effects": { "cash": -10000, "aura": { "pc": 1 }, "standing": 4 }
+      },
+      {
+        "label": "Refuse. We ship games, not vibes.",
+        "effects": { "aura": { "fun": 1 }, "standing": -6, "trust": 4 },
+        "chirp": { "who": "IndustryPress", "text": "BBC refuses a values pass. We have concerns." }
+      }
+    ]
+  },
+  {
+    "id": "embargo-quote",
+    "title": "Embargo quote",
+    "acts": [1],
+    "phases": ["launch"],
+    "scripted": { "quarter": 3 },
+    "body": "Press wants a quote for the embargo. A woman from an outlet you've never played a game from is waiting on Chirper. She would like you to say the title is necessary. She would also accept 'problematic but important.' She will not accept 'it's a game.'",
+    "choices": [
+      {
+        "label": "\"This game is necessary.\"",
+        "effects": { "scoreDelta": 5, "copiesMul": 0.85, "standing": 6, "trust": -4 }
+      },
+      {
+        "label": "\"It's a game.\"",
+        "effects": { "scoreDelta": -7, "copiesMul": 1.18, "standing": -8, "trust": 8 },
+        "chirp": { "who": "Haters", "text": "He said it's a game. Out loud. To a journalist. I'm buying two copies." }
+      }
+    ]
+  },
+  {
+    "id": "fridge-empty",
+    "title": "The fridge is empty",
+    "acts": [2],
+    "phases": ["pitch"],
+    "scripted": { "quarter": 10 },
+    "body": "The mini-fridge contains a ketchup packet and a threat. Rent on this garage is theoretical. You can pawn the spare monitor and design on a laptop that thermal-throttles when the gore engine spits, or you can eat ramen and keep the big screen for the blood.",
+    "choices": [
+      {
+        "label": "Sell the spare monitor. +$8k. Laptop life.",
+        "effects": { "cash": 8000, "aura": { "fun": -1 }, "jank": 5 }
+      },
+      {
+        "label": "Ramen and pride. −$2k. Keep the CRT.",
+        "effects": { "cash": -2000, "aura": { "gore": 1 }, "morale": 6 }
+      }
+    ]
+  },
+
+  {
+    "id": "investor-mixer",
+    "title": "Investor mixer",
+    "acts": [1, 3],
+    "phases": ["production"],
+    "weight": 10,
+    "body": "The board is throwing a mixer. Values alignment, canapés, a photographer who only shoots from above. They will send a car even if you haven't unlocked the penthouse. Your desk, meanwhile, still has an unfinished box on it and four points in your pocket.",
+    "choices": [
+      {
+        "label": "Go. Smile. Get photographed near a fern.",
+        "effects": { "standing": 9, "aura": { "pc": 1 }, "morale": -3 },
+        "chirp": { "who": "Investors", "text": "Beautiful mixer. Love the fern. Love the alignment. Where are the units." }
+      },
+      {
+        "label": "Stay and work. Crunch is free this quarter.",
+        "effects": { "crunchDiscount": true, "standing": -4, "morale": 3 }
+      }
+    ]
+  },
+  {
+    "id": "community-note",
+    "title": "Community note",
+    "acts": [1, 3],
+    "phases": ["launch"],
+    "weight": 9,
+    "requires": { "dealType": "investor" },
+    "body": "The board wants a community note on the store page. A paragraph about harm, bodies, and the brave choice to ship a product. The cheque they keep talking about is already sitting in a lawyer's inbox with a question mark beside it. You do not know that yet.",
+    "choices": [
+      {
+        "label": "Add the note. Be brave in Helvetica.",
+        "effects": { "scoreDelta": 6, "copiesMul": 0.8, "standing": 5 }
+      },
+      {
+        "label": "Ship clean. Let the game be a game.",
+        "effects": { "scoreDelta": -9, "standing": -7, "trust": 7 }
+      }
+    ]
+  },
+  {
+    "id": "problematic-violence",
+    "title": "Problematic violence",
+    "acts": [2, 3],
+    "phases": ["launch"],
+    "weight": 10,
+    "requires": { "minGore": 2 },
+    "body": "An industry embargo leaks the phrase 'problematic violence.' Someone with a verified checkmark has not played it and is already disappointed in you. You can patch in an apology splash before launch or you can lean all the way into the parking lot.",
+    "choices": [
+      {
+        "label": "Apologise patch. Be smaller.",
+        "effects": { "scoreDelta": 7, "copiesMul": 0.82, "standing": 6, "trust": -8 }
+      },
+      {
+        "label": "Lean in. The lot was the point.",
+        "effects": { "scoreDelta": -11, "copiesMul": 1.22, "heat": 16, "trust": 10 },
+        "chirp": { "who": "Players", "text": "They didn't apologise. They put the shotgun ON THE STORE PAGE." }
+      }
+    ]
+  },
+  {
+    "id": "the-billboard",
+    "title": "The billboard",
+    "acts": [2, 3],
+    "phases": ["launch"],
+    "weight": 8,
+    "body": "A publisher email: they will put this on a billboard in four cities if you add a softening loading screen. Forty thousand dollars now. The audience you spent two titles earning will smell it from orbit. Or you delete the email and ship the thing you made.",
+    "choices": [
+      {
+        "label": "Take the billboard. +$40k.",
+        "effects": { "cash": 40000, "copiesMul": 0.86, "trust": -10, "standing": 4 }
+      },
+      {
+        "label": "Delete the email.",
+        "effects": { "copiesMul": 1.12, "trust": 8 }
+      }
+    ]
+  },
+  {
+    "id": "crunch-question",
+    "title": "Somebody asks about the hours",
+    "acts": [1, 2, 3],
+    "phases": ["production"],
+    "weight": 11,
+    "requires": { "maxMorale": 55 },
+    "body": "A programmer stops you by the kettle and asks, without heat, whether the hours are going to be like this until launch. She is not threatening to leave. She is asking a question and waiting for an answer, which is much worse.",
+    "choices": [
+      {
+        "label": "Tell her the truth. Pull the scope back.",
+        "effects": { "morale": 18, "jank": -8, "aura": { "fun": -1 }, "trust": 3 }
+      },
+      {
+        "label": "Say it's just this one push.",
+        "effects": { "morale": -10, "heat": 4 },
+        "chirp": { "who": "Anon Dev", "text": "third 'just this one push' of the year. i have a spreadsheet now." }
+      },
+      {
+        "label": "Buy everyone dinner and say nothing. −$14k.",
+        "effects": { "cash": -14000, "morale": 7 }
+      }
+    ]
+  },
+  {
+    "id": "poached",
+    "title": "Somebody's being poached",
+    "acts": [1, 2, 3],
+    "phases": ["production"],
+    "weight": 9,
+    "requires": { "hasStaff": true },
+    "body": "A larger studio has made one of yours an offer with a number on it you cannot casually match. They have not accepted. They have, however, told you about it, which is either loyalty or a negotiation and there is no way to tell which from here.",
+    "choices": [
+      {
+        "label": "Match it. Half a quarter's salary, now.",
+        "effects": { "cashPerStaff": -0.5, "morale": 14 }
+      },
+      {
+        "label": "Wish them well. Mean it.",
+        "effects": { "fireRandomStaff": true, "morale": -6, "trust": 2 }
+      },
+      {
+        "label": "Give them the thing they actually want: the good project.",
+        "effects": { "morale": 20, "aura": { "fun": 1 }, "standing": -3 }
+      }
+    ]
+  },
+  {
+    "id": "the-leak",
+    "title": "The build leaked",
+    "acts": [1, 2, 3],
+    "phases": ["production"],
+    "weight": 8,
+    "body": "An internal build is on a forum. Six hours old, forty thousand downloads, and every unfinished thing in it is now a screenshot with a caption. Legal wants takedowns. Marketing has quietly noticed the wishlist graph and is not saying anything out loud.",
+    "choices": [
+      {
+        "label": "Takedowns. All of them. Now.",
+        "effects": { "cash": -25000, "heat": 8, "hype": -6, "trust": -5 }
+      },
+      {
+        "label": "Post about it. Be funny. Let it run.",
+        "effects": { "hype": 16, "heat": 12, "trust": 6, "jank": 4 },
+        "chirp": { "who": "Players", "text": "the leaked build has a horse in the ceiling and they TWEETED about it. day one." }
+      }
+    ]
+  },
+  {
+    "id": "the-scope-meeting",
+    "title": "The scope meeting",
+    "acts": [1, 2, 3],
+    "phases": ["production"],
+    "weight": 10,
+    "body": "Everyone in the room can see the same graph. The features do not fit the time. There are three ways this goes and everybody has already privately picked one, and nobody wants to be the person who says it first.",
+    "choices": [
+      {
+        "label": "Cut a feature. Ship the rest properly.",
+        "effects": { "removeRandomCard": true, "jank": -14, "morale": 8 }
+      },
+      {
+        "label": "Keep everything. Absorb the jank.",
+        "effects": { "jank": 16, "morale": -6, "hype": 4 }
+      },
+      {
+        "label": "Keep everything and pay for contractors. −$55k.",
+        "effects": { "cash": -55000, "jank": 4, "morale": -2 }
+      }
+    ]
+  },
+  {
+    "id": "awards-nomination",
+    "title": "You've been nominated",
+    "acts": [1, 2, 3],
+    "phases": ["pitch", "production"],
+    "weight": 8,
+    "requires": { "minStanding": 55 },
+    "body": "Three categories. A table for eight at a ceremony where the host will make a joke about your logo. Attendance is a whole week of production time and a tuxedo you will wear precisely once, and everybody in this industry will notice whether the chair is empty.",
+    "choices": [
+      {
+        "label": "Go. Wear the thing. Clap generously.",
+        "effects": { "standing": 14, "hype": 8, "devPoints": -1, "morale": 4 }
+      },
+      {
+        "label": "Send the whole team instead. −$30k.",
+        "effects": { "cash": -30000, "morale": 20, "standing": 6, "trust": 4 }
+      },
+      {
+        "label": "Skip it. There is a build to fix.",
+        "effects": { "standing": -8, "jank": -10, "morale": -2 }
+      }
+    ]
+  },
+  {
+    "id": "the-console-cert",
+    "title": "Certification failed",
+    "acts": [2, 3],
+    "phases": ["launch"],
+    "weight": 9,
+    "requires": { "minJank": 25 },
+    "body": "Platform certification has come back with eleven blockers, nine of which are the same crash in a different hat. The submission window closes on Friday. There is a version of this where you fix it and a version where you ship it and patch on Tuesday.",
+    "choices": [
+      {
+        "label": "Fix it. Delay a quarter is not an option, so: money.",
+        "effects": { "cash": -70000, "jank": -25, "morale": -8 }
+      },
+      {
+        "label": "Ship it. Patch Tuesday.",
+        "effects": { "jank": 10, "trust": -10, "heat": 8 },
+        "chirp": { "who": "Players", "text": "it crashes on the third mission. day one patch is 14gb. love this industry." }
+      }
+    ]
+  },
+  {
+    "id": "influencer-tantrum",
+    "title": "A creator is unhappy",
+    "acts": [2, 3],
+    "phases": ["launch"],
+    "weight": 8,
+    "body": "A creator with four million subscribers did not get an early key, has decided this is a statement about them personally, and is currently forty minutes into a video about it. The video is not about your game. The thumbnail is your logo.",
+    "choices": [
+      {
+        "label": "Send the key. Apologise. Move on.",
+        "effects": { "hype": 8, "standing": -3, "trust": -3 }
+      },
+      {
+        "label": "Say nothing.",
+        "effects": { "heat": 14, "hype": 6, "trust": 4 }
+      },
+      {
+        "label": "Reply publicly, politely, with the actual timeline.",
+        "effects": { "roll": { "chance": 0.55, "success": { "trust": 14, "heat": -6, "hype": 6 }, "fail": { "heat": 22, "trust": -6, "standing": -5 } } }
+      }
+    ]
+  },
+  {
+    "id": "the-cube",
+    "title": "There is still a cube in it",
+    "acts": [1, 2, 3],
+    "phases": ["production"],
+    "weight": 9,
+    "body": "In the third area, where a boss should be, there is a grey cube with a health bar. It has been there for five months. Two separate people have named it. One of them has written it a backstory that is genuinely better than the one in the script.",
+    "choices": [
+      {
+        "label": "Build the boss properly.",
+        "effects": { "devPoints": -1, "jank": -6, "aura": { "fun": 1 } }
+      },
+      {
+        "label": "Ship the cube. Give it the backstory.",
+        "effects": { "hype": 12, "heat": 6, "aura": { "fun": 1 }, "jank": 6, "standing": -4 },
+        "chirp": { "who": "Players", "text": "the third boss is a cube named Gerald and he has a tragic past. game of the year." }
+      }
+    ]
+  },
+  {
+    "id": "engine-fire",
+    "title": "The engine ate a week",
+    "acts": [1, 2, 3],
+    "phases": ["production"],
+    "weight": 10,
+    "body": "A middleware update landed that nobody asked for and it has broken the animation pipeline in a way that only manifests on one platform, at night, in the rain. Engineering has a plan. The plan is described as 'six days' with a face that means eleven.",
+    "choices": [
+      {
+        "label": "Let them do it right.",
+        "effects": { "devPoints": -1, "jank": -14, "morale": 5 }
+      },
+      {
+        "label": "Roll back the update and pretend it's fine.",
+        "effects": { "jank": 14, "morale": -4 }
+      },
+      {
+        "label": "Throw contractors at it. −$45k.",
+        "effects": { "cash": -45000, "jank": -8, "morale": -3 }
+      }
+    ]
+  },
+  {
+    "id": "the-consultant-returns",
+    "title": "The consultant has notes",
+    "acts": [1, 3],
+    "phases": ["production"],
+    "weight": 8,
+    "requires": { "minPc": 2 },
+    "body": "The consultant from last time has returned with a second consultant. They disagree about a goblin. The goblin has already been rewritten as a misunderstood accountant, and one of them has now raised a concern about the portrayal of accountants in one of your markets.",
+    "choices": [
+      {
+        "label": "Pay them both. $22k. Make the goblin a cube.",
+        "effects": { "cash": -22000, "aura": { "pc": 1 }, "standing": 7 }
+      },
+      {
+        "label": "Pick one. Send the other home.",
+        "effects": { "cash": -11000, "standing": 2, "heat": 5 }
+      },
+      {
+        "label": "Ship the goblin. He's a goblin.",
+        "effects": { "standing": -9, "trust": 8, "aura": { "fun": 1 } }
+      }
+    ]
+  },
+  {
+    "id": "hardware-launch",
+    "title": "New hardware, new window",
+    "acts": [2, 3],
+    "phases": ["pitch", "production"],
+    "weight": 7,
+    "body": "A platform holder is launching a machine and wants launch-window titles. They will pay for the port and put you on a stage for ninety seconds. Your build does not currently run on it and would need a rendering pass nobody has budgeted.",
+    "choices": [
+      {
+        "label": "Take the slot. +$90k, and the port hurts.",
+        "effects": { "cash": 90000, "jank": 18, "hype": 14, "morale": -8 }
+      },
+      {
+        "label": "Decline politely. Ship where you already run.",
+        "effects": { "standing": -3, "morale": 4 }
+      }
+    ]
+  },
+  {
+    "id": "the-refund-thread",
+    "title": "A thread about refunds",
+    "acts": [2, 3],
+    "phases": ["launch"],
+    "weight": 8,
+    "requires": { "minJank": 35 },
+    "body": "Somebody made a spreadsheet. It has four hundred rows, each one a specific reproducible bug, each one timestamped, each one with a clip. It is the single most useful QA document this studio has ever received and it was made by a stranger who is furious.",
+    "choices": [
+      {
+        "label": "Hire them.",
+        "effects": { "cash": -35000, "jank": -20, "trust": 16, "morale": 6 },
+        "chirp": { "who": "Players", "text": "they hired the guy who made the bug spreadsheet. THEY HIRED HIM." }
+      },
+      {
+        "label": "Thank them publicly and fix the top ten.",
+        "effects": { "cash": -18000, "jank": -12, "trust": 9 }
+      },
+      {
+        "label": "Ignore it. It's a launch.",
+        "effects": { "trust": -12, "heat": 10 }
+      }
+    ]
+  },
+  {
+    "id": "the-storefront-algorithm",
+    "title": "The algorithm moved",
+    "acts": [2, 3],
+    "phases": ["launch"],
+    "weight": 8,
+    "body": "The storefront changed how discovery works on a Tuesday with no announcement. Overnight, you are eleven pages deep in your own genre. There is a paid placement tier you have been ignoring on principle, and the principle is currently costing about nine thousand dollars a day.",
+    "choices": [
+      {
+        "label": "Buy the placement. −$60k.",
+        "effects": { "cash": -60000, "copiesMul": 1.25 }
+      },
+      {
+        "label": "Email every creator who liked the last one.",
+        "effects": { "roll": { "chance": 0.5, "success": { "copiesMul": 1.22, "trust": 8 }, "fail": { "copiesMul": 0.96, "morale": -4 } } }
+      },
+      {
+        "label": "Ride it out.",
+        "effects": { "copiesMul": 0.86, "trust": 3 }
+      }
+    ]
+  },
+  {
+    "id": "the-mascot-problem",
+    "title": "The mascot has escaped",
+    "acts": [2, 3],
+    "phases": ["production", "launch"],
+    "weight": 7,
+    "body": "Somebody made an animation of your logo doing something the brand guide does not cover. It has ninety million views. Merchandising has called twice. Legal has called four times and used the phrase 'reputational adjacency' in a way that suggests they enjoyed it.",
+    "choices": [
+      {
+        "label": "License it. Sell the plush. +$55k.",
+        "effects": { "cash": 55000, "hype": 14, "heat": 8, "standing": -4 }
+      },
+      {
+        "label": "Cease and desist.",
+        "effects": { "heat": 20, "trust": -14, "hype": -8 }
+      },
+      {
+        "label": "Put it in the game as a secret.",
+        "effects": { "hype": 18, "trust": 12, "aura": { "fun": 1 }, "jank": 3 }
+      }
+    ]
+  },
+  {
+    "id": "the-open-source-fix",
+    "title": "Someone fixed it for you",
+    "acts": [2, 3],
+    "phases": ["production"],
+    "weight": 7,
+    "requires": { "minJank": 20 },
+    "body": "A modder has fixed your worst performance bug in a weekend, published the patch, and written a genuinely gracious post explaining the cause. Engineering has read it twice and gone very quiet. It is a better fix than the one on the board.",
+    "choices": [
+      {
+        "label": "Ship their fix. Credit them by name.",
+        "effects": { "jank": -22, "trust": 16, "morale": 8, "standing": -2 }
+      },
+      {
+        "label": "Ship their fix. Say nothing.",
+        "effects": { "jank": -22, "trust": -14, "heat": 12, "morale": -6 }
+      },
+      {
+        "label": "Write your own. It's a matter of principle.",
+        "effects": { "devPoints": -1, "jank": -14, "morale": -4 }
+      }
+    ]
+  },
+  {
+    "id": "the-keynote",
+    "title": "A keynote slot",
+    "acts": [1, 3],
+    "phases": ["pitch", "production"],
+    "weight": 7,
+    "requires": { "minStanding": 50 },
+    "body": "Twelve minutes on the big stage. They want the vision, not the game. Specifically, they have asked whether you could speak to where the medium is going, which is a sentence that has never once been followed by a good outcome for anyone holding a controller.",
+    "choices": [
+      {
+        "label": "Give them the vision. Say 'the medium' six times.",
+        "effects": { "standing": 16, "hype": 10, "trust": -8, "devPoints": -1 }
+      },
+      {
+        "label": "Show twelve minutes of raw gameplay instead.",
+        "effects": { "hype": 16, "trust": 14, "standing": -6 },
+        "chirp": { "who": "Players", "text": "he had twelve minutes on the main stage and he just... showed the game. unedited. i'm unwell." }
+      }
+    ]
+  },
+  {
+    "id": "the-union",
+    "title": "A letter from the team",
+    "acts": [2, 3],
+    "phases": ["production"],
+    "weight": 7,
+    "requires": { "hasStaff": true, "maxMorale": 45 },
+    "body": "It is signed by everyone. It is polite. It asks for three things, two of which are free, and it has clearly been through six drafts because there is not a single sentence in it you could use against them.",
+    "choices": [
+      {
+        "label": "Give them all three. It costs money.",
+        "effects": { "cash": -80000, "morale": 30, "trust": 8, "standing": -4 }
+      },
+      {
+        "label": "Give them the two free ones.",
+        "effects": { "morale": 12, "heat": 4 }
+      },
+      {
+        "label": "Schedule a listening session.",
+        "effects": { "morale": -14, "heat": 14 },
+        "chirp": { "who": "Anon Dev", "text": "we asked for three things and got a calendar invite titled 'Listening (30m)'" }
+      }
+    ]
+  },
+  {
+    "id": "the-old-build",
+    "title": "The prototype in the folder",
+    "acts": [2, 3],
+    "phases": ["pitch", "production"],
+    "weight": 7,
+    "body": "While looking for something else you found a prototype from three years ago that nobody finished. You played it for forty minutes. It is better than the thing currently on your desk and there is no version of the calendar where you can make it.",
+    "choices": [
+      {
+        "label": "Steal its best idea. Put it in this box.",
+        "effects": { "aura": { "fun": 2 }, "jank": 6, "hype": 6 }
+      },
+      {
+        "label": "Give it to two people for a quarter.",
+        "effects": { "devPoints": -1, "morale": 16, "unlockRandomCard": true }
+      },
+      {
+        "label": "Close the folder.",
+        "effects": { "morale": -4 }
+      }
+    ]
+  },
+  {
+    "id": "platform-policy",
+    "title": "A policy change",
+    "acts": [2, 3],
+    "phases": ["launch"],
+    "weight": 8,
+    "requires": { "minGore": 3 },
+    "body": "A storefront has updated its content guidelines. The update is four hundred words long and one clause of it is about you specifically, in the way that these things are always about someone specifically. There is an appeals process. The appeals process is an email address.",
+    "choices": [
+      {
+        "label": "Cut the scene. Keep the shelf space.",
+        "effects": { "aura": { "gore": -2 }, "copiesMul": 1.0, "trust": -8, "morale": -6 }
+      },
+      {
+        "label": "Ship uncut. Take the delisting on one platform.",
+        "effects": { "copiesMul": 0.78, "trust": 16, "heat": 14 }
+      },
+      {
+        "label": "Ship uncut, sell it direct from your own site.",
+        "effects": { "copiesMul": 0.88, "trust": 12, "heat": 8, "cash": -20000 }
+      }
+    ]
+  },
+  {
+    "id": "the-documentary",
+    "title": "A documentary crew",
+    "acts": [1, 2, 3],
+    "phases": ["production"],
+    "weight": 6,
+    "body": "Someone wants to film the making of this. They are good — you have seen their last one and it made a studio you dislike look human. They will be in the room for the worst weeks and they have final cut, which they mention casually, at the end.",
+    "choices": [
+      {
+        "label": "Let them in. All of it.",
+        "effects": { "roll": { "chance": 0.6, "success": { "trust": 22, "hype": 16, "standing": 6 }, "fail": { "trust": -12, "heat": 20, "standing": -8 } } }
+      },
+      {
+        "label": "Let them in, but you get final cut.",
+        "effects": { "hype": 8, "trust": 2, "cash": -25000 }
+      },
+      {
+        "label": "No cameras.",
+        "effects": { "morale": 4 }
+      }
+    ]
+  },
+  {
+    "id": "the-review-embargo",
+    "title": "When does the embargo lift?",
+    "acts": [1, 2, 3],
+    "phases": ["launch"],
+    "weight": 10,
+    "body": "Marketing wants the embargo to lift after the store page goes live, so the pre-orders bank before anybody says anything. Press have noticed the pattern industry-wide and have started writing about the pattern, which is its own kind of coverage.",
+    "choices": [
+      {
+        "label": "Lift after launch. Bank the pre-orders.",
+        "effects": { "copiesMul": 1.14, "trust": -10, "standing": -4 }
+      },
+      {
+        "label": "Lift a week early. Let them play it properly.",
+        "effects": { "roll": { "chance": 0.62, "success": { "copiesMul": 1.18, "trust": 12, "scoreDelta": 4 }, "fail": { "copiesMul": 0.85, "scoreDelta": -6, "trust": 4 } } }
+      }
+    ]
+  },
+  {
+    "id": "the-charity-stream",
+    "title": "A charity stream wants you",
+    "acts": [2, 3],
+    "phases": ["launch", "production"],
+    "weight": 6,
+    "body": "A 48-hour marathon raising money for something genuinely good would like a build, a signed thing, and one of you on camera at 4am. There is no cynical angle available here, which the marketing lead has already checked twice.",
+    "choices": [
+      {
+        "label": "Send a build and show up at 4am.",
+        "effects": { "trust": 16, "hype": 8, "morale": 8, "standing": 3 }
+      },
+      {
+        "label": "Send money instead. −$30k.",
+        "effects": { "cash": -30000, "trust": 6, "standing": 4 }
+      },
+      {
+        "label": "Send a key and a form letter.",
+        "effects": { "trust": -6 }
+      }
+    ]
+  },
+  {
+    "id": "the-analytics-dashboard",
+    "title": "The dashboard says",
+    "acts": [1, 3],
+    "phases": ["production"],
+    "weight": 8,
+    "body": "Telemetry says 61% of players quit in the third hour, at the exact point where the game becomes what it actually is. There are two readings of this. One of them is that the third hour is wrong. The other is that the first two hours are.",
+    "choices": [
+      {
+        "label": "Smooth the third hour. Make it easier to stay.",
+        "effects": { "aura": { "fun": -1 }, "copiesMul": 1.12, "trust": -2 }
+      },
+      {
+        "label": "Cut the first two hours. Start where it's good.",
+        "effects": { "devPoints": -1, "aura": { "fun": 2 }, "hype": 6, "jank": 4 }
+      },
+      {
+        "label": "Turn the dashboard off.",
+        "effects": { "morale": 10, "trust": 4, "standing": -3 }
+      }
+    ]
+  },
+  {
+    "id": "the-sequel-pressure",
+    "title": "They want another one",
+    "acts": [2, 3],
+    "phases": ["pitch"],
+    "weight": 8,
+    "requires": { "minTitlesShipped": 2 },
+    "body": "The last one worked. Everyone who has a spreadsheet would like the next one to be the last one again, slightly larger, in the same colour. Everyone who has a keyboard would like to make something else. Both groups are right and only one of them has the spreadsheet.",
+    "choices": [
+      {
+        "label": "Make it again, bigger.",
+        "effects": { "hype": 12, "morale": -8, "standing": -4, "copiesMul": 1.1 }
+      },
+      {
+        "label": "Make the weird one.",
+        "effects": { "morale": 18, "hype": -6, "standing": 6, "unlockRandomCard": true }
+      }
+    ]
+  },
+  {
+    "id": "the-price-question",
+    "title": "What does it cost?",
+    "acts": [2, 3],
+    "phases": ["launch"],
+    "weight": 9,
+    "body": "The number on the store page is the last real decision you get to make. Marketing has modelled four of them. The model is confident, the model has been wrong before, and the model does not know that your audience talks to each other constantly.",
+    "choices": [
+      {
+        "label": "Price it high. It's worth it.",
+        "effects": { "priceMul": 1.3, "copiesMul": 0.78, "trust": -4 }
+      },
+      {
+        "label": "Price it fair.",
+        "effects": { "trust": 6 }
+      },
+      {
+        "label": "Price it low. Get it into hands.",
+        "effects": { "priceMul": 0.7, "copiesMul": 1.5, "trust": 12 }
+      }
+    ]
+  },
+  {
+    "id": "the-early-access",
+    "title": "Ship it unfinished, openly",
+    "acts": [2, 3],
+    "phases": ["launch"],
+    "weight": 7,
+    "requires": { "minJank": 20 },
+    "body": "You could put it out now, labelled honestly as unfinished, at a lower price, and finish it in public with the people who bought it. It is either the most respectful thing you can do or a way of getting paid to do QA, and which one it is depends entirely on whether you actually finish it.",
+    "choices": [
+      {
+        "label": "Early access. Be honest about it.",
+        "effects": { "priceMul": 0.6, "copiesMul": 1.35, "trust": 8, "jank": -10, "scoreDelta": -6 }
+      },
+      {
+        "label": "Hold it. Ship finished.",
+        "effects": { "cash": -50000, "jank": -18, "morale": -6 }
+      }
+    ]
+  },
+  {
+    "id": "the-ex-employee",
+    "title": "Someone who left is talking",
+    "acts": [1, 2, 3],
+    "phases": ["production", "launch"],
+    "weight": 7,
+    "requires": { "maxMorale": 50 },
+    "body": "A former employee has written eleven hundred words about what it was like here. Nothing in it is untrue. Some of it is about a week you remember differently, and one paragraph is about a thing you said that you have genuinely no memory of saying.",
+    "choices": [
+      {
+        "label": "Respond publicly. Take the hit. Name what's true.",
+        "effects": { "roll": { "chance": 0.58, "success": { "trust": 16, "heat": -8, "morale": 12 }, "fail": { "heat": 18, "standing": -8, "trust": -6 } } }
+      },
+      {
+        "label": "Say nothing. Fix it internally.",
+        "effects": { "morale": 10, "heat": 8, "cash": -30000 }
+      },
+      {
+        "label": "Have legal send a letter.",
+        "effects": { "heat": 26, "trust": -18, "morale": -12 }
+      }
+    ]
+  },
+  {
+    "id": "the-good-quarter",
+    "title": "It's going well",
+    "acts": [1, 2, 3],
+    "phases": ["production"],
+    "weight": 8,
+    "requires": { "minMorale": 70 },
+    "body": "Nothing is on fire. The build runs, the team is laughing at something in the corner, and there is a real, dangerous temptation to fill this space with more scope because there is space in it. This is how every disaster you have ever seen began.",
+    "choices": [
+      {
+        "label": "Add more. There's room.",
+        "effects": { "devPoints": 1, "jank": 10, "morale": -6 }
+      },
+      {
+        "label": "Polish what's there.",
+        "effects": { "jank": -16, "aura": { "fun": 1 }, "trust": 4 }
+      },
+      {
+        "label": "Send everyone home early on Friday.",
+        "effects": { "morale": 14, "trust": 3 }
+      }
+    ]
+  },
+  {
+    "id": "the-localisation",
+    "title": "Eleven languages",
+    "acts": [2, 3],
+    "phases": ["production"],
+    "weight": 7,
+    "body": "Localisation quotes have come back. Eleven languages is most of the world; four is most of the revenue. The script is full of jokes that do not survive translation and one of the vendors has flagged a pun in the tutorial as 'structurally impossible.'",
+    "choices": [
+      {
+        "label": "All eleven. −$95k.",
+        "effects": { "cash": -95000, "copiesMul": 1.3, "trust": 6 }
+      },
+      {
+        "label": "Four languages. Do them properly.",
+        "effects": { "cash": -40000, "copiesMul": 1.12, "trust": 3 }
+      },
+      {
+        "label": "Machine-translate the lot. −$8k.",
+        "effects": { "cash": -8000, "copiesMul": 1.18, "trust": -12, "jank": 8, "heat": 6 }
+      }
+    ]
+  },
+  {
+    "id": "the-accessibility-pass",
+    "title": "The accessibility pass",
+    "acts": [1, 2, 3],
+    "phases": ["production"],
+    "weight": 8,
+    "body": "A player wrote to you about the subtitles. Not a campaign, not a thread — an email, with a photo of their setup, explaining precisely why they could not finish the last one. Engineering estimates two weeks for most of it and the rest is genuinely hard.",
+    "choices": [
+      {
+        "label": "Do the whole pass. It takes a point.",
+        "effects": { "devPoints": -1, "trust": 18, "standing": 8, "morale": 8, "copiesMul": 1.08 }
+      },
+      {
+        "label": "Do the two easy weeks.",
+        "effects": { "trust": 9, "standing": 3 }
+      },
+      {
+        "label": "Next title. Genuinely, next title.",
+        "effects": { "trust": -8, "morale": -4 }
+      }
+    ]
+  },
+  {
+    "id": "the-competitor",
+    "title": "Someone shipped yours first",
+    "acts": [2, 3],
+    "phases": ["pitch", "production"],
+    "weight": 8,
+    "body": "A studio you respect has released something structurally identical to what is on your desk. It is good. It is not as good as yours will be, if yours is finished, which is a sentence every studio in history has said out loud on exactly this day.",
+    "choices": [
+      {
+        "label": "Change tack. Make yours different.",
+        "effects": { "removeRandomCard": true, "devPoints": 1, "hype": 6, "morale": -4 }
+      },
+      {
+        "label": "Hold the course. Ship it better.",
+        "effects": { "jank": -8, "morale": 6, "copiesMul": 0.92 }
+      },
+      {
+        "label": "Move the date. Get out of their window. −$40k.",
+        "effects": { "cash": -40000, "copiesMul": 1.2 }
+      }
+    ]
+  },
+  {
+    "id": "the-cameo",
+    "title": "A famous person wants in",
+    "acts": [1, 3],
+    "phases": ["production"],
+    "weight": 7,
+    "body": "An actor whose name would go on the box would like to do a voice. Their quote is enormous, their availability is four hours, and the character they want is the one your narrative lead has been writing for two years and is very quietly excellent already.",
+    "choices": [
+      {
+        "label": "Cast them. −$120k.",
+        "effects": { "cash": -120000, "hype": 22, "standing": 8, "morale": -10 }
+      },
+      {
+        "label": "Cast them as someone else.",
+        "effects": { "cash": -70000, "hype": 12, "morale": 2 }
+      },
+      {
+        "label": "Keep the person who wrote it.",
+        "effects": { "morale": 16, "trust": 8, "aura": { "fun": 1 }, "hype": -4 }
+      }
+    ]
+  },
+  {
+    "id": "the-tax-credit",
+    "title": "A tax credit",
+    "acts": [2, 3],
+    "phases": ["pitch"],
+    "weight": 7,
+    "body": "A regional development fund will hand you a serious amount of money if you open a small office somewhere with cheaper rent and hire three people locally. The form is forty pages. The money is real. The commute, for someone, becomes ninety minutes.",
+    "choices": [
+      {
+        "label": "Take it. +$130k.",
+        "effects": { "cash": 130000, "morale": -8, "jank": 5 }
+      },
+      {
+        "label": "Take it and actually staff it properly. +$130k, −$60k.",
+        "effects": { "cash": 70000, "morale": 2 }
+      },
+      {
+        "label": "Leave it. The form is forty pages.",
+        "effects": { "morale": 3 }
+      }
+    ]
+  },
+  {
+    "id": "the-conference-panel",
+    "title": "A panel about courage",
+    "acts": [1, 3],
+    "phases": ["pitch", "production"],
+    "weight": 8,
+    "body": "Four chairs, a moderator, and a title that contains the word 'bravery.' Everyone on the panel has raised money in the last year and nobody on it has shipped in three. They would like you to be the one who has shipped, which is doing a lot of work for them.",
+    "choices": [
+      {
+        "label": "Sit on the panel. Say the words.",
+        "effects": { "standing": 12, "trust": -6, "morale": -3 }
+      },
+      {
+        "label": "Sit on the panel and be honest about the money.",
+        "effects": { "roll": { "chance": 0.5, "success": { "trust": 18, "standing": 4, "heat": 8 }, "fail": { "standing": -14, "heat": 16, "trust": 8 } } }
+      },
+      {
+        "label": "Don't go.",
+        "effects": { "standing": -5, "devPoints": 0, "morale": 3 }
+      }
+    ]
+  },
+  {
+    "id": "the-server-bill",
+    "title": "The server bill",
+    "acts": [3],
+    "phases": ["production", "launch"],
+    "weight": 8,
+    "requires": { "liveService": true },
+    "body": "The infrastructure invoice has arrived and it has a comma in it that was not there last quarter. Someone has been running the matchmaking on instances sized for a launch that happened eleven months ago and nobody has looked at the graph since.",
+    "choices": [
+      {
+        "label": "Pay it and get someone to actually look. −$85k.",
+        "effects": { "cash": -85000, "jank": -8 }
+      },
+      {
+        "label": "Downsize the instances. Accept the queue times.",
+        "effects": { "cash": -25000, "trust": -12, "heat": 8 }
+      },
+      {
+        "label": "Sunset the older regions.",
+        "effects": { "cash": -10000, "trust": -20, "heat": 16, "standing": -4 }
+      }
+    ]
+  },
+  {
+    "id": "the-whale",
+    "title": "One player spent forty thousand",
+    "acts": [3],
+    "phases": ["launch", "production"],
+    "weight": 7,
+    "requires": { "minMonetization": 1 },
+    "body": "Analytics has flagged an account. Forty-one thousand dollars in fourteen months, almost all of it between 2am and 5am. Someone in the room says the word 'whale' with real affection and someone else in the room goes to get a coffee and does not come back for a while.",
+    "choices": [
+      {
+        "label": "Nothing. It's their money.",
+        "effects": { "moneyMul": 1.15, "morale": -8, "trust": -4 }
+      },
+      {
+        "label": "Add spend limits. Quietly.",
+        "effects": { "moneyMul": 0.85, "morale": 12, "trust": 8, "standing": 3 }
+      },
+      {
+        "label": "Add spend limits. Announce them loudly.",
+        "effects": { "moneyMul": 0.8, "trust": 20, "standing": 8, "heat": -10, "morale": 14 }
+      }
+    ]
+  },
+  {
+    "id": "the-old-guard",
+    "title": "A legend wants a job",
+    "acts": [2, 3],
+    "phases": ["pitch", "production"],
+    "weight": 6,
+    "body": "Somebody whose name is on four games you learned from is available. They are expensive, they are set in their ways, and in the interview they described your last title as 'nearly'. Everyone under thirty in this building would walk through a wall for them.",
+    "choices": [
+      {
+        "label": "Hire them. −$60k now and every quarter after.",
+        "effects": { "cash": -60000, "morale": 18, "aura": { "fun": 1 }, "standing": 6, "jank": -8 }
+      },
+      {
+        "label": "Bring them in as a consultant for one title.",
+        "effects": { "cash": -30000, "jank": -10, "morale": 8 }
+      },
+      {
+        "label": "Pass. 'Nearly' was rude.",
+        "effects": { "morale": -6 }
+      }
+    ]
+  },
+  {
+    "id": "the-weather",
+    "title": "The building flooded",
+    "acts": [1, 2, 3],
+    "phases": ["production"],
+    "weight": 5,
+    "body": "Not metaphorically. A pipe above the ceiling in the corner where the hardware lives. Nobody was hurt, the insurance will cover most of it, and three weeks of someone's uncommitted work is now a story they will tell at parties for the rest of their life.",
+    "choices": [
+      {
+        "label": "Claim on insurance. Wait for the cheque.",
+        "effects": { "cash": -20000, "jank": 8, "morale": -6 }
+      },
+      {
+        "label": "Replace everything today. −$70k.",
+        "effects": { "cash": -70000, "morale": 10, "jank": 2 }
+      }
+    ]
+  },
+  {
+    "id": "the-legacy-code",
+    "title": "The thing nobody wants to touch",
+    "acts": [2, 3],
+    "phases": ["production"],
+    "weight": 8,
+    "body": "There is a file. It is nine thousand lines, it was written by someone who left in the purple years, and every single feature on your board touches it. Two engineers have independently offered to rewrite it and two engineers have independently been told there isn't time.",
+    "choices": [
+      {
+        "label": "Give them the quarter. Rewrite it.",
+        "effects": { "devPoints": -1, "jank": -24, "morale": 14 }
+      },
+      {
+        "label": "Wrap it and move on.",
+        "effects": { "jank": 10, "morale": -4 }
+      }
+    ]
+  },
+  {
+    "id": "the-fan-project",
+    "title": "A fan remade your first game",
+    "acts": [2, 3],
+    "phases": ["production", "launch"],
+    "weight": 6,
+    "requires": { "minTitlesShipped": 3 },
+    "body": "Four years of somebody's evenings, released free, and it is genuinely better looking than the original. Legal has an obligation to act. The community is watching to see whether you are the kind of company that acts, and they have very long memories about this specific thing.",
+    "choices": [
+      {
+        "label": "Bless it publicly. Send them merch.",
+        "effects": { "trust": 22, "hype": 10, "standing": 3, "morale": 8 }
+      },
+      {
+        "label": "Hire them.",
+        "effects": { "cash": -45000, "trust": 18, "morale": 10, "unlockRandomCard": true }
+      },
+      {
+        "label": "Take it down. Legal insists.",
+        "effects": { "trust": -24, "heat": 22, "morale": -10 }
+      }
+    ]
+  },
+  {
+    "id": "the-metascore",
+    "title": "One point below the bonus",
+    "acts": [1, 3],
+    "phases": ["launch"],
+    "weight": 8,
+    "requires": { "dealType": "publisher" },
+    "body": "The publisher contract has a bonus clause tied to an aggregate score. You are, according to the spreadsheet marketing has built out of embargoed reviews, sitting one point under it. There is an outlet that has not filed yet and somebody has suggested calling them.",
+    "choices": [
+      {
+        "label": "Call them.",
+        "effects": { "roll": { "chance": 0.45, "success": { "cash": 100000, "scoreDelta": 2 }, "fail": { "heat": 26, "standing": -16, "trust": -12 } } }
+      },
+      {
+        "label": "Don't call them.",
+        "effects": { "morale": 6, "trust": 4 }
+      }
+    ]
+  },
+  {
+    "id": "the-crunch-photo",
+    "title": "The photo of the office at 1am",
+    "acts": [1, 2, 3],
+    "phases": ["production"],
+    "weight": 8,
+    "requires": { "minCrunch": 1 },
+    "body": "Somebody posted it proudly. Sleeping bags, monitors, a whiteboard with a countdown on it. It was meant as a badge and it is being read, correctly, as evidence. Four hundred quote-posts and counting, and one of them is from a labour lawyer.",
+    "choices": [
+      {
+        "label": "Own it. Announce paid time back and mean it.",
+        "effects": { "cash": -60000, "morale": 22, "trust": 12, "heat": -8 }
+      },
+      {
+        "label": "Delete the post.",
+        "effects": { "heat": 20, "trust": -12, "morale": -8 }
+      },
+      {
+        "label": "Post a statement about passion.",
+        "effects": { "heat": 26, "trust": -16, "morale": -14, "standing": -6 },
+        "chirp": { "who": "Anon Dev", "text": "the statement uses the word 'passion' four times and the word 'overtime' zero times" }
+      }
+    ]
+  },
+  {
+    "id": "the-good-review",
+    "title": "One review understood it",
+    "acts": [1, 2, 3],
+    "phases": ["launch"],
+    "weight": 7,
+    "body": "Two thousand words from someone who played all of it and saw the thing you were actually trying to do, including the part nobody else noticed in the third act. The score attached to it is mid. The words are the best thing anybody has ever written about this studio.",
+    "choices": [
+      {
+        "label": "Put the quote on the store page.",
+        "effects": { "trust": 10, "hype": 4 }
+      },
+      {
+        "label": "Print it. Put it on the wall. Say nothing publicly.",
+        "effects": { "morale": 18, "trust": 4 }
+      },
+      {
+        "label": "Email the writer.",
+        "effects": { "morale": 10, "standing": 4, "trust": 6 }
+      }
+    ]
+  },
+  {
+    "id": "the-board-seat",
+    "title": "They want a board seat",
+    "acts": [1, 3],
+    "phases": ["pitch"],
+    "weight": 7,
+    "requires": { "dealType": "investor" },
+    "body": "The term sheet has grown a clause. One seat, one vote, and a standard list of things that now require their sign-off, which includes hiring above a certain level and 'material changes to product direction.' Their lawyer describes it as boilerplate. It is on page nine.",
+    "choices": [
+      {
+        "label": "Sign it. The money is the money.",
+        "effects": { "cash": 120000, "standing": 8, "boardSeat": true, "morale": -6 }
+      },
+      {
+        "label": "Strike the clause. Take less.",
+        "effects": { "cash": 40000, "standing": -4, "morale": 8, "trust": 4 }
+      }
+    ]
+  },
+  {
+    "id": "the-pivot-memo",
+    "title": "A memo about the market",
+    "acts": [3],
+    "phases": ["pitch", "production"],
+    "weight": 8,
+    "body": "Somebody has circulated a deck showing that every top-grossing thing this year is a live service, which is true, and concluding that therefore this should be one, which is a different kind of sentence entirely. It has already been forwarded to people who do not read past slide two.",
+    "choices": [
+      {
+        "label": "Pivot. The market is the market.",
+        "effects": { "liveService": true, "moneyMul": 1.5, "aura": { "fun": -2 }, "trust": -16, "jank": 12, "morale": -12 }
+      },
+      {
+        "label": "Kill the memo in writing.",
+        "effects": { "morale": 16, "trust": 8, "standing": -6 }
+      },
+      {
+        "label": "Ask for the data behind slide two.",
+        "effects": { "roll": { "chance": 0.7, "success": { "morale": 12, "standing": 4 }, "fail": { "liveService": true, "morale": -10, "moneyMul": 1.3, "trust": -10 } } }
+      }
+    ]
+  },
+  {
+    "id": "the-old-fan",
+    "title": "Someone brought the first one to be signed",
+    "acts": [3],
+    "phases": ["launch", "production"],
+    "weight": 6,
+    "requires": { "minTitlesShipped": 4 },
+    "body": "At a signing, near the end, a man in his thirties puts down a case for a game you made in a garage and says it got him through a bad year. He does not want a photo. He waits for you to finish writing and then he says thank you and goes.",
+    "choices": [
+      {
+        "label": "Sit with that for a minute.",
+        "effects": { "morale": 12, "trust": 8 }
+      },
+      {
+        "label": "Go back to the table. There's a queue.",
+        "effects": { "trust": 4, "hype": 3 }
+      }
+    ]
+  },
+  {
+    "id": "the-security-breach",
+    "title": "The account database",
+    "acts": [3],
+    "phases": ["launch", "production"],
+    "weight": 6,
+    "requires": { "liveService": true },
+    "body": "Someone got in. Not payment details — a vendor held those, thank God — but emails, handles, and enough of a hash to matter. Legal wants seventy-two hours to prepare a statement. Security wants to tell everyone now.",
+    "choices": [
+      {
+        "label": "Tell everyone now. Full detail.",
+        "effects": { "trust": 10, "heat": 14, "standing": -6, "cash": -50000 }
+      },
+      {
+        "label": "Take the seventy-two hours.",
+        "effects": { "trust": -18, "heat": 24, "cash": -30000 }
+      }
+    ]
+  },
+  {
+    "id": "the-preservation",
+    "title": "The old servers",
+    "acts": [3],
+    "phases": ["pitch", "production"],
+    "weight": 6,
+    "requires": { "minTitlesShipped": 4 },
+    "body": "Two of your older titles no longer run without a login server you are paying eleven thousand a quarter to keep alive for roughly four hundred people. There is a patch that would make them work offline forever. It is nine days of work and it earns nothing.",
+    "choices": [
+      {
+        "label": "Do the patch. Set them free.",
+        "effects": { "cash": -25000, "trust": 20, "standing": 8, "morale": 14 },
+        "chirp": { "who": "Players", "text": "they patched the login requirement out of a nine year old game so it works forever. nobody made them do that." }
+      },
+      {
+        "label": "Keep paying. Decide later.",
+        "effects": { "cash": -11000 }
+      },
+      {
+        "label": "Shut them down.",
+        "effects": { "cash": 11000, "trust": -18, "heat": 12, "standing": -6 }
+      }
+    ]
+  },
+  {
+    "id": "the-intern",
+    "title": "The intern found something",
+    "acts": [1, 2, 3],
+    "phases": ["production"],
+    "weight": 7,
+    "body": "Someone three weeks in has quietly built a tool over a weekend that does a thing four people currently do by hand. It is rough, it is undocumented, and it would save roughly a hundred hours a quarter. They are apologetic about having made it without being asked.",
+    "choices": [
+      {
+        "label": "Ship the tool. Give them a proper contract.",
+        "effects": { "cash": -20000, "devPoints": 1, "morale": 14, "jank": -6 }
+      },
+      {
+        "label": "Ship the tool. Thank them in the standup.",
+        "effects": { "jank": -8, "morale": 4 }
+      },
+      {
+        "label": "Have a senior rebuild it properly first.",
+        "effects": { "devPoints": -1, "jank": -10, "morale": -6 }
+      }
+    ]
+  },
+  {
+    "id": "the-genre-shift",
+    "title": "Everyone's making the same thing",
+    "acts": [2, 3],
+    "phases": ["pitch"],
+    "weight": 7,
+    "body": "Four studios announced the same subgenre in six weeks. By the time yours would land, the audience will either be exhausted by it or completely trained on it, and there is not a single person alive who can tell you which of those is true.",
+    "choices": [
+      {
+        "label": "Ride the wave.",
+        "effects": { "roll": { "chance": 0.5, "success": { "copiesMul": 1.35, "hype": 12 }, "fail": { "copiesMul": 0.75, "hype": -8, "morale": -6 } } }
+      },
+      {
+        "label": "Do the opposite of all four.",
+        "effects": { "hype": -6, "trust": 8, "standing": 6, "unlockRandomCard": true }
+      }
+    ]
+  },
+  {
+    "id": "the-cut-content",
+    "title": "The thing you cut is finished",
+    "acts": [2, 3],
+    "phases": ["launch"],
+    "weight": 7,
+    "body": "The area cut in the scope meeting was, it turns out, ninety percent done, and someone finished it on their own time because they could not stand leaving it. It is on the disc. It is not enabled. Somebody in marketing has already used the phrase 'attach rate.'",
+    "choices": [
+      {
+        "label": "Turn it on. It's in the game they bought.",
+        "effects": { "aura": { "fun": 1 }, "trust": 14, "morale": 16 }
+      },
+      {
+        "label": "Sell it in eleven weeks.",
+        "effects": { "moneyMul": 1.25, "trust": -16, "heat": 10, "morale": -12 }
+      },
+      {
+        "label": "Give it away free in eleven weeks.",
+        "effects": { "trust": 10, "hype": 6, "morale": 8 }
+      }
+    ]
+  },
+  {
+    "id": "the-anniversary",
+    "title": "Ten years of this",
+    "acts": [3],
+    "phases": ["pitch"],
+    "weight": 6,
+    "requires": { "minTitlesShipped": 5 },
+    "body": "Somebody put together a slide of everyone who has worked here. It is four hundred faces and you can name maybe half. Three of them are dead. Two of them run studios that are currently better than yours, and one of them still sends a card every year.",
+    "choices": [
+      {
+        "label": "Throw the party. Invite all four hundred. −$70k.",
+        "effects": { "cash": -70000, "morale": 22, "standing": 8, "trust": 8 }
+      },
+      {
+        "label": "Send the card back.",
+        "effects": { "morale": 8 }
+      },
+      {
+        "label": "Put the slide in the credits of this one.",
+        "effects": { "morale": 14, "trust": 10, "standing": 4 }
+      }
+    ]
+  },
+  {
+    "id": "the-quiet-offer",
+    "title": "A quiet offer",
+    "acts": [2],
+    "phases": ["pitch"],
+    "weight": 6,
+    "requires": { "maxCash": 0 },
+    "body": "Someone you used to work for has heard you are in a hole and would like to help, in the way that people who have money help people who do not. It is a loan against the catalogue. The terms are fair. The catalogue is the only thing you have left.",
+    "choices": [
+      {
+        "label": "Take it. +$150k against the IP.",
+        "effects": { "cash": 150000, "loseIP": true, "morale": -6 }
+      },
+      {
+        "label": "Decline. Ramen and pride.",
+        "effects": { "morale": 12, "trust": 6 }
+      }
+    ]
+  },
+  {
+    "id": "the-review-cartel",
+    "title": "An invitation to the group chat",
+    "acts": [3],
+    "phases": ["launch"],
+    "weight": 6,
+    "requires": { "minStanding": 60 },
+    "body": "Someone adds you to a chat with eleven other studio heads. Within four minutes it is clear what it is for: nobody announces in anyone else's window, and everyone amplifies everyone. It is not illegal. It is the most useful thing anyone has ever offered you.",
+    "choices": [
+      {
+        "label": "Stay in the chat.",
+        "effects": { "copiesMul": 1.18, "standing": 10, "trust": -6 }
+      },
+      {
+        "label": "Leave. Screenshot nothing.",
+        "effects": { "standing": -6, "morale": 8 }
+      },
+      {
+        "label": "Leave. Screenshot everything.",
+        "effects": { "roll": { "chance": 0.5, "success": { "trust": 26, "heat": 30, "standing": -20 }, "fail": { "standing": -26, "heat": 24, "copiesMul": 0.8 } } }
+      }
+    ]
+  },
+  {
+    "id": "the-founders-cut",
+    "title": "You could pay yourself",
+    "acts": [2, 3],
+    "phases": ["pitch"],
+    "weight": 7,
+    "requires": { "minCash": 300000 },
+    "body": "The accountant points out, gently, that you have not taken a real salary in eleven quarters, that this is not noble, and that it makes the books harder to read. There is enough in there to take a proper one. There is also enough in there to keep two people employed for a year.",
+    "choices": [
+      {
+        "label": "Pay yourself. −$90k from the company.",
+        "effects": { "cash": -90000, "founderPaid": true, "morale": 2 }
+      },
+      {
+        "label": "Keep the two people.",
+        "effects": { "morale": 12, "trust": 4 }
+      }
+    ]
+  },
+  {
+    "id": "the-first-hire-leaves",
+    "title": "The first hire is leaving",
+    "acts": [2, 3],
+    "phases": ["production"],
+    "weight": 6,
+    "requires": { "hasStaff": true, "minTitlesShipped": 3 },
+    "body": "Not angry, not poached, not burnt out. Just done. Seven years, four titles, and a genuinely gracious conversation in which they tell you the thing you have been avoiding hearing about how the last two turned out.",
+    "choices": [
+      {
+        "label": "Ask them to say it in front of everyone.",
+        "effects": { "fireRandomStaff": true, "morale": 18, "jank": -10, "trust": 6 }
+      },
+      {
+        "label": "Counter-offer.",
+        "effects": { "cashPerStaff": -1, "morale": -4 }
+      },
+      {
+        "label": "Let them go. Throw a good leaving do.",
+        "effects": { "fireRandomStaff": true, "cash": -12000, "morale": 8 }
+      }
+    ]
+  },
+  {
+    "id": "the-nostalgia-offer",
+    "title": "Someone wants to remake your first",
+    "acts": [3],
+    "phases": ["pitch"],
+    "weight": 6,
+    "requires": { "minTitlesShipped": 5 },
+    "body": "A competent studio would like to remake the debut. They will do it well, they will pay a licence fee, and it will be in front of an audience twenty times the size of the one that saw it. It will also, permanently, become the version people mean when they say the name.",
+    "choices": [
+      {
+        "label": "License it. +$160k.",
+        "effects": { "cash": 160000, "standing": 6, "hype": 8, "morale": -6 }
+      },
+      {
+        "label": "License it with creative approval. +$90k.",
+        "effects": { "cash": 90000, "morale": 6, "trust": 6 }
+      },
+      {
+        "label": "No.",
+        "effects": { "morale": 10, "trust": 4 }
+      }
+    ]
+  },
+  {
+    "id": "the-heat-spike",
+    "title": "You are the main character today",
+    "acts": [1, 2, 3],
+    "phases": ["production", "launch"],
+    "weight": 9,
+    "requires": { "minHeat": 55 },
+    "body": "Something you said eleven months ago is being read by four hundred thousand people who have no context for it and no interest in acquiring any. Your notifications are a solid bar. There is a version of this that is over by Thursday and a version that is not.",
+    "choices": [
+      {
+        "label": "Log off. Ship the game.",
+        "effects": { "heat": -14, "morale": 6, "hype": 4 }
+      },
+      {
+        "label": "Clarify. Carefully. Once.",
+        "effects": { "roll": { "chance": 0.55, "success": { "heat": -22, "trust": 10 }, "fail": { "heat": 20, "trust": -10, "standing": -6 } } }
+      },
+      {
+        "label": "Double down.",
+        "effects": { "heat": 26, "trust": 12, "standing": -14, "hype": 12 }
+      }
+    ]
+  },
+  {
+    "id": "the-quiet-quarter",
+    "title": "Nothing happened",
+    "acts": [1, 2, 3],
+    "phases": ["production"],
+    "weight": 6,
+    "body": "No crisis, no thread, no invoice with a surprise in it. Three months of people coming in and making the thing slightly better than it was the day before. This is what it is supposed to be like and it almost never is.",
+    "choices": [
+      {
+        "label": "Enjoy it.",
+        "effects": { "morale": 10, "jank": -6, "trust": 3 }
+      },
+      {
+        "label": "Get suspicious and audit everything.",
+        "effects": { "jank": -14, "morale": -6 }
+      }
+    ]
+  },
+  {
+    "id": "the-two-projects",
+    "title": "Two things, one team",
+    "acts": [3],
+    "phases": ["production"],
+    "weight": 7,
+    "body": "There is a second thing in the building now, half-staffed, that nobody has formally approved and everybody knows about. It is good. It is also eating roughly a fifth of the attention that is meant to be on the thing with the launch date.",
+    "choices": [
+      {
+        "label": "Kill it. Focus.",
+        "effects": { "jank": -12, "devPoints": 1, "morale": -14 }
+      },
+      {
+        "label": "Fund it properly. −$90k.",
+        "effects": { "cash": -90000, "morale": 18, "unlockRandomCard": true, "jank": 4 }
+      },
+      {
+        "label": "Pretend not to know about it.",
+        "effects": { "morale": 8, "jank": 8 }
+      }
+    ]
+  },
+  {
+    "id": "the-platform-money",
+    "title": "Money to be first",
+    "acts": [2, 3],
+    "phases": ["launch"],
+    "weight": 8,
+    "body": "A subscription service will pay a flat, guaranteed, genuinely large sum to have it on day one. It removes all the risk. It also removes the top end entirely, and every person who would have bought it will simply not need to.",
+    "choices": [
+      {
+        "label": "Take the guarantee. +$220k, copies collapse.",
+        "effects": { "cash": 220000, "copiesMul": 0.35, "trust": 4, "hype": 8 }
+      },
+      {
+        "label": "Sell it properly. Take the risk.",
+        "effects": { "trust": 4 }
+      },
+      {
+        "label": "Take it for six months after launch. +$90k.",
+        "effects": { "cash": 90000, "copiesMul": 0.88, "trust": 6 }
+      }
+    ]
+  },
+  {
+    "id": "the-broken-promise",
+    "title": "A feature you promised isn't happening",
+    "acts": [2, 3],
+    "phases": ["launch"],
+    "weight": 8,
+    "requires": { "minHype": 40 },
+    "body": "It was in the trailer. It was in the interviews. It is not in the build and it is not going to be, and there are eleven thousand words of forum thread already written by people who bought it specifically for that.",
+    "choices": [
+      {
+        "label": "Announce it before launch. Take the hit early.",
+        "effects": { "hype": -14, "trust": 8, "heat": 8, "copiesMul": 0.9 }
+      },
+      {
+        "label": "Say nothing. Let them find out.",
+        "effects": { "trust": -22, "heat": 24, "copiesMul": 1.05 }
+      },
+      {
+        "label": "Delay and build it. −$110k.",
+        "effects": { "cash": -110000, "trust": 12, "hype": 4, "aura": { "fun": 1 } }
+      }
+    ]
+  },
+  {
+    "id": "the-mentor",
+    "title": "Someone asks you for advice",
+    "acts": [2, 3],
+    "phases": ["pitch", "production"],
+    "weight": 6,
+    "body": "Four people in a room above a shop, first game, no money, and they have asked you to look at it. It is rough and there is a thing in the middle of it that is better than anything you have made in six years, and they do not know that yet.",
+    "choices": [
+      {
+        "label": "Tell them the truth about the middle bit.",
+        "effects": { "morale": 12, "standing": 4, "trust": 6 }
+      },
+      {
+        "label": "Tell them, and offer to fund it. −$80k.",
+        "effects": { "cash": -80000, "standing": 8, "trust": 12, "morale": 14 }
+      },
+      {
+        "label": "Offer to acquire them.",
+        "effects": { "cash": -160000, "devPoints": 1, "standing": 6, "morale": -4, "trust": -6 }
+      }
+    ]
+  },
+  {
+    "id": "the-graph",
+    "title": "The graph the board likes",
+    "acts": [1, 3],
+    "phases": ["production"],
+    "weight": 8,
+    "requires": { "dealType": "investor" },
+    "body": "There is a number they look at and it is not any number you would choose. Making it go up is straightforward and involves doing four things to the game that everybody in this room can list without being asked. Nobody has said them out loud yet.",
+    "choices": [
+      {
+        "label": "Do the four things.",
+        "effects": { "standing": 12, "aura": { "pc": 1, "fun": -1 }, "morale": -10, "trust": -8 }
+      },
+      {
+        "label": "Do two of them and argue about the graph.",
+        "effects": { "standing": 4, "morale": 2 }
+      },
+      {
+        "label": "Send them a different graph.",
+        "effects": { "roll": { "chance": 0.5, "success": { "standing": 8, "morale": 10 }, "fail": { "standing": -14, "cash": -50000 } } }
+      }
+    ]
+  },
+  {
+    "id": "the-final-build",
+    "title": "The last build before submission",
+    "acts": [1, 2, 3],
+    "phases": ["launch"],
+    "weight": 9,
+    "body": "It is done. Everyone is in the room, the submission is at nine tomorrow, and there is one bug left that is either cosmetic or the tip of something. Fixing it means touching a system nobody has touched in five months, tonight.",
+    "choices": [
+      {
+        "label": "Touch it. Tonight.",
+        "effects": { "roll": { "chance": 0.6, "success": { "jank": -18, "morale": 8 }, "fail": { "jank": 22, "morale": -14 } } }
+      },
+      {
+        "label": "Ship it. It's cosmetic.",
+        "effects": { "jank": 6 }
+      },
+      {
+        "label": "Miss the submission. Take the extra week. −$60k.",
+        "effects": { "cash": -60000, "jank": -14, "morale": -4 }
+      }
+    ]
+  }
+]

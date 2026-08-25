@@ -1,0 +1,381 @@
+[
+  {
+    "slot": 1,
+    "act": 1,
+    "label": "The Debut",
+    "concepts": [
+      {
+        "id": "sensitivity-quest",
+        "name": "Sensitivity Quest",
+        "genre": "Grounded Fantasy",
+        "slots": 3,
+        "price": 60,
+        "budget": 51000,
+        "pitch": "A grounded fantasy about feelings. Industry is watching.",
+        "hook": "Small, safe, and exactly what the board said they wanted to see first."
+      },
+      {
+        "id": "gunmetal-district",
+        "name": "Gunmetal District",
+        "genre": "Cover Shooter",
+        "slots": 3,
+        "price": 60,
+        "budget": 76000,
+        "skew": {
+          "fun": 1.15
+        },
+        "pitch": "Men with jaws shoot other men with jaws. Nobody learns anything.",
+        "hook": "Cheap to love, expensive to defend at a conference. The board will not be at the launch party."
+      },
+      {
+        "id": "the-listening-hour",
+        "name": "The Listening Hour",
+        "genre": "Narrative Walk",
+        "slots": 3,
+        "price": 40,
+        "budget": 34000,
+        "skew": {
+          "pc": 1.2,
+          "fun": 0.85
+        },
+        "pitch": "Eighty minutes. No verbs. Four awards juries have already asked for a build.",
+        "hook": "The cheapest thing you will ever make and the most respected. Copies are not the point, which is fortunate."
+      }
+    ]
+  },
+  {
+    "slot": 2,
+    "act": 1,
+    "label": "The Follow-Up",
+    "concepts": [
+      {
+        "id": "sensitivity-quest-2",
+        "name": "Sensitivity Quest II: Sitting With It",
+        "genre": "Grounded Fantasy",
+        "slots": 4,
+        "price": 60,
+        "budget": 94000,
+        "sequelTo": "sensitivity-quest",
+        "pitch": "The same kingdom, one year later, and everyone has done some reading.",
+        "hook": "A known quantity. The audience you have will buy it; the audience you don't still won't."
+      },
+      {
+        "id": "body-type-infinite",
+        "name": "Body Type Infinite",
+        "genre": "Open World",
+        "slots": 5,
+        "price": 60,
+        "budget": 153000,
+        "skew": {
+          "pc": 1.15
+        },
+        "pitch": "The purple flagship. If you hired the choir, they own this box.",
+        "hook": "Five slots. Enormous scope. The kind of thing an investor puts on a slide."
+      },
+      {
+        "id": "last-call",
+        "name": "Last Call",
+        "genre": "Immersive Sim",
+        "slots": 4,
+        "price": 50,
+        "budget": 102000,
+        "skew": {
+          "fun": 1.1,
+          "ordinary": 1.2
+        },
+        "pitch": "One pub, one night, eleven ways it goes wrong.",
+        "hook": "Systems-heavy and hard to demo. The people who finish it will never shut up about it."
+      }
+    ]
+  },
+  {
+    "slot": 3,
+    "act": 1,
+    "label": "The Flagship",
+    "concepts": [
+      {
+        "id": "body-type-infinite-flagship",
+        "name": "Body Type Infinite",
+        "genre": "Open World",
+        "slots": 5,
+        "price": 60,
+        "budget": 238000,
+        "skew": {
+          "pc": 1.2
+        },
+        "pitch": "The one the wire was always for. Five slots and a launch trailer with a string section.",
+        "hook": "Everything the board has been paying for, in one box. They will be so proud. They will be at a different studio by the time it ships."
+      },
+      {
+        "id": "the-anthology",
+        "name": "Vignettes: An Anthology Of Care",
+        "genre": "Anthology",
+        "slots": 5,
+        "price": 45,
+        "budget": 187000,
+        "skew": {
+          "pc": 1.3,
+          "fun": 0.8
+        },
+        "pitch": "Nine short stories, nine consultants, one shared engine and no combat in any of them.",
+        "hook": "The highest industry ceiling available to you. The lowest floor of anything anyone has ever bought."
+      },
+      {
+        "id": "hard-exit",
+        "name": "Hard Exit",
+        "genre": "Action",
+        "slots": 5,
+        "price": 60,
+        "budget": 255000,
+        "skew": {
+          "fun": 1.2,
+          "gore": 1.1
+        },
+        "pitch": "The one you actually want to make. Big, loud, and completely off-strategy.",
+        "hook": "The board approved this in a meeting they had not read the deck for. Do it before they notice."
+      }
+    ]
+  },
+  {
+    "slot": 4,
+    "act": 2,
+    "label": "The First Swing",
+    "concepts": [
+      {
+        "id": "parking-lot",
+        "name": "Parking Lot",
+        "genre": "Survival Action",
+        "slots": 4,
+        "price": 20,
+        "budget": 20000,
+        "skew": {
+          "gore": 1.15,
+          "ordinary": 1.2
+        },
+        "pitch": "Everyday humans. Everyday violence. First time copies can save you.",
+        "hook": "One location, one night, no publisher and no permission. The cheapest thing in the garage."
+      },
+      {
+        "id": "night-shift",
+        "name": "Night Shift",
+        "genre": "Survival Horror",
+        "slots": 4,
+        "price": 25,
+        "budget": 27000,
+        "skew": {
+          "ordinary": 1.3
+        },
+        "pitch": "A petrol station at 3am and something in the forecourt.",
+        "hook": "Slower burn, warmer audience. Streamers will find it in week three and it will not stop."
+      },
+      {
+        "id": "roadwork",
+        "name": "Roadwork",
+        "genre": "Driving Combat",
+        "slots": 4,
+        "price": 20,
+        "budget": 34000,
+        "skew": {
+          "fun": 1.2
+        },
+        "pitch": "A hatchback, a ring road, and a very poor decision at a roundabout.",
+        "hook": "Physics-forward and clip-shaped. It will be a meme before it is a game."
+      }
+    ]
+  },
+  {
+    "slot": 5,
+    "act": 2,
+    "label": "The Proof",
+    "concepts": [
+      {
+        "id": "parking-lot-2",
+        "name": "Parking Lot 2: Multistorey",
+        "genre": "Survival Action",
+        "slots": 4,
+        "price": 25,
+        "budget": 51000,
+        "sequelTo": "parking-lot",
+        "skew": {
+          "gore": 1.2
+        },
+        "pitch": "Six floors. One ramp. The same shopping trolley.",
+        "hook": "They liked the first one. Give them the first one again, but up."
+      },
+      {
+        "id": "the-lock-in",
+        "name": "The Lock-In",
+        "genre": "Co-op Action",
+        "slots": 5,
+        "price": 25,
+        "budget": 65000,
+        "skew": {
+          "fun": 1.2,
+          "ordinary": 1.1
+        },
+        "pitch": "Four people, one pub, the doors are shut and something is in the cellar.",
+        "hook": "Co-op is expensive and every screenshot has a friend in it. That is the whole marketing plan."
+      },
+      {
+        "id": "linda",
+        "name": "Linda",
+        "genre": "Narrative Action",
+        "slots": 4,
+        "price": 30,
+        "budget": 44000,
+        "skew": {
+          "ordinary": 1.4,
+          "gore": 1.1
+        },
+        "pitch": "She worked a double. She is walking to her car. She has scissors.",
+        "hook": "The most personal thing on the table and the hardest to explain to a storefront."
+      }
+    ]
+  },
+  {
+    "slot": 6,
+    "act": 2,
+    "label": "The Breakout",
+    "concepts": [
+      {
+        "id": "parking-lot-3",
+        "name": "Parking Lot 3: Season Ticket",
+        "genre": "Survival Action",
+        "slots": 5,
+        "price": 30,
+        "budget": 102000,
+        "sequelTo": "parking-lot-2",
+        "skew": {
+          "gore": 1.25
+        },
+        "pitch": "A stadium car park on a matchday. Forty thousand people and one of you.",
+        "hook": "Third one. The audience is enormous now and so are the expectations."
+      },
+      {
+        "id": "the-ring-road",
+        "name": "The Ring Road",
+        "genre": "Open World",
+        "slots": 6,
+        "price": 40,
+        "budget": 162000,
+        "skew": {
+          "ordinary": 1.25,
+          "fun": 1.15
+        },
+        "pitch": "A whole town you have driven through. Roundabouts, a chip shop, a leisure centre with a cracked sign.",
+        "hook": "The biggest thing the garage has ever attempted. If the scope eats you, it eats you in public."
+      },
+      {
+        "id": "meat-and-two",
+        "name": "Meat And Two",
+        "genre": "Arena Brawler",
+        "slots": 5,
+        "price": 20,
+        "budget": 68000,
+        "skew": {
+          "gore": 1.35,
+          "fun": 1.1
+        },
+        "pitch": "A carvery. A queue. An escalation entirely disproportionate to the wait.",
+        "hook": "Pure clip fuel. Two storefronts will bury it in search and it will not matter even slightly."
+      }
+    ]
+  },
+  {
+    "slot": 7,
+    "act": 3,
+    "label": "The Empire",
+    "concepts": [
+      {
+        "id": "big-baby-collection",
+        "name": "The Big Baby Collection",
+        "genre": "Remaster Bundle",
+        "slots": 6,
+        "price": 50,
+        "budget": 143000,
+        "skew": {
+          "ordinary": 1.1
+        },
+        "pitch": "Everything you shipped in the garage, relit, rebundled, resold.",
+        "hook": "Six weeks of contractor time and the cheapest raw material on earth. It will make an obscene amount of money."
+      },
+      {
+        "id": "parking-lot-online",
+        "name": "Parking Lot Online",
+        "genre": "Live Service",
+        "slots": 6,
+        "price": 0,
+        "budget": 309000,
+        "sequelTo": "parking-lot",
+        "skew": {
+          "fun": 0.85
+        },
+        "pitch": "Free to enter. The lot is now a place. There is a hub world and you can emote at strangers.",
+        "hook": "No box price at all — every dollar comes from the store. The ceiling is the highest in the game and the floor is a lawsuit."
+      },
+      {
+        "id": "the-quiet-one",
+        "name": "The Quiet One",
+        "genre": "Narrative Action",
+        "slots": 5,
+        "price": 40,
+        "budget": 155000,
+        "skew": {
+          "ordinary": 1.3,
+          "fun": 1.15
+        },
+        "pitch": "No sequel, no hook, no roadmap rectangle. The one you'd make if nobody was counting.",
+        "hook": "Fewer slots and no monetisation surface. Everyone in the building wants to work on it and nobody upstairs can justify it."
+      }
+    ]
+  },
+  {
+    "slot": 8,
+    "act": 3,
+    "label": "The Money Shot",
+    "concepts": [
+      {
+        "id": "the-money-shot",
+        "name": "The Money Shot",
+        "genre": "Everything",
+        "slots": 6,
+        "price": 70,
+        "budget": 357000,
+        "skew": {
+          "fun": 1.1,
+          "gore": 1.1
+        },
+        "pitch": "You know the formula now. Ship it. Count it.",
+        "hook": "The most expensive thing you have ever attempted and the one you understand completely."
+      },
+      {
+        "id": "big-baby-forever",
+        "name": "Big Baby Forever",
+        "genre": "Live Service",
+        "slots": 6,
+        "price": 0,
+        "budget": 405000,
+        "skew": {
+          "fun": 0.8
+        },
+        "pitch": "The mascot is a platform now. Seasons, passes, a currency inside a currency.",
+        "hook": "It never ends, which is the pitch and also the warning. Trust is the fuel and you will burn all of it."
+      },
+      {
+        "id": "one-more-parking-lot",
+        "name": "One More Parking Lot",
+        "genre": "Survival Action",
+        "slots": 5,
+        "price": 35,
+        "budget": 202000,
+        "sequelTo": "parking-lot-3",
+        "skew": {
+          "gore": 1.2,
+          "ordinary": 1.25
+        },
+        "pitch": "Back to the lot. Same trolley. Older man. Same shotgun, heavier now.",
+        "hook": "You could take the billboard money instead. You will not, and you know exactly why."
+      }
+    ]
+  }
+]

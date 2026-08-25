@@ -1,0 +1,405 @@
+{
+  "style": "Bold-ink cartoon illustration in the style of 1990s MAD magazine caricature and classic VGA point-and-click adventure game backgrounds. HEAVY confident black ink outlines of varying line weight around every shape. Flat cel-shaded colour fills with hard-edged shadow shapes and crisp highlight blocks — no soft gradients, no blending. Punchy saturated cartoon palette. Comic cross-hatching and stipple for texture. Wonky exaggerated perspective. Caricatured proportions: oversized heads, rubbery expressive faces, big noses, spindly limbs. Clean printed-comic look, like a cel-shaded animation background or a comic book panel.",
+  "negative": "NOT painterly. No oil paint. No impasto. No visible brushstrokes. No canvas texture. No soft airbrushed blending. No photorealism. No 3D render. No muted desaturated palette. ABSOLUTELY NO TEXT of any kind: no letters, no words, no numbers, no signage, no logos, no labels, no captions, no watermark, no signature, no readable writing on any screen, poster, book or whiteboard. Leave those surfaces blank. No real people or celebrity likenesses.",
+  "defaults": {
+    "model": "grok-imagine-image-2.0",
+    "quality": "medium",
+    "resolution": "2k"
+  },
+  "assets": [
+    {
+      "id": "logo",
+      "path": "public/assets/logo.png",
+      "aspect": "square",
+      "transparent": true,
+      "prompt": "Company mascot for a satirical video game studio: a smug, well-fed middle-aged businessman in an oversized white nappy, standing with hands on hips, chest puffed out, wearing an enormous gold wristwatch and a self-satisfied grin, one eyebrow raised. Bold black ink outline, flat vivid cartoon colours, centred, full body, isolated on a completely plain flat mid-green chroma background with nothing else in frame."
+    },
+    {
+      "id": "hq-normal",
+      "path": "public/assets/hubs/hq-normal.jpg",
+      "aspect": "wide",
+      "hero": true,
+      "prompt": "Wide interior of a trendy open-plan video game studio at dusk, seen straight on like a stage set. Rows of desks with glowing monitors, developers hunched over keyboards, beanbags and a listening-circle of chairs on the left, a glass-walled meeting room on the right with executives gesturing at a blank wall, an elevator door far right, a huge gilt-framed oil portrait of a smug businessman in a nappy dominating the back wall. Floor to ceiling windows showing a purple-lilac city skyline. Warm interior light against cool exterior. Bold-ink cartoon, heavy outlines, flat cel shading, no lettering anywhere."
+    },
+    {
+      "id": "hq-purple",
+      "path": "public/assets/hubs/hq-purple.jpg",
+      "aspect": "wide",
+      "hero": true,
+      "from": "hq-normal",
+      "prompt": "The same open-plan game studio interior, now completely consumed by ultraviolet purple. Every surface, every monitor, every mug, the carpet, the beanbags and the skybox outside are shades of grape and bruise. The staff wear purple lanyards. The gilt portrait of the businessman in a nappy is now purple. Oppressive, saturated, faintly sinister, like a brand guide achieved sentience. Bold-ink cartoon, heavy outlines, flat cel shading, no lettering anywhere."
+    },
+    {
+      "id": "hq-crunch",
+      "path": "public/assets/hubs/hq-crunch.jpg",
+      "aspect": "wide",
+      "hero": true,
+      "from": "hq-normal",
+      "prompt": "The same open-plan game studio interior at three in the morning. Overhead lights off, only monitor glow and one desk lamp. Sleeping bags under two desks, a camp bed by the window, pizza boxes stacked into a tower, energy drink cans everywhere, one exhausted developer slumped asleep in a chair, another staring at a screen with a thousand-yard expression. A blank whiteboard with a hand-drawn countdown of tally marks. Cold blue light, deep shadows, melancholy. Bold-ink cartoon, heavy outlines, flat cel shading, no lettering anywhere."
+    },
+    {
+      "id": "hq-layoff",
+      "path": "public/assets/hubs/hq-layoff.jpg",
+      "aspect": "wide",
+      "hero": true,
+      "from": "hq-normal",
+      "prompt": "The same open-plan game studio interior, now stripped and abandoned. Desks bare, monitors gone, cardboard removal boxes stacked by the door, cables coiled on the floor, one dead pot plant, the beanbags deflated, a single office chair on its side. Pale rectangles on the wall where the gilt portrait used to hang. Grey overcast daylight through the windows, dust in the air. Bold-ink cartoon, heavy outlines, flat cel shading, desolate, no lettering anywhere."
+    },
+    {
+      "id": "penthouse",
+      "path": "public/assets/hubs/penthouse.jpg",
+      "aspect": "wide",
+      "hero": true,
+      "prompt": "Wide view of an obscene penthouse terrace at golden hour. Infinity pool on the left with two inflatable loungers drifting on turquoise water, a marble bar, a telescope, potted palms. On the right a livestreaming rig: ring light on a stand, microphone on a boom arm, an empty gaming chair facing a camera. Glittering city skyline beyond, sun low and orange. Opulent, absurd, faintly lonely. Bold-ink cartoon, heavy outlines, flat cel shading, no lettering anywhere."
+    },
+    {
+      "id": "garage",
+      "path": "public/assets/hubs/garage.jpg",
+      "aspect": "wide",
+      "hero": true,
+      "prompt": "Wide interior of a cramped single-car garage converted into a one-person game studio at night. A chunky old CRT monitor glowing on a workbench built from a door and two trestles, a mini-fridge with the door ajar spilling cold light, a corkboard of storyboards flecked with red paint, a battered office chair patched with tape, pizza boxes, a portable heater, a cracked window with rain on it, a mobile phone propped against a mug on a wooden crate. Warm cluttered squalor, hopeful, lived-in. Bold-ink cartoon, heavy outlines, flat cel shading, no lettering anywhere."
+    },
+    {
+      "id": "loft",
+      "path": "public/assets/hubs/loft.jpg",
+      "aspect": "wide",
+      "hero": true,
+      "prompt": "Wide interior of a converted warehouse game studio that has clearly become successful. Exposed brick, steel beams, huge industrial windows, a mezzanine walkway. Long communal desks with dual monitors, a small glass meeting pod, a wall of shelves displaying award trophies and mascot plush toys, a coffee bar with a proper espresso machine, a dog asleep on a rug in the foreground. Confident teal and steel colour palette, bright even daylight. Prosperous but still a workshop. Bold-ink cartoon, heavy outlines, flat cel shading, no lettering anywhere."
+    },
+    {
+      "id": "portrait-brie",
+      "path": "public/assets/portraits/brie.jpg",
+      "aspect": "portrait",
+      "group": "portrait",
+      "prompt": "Head and shoulders caricature portrait of a poised woman in her thirties, Head of Belonging at a games studio. Immaculate blunt-cut bob, round designer glasses, a lanyard, a cardigan the colour of oat milk, holding a closed laptop against her chest like a shield. Serene, faintly pitying smile. Flat single-colour background, no detail, no gradient."
+    },
+    {
+      "id": "portrait-xander",
+      "path": "public/assets/portraits/xander.jpg",
+      "aspect": "portrait",
+      "group": "portrait",
+      "prompt": "Head and shoulders caricature portrait of a narrative lead in their late twenties, androgynous, undercut with a lavender fringe, small round earrings, a black turtleneck, an expression of profound and slightly exhausted moral clarity. Flat single-colour background, no detail, no gradient."
+    },
+    {
+      "id": "portrait-karen",
+      "path": "public/assets/portraits/karen.jpg",
+      "aspect": "portrait",
+      "group": "portrait",
+      "prompt": "Head and shoulders caricature portrait of a formidable HR manager in her fifties, sensible layered bob, reading glasses on a chain, a floral blouse under a grey blazer, holding a clipboard, wearing the pleasant unmovable smile of someone who has a form for this. Flat single-colour background, no detail, no gradient."
+    },
+    {
+      "id": "portrait-ash",
+      "path": "public/assets/portraits/ash.jpg",
+      "aspect": "portrait",
+      "group": "portrait",
+      "prompt": "Head and shoulders caricature portrait of an art director in their thirties, dressed entirely in shades of purple, violet-dyed hair, purple-framed glasses, a purple scarf, a smudge of purple paint on one cheek, radiating total unshakable commitment to a single colour. Flat single-colour background, no detail, no gradient."
+    },
+    {
+      "id": "portrait-morgan",
+      "path": "public/assets/portraits/morgan.jpg",
+      "aspect": "portrait",
+      "group": "portrait",
+      "prompt": "Head and shoulders caricature portrait of a narrative consultant in their forties, tweed jacket with elbow patches, one hand raised mid-point as though interrupting, an air of enormous unearned authority, faint smile of someone about to say 'and how did that land for you'. Flat single-colour background, no detail, no gradient."
+    },
+    {
+      "id": "portrait-jules",
+      "path": "public/assets/portraits/jules.jpg",
+      "aspect": "portrait",
+      "group": "portrait",
+      "prompt": "Head and shoulders caricature portrait of a casting director in their forties, sharp platinum crop, statement earrings, black leather jacket, arms folded, one eyebrow raised in withering appraisal, the look of someone who has just seen your male lead audition. Flat single-colour background, no detail, no gradient."
+    },
+    {
+      "id": "portrait-tobias",
+      "path": "public/assets/portraits/tobias.jpg",
+      "aspect": "portrait",
+      "group": "portrait",
+      "prompt": "Head and shoulders caricature portrait of a Chief Vision Officer in his forties, expensive quarter-zip knit over a shirt, precisely stubbled, gleaming teeth, hands steepled in front of him, the untroubled radiant confidence of a man who has never opened the build. Flat single-colour background, no detail, no gradient."
+    },
+    {
+      "id": "portrait-petra",
+      "path": "public/assets/portraits/petra.jpg",
+      "aspect": "portrait",
+      "group": "portrait",
+      "prompt": "Head and shoulders caricature portrait of a VP of Alignment in her forties, severe centre-parted hair, minimalist gold jewellery, a structured white blazer, holding a tablet turned slightly away from you, smiling the way people smile in stock photography about synergy. Flat single-colour background, no detail, no gradient."
+    },
+    {
+      "id": "portrait-rusty",
+      "path": "public/assets/portraits/rusty.jpg",
+      "aspect": "portrait",
+      "group": "portrait",
+      "prompt": "Head and shoulders caricature portrait of a veteran gameplay programmer in his fifties, thinning grey hair, enormous headphones around his neck, a faded plain band t-shirt, three-day stubble, eyes slightly unfocused because he is currently thinking about a memory leak and not about you. Flat single-colour background, no detail, no gradient."
+    },
+    {
+      "id": "portrait-mei",
+      "path": "public/assets/portraits/mei.jpg",
+      "aspect": "portrait",
+      "group": "portrait",
+      "prompt": "Head and shoulders caricature portrait of a combat designer in her thirties, East Asian, hair tied back in a practical knot, a plain work shirt with sleeves rolled up, a controller in one hand, leaning forward with the delighted focused intensity of someone about to make a shotgun feel correct. Flat single-colour background, no detail, no gradient."
+    },
+    {
+      "id": "portrait-dutch",
+      "path": "public/assets/portraits/dutch.jpg",
+      "aspect": "portrait",
+      "group": "portrait",
+      "prompt": "Head and shoulders caricature portrait of a gore technologist in his thirties, cheerful and immaculately polite, neat side-parted hair, a cardigan, holding a plate of biscuits, with one small unexplained red splash on his collar. Deeply pleasant, faintly alarming. Flat single-colour background, no detail, no gradient."
+    },
+    {
+      "id": "portrait-sal",
+      "path": "public/assets/portraits/sal.jpg",
+      "aspect": "portrait",
+      "group": "portrait",
+      "prompt": "Head and shoulders caricature portrait of a QA lead in her forties, curly hair escaping a clip, a cardigan over a t-shirt, a lanyard heavy with too many passes, holding a mug, wearing the patient tired expression of someone who has filed this bug eleven times. Flat single-colour background, no detail, no gradient."
+    },
+    {
+      "id": "portrait-lin",
+      "path": "public/assets/portraits/lin.jpg",
+      "aspect": "portrait",
+      "group": "portrait",
+      "prompt": "Head and shoulders caricature portrait of an audio director in their thirties, Korean, studio headphones resting on their neck, a soft oversized jumper, eyes half-closed listening to something you cannot hear, entirely content. Flat single-colour background, no detail, no gradient."
+    },
+    {
+      "id": "portrait-gordo",
+      "path": "public/assets/portraits/gordo.jpg",
+      "aspect": "portrait",
+      "group": "portrait",
+      "prompt": "Head and shoulders caricature portrait of a producer in his forties, large, warm, rumpled shirt with the top button gone, a pen behind one ear, carrying a stack of pizza boxes, beaming at you like a man who has personally stood between his team and eleven pointless meetings this month. Flat single-colour background, no detail, no gradient."
+    },
+    {
+      "id": "portrait-wren",
+      "path": "public/assets/portraits/wren.jpg",
+      "aspect": "portrait",
+      "group": "portrait",
+      "prompt": "Head and shoulders caricature portrait of a community manager in her late twenties, Latina, colourful cropped hair, cheerful oversized hoodie, a phone in one hand held slightly away as if it is currently on fire, calm friendly unbothered expression. Flat single-colour background, no detail, no gradient."
+    },
+    {
+      "id": "portrait-viktor",
+      "path": "public/assets/portraits/viktor.jpg",
+      "aspect": "portrait",
+      "group": "portrait",
+      "prompt": "Head and shoulders caricature portrait of a head of monetisation in his forties, sleek dark hair, sharp charcoal suit with no tie, a very good watch, warm charming smile that does not reach the eyes, one hand extended as though showing you a graph. Flat single-colour background, no detail, no gradient."
+    },
+    {
+      "id": "cover-1-pc",
+      "path": "public/assets/covers/1-pc.jpg",
+      "aspect": "cover",
+      "group": "cover",
+      "prompt": "Video game box cover art, portrait orientation: a lone hooded figure with a completely blank featureless face standing in a lilac twilight meadow, hands open in a gesture of gentle apology, soft watercolour lighting, deliberately serene and inert. Tasteful, awards-bait, utterly devoid of action. No lettering anywhere on the cover."
+    },
+    {
+      "id": "cover-1-fun",
+      "path": "public/assets/covers/1-fun.jpg",
+      "aspect": "cover",
+      "group": "cover",
+      "prompt": "Video game box cover art, portrait orientation: a grizzled mercenary mid-slide behind cover, muzzle flash lighting his face, spent brass in the air, a burning street behind him, high contrast orange and teal. Kinetic, unashamed, exciting. No lettering anywhere on the cover."
+    },
+    {
+      "id": "cover-2-pc",
+      "path": "public/assets/covers/2-pc.jpg",
+      "aspect": "cover",
+      "group": "cover",
+      "prompt": "Video game box cover art, portrait orientation: a row of identical faceless wooden artist's mannequin dolls of assorted sizes standing on a shelf in a violet-lit gallery, arranged like a museum taxonomy display, softly lit, clinical and reverent. Wooden posable art dolls, not people. No lettering anywhere on the cover."
+    },
+    {
+      "id": "cover-2-fun",
+      "path": "public/assets/covers/2-fun.jpg",
+      "aspect": "cover",
+      "group": "cover",
+      "prompt": "Video game box cover art, portrait orientation: a chaotic pub interior mid-brawl seen from the doorway, a chair in flight, a dog stealing a pie in the foreground, warm amber light and flying beer. Funny, energetic, characterful. No lettering anywhere on the cover."
+    },
+    {
+      "id": "cover-3-pc",
+      "path": "public/assets/covers/3-pc.jpg",
+      "aspect": "cover",
+      "group": "cover",
+      "prompt": "Video game box cover art, portrait orientation: an enormous purple sky over a vast empty landscape with one tiny distant walking figure, monumental and empty, gradient from grape to bruise. Prestige, hollow, museum-ready. No lettering anywhere on the cover."
+    },
+    {
+      "id": "cover-3-fun",
+      "path": "public/assets/covers/3-fun.jpg",
+      "aspect": "cover",
+      "group": "cover",
+      "prompt": "Video game box cover art, portrait orientation: a lone figure silhouetted at the mouth of an underground car park at night, harsh sodium lights, long shadows, a shotgun held low, a shopping trolley on its side. Tense, grounded, cinematic. No lettering anywhere on the cover."
+    },
+    {
+      "id": "cover-4-pc",
+      "path": "public/assets/covers/4-pc.jpg",
+      "aspect": "cover",
+      "group": "cover",
+      "prompt": "Video game box cover art, portrait orientation: two blank-faced figures sitting on opposite sides of a small table in a softly lit room, listening to each other, rendered with enormous painterly sincerity. Nothing is happening. No lettering anywhere on the cover."
+    },
+    {
+      "id": "cover-4-fun",
+      "path": "public/assets/covers/4-fun.jpg",
+      "aspect": "cover",
+      "group": "cover",
+      "prompt": "Video game box cover art, portrait orientation: a tired middle-aged man in a fleece standing in a supermarket car park at dusk holding a crowbar, a carton of milk under one arm, headlights raking across him. Absurd, grounded, weirdly heroic. No lettering anywhere on the cover."
+    },
+    {
+      "id": "cover-5-pc",
+      "path": "public/assets/covers/5-pc.jpg",
+      "aspect": "cover",
+      "group": "cover",
+      "prompt": "Video game box cover art, portrait orientation: a nurse in scrubs standing perfectly still under a flickering hospital corridor light, rendered with reverent stillness and soft violet grading, no threat visible. No lettering anywhere on the cover."
+    },
+    {
+      "id": "cover-5-fun",
+      "path": "public/assets/covers/5-fun.jpg",
+      "aspect": "cover",
+      "group": "cover",
+      "prompt": "Video game box cover art, portrait orientation: four friends back to back in a cramped pub cellar, torchlight, improvised weapons, something enormous moving in the dark behind them. Co-op energy, warm and frightening. No lettering anywhere on the cover."
+    },
+    {
+      "id": "cover-6-pc",
+      "path": "public/assets/covers/6-pc.jpg",
+      "aspect": "cover",
+      "group": "cover",
+      "prompt": "Video game box cover art, portrait orientation: an aerial view of a small ordinary town rendered in soft violet dusk, tiny and quiet, a single car on a ring road. Contemplative and unmarketable. No lettering anywhere on the cover."
+    },
+    {
+      "id": "cover-6-fun",
+      "path": "public/assets/covers/6-fun.jpg",
+      "aspect": "cover",
+      "group": "cover",
+      "prompt": "Video game box cover art, portrait orientation: a hatchback mid-air over a roundabout at night, sparks off the underside, a stadium car park beyond, floodlights blazing. Ridiculous, joyful, physics-forward. No lettering anywhere on the cover."
+    },
+    {
+      "id": "cover-7-pc",
+      "path": "public/assets/covers/7-pc.jpg",
+      "aspect": "cover",
+      "group": "cover",
+      "prompt": "Video game box cover art, portrait orientation: a glossy corporate hub world plaza with dozens of identical smiling avatars standing in rows, a floating cosmetic display, teal and gold, immaculate and soulless. No lettering anywhere on the cover."
+    },
+    {
+      "id": "cover-7-fun",
+      "path": "public/assets/covers/7-fun.jpg",
+      "aspect": "cover",
+      "group": "cover",
+      "prompt": "Video game box cover art, portrait orientation: a montage of a studio's greatest hits — a shotgun, a dog, a ring road, a nurse's name badge shape, a shopping trolley — arranged like a lovingly painted band poster. Warm, celebratory. No lettering anywhere on the cover."
+    },
+    {
+      "id": "cover-8-pc",
+      "path": "public/assets/covers/8-pc.jpg",
+      "aspect": "cover",
+      "group": "cover",
+      "prompt": "Video game box cover art, portrait orientation: an infinite escalator of identical avatars ascending into a golden corporate light, tiny currency icons falling like snow, rendered beautifully and coldly. No lettering anywhere on the cover."
+    },
+    {
+      "id": "cover-8-fun",
+      "path": "public/assets/covers/8-fun.jpg",
+      "aspect": "cover",
+      "group": "cover",
+      "prompt": "Video game box cover art, portrait orientation: an older man in a fleece standing alone in an empty floodlit car park at dawn, shotgun resting on his shoulder, a dog sitting beside him, breath misting. Elegiac, warm, final. No lettering anywhere on the cover."
+    },
+    {
+      "id": "ending-exit",
+      "path": "public/assets/endings/ending-exit.jpg",
+      "aspect": "wide",
+      "group": "ending",
+      "prompt": "A large empty all-hands meeting space, chairs in rows, most of them empty. A man in an expensive lanyard stands at the front beside a blank projection screen. At the back, one person picks up a cardboard box. Cold corporate daylight, immaculate and hollow. Bold-ink cartoon, heavy outlines, flat cel shading, no lettering anywhere."
+    },
+    {
+      "id": "ending-liveservice",
+      "path": "public/assets/endings/ending-liveservice.jpg",
+      "aspect": "wide",
+      "group": "ending",
+      "prompt": "A vast glossy virtual plaza filled with hundreds of identical avatars performing the same dance emote in perfect rows, a rotating cosmetic pedestal at the centre, an enormous countdown clock shape with no numbers on it. Beautiful, endless, joyless. Bold-ink cartoon, heavy outlines, flat cel shading, no lettering anywhere."
+    },
+    {
+      "id": "ending-independent",
+      "path": "public/assets/endings/ending-independent.jpg",
+      "aspect": "wide",
+      "group": "ending",
+      "prompt": "A warm converted-warehouse studio at golden hour, a dozen people around one long table sharing takeaway food, laughing, a dog under the table, monitors glowing behind them, a wall of small trophies. Nobody is working. Genuine, unglamorous happiness. Bold-ink cartoon, heavy outlines, flat cel shading, no lettering anywhere."
+    },
+    {
+      "id": "ending-broke",
+      "path": "public/assets/endings/ending-broke.jpg",
+      "aspect": "wide",
+      "group": "ending",
+      "prompt": "A garage studio at night, one person sitting on an upturned crate looking at a phone, the CRT dark, the mini-fridge open and empty, but the corkboard behind them covered in printed messages and hand-drawn fan art pinned up in layers. Broke and beloved. Bold-ink cartoon, heavy outlines, flat cel shading, no lettering anywhere."
+    },
+    {
+      "id": "ending-money",
+      "path": "public/assets/endings/ending-money.jpg",
+      "aspect": "wide",
+      "group": "ending",
+      "prompt": "A penthouse terrace at night, a man in an oversized white nappy and an enormous gold watch floating alone on an inflatable lounger in a lit infinity pool, city glittering beyond, a phone glowing on the poolside. Triumphant and completely alone. Bold-ink cartoon, heavy outlines, flat cel shading, no lettering anywhere."
+    },
+    {
+      "id": "ending-craftsman",
+      "path": "public/assets/endings/ending-craftsman.jpg",
+      "aspect": "wide",
+      "group": "ending",
+      "prompt": "A modest tidy studio workshop at dusk, one person cleaning a desk at the end of a day, a shelf behind them holding eight well-worn game boxes with blank covers, low warm lamplight, rain on the window. Quiet pride. Bold-ink cartoon, heavy outlines, flat cel shading, no lettering anywhere."
+    },
+    {
+      "id": "ending-burnout",
+      "path": "public/assets/endings/ending-burnout.jpg",
+      "aspect": "wide",
+      "group": "ending",
+      "prompt": "A large modern studio floor, brightly lit, spotlessly clean, entirely empty of people. Every desk immaculate, every chair pushed in, a single half-drunk coffee going cold. One figure stands alone at the far end with their back to us. Bold-ink cartoon, heavy outlines, flat cel shading, desolate, no lettering anywhere."
+    },
+    {
+      "id": "ending-heat",
+      "path": "public/assets/endings/ending-heat.jpg",
+      "aspect": "wide",
+      "group": "ending",
+      "prompt": "A figure standing at the centre of a storm of blank floating rectangular cards swirling around them like a blizzard, lit from below in furious orange and red, arms slightly raised, expression unreadable. Overwhelming, permanent, exhausting. Bold-ink cartoon, heavy outlines, flat cel shading, no lettering anywhere."
+    },
+    {
+      "id": "ending-darling",
+      "path": "public/assets/endings/ending-darling.jpg",
+      "aspect": "wide",
+      "group": "ending",
+      "prompt": "A gallery plinth in a museum with a single game controller displayed under glass, immaculate lighting, a velvet rope, a blank brass plaque. Behind it, through a doorway, a small dark office with an unopened stack of bills on a desk. Bold-ink cartoon, heavy outlines, flat cel shading, no lettering anywhere."
+    },
+    {
+      "id": "ending-wendys",
+      "path": "public/assets/endings/ending-wendys.jpg",
+      "aspect": "wide",
+      "group": "ending",
+      "prompt": "The interior of a bright fast food restaurant at night seen from behind the counter. A middle-aged former studio boss in a paper hat and uniform, mid-shift, handing a paper bag to a customer, one flicker of recognition passing between them. Fluorescent light, immaculate surfaces, quiet dignity. Bold-ink cartoon, heavy outlines, flat cel shading, no lettering anywhere."
+    },
+    {
+      "id": "ending-default",
+      "path": "public/assets/endings/ending-default.jpg",
+      "aspect": "wide",
+      "group": "ending",
+      "prompt": "An empty studio meeting room on a Monday morning, low sun through blinds, one document left face-up on the table, a chair pulled out. Nobody has arrived yet. Neutral, waiting, faintly hopeful. Bold-ink cartoon, heavy outlines, flat cel shading, no lettering anywhere."
+    }
+  ],
+  "aspects": {
+    "wide": {
+      "hint": "Cinematic 16:9 widescreen composition, full interior scene drawn like an adventure game background, flat staging, no borders, no frame."
+    },
+    "square": {
+      "hint": "Square composition, single centred subject, full body."
+    },
+    "portrait": {
+      "hint": "Vertical portrait composition, head and shoulders caricature, centred, big expressive head."
+    },
+    "cover": {
+      "hint": "Vertical 3:4 game box cover composition, one bold graphic image, comic poster energy, no border, no frame."
+    }
+  },
+  "videoDefaults": {
+    "model": "grok-imagine-video"
+  },
+  "videos": [
+    {
+      "id": "sting-crash",
+      "path": "public/assets/video/sting-crash.mp4",
+      "prompt": "Slow push in across an abandoned open-plan games office. Dust drifting in cold grey light, cardboard removal boxes stacked by bare desks, a single office chair slowly rotating to a stop, pale rectangles on the wall where a large framed painting used to hang. Bold-ink cel-shaded cartoon animation style, heavy black outlines, melancholy, no text or lettering anywhere."
+    },
+    {
+      "id": "sting-rise",
+      "path": "public/assets/video/sting-rise.mp4",
+      "prompt": "Slow rising crane shot through a converted warehouse games studio at golden hour. Sunlight sweeping across long desks, people working and laughing, a dog raising its head from a rug, a shelf of gold trophies catching the light. Bold-ink cel-shaded cartoon animation style, heavy black outlines, warm and triumphant, no text or lettering anywhere."
+    },
+    {
+      "id": "sting-finale",
+      "path": "public/assets/video/sting-finale.mp4",
+      "prompt": "Slow drift across a rooftop swimming pool at night, water lit from below and rippling. Empty deck chairs, a glass on a side table, a glowing phone left on the tiles, a city skyline of lit towers beyond the far edge. Bold-ink cel-shaded cartoon animation style, heavy black outlines, expensive and completely deserted, no people, no text or lettering anywhere."
+    }
+  ]
+}

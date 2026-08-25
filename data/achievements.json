@@ -1,0 +1,331 @@
+[
+  {
+    "id": "first-ship",
+    "name": "It Shipped",
+    "icon": "📦",
+    "desc": "Launch your first title.",
+    "hidden": false
+  },
+  {
+    "id": "first-run",
+    "name": "Six Years",
+    "icon": "🏁",
+    "desc": "Finish a full campaign.",
+    "hidden": false
+  },
+  {
+    "id": "king-baby",
+    "name": "King Baby",
+    "icon": "👑",
+    "desc": "Finish a run with $1.8M or more.",
+    "hidden": false
+  },
+  {
+    "id": "dynasty",
+    "name": "Eight Figures",
+    "icon": "💎",
+    "desc": "Finish a run with $6M or more.",
+    "hidden": false
+  },
+  {
+    "id": "wendys",
+    "name": "Robust Onboarding",
+    "icon": "🍟",
+    "desc": "Finish a run in debt.",
+    "hidden": false
+  },
+  {
+    "id": "liquidated",
+    "name": "The Auction",
+    "icon": "🪑",
+    "desc": "Get liquidated mid-run.",
+    "hidden": false
+  },
+  {
+    "id": "chapter11",
+    "name": "Restructured",
+    "icon": "📉",
+    "desc": "Survive a Chapter 11 and keep playing.",
+    "hidden": false
+  },
+  {
+    "id": "pure-pc",
+    "name": "The Trilogy Of Care",
+    "icon": "🟣",
+    "desc": "Ship a title with 10+ PC.",
+    "hidden": false
+  },
+  {
+    "id": "pure-fun",
+    "name": "No Thesis, It Slaps",
+    "icon": "🎮",
+    "desc": "Ship a title with 10+ FUN.",
+    "hidden": false
+  },
+  {
+    "id": "pure-gore",
+    "name": "Rated M For Finally",
+    "icon": "🩸",
+    "desc": "Ship a title with 10+ GORE.",
+    "hidden": false
+  },
+  {
+    "id": "pure-ordinary",
+    "name": "He Just Wants The Milk",
+    "icon": "🥛",
+    "desc": "Ship a title with 8+ ORDINARY.",
+    "hidden": false
+  },
+  {
+    "id": "hundred-score",
+    "name": "Perfect Score",
+    "icon": "💯",
+    "desc": "Ship a title at industry score 100.",
+    "hidden": false
+  },
+  {
+    "id": "zero-score",
+    "name": "Unexamined",
+    "icon": "0️⃣",
+    "desc": "Ship a title at industry score 0.",
+    "hidden": false
+  },
+  {
+    "id": "million-copies",
+    "name": "A Million Of Them",
+    "icon": "📈",
+    "desc": "Sell 1,000,000 copies of a single title.",
+    "hidden": false
+  },
+  {
+    "id": "zero-copies",
+    "name": "Nobody Bought It",
+    "icon": "🕸️",
+    "desc": "Ship a title that sells under 100 copies.",
+    "hidden": false
+  },
+  {
+    "id": "synergy-3",
+    "name": "It All Clicked",
+    "icon": "✨",
+    "desc": "Fire three synergies on one title.",
+    "hidden": false
+  },
+  {
+    "id": "synergy-5",
+    "name": "The Perfect Box",
+    "icon": "🌟",
+    "desc": "Fire five synergies on one title.",
+    "hidden": false
+  },
+  {
+    "id": "conflict-3",
+    "name": "Two Good Ideas",
+    "icon": "💥",
+    "desc": "Fire three conflicts on one title.",
+    "hidden": false
+  },
+  {
+    "id": "the-gun-works",
+    "name": "The Gun Works",
+    "icon": "🔫",
+    "desc": "Fire THE GUN WORKS.",
+    "hidden": true
+  },
+  {
+    "id": "grape-soda",
+    "name": "Grape Soda Massacre",
+    "icon": "🥤",
+    "desc": "Fire GRAPE SODA MASSACRE.",
+    "hidden": true
+  },
+  {
+    "id": "clip-farm",
+    "name": "The Clip Farm",
+    "icon": "🎬",
+    "desc": "Fire THE CLIP FARM.",
+    "hidden": true
+  },
+  {
+    "id": "dog-and-dad",
+    "name": "A Man And His Dog",
+    "icon": "🐕",
+    "desc": "Fire A MAN AND HIS DOG.",
+    "hidden": true
+  },
+  {
+    "id": "full-choir",
+    "name": "The Full Choir",
+    "icon": "🎤",
+    "desc": "Have four injector staff on payroll at once.",
+    "hidden": false
+  },
+  {
+    "id": "full-talent",
+    "name": "An Actual Studio",
+    "icon": "🛠️",
+    "desc": "Have four talent staff on payroll at once.",
+    "hidden": false
+  },
+  {
+    "id": "never-hired",
+    "name": "Solo Dev",
+    "icon": "🧍",
+    "desc": "Finish a campaign without ever hiring anyone.",
+    "hidden": false
+  },
+  {
+    "id": "never-crunched",
+    "name": "Everyone Slept",
+    "icon": "😴",
+    "desc": "Finish a campaign without crunching once.",
+    "hidden": false
+  },
+  {
+    "id": "crunch-ten",
+    "name": "The Countdown Whiteboard",
+    "icon": "⏱️",
+    "desc": "Crunch ten times in one run.",
+    "hidden": false
+  },
+  {
+    "id": "morale-100",
+    "name": "Genuinely Good Week",
+    "icon": "☕",
+    "desc": "Reach 100 morale.",
+    "hidden": false
+  },
+  {
+    "id": "morale-zero",
+    "name": "Nobody Talks In Standup",
+    "icon": "🫥",
+    "desc": "Reach 0 morale.",
+    "hidden": false
+  },
+  {
+    "id": "someone-quit",
+    "name": "Handed My Notice In",
+    "icon": "🚪",
+    "desc": "Have a staff member quit on you.",
+    "hidden": false
+  },
+  {
+    "id": "penthouse",
+    "name": "There's A Pool",
+    "icon": "🏊",
+    "desc": "Unlock the penthouse.",
+    "hidden": false
+  },
+  {
+    "id": "dunk",
+    "name": "Anyway Here's My Pool",
+    "icon": "📹",
+    "desc": "Dunk on the haters.",
+    "hidden": false
+  },
+  {
+    "id": "backlash-survived",
+    "name": "Nine Days",
+    "icon": "🔥",
+    "desc": "Survive a backlash.",
+    "hidden": false
+  },
+  {
+    "id": "streisand",
+    "name": "It Backfired Upward",
+    "icon": "🚀",
+    "desc": "Roll the good backlash outcome.",
+    "hidden": true
+  },
+  {
+    "id": "heat-100",
+    "name": "Permanently Trending",
+    "icon": "📛",
+    "desc": "Reach 100 heat.",
+    "hidden": false
+  },
+  {
+    "id": "trust-100",
+    "name": "They'd Buy Anything",
+    "icon": "💚",
+    "desc": "Reach 100 audience trust.",
+    "hidden": false
+  },
+  {
+    "id": "standing-100",
+    "name": "A Necessary Voice",
+    "icon": "🏆",
+    "desc": "Reach 100 industry standing.",
+    "hidden": false
+  },
+  {
+    "id": "refused-exit",
+    "name": "He Said No",
+    "icon": "🛑",
+    "desc": "Refuse the acquisition offer.",
+    "hidden": false
+  },
+  {
+    "id": "took-exit",
+    "name": "The Exit",
+    "icon": "💼",
+    "desc": "Accept the acquisition offer.",
+    "hidden": false
+  },
+  {
+    "id": "franchise-3",
+    "name": "Season Ticket",
+    "icon": "🎟️",
+    "desc": "Ship three titles in one franchise.",
+    "hidden": false
+  },
+  {
+    "id": "all-upgrades",
+    "name": "Fully Equipped",
+    "icon": "🏗️",
+    "desc": "Own ten studio upgrades at once.",
+    "hidden": false
+  },
+  {
+    "id": "own-ip",
+    "name": "It Came Home",
+    "icon": "🔑",
+    "desc": "Buy back your IP.",
+    "hidden": false
+  },
+  {
+    "id": "preservation",
+    "name": "Set Them Free",
+    "icon": "🕊️",
+    "desc": "Patch the login requirement out of your old games.",
+    "hidden": true
+  },
+  {
+    "id": "hired-the-bug-guy",
+    "name": "They Hired Him",
+    "icon": "🐛",
+    "desc": "Hire the stranger who made the bug spreadsheet.",
+    "hidden": true
+  },
+  {
+    "id": "endless-unlocked",
+    "name": "It Never Ends",
+    "icon": "♾️",
+    "desc": "Unlock Endless mode.",
+    "hidden": false
+  },
+  {
+    "id": "endless-20",
+    "name": "Twenty More Quarters",
+    "icon": "🔁",
+    "desc": "Survive 20 quarters of Endless.",
+    "hidden": false
+  },
+  {
+    "id": "all-endings",
+    "name": "Every Way Out",
+    "icon": "🗝️",
+    "desc": "See every ending.",
+    "hidden": false
+  }
+]
