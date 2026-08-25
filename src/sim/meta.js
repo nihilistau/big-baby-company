@@ -122,11 +122,17 @@ export function checkAchievements(state, content) {
   }
   g("franchise-3", Object.values(franchises).some((n) => n >= 3));
 
+  // Unlocks are checked before the run is folded into the totals. Afterwards,
+  // `recordRunEnd` has already added this run's shipped titles to
+  // `titlesShippedTotal` while `checkCardUnlocks` still adds them again — so
+  // the final tick of a two-title run evaluated 2 + 2 against a threshold of 3
+  // and granted a card the player had not earned. Mid-run the check was always
+  // correct; only the ending double-counted.
+  dirty = checkCardUnlocks(state, content, meta) || dirty;
+
   if (state.screen === "ending" || state.screen === "gameover") {
     dirty = recordRunEnd(state, meta) || dirty;
   }
-
-  dirty = checkCardUnlocks(state, content, meta) || dirty;
   if (dirty) saveMeta(meta);
   return meta;
 }

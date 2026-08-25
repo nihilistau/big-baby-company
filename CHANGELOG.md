@@ -6,6 +6,89 @@ All notable changes to Big Baby Company. Format follows
 
 ---
 
+## [1.0.7] — 2026-08-26
+
+A correctness pass over systems that were shipped, documented and wired up but
+produced the wrong outcome. Every item below was verified in source before it
+was touched.
+
+### Fixed
+
+- **Synergy jank and hype were computed and thrown away.** `Synergy.combine()`
+  accumulated both; `projectLaunch()` read neither. Every rule whose payoff was
+  "the box is cleaner" or "the box is louder" did nothing — `it-just-works`
+  (−12 jank), `engine-of-theseus` (−20), `live-service-tax` (+18) and the hype
+  on a dozen more. The score, copies and money multipliers from the same bundle
+  *did* apply, so the system looked alive while half of it was inert.
+- **Franchise identity was the parent, not the root**, and depth was
+  double-counted. Parking Lot 2 filed under `parking-lot`, Parking Lot 3 under
+  `parking-lot-2`, the original under nothing. Grouping by that could never
+  reach three of anything, so the **"Season Ticket" achievement was literally
+  unreachable** — the chain topped out at two. Every title in a chain now files
+  under the root, counted once.
+- **Polish could be repeated forever.** `devPoints()` floors at 1 so a 1-cost
+  card is always placeable, and polish gated on that floored value — so an
+  empty box reported a spare point indefinitely. Each extra click was another
+  −2 morale and +2 trust, and the trust bypassed the resistance curve besides.
+  Polish now measures against the unfloored budget and its trust resists.
+- **Firing the team after lock rewrote the launch.** Talent auras and staff jank
+  snapshotted at lock; headcount and staff monetisation multipliers still read
+  the live roster three quarters later. Locking with the choir so injections
+  land and then firing everyone was strictly optimal, and hiring a monetisation
+  specialist on the launch quarter bought his revenue share with no injection
+  risk. Both are snapshotted now.
+- **Lock heat was measured before injection and the publisher mandate**, so a
+  mandated Always Online or Battle Pass — and every card an injector forced in
+  — generated no controversy. The whole point of those cards is that somebody
+  else put them in your game.
+- **Publisher mandates ignored acts.** `publisher-standard` runs in all three
+  acts and mandates a card that only exists in Acts I and III, so an Act II
+  garage studio had a feature injected that was not in its catalogue.
+- **A signed deal's quota ticked up the moment you signed it.** The panel
+  re-derived terms from `dealTerms()`, and `quotaEscalation()` counts every
+  investor deal including the one just signed. The contract you agreed to is
+  now what the card shows.
+- **Marketing was invisible to the projection it feeds.** Channel score, copies
+  multiplier and spend-hype only landed at End Quarter, so the HUD, store page
+  and hover preview all projected the launch as if no campaign had been chosen
+  — and the spend slider moved a number nothing on screen reflected.
+- **Card unlocks double-counted at run end.** `recordRunEnd` folded the run into
+  `titlesShippedTotal` before `checkCardUnlocks` added it again, so a two-title
+  run evaluated 2 + 2 against a threshold of 3.
+- **Endless was half-wired**: it started in Act I with Act III score weights,
+  never resolved genre skew for generated concepts (so every Endless title ran
+  at a flat 1.0), never applied the rising interest the docs promise, and still
+  fired the crash, the acquisition offer and the scripted campaign beats.
+- **The unresolved-event chip was unclickable** behind an open panel, and the
+  HUD button labelled "Resolve the event" was the disabled End Quarter control.
+  It now resolves the event.
+- **Continue dropped the launch report**, including on the crash and the ending
+  — the two reports `stageModal` exists to guarantee you see. The sim flags it
+  and Continue rebuilds it.
+- **The penthouse exit key did nothing.** Labelled `0`, handled `1`–`7`.
+- **Thirteen event chirps used display names against id-keyed accounts**, so
+  those posts rendered with no handle and the wrong name. Now covered by a
+  content-integrity test.
+
+### Changed
+
+- **The balance harness can fail the premise.** `control: true` exempted `pcmax`
+  from having to be viable, but nothing checked it stays the *worst* — so the
+  one claim this game rests on was the only one the tool could not falsify,
+  while the docs said otherwise. It now fails if `pcmax` out-earns any real
+  strategy or reaches the top ranks, if the bots never crunch, or if the
+  backlash table never fires.
+- `ch11-probe` has real pass/fail conditions and gates CI. `art:check` covers
+  the video stingers, which were exempt from the check that exists to catch
+  missing assets — deleting one left the build green.
+- Two archetypes never bought a marketing department, and every channel but
+  `none` is gated behind it, so the sweep that gates deploys exercised almost
+  no marketing. With that fixed, paid channels turn out to be a strong lever:
+  Emperor rises from 7.6% to 14.7% of runs.
+- Link-preview metadata and a social card, so the public URL unfurls.
+
+---
+
 ## [1.0.6] — 2026-08-26
 
 ### Changed
@@ -446,6 +529,7 @@ game the demo was a mock-up of.
 - Hub scenes with invisible hotspots, overlay panels, localStorage save.
 - Vite + vanilla JS, Vitest, painterly generated art.
 
+[1.0.7]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.7
 [1.0.6]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.6
 [1.0.5]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.5
 [1.0.4]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.4

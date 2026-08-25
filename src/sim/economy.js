@@ -5,6 +5,7 @@ import {
   HEAT,
   JANK,
   HEAT_SOURCES,
+  MARKETING,
   MONETIZATION_PER_PLAYER,
   moraleJank,
   MONEY,
@@ -32,8 +33,12 @@ export function applyInterest(cash, rate) {
 
 // --- Dev points -----------------------------------------------------------
 
-/** Points available to spend on cards this production quarter. */
-export function devPoints(state, content) {
+/**
+ * The real point budget, which can go to zero or below once polish has eaten
+ * into it. Placement uses the floored `devPoints()` so a 1-cost card is always
+ * placeable; anything that *spends* points has to measure against this one.
+ */
+export function devPointsRaw(state, content) {
   let n = state.studio.devPointsBase + (ACT_DEV_POINTS[state.act] || 0);
   for (const id of state.studio.upgrades) {
     n += content.upgrades[id]?.devPoints || 0;
@@ -45,7 +50,19 @@ export function devPoints(state, content) {
   n += title?.crunchCount || 0;
   n -= title?.polishCount || 0;
   n += title?.bonusPoints || 0;
-  return Math.max(1, n);
+  return n;
+}
+
+/**
+ * Points available to spend on cards this production quarter.
+ *
+ * Floored at 1 so the board is never completely unplayable. That floor must not
+ * leak into polish: gating polish on it meant an empty box reported a spare
+ * point forever, and each extra click was another -2 morale and +2 trust for
+ * nothing. See `devPointsRaw`.
+ */
+export function devPoints(state, content) {
+  return Math.max(1, devPointsRaw(state, content));
 }
 
 export function pointsSpent(state, content) {
@@ -56,6 +73,11 @@ export function pointsSpent(state, content) {
 
 export function pointsLeft(state, content) {
   return devPoints(state, content) - pointsSpent(state, content);
+}
+
+/** Spendable points, unfloored. What polish has to answer to. */
+export function pointsLeftRaw(state, content) {
+  return devPointsRaw(state, content) - pointsSpent(state, content);
 }
 
 export function crunchCost(state, content) {
@@ -107,8 +129,9 @@ export function sums(state, content, titleOverride = null) {
   }
 
   // Headcount is itself PC pressure in Act I: every lanyard in the building
-  // is another opinion in the box.
-  const heads = staffCount(state);
+  // is another opinion in the box. Snapshotted at lock, so the roster that
+  // shipped the game is the roster that counts — see applyStaffAtLock.
+  const heads = title.locked ? title.staffHeads ?? staffCount(state) : staffCount(state);
   if (title.act === 1) out.pc += heads;
 
   return { ...out, staffCount: heads };
@@ -202,6 +225,34 @@ export function titleHeat(state, content, titleOverride = null) {
  * what the sim will compute — minus the backlash roll, which is flagged
  * separately as a risk rather than folded into the number.
  */
+/**
+ * What a chosen-but-not-yet-resolved campaign will do to the launch.
+ *
+ * `applyMarketing()` only writes its numbers into the title at End Quarter, so
+ * until then the HUD, the store page and the hover preview all projected the
+ * launch as if no campaign had been picked. The comment on `projectLaunch`
+ * promises the sim minus the backlash roll; that was true for cards and the
+ * dunk and false for every paid channel, and the spend slider moved a number
+ * nothing on screen reflected.
+ */
+export function pendingMarketing(state, content, title) {
+  const none = { scoreAdd: 0, copiesMul: 1, hype: 0 };
+  const m = title?.marketing;
+  if (!m || m.resolved || !m.channel) return none;
+  const channel = content.channels[m.channel];
+  if (!channel) return none;
+
+  let mul = 1;
+  for (const id of state.studio.upgrades) {
+    mul *= content.upgrades[id]?.marketingMul ?? 1;
+  }
+  return {
+    scoreAdd: channel.scoreAdd ?? 0,
+    copiesMul: channel.copiesMul ?? 1,
+    hype: ((m.spend || 0) / 10000) * MARKETING.hypePer10k * (channel.hypeMul ?? 1) * mul,
+  };
+}
+
 export function projectLaunch(state, content, opts = {}) {
   const title = opts.title || currentTitle(state);
   if (!title) return null;
@@ -221,11 +272,25 @@ export function projectLaunch(state, content, opts = {}) {
   // Slots you promised and never filled.
   const emptySlots = Math.max(0, title.slots - title.cards.length);
 
-  const rawJank = titleJank(state, content, title) + emptySlots * UNFINISHED.jankPerSlot;
+  // Synergy jank and hype are part of the bundle and have to land here.
+  // `Synergy.combine()` accumulated both and nothing ever read them, so every
+  // rule whose payoff was "the box is cleaner" or "the box is louder" did
+  // nothing at all — `it-just-works` (-12 jank), `engine-of-theseus` (-20),
+  // `live-service-tax` (+18) and the hype on a dozen others. The score, copies
+  // and money multipliers from the same bundle did apply, so the system looked
+  // alive while half of it was inert.
+  const rawJank =
+    titleJank(state, content, title) + emptySlots * UNFINISHED.jankPerSlot + bundle.jank;
   const jank = effectiveJank(state, content, rawJank);
-  const hype = titleHype(state, content, title);
+  const mkt = pendingMarketing(state, content, title);
+  const hype = clamp100(titleHype(state, content, title) + bundle.hype + mkt.hype);
 
-  const skew = content.concepts[title.conceptId]?.skew || {};
+  // Endless concepts are generated into state, not the content catalogue, so
+  // looking only in `content` left every generated title running at a flat
+  // 1.0 skew — the genre lever silently switched off for the entire mode.
+  const concept =
+    content.concepts[title.conceptId] || state.endlessConcepts?.[title.conceptId];
+  const skew = concept?.skew || {};
   const w = SCORE.weights[act];
 
   let score =
@@ -238,7 +303,7 @@ export function projectLaunch(state, content, opts = {}) {
     bundle.scoreAdd -
     jank * SCORE.jankPenalty +
     (title.shipMods.scoreDelta || 0) +
-    (title.marketing.scoreAdd || 0) +
+    (title.marketing.scoreAdd || 0) + mkt.scoreAdd +
     emptySlots * UNFINISHED.scorePerSlot;
   score = clampScore(score);
 
@@ -266,7 +331,7 @@ export function projectLaunch(state, content, opts = {}) {
     franchiseMul *
     bundle.copiesMul *
     (title.shipMods.copiesMul ?? 1) *
-    (title.marketing.copiesMul ?? 1) *
+    (title.marketing.copiesMul ?? 1) * mkt.copiesMul *
     Math.max(0.25, 1 + emptySlots * UNFINISHED.copiesPerSlot);
   copies = Math.max(0, Math.round(copies));
 
@@ -281,8 +346,13 @@ export function projectLaunch(state, content, opts = {}) {
   for (const id of title.cards) {
     moneyRate += content.features[id]?.money || 0;
   }
-  for (const s of state.staff) {
-    moneyRate += content.staff[s.id]?.moneyMul || 0;
+  // Also from the locked roster, for the same reason as headcount.
+  if (title.locked) {
+    moneyRate += title.staffMoneyMul || 0;
+  } else {
+    for (const s of state.staff) {
+      moneyRate += content.staff[s.id]?.moneyMul || 0;
+    }
   }
   const inGame = Math.round(
     copies * moneyRate * MONETIZATION_PER_PLAYER * bundle.moneyMul * (title.moneyMul ?? 1)

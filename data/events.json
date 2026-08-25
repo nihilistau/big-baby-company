@@ -14,7 +14,7 @@
       {
         "label": "Refuse. We ship games, not vibes.",
         "effects": { "aura": { "fun": 1 }, "standing": -6, "trust": 4 },
-        "chirp": { "who": "IndustryPress", "text": "BBC refuses a values pass. We have concerns." }
+        "chirp": { "who": "press", "text": "BBC refuses a values pass. We have concerns." }
       }
     ]
   },
@@ -33,7 +33,7 @@
       {
         "label": "\"It's a game.\"",
         "effects": { "scoreDelta": -7, "copiesMul": 1.18, "standing": -8, "trust": 8 },
-        "chirp": { "who": "Haters", "text": "He said it's a game. Out loud. To a journalist. I'm buying two copies." }
+        "chirp": { "who": "haters", "text": "He said it's a game. Out loud. To a journalist. I'm buying two copies." }
       }
     ]
   },
@@ -67,7 +67,7 @@
       {
         "label": "Go. Smile. Get photographed near a fern.",
         "effects": { "standing": 9, "aura": { "pc": 1 }, "morale": -3 },
-        "chirp": { "who": "Investors", "text": "Beautiful mixer. Love the fern. Love the alignment. Where are the units." }
+        "chirp": { "who": "investors", "text": "Beautiful mixer. Love the fern. Love the alignment. Where are the units." }
       },
       {
         "label": "Stay and work. Crunch is free this quarter.",
@@ -110,7 +110,7 @@
       {
         "label": "Lean in. The lot was the point.",
         "effects": { "scoreDelta": -11, "copiesMul": 1.22, "heat": 16, "trust": 10 },
-        "chirp": { "who": "Players", "text": "They didn't apologise. They put the shotgun ON THE STORE PAGE." }
+        "chirp": { "who": "players", "text": "They didn't apologise. They put the shotgun ON THE STORE PAGE." }
       }
     ]
   },
@@ -148,7 +148,7 @@
       {
         "label": "Say it's just this one push.",
         "effects": { "morale": -10, "heat": 4 },
-        "chirp": { "who": "Anon Dev", "text": "third 'just this one push' of the year. i have a spreadsheet now." }
+        "chirp": { "who": "anon", "text": "third 'just this one push' of the year. i have a spreadsheet now." }
       },
       {
         "label": "Buy everyone dinner and say nothing. −$14k.",
@@ -194,7 +194,7 @@
       {
         "label": "Post about it. Be funny. Let it run.",
         "effects": { "hype": 16, "heat": 12, "trust": 6, "jank": 4 },
-        "chirp": { "who": "Players", "text": "the leaked build has a horse in the ceiling and they TWEETED about it. day one." }
+        "chirp": { "who": "players", "text": "the leaked build has a horse in the ceiling and they TWEETED about it. day one." }
       }
     ]
   },
@@ -259,7 +259,7 @@
       {
         "label": "Ship it. Patch Tuesday.",
         "effects": { "jank": 10, "trust": -10, "heat": 8 },
-        "chirp": { "who": "Players", "text": "it crashes on the third mission. day one patch is 14gb. love this industry." }
+        "chirp": { "who": "players", "text": "it crashes on the third mission. day one patch is 14gb. love this industry." }
       }
     ]
   },
@@ -300,7 +300,7 @@
       {
         "label": "Ship the cube. Give it the backstory.",
         "effects": { "hype": 12, "heat": 6, "aura": { "fun": 1 }, "jank": 6, "standing": -4 },
-        "chirp": { "who": "Players", "text": "the third boss is a cube named Gerald and he has a tragic past. game of the year." }
+        "chirp": { "who": "players", "text": "the third boss is a cube named Gerald and he has a tragic past. game of the year." }
       }
     ]
   },
@@ -379,7 +379,7 @@
       {
         "label": "Hire them.",
         "effects": { "cash": -35000, "jank": -20, "trust": 16, "morale": 6 },
-        "chirp": { "who": "Players", "text": "they hired the guy who made the bug spreadsheet. THEY HIRED HIM." }
+        "chirp": { "who": "players", "text": "they hired the guy who made the bug spreadsheet. THEY HIRED HIM." }
       },
       {
         "label": "Thank them publicly and fix the top ten.",
@@ -474,7 +474,7 @@
       {
         "label": "Show twelve minutes of raw gameplay instead.",
         "effects": { "hype": 16, "trust": 14, "standing": -6 },
-        "chirp": { "who": "Players", "text": "he had twelve minutes on the main stage and he just... showed the game. unedited. i'm unwell." }
+        "chirp": { "who": "players", "text": "he had twelve minutes on the main stage and he just... showed the game. unedited. i'm unwell." }
       }
     ]
   },
@@ -498,7 +498,7 @@
       {
         "label": "Schedule a listening session.",
         "effects": { "morale": -14, "heat": 14 },
-        "chirp": { "who": "Anon Dev", "text": "we asked for three things and got a calendar invite titled 'Listening (30m)'" }
+        "chirp": { "who": "anon", "text": "we asked for three things and got a calendar invite titled 'Listening (30m)'" }
       }
     ]
   },
@@ -1035,7 +1035,7 @@
       {
         "label": "Post a statement about passion.",
         "effects": { "heat": 26, "trust": -16, "morale": -14, "standing": -6 },
-        "chirp": { "who": "Anon Dev", "text": "the statement uses the word 'passion' four times and the word 'overtime' zero times" }
+        "chirp": { "who": "anon", "text": "the statement uses the word 'passion' four times and the word 'overtime' zero times" }
       }
     ]
   },
@@ -1152,7 +1152,7 @@
       {
         "label": "Do the patch. Set them free.",
         "effects": { "cash": -25000, "trust": 20, "standing": 8, "morale": 14 },
-        "chirp": { "who": "Players", "text": "they patched the login requirement out of a nine year old game so it works forever. nobody made them do that." }
+        "chirp": { "who": "players", "text": "they patched the login requirement out of a nine year old game so it works forever. nobody made them do that." }
       },
       {
         "label": "Keep paying. Decide later.",

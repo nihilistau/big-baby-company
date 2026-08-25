@@ -2,6 +2,7 @@ import {
   CRUNCH,
   DIFFICULTIES,
   DUNK,
+  FEEDBACK,
   MARKETING,
   MORALE,
   POLISH,
@@ -13,7 +14,7 @@ import {
   pushChirp,
   pushLedger,
 } from "./state.js";
-import { canPlaceCard, crunchCost, pointsLeft } from "./economy.js";
+import { canPlaceCard, crunchCost, pointsLeft, pointsLeftRaw } from "./economy.js";
 import { applyEffects } from "./effects.js";
 import * as Chirper from "./chirper.js";
 import { markSeen } from "./deck.js";
@@ -23,6 +24,22 @@ const fail = (reason) => ({ ok: false, reason });
 const done = (extra = {}) => ({ ok: true, ...extra });
 
 // --- PITCH ----------------------------------------------------------------
+
+/**
+ * The id every title in a sequel chain files under: walk `sequelTo` to the
+ * root. Guarded against a cycle in the data, which would otherwise hang here.
+ */
+export function franchiseRoot(concept, content) {
+  let node = concept;
+  const seen = new Set();
+  while (node?.sequelTo && !seen.has(node.id)) {
+    seen.add(node.id);
+    const parent = content.concepts[node.sequelTo];
+    if (!parent) return node.sequelTo;
+    node = parent;
+  }
+  return node?.id ?? concept.id;
+}
 
 export function chooseConcept(state, conceptId, content) {
   if (state.phase !== "pitch") return fail("phase");
@@ -40,14 +57,19 @@ export function chooseConcept(state, conceptId, content) {
   title.budget = concept.budget;
   title.genre = concept.genre;
 
-  if (concept.sequelTo) {
-    const prior = state.titles.filter(
-      (t) => t.result && (t.conceptId === concept.sequelTo || t.franchise === concept.sequelTo)
-    );
-    title.franchise = concept.sequelTo;
-    title.franchiseDepth = state.titles.filter((t) => t.result && t.franchise === concept.sequelTo)
-      .length + prior.length;
-  }
+  // Every title in a chain gets the same franchise id — the root of the chain,
+  // not its immediate parent.
+  //
+  // Storing `concept.sequelTo` gave each entry a different id: Parking Lot 2
+  // filed under `parking-lot`, Parking Lot 3 under `parking-lot-2`, and the
+  // original under nothing at all. Grouping by that could never reach three of
+  // anything, so the "Season Ticket" achievement was unreachable, and depth was
+  // double-counted besides — a title matching both filters below was tallied
+  // twice, while a grandparent was missed entirely.
+  title.franchise = franchiseRoot(concept, content);
+  title.franchiseDepth = state.titles.filter(
+    (t) => t.result && t.franchise === title.franchise
+  ).length;
   return done({ concept });
 }
 
@@ -174,12 +196,16 @@ export function polish(state, content) {
   if (state.phase !== "production") return fail("phase");
   const title = currentTitle(state);
   if (!title || title.locked) return fail("locked");
-  if (pointsLeft(state, content) < 1) return fail("points");
+  // Against the unfloored budget: `devPoints()` floors at 1 so the board is
+  // never unplayable, and gating polish on that let an empty box report a spare
+  // point forever — an unbounded trust farm at −2 morale a click.
+  if (pointsLeftRaw(state, content) < 1) return fail("points");
 
   title.polishCount = (title.polishCount || 0) + 1;
   title.jank = Math.max(0, (title.jank || 0) + POLISH.jank);
   state.morale = clamp100(state.morale + POLISH.morale);
-  state.trust = clamp100(state.trust + POLISH.trust);
+  // Through the resistance curve, like every other source of trust.
+  state.trust = clamp100(state.trust + FEEDBACK.resist("trust", state.trust, POLISH.trust));
   return done();
 }
 

@@ -11,7 +11,8 @@
     "balance": "node tools/balance-sim.mjs --runs 2000",
     "art:check": "node tools/gen-art.mjs --check",
     "art:missing": "node tools/gen-art.mjs --missing",
-    "verify": "npm run test && npm run build && npm run art:check && node tools/balance-sim.mjs --runs 400"
+    "verify": "npm run test && npm run build && npm run art:check && node tools/balance-sim.mjs --runs 400 && node tools/ch11-probe.mjs",
+    "probe": "node tools/ch11-probe.mjs && node tools/meter-probe.mjs"
   },
   "devDependencies": {
     "jsdom": "^29.1.1",
@@ -20,5 +21,5 @@
     "vitest": "^2.1.0"
   },
   "description": "Satirical studio tycoon. Stuff the box, cash the wires, survive the crash.",
-  "version": "1.0.6"
+  "version": "1.0.7"
 }

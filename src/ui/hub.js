@@ -30,7 +30,7 @@ const SCENES = {
       { panel: "pool", label: "The pool", short: "Pool", x: 0, y: 50, w: 47, h: 49, key: "1" },
       { panel: "stream", label: "Livestream rig", short: "Stream", x: 62, y: 20, w: 31, h: 78, key: "2" },
       { panel: "chirper", label: "Chirper", short: "Chirper", x: 39, y: 42, w: 22, h: 31, key: "5" },
-      { hub: "hq", label: "Back to HQ", short: "HQ", x: 62, y: 2, w: 18, h: 16, key: "0" },
+      { hub: "hq", label: "Back to HQ", short: "HQ", x: 62, y: 2, w: 18, h: 16, key: "8" },
     ],
   },
   garage: {

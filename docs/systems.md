@@ -511,13 +511,25 @@ Current standing at 3,000 runs, Standard difficulty:
 
 ```
 archetype       median        top-rank   broke   ch11
-pcmax             $72,481         0.0%   44.0%  38.0%   ← the trap, working
-funmax         $2,661,590        20.0%    2.0%  39.6%
-goremax        $2,161,594        20.0%    4.0%  45.6%   ← highest variance
-moneymax         $547,895         0.0%    0.0%  90.4%   ← safe, low ceiling
-pcthenfun      $2,060,096         5.6%    1.6%  83.2%   ← the designed line
-balanced       $2,468,128         4.8%    0.0%   8.4%
+pcmax             $74,129         0.0%   44.6%  33.6%   ← the trap, working
+funmax         $2,770,191        34.6%    1.6%  46.2%
+goremax        $2,144,157        23.0%    2.8%  46.6%   ← highest variance
+moneymax         $585,988         0.0%    0.2%  94.8%   ← safe, low ceiling
+pcthenfun      $1,992,057         4.4%    2.0%  84.2%   ← the designed line
+balanced       $2,998,814        29.2%    0.0%  10.2%
 ```
+
+The harness fails the build if any non-control archetype can never reach King
+Baby, if one reaches Emperor more than 60% of the time, if fewer than five ranks
+occur, if one rank absorbs more than half of all runs, if a run gets stuck — and,
+since 1.0.7, **if the control archetype stops being the worst**. `pcmax` is
+exempt from having to be viable, which for a long time meant the single claim
+this game rests on was the only one the tool could not falsify. It now checks
+that `pcmax` is out-earned by every real strategy and never reaches the top of
+the ladder.
+
+It also fails if the bots never crunch and if the backlash table never fires,
+because both of those have silently happened before.
 
 `node tools/meter-probe.mjs` attributes every meter delta to the phase that
 produced it, and reports what share of a campaign each meter spends **pinned**
@@ -528,12 +540,12 @@ system that has quietly switched itself off.
 ```
              standing        trust          heat         morale
 archetype  median pin    median pin    median pin    median pin
-pcmax          68   0%       13   0%       24   7%       46   0%
-funmax         24  14%       72   8%       24   0%       72   1%
-goremax         8  19%       65   2%       70   0%       67   0%
-moneymax        0  52%       21   0%       62   0%       52   0%
-pcthenfun      48   0%       53   2%       19   5%       52   0%
-balanced       21  23%       79  11%       16   1%       76   1%
+pcmax          66   0%       14   0%       25   7%       48   0%
+funmax         24  15%       71   7%       25   0%       71   1%
+goremax         8  19%       63   1%       70   0%       67   0%
+moneymax        0  48%       22   0%       63   0%       53   0%
+pcthenfun      48   0%       53   1%       19   5%       53   0%
+balanced       20  23%       79  11%       17   1%       77   1%
 ```
 
 Where those numbers started:
@@ -545,8 +557,12 @@ Where those numbers started:
 | Morale | 54% pinned at the ceiling | 0–1% |
 | Heat | 39% pinned at zero | 0–7% |
 
-All four meters now move under play. One thing is deliberately still lopsided:
+All four meters move under play. One thing is deliberately still lopsided:
 
-- **`moneymax` standing, 52% pinned.** Selling the audience for cash is
+- **`moneymax` standing, 48% pinned.** Selling the audience for cash is
   supposed to cost you the industry's respect as well as theirs. It is the only
   archetype/meter pair still parked, and it is parked for a reason.
+
+`node tools/ch11-probe.mjs` separately plays a frugal, competent player and
+fails if Act III dominates the bankruptcies or if fewer than 40% of those runs
+reach an ending at all. Clustering in Act II is the intended beat.

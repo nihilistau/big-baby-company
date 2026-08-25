@@ -169,4 +169,24 @@ describe("content integrity", () => {
       expect(f.unlock.hint, `${f.id} needs an unlock hint`).toBeTruthy();
     }
   });
+
+  it("every chirp author is a real account", () => {
+    // Event chirps carried display names ("IndustryPress") where the accounts
+    // are keyed by id ("press"), so those posts rendered with no handle and
+    // the wrong name. Nothing caught it because nothing checked.
+    const ids = new Set(Object.keys(content.chirps.accounts));
+    const unknown = [];
+    const walk = (node, where) => {
+      if (!node || typeof node !== "object") return;
+      for (const [k, v] of Object.entries(node)) {
+        if (k === "chirp" && v?.who && !ids.has(v.who)) unknown.push(`${where}: ${v.who}`);
+        walk(v, where);
+      }
+    };
+    for (const e of content.eventsList) walk(e, e.id);
+    for (const post of content.chirps.posts || []) {
+      if (post.who && !ids.has(post.who)) unknown.push(`chirps.json: ${post.who}`);
+    }
+    expect(unknown).toEqual([]);
+  });
 });

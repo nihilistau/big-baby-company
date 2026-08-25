@@ -81,9 +81,14 @@ function pitchPanel(ctx) {
       <div class="deal-list">
         ${deals
           .map((d) => {
-            const terms = dealTerms(state, content, d);
             const chosen = title.deal?.id === d.id;
             const locked = !!title.deal && !chosen;
+            // The signed card shows the contract you signed, not what the same
+            // deal would cost today. `quotaEscalation()` counts every investor
+            // deal in the run including this one, so re-deriving terms after
+            // signing ticked the quota up by a step the moment you committed —
+            // the card disagreed with the boardroom and with the sim.
+            const terms = chosen ? title.deal : dealTerms(state, content, d);
             const net = terms.netNow;
             return `
             <button class="deal ${chosen ? "chosen" : ""}" data-key="deal-${d.id}"

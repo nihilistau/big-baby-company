@@ -73,7 +73,7 @@ export function createState(overrides = {}) {
     mode: overrides.mode || "campaign",
 
     quarter: 1,
-    act: 1,
+    act: overrides.mode === "endless" ? 3 : 1,
     titleIndex: 0,
     phase: "pitch",
     screen: "playing", // playing | crash | acquisition | ending | gameover
@@ -123,6 +123,7 @@ export function createState(overrides = {}) {
     totalWires: 0,
     lastWire: 0,
     lastLaunch: null,
+    reportPending: false,
     quotaMisses: 0,
 
     stats: {
@@ -161,7 +162,9 @@ export function currentTitle(state) {
 }
 
 export function difficultyOf(state) {
-  return DIFFICULTIES[state.difficulty] || DIFFICULTIES.standard;
+  const base = DIFFICULTIES[state.difficulty] || DIFFICULTIES.standard;
+  const drift = state.difficultyDrift?.interest || 0;
+  return drift ? { ...base, interest: base.interest + drift } : base;
 }
 
 

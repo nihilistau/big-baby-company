@@ -38,6 +38,9 @@ jobs:
       - name: Balance harness
         run: node tools/balance-sim.mjs --runs 400
 
+      - name: Frugal-player probe
+        run: node tools/ch11-probe.mjs
+
       # Pages serves a project site from /<repo>/, so the bundle needs that
       # prefix baked in. GITHUB_REPOSITORY is always "owner/repo".
       # If this ever moves to a custom domain or a user site, set BASE_PATH=/.

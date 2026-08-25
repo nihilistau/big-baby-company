@@ -108,3 +108,30 @@ console.log(
       .join(" ") +
     "\n"
 );
+
+// The docs describe the intended beat: a careful player who is going to get
+// into trouble should get into it in Act II, when the money runs out and the
+// investors have gone. Clustering in Act III means the endgame is unwinnable
+// rather than tense. This exits non-zero so it can gate a deploy instead of
+// only ever printing something.
+const problems = [];
+if (ended / runs < 0.4) {
+  problems.push(`only ${((ended / runs) * 100).toFixed(1)}% of frugal runs reach an ending`);
+}
+// A roughly even split across the back half is the healthy shape. What this
+// is looking for is Act III *dominating* — the endgame turning unwinnable
+// rather than tense — not a few filings either side of the line.
+if (filed > 0 && byAct[3] > byAct[2] * 1.6) {
+  problems.push(
+    `Chapter 11 clusters in Act III (I ${byAct[1]} · II ${byAct[2]} · III ${byAct[3]}) — ` +
+      "the endgame is bankrupting careful players, not the middle"
+  );
+}
+
+if (problems.length) {
+  console.log("CH11 PROBE WARNINGS:");
+  for (const p of problems) console.log("  - " + p);
+  process.exitCode = 1;
+} else {
+  console.log("  frugal-player curve looks intended.");
+}

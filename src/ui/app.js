@@ -140,6 +140,19 @@ function startNew() {
   draw();
 }
 
+/**
+ * Rebuild the launch report from saved state, for a run resumed while it was
+ * still on screen. `ui.report` is UI-only and does not survive a save, so the
+ * sim flags `reportPending` at launch and clears it on dismiss.
+ *
+ * The backlash entry is not replayed here — the roll already happened and its
+ * effects are in the state. Its banner is the one thing lost to a reload.
+ */
+function reportFromState(s) {
+  if (!s?.reportPending || !s.lastLaunch) return null;
+  return { result: s.lastLaunch, backlash: null, outcomes: [] };
+}
+
 function continueGame() {
   const result = loadState();
   if (!result.ok) {
@@ -156,7 +169,8 @@ function continueGame() {
   ui.screen = "game";
   ui.panel = null;
   ui.showEvent = state.eventChoice == null;
-  ui.report = null;
+  // Rebuild the launch report if the save was taken while it was open.
+  ui.report = reportFromState(state);
   resetFeed();
   setMusicBed(state.act);
   draw();
@@ -614,6 +628,8 @@ const handlers = {
   advance: () => advance(),
   "dismiss-report": () => {
     ui.report = null;
+    state.reportPending = false;
+    persist();
     sfx.click();
     draw();
   },
@@ -760,7 +776,9 @@ function bind() {
     }
 
     const n = Number(e.key);
-    if (n >= 1 && n <= 7) {
+    // 1-8: the penthouse exit is 8. It was labelled 0, which this range
+    // never accepted, so the key printed on the hotspot did nothing.
+    if (n >= 1 && n <= 8) {
       const spot = availableHotspots(state).find((s) => s.key === e.key);
       if (spot) {
         handlers[spot.hub ? "go-hub" : "open-panel"]({

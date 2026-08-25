@@ -15,6 +15,19 @@ export function applyStaffAtLock(title, staffList, content, opts = {}) {
   const next = structuredClone(title);
   next.injected = [];
 
+  // Who was on the payroll when the box closed. Headcount is PC pressure in
+  // Act I and drags copies in every act, and some staff carry a monetisation
+  // multiplier — all of which used to be read from the *live* roster at launch,
+  // three quarters later. Locking with the choir so their injections land and
+  // then firing everyone before End Quarter was strictly optimal, and hiring a
+  // monetisation specialist on the launch quarter bought his revenue share
+  // with no injection risk at all. The box is what it was when you closed it.
+  next.staffHeads = staffList.length;
+  next.staffMoneyMul = staffList.reduce(
+    (n, entry) => n + (content.staff[entry.id]?.moneyMul || 0),
+    0
+  );
+
   const sabotage = opts.sabotage || [];
 
   for (const entry of staffList) {
@@ -93,6 +106,11 @@ export function applyMandate(title, content) {
   const mandate = title.deal?.mandate;
   if (!mandate) return title;
   if (title.cards.includes(mandate)) return title;
+  // Mandates respect the act the card belongs to, the way staff pets already
+  // do. `publisher-standard` runs in all three acts and mandates a card that
+  // only exists in Acts I and III, so an Act II garage studio was having a
+  // feature injected that is not in its catalogue and cannot be removed.
+  if (!content.features[mandate]?.acts?.includes(title.act)) return title;
   const next = structuredClone(title);
 
   if (next.cards.length < next.slots) {

@@ -1,7 +1,7 @@
 # Architecture
 
-Vanilla ES modules, Vite, **zero runtime dependencies**. Roughly 9,200 lines of
-JavaScript and 4,500 lines of content JSON.
+Vanilla ES modules, Vite, **zero runtime dependencies**. Roughly 10,500 lines of
+JavaScript across source, tools and tests, and 4,800 lines of content JSON.
 
 ---
 
@@ -73,7 +73,7 @@ This is the single most load-bearing decision in the codebase. Because of it:
 
 - everything is skippable, since nothing waits on an animation
 - the whole game is testable without a DOM
-- the balance harness plays ten thousand campaigns in a few seconds
+- the balance harness plays a few thousand campaigns in a few seconds
 - a fuzz test can hammer every action in every legal and illegal order
 
 The UI never reaches into simulation internals. It calls actions in
@@ -219,7 +219,7 @@ hundred lines and adds zero bytes to the bundle.
 ## Testing
 
 ```bash
-npm test        # 156 tests across 9 files
+npm test        # 164 tests across 9 files
 ```
 
 | File | Covers |

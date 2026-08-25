@@ -20,5 +20,8 @@ jobs:
         run: node tools/gen-art.mjs --check
       - name: Balance harness
         run: node tools/balance-sim.mjs --runs 400
+
+      - name: Frugal-player probe
+        run: node tools/ch11-probe.mjs
       - name: Build
         run: npm run build

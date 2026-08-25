@@ -9,7 +9,7 @@
 **A satirical studio-management roguelite about what happens when the number
 you're being paid for stops being the number people are buying.**
 
-`v1.0.6` · Browser · Single-player · ~60–90 minutes per run · Zero runtime dependencies
+`v1.0.7` · Browser · Single-player · ~60–90 minutes per run · Zero runtime dependencies
 
 ### [▶ Play it in your browser](https://nihilistau.github.io/big-baby-company/)
 
@@ -412,13 +412,13 @@ second filing is the end.
 Vanilla ES modules. Vite. **Zero runtime dependencies.**
 
 ```
-10,173 lines of JavaScript · 156 tests · 54 art assets · 4,800 lines of content JSON
+10,529 lines of JavaScript · 164 tests · 54 art assets · 4,804 lines of content JSON
 ```
 
 The simulation is pure and synchronous — `advance(state, content)` takes a
 state and returns `{ state, events }`. Every animation lives in the UI layer,
 which is why everything is skippable, everything is testable, and the balance
-harness can play ten thousand campaigns in a few seconds.
+harness can play a few thousand campaigns in a few seconds.
 
 Art is bold-ink MAD-magazine caricature over VGA adventure-game backgrounds,
 generated through a manifest-driven pipeline and committed to the repo. Audio
@@ -427,10 +427,10 @@ is synthesised at runtime — there is not a single audio file in this project.
 ### Verify it yourself
 
 ```bash
-npm test                            # 156 tests: sim, content integrity, fuzz, UI
+npm test                            # 164 tests: sim, content integrity, fuzz, UI
 node tools/balance-sim.mjs          # Monte-Carlo balance sweep across six archetypes
 node tools/ch11-probe.mjs           # where a careful player actually goes broke
-node tools/meter-probe.mjs          # what moves each meter, and which are pinned
+npm run probe                       # meter attribution and the frugal-player curve
 node tools/gen-art.mjs --check      # every asset present, correct, consistent
 npm run verify                      # all of the above
 ```

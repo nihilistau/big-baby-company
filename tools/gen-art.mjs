@@ -344,7 +344,11 @@ total ${(before / 1024 / 1024).toFixed(1)}mb → ${(after / 1024 / 1024).toFixed
 
 function check(manifest) {
   const rows = [];
-  for (const asset of manifest.assets) {
+  // Videos live in their own array and were skipped entirely, so the three
+  // stingers were exempt from the gate that exists to catch missing assets —
+  // deleting one left CI perfectly green.
+  const all = [...manifest.assets, ...(manifest.videos || [])];
+  for (const asset of all) {
     const file = path.join(ROOT, asset.path);
     const exists = fs.existsSync(file);
     rows.push({

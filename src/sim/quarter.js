@@ -304,13 +304,18 @@ function lockBox(state, content, events) {
   // absorbs later crunch, or clamp a reduction away to nothing.
   state.titles[idx].moraleJank = moraleJank(state.morale);
 
-  const boxHeat = titleHeat(state, content, state.titles[idx]);
-  if (boxHeat) state.heat = clamp100(state.heat + FEEDBACK.resist("heat", state.heat, boxHeat));
-
   let title = applyStaffAtLock(state.titles[idx], state.staff, content, { sabotage });
   title = applyMandate(title, content);
   title.locked = true;
   state.titles[idx] = title;
+
+  // Heat is measured after injection and the publisher mandate, not before.
+  // Taken first, it read the box the player assembled rather than the box that
+  // actually shipped — so a mandated Always Online or Battle Pass, and every
+  // card an injector forced in, contributed no controversy at all. The whole
+  // point of those cards is that somebody else put them in your game.
+  const boxHeat = titleHeat(state, content, title);
+  if (boxHeat) state.heat = clamp100(state.heat + FEEDBACK.resist("heat", state.heat, boxHeat));
 
   events.push({ type: "lock", injected: title.injected, mandate: title.mandateApplied });
 }
@@ -394,6 +399,11 @@ function resolveLaunch(state, content, events) {
 
   title.result = result;
   state.lastLaunch = result;
+  // The launch report is UI state, so a save taken while it is open used to
+  // come back without it — including on the crash and the ending, the two
+  // reports `stageModal` exists to make sure you see. Flagging it here lets
+  // Continue rebuild the report from `lastLaunch` instead of skipping it.
+  state.reportPending = true;
 
   Chirper.launchFeed(state, content, result);
   events.push({ type: "launch", result });
@@ -465,12 +475,12 @@ function stepPhase(state, content, events) {
   // A title just launched. Scripted reversals fire here.
   const justFinished = state.titleIndex;
 
-  if (justFinished === 2 && state.act === 1 && !state.flags.crashed) {
+  if (state.mode !== "endless" && justFinished === 2 && state.act === 1 && !state.flags.crashed) {
     runCrash(state, content, events);
     return;
   }
 
-  if (justFinished === 6 && !state.flags.acquisitionOffered) {
+  if (state.mode !== "endless" && justFinished === 6 && !state.flags.acquisitionOffered) {
     offerAcquisition(state, content, events);
     return;
   }
@@ -503,7 +513,12 @@ function startNextTitle(state, content, events) {
 
   if (state.mode === "endless") {
     const over = state.titles.length - TOTAL_TITLES;
-    state.difficultyDrift = { quota: over * ENDLESS.quotaGrowth };
+    state.difficultyDrift = {
+      quota: over * ENDLESS.quotaGrowth,
+      // Rising interest is half of what Endless advertises and was computed
+      // nowhere; the docs promised it and the bank never charged it.
+      interest: over * ENDLESS.interestGrowth,
+    };
   }
 }
 

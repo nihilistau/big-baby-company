@@ -57,9 +57,13 @@ function eligible(event, state, content) {
  * drawn by weight from whatever is eligible and not yet seen this run.
  */
 export function drawEvent(state, content) {
-  const scripted = content.eventsList.find(
-    (e) => e.scripted?.quarter === state.quarter
-  );
+  // Scripted beats belong to the campaign spine. In Endless the quarter
+  // counter keeps climbing past them, but Values Pass and friends have no
+  // place in a run with no acts to punctuate.
+  const scripted =
+    state.mode === "endless"
+      ? null
+      : content.eventsList.find((e) => e.scripted?.quarter === state.quarter);
   if (scripted && !state.deck.seen.includes(scripted.id)) return scripted;
 
   const pool = content.eventsList.filter(

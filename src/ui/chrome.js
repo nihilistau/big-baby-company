@@ -124,11 +124,21 @@ export function chromeView(ctx) {
         ${
           // Once the run is over there is no quarter left to end; showing a
           // dead button with an em-dash on it just looks like a bug.
+          // When the blocker is an unresolved event the button says "Resolve
+          // the event" — so it should resolve the event. It used to be the
+          // disabled End Quarter control wearing that label, and the only other
+          // way back to the modal was a chip that sits underneath any open
+          // panel and never receives the click.
           state.screen === "playing"
-            ? `<button class="btn primary end-quarter" data-act="advance" ${blocked ? "disabled" : ""}
-                       title="${blocked ? escapeHtml(BLOCK_COPY[reason] || reason) : "Advance the quarter (E)"}">
-                 ${blocked ? escapeHtml(BLOCK_COPY[reason] || reason) : "End Quarter"}
-               </button>`
+            ? reason === "event"
+              ? `<button class="btn primary end-quarter" data-act="reopen-event"
+                         title="Reopen the event (E)">
+                   ${escapeHtml(BLOCK_COPY.event)}
+                 </button>`
+              : `<button class="btn primary end-quarter" data-act="advance" ${blocked ? "disabled" : ""}
+                         title="${blocked ? escapeHtml(BLOCK_COPY[reason] || reason) : "Advance the quarter (E)"}">
+                   ${blocked ? escapeHtml(BLOCK_COPY[reason] || reason) : "End Quarter"}
+                 </button>`
             : ""
         }
       </div>

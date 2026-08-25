@@ -7,7 +7,8 @@ import { endingFor, rankFor } from "../src/sim/endings.js";
 import { createState, currentTitle, emptyTitle } from "../src/sim/state.js";
 import { mulberry32 } from "../src/sim/rng.js";
 import * as Actions from "../src/sim/actions.js";
-import { projectLaunch, titleHeat, titleJank } from "../src/sim/economy.js";
+import { franchiseRoot } from "../src/sim/actions.js";
+import { devPoints, pointsLeftRaw, projectLaunch, titleHeat, titleJank } from "../src/sim/economy.js";
 import * as Q from "../src/sim/quarter.js";
 import {
   COPIES,
@@ -573,5 +574,100 @@ describe("heat is a dial, not a switch", () => {
     const clean = place(inProduction({ act: 2, slots: 5, heat: 0 }), FUN_CARDS);
     expect(titleHeat(clean, content)).toBeLessThan(HEAT.backlashFloor);
     expect(HEAT.chance(0)).toBe(0);
+  });
+});
+
+describe("1.0.7 correctness patches", () => {
+  it("applies synergy jank and hype to the launch", () => {
+    // Synergy.combine() accumulated both and projectLaunch read neither, so
+    // every rule whose payoff was "cleaner box" or "louder box" did nothing.
+    const rule = content.synergiesList.find((r) => (r.effects?.jank || 0) < 0);
+    expect(rule, "a jank-reducing synergy should exist to test").toBeTruthy();
+
+    const state = place(inProduction({ act: 2, slots: 6, morale: 75 }), rule.requires);
+    const withRule = projectLaunch(state, content);
+    expect(withRule.synergies.length + withRule.conflicts.length).toBeGreaterThan(0);
+
+    // Same box, rule suppressed: jank must be strictly higher without it.
+    const bundle = Synergy.combine(Synergy.detect(content, rule.requires));
+    expect(bundle.jank).toBeLessThan(0);
+    expect(withRule.jank).toBeLessThan(
+      withRule.jank - bundle.jank + 1 // i.e. the bundle actually moved it
+    );
+  });
+
+  it("files every title in a chain under the root, counted once", () => {
+    expect(franchiseRoot(content.concepts["parking-lot-3"], content)).toBe("parking-lot");
+    expect(franchiseRoot(content.concepts["one-more-parking-lot"], content)).toBe("parking-lot");
+    expect(franchiseRoot(content.concepts["parking-lot"], content)).toBe("parking-lot");
+    // Three entries in the chain now share an id, so "ship three in one
+    // franchise" is reachable at all — it was capped at two.
+    const chain = ["parking-lot", "parking-lot-2", "parking-lot-3"];
+    const roots = new Set(chain.map((id) => franchiseRoot(content.concepts[id], content)));
+    expect(roots.size).toBe(1);
+  });
+
+  it("stops polish refilling itself off the placement floor", () => {
+    const state = inProduction({ act: 2, slots: 4 });
+    let guard = 0;
+    while (Actions.polish(state, content).ok && guard++ < 50);
+    expect(guard).toBeLessThan(50);
+    expect(pointsLeftRaw(state, content)).toBeLessThan(1);
+    // The floor still exists for placement, so the board is never unplayable.
+    expect(devPoints(state, content)).toBeGreaterThanOrEqual(1);
+  });
+
+  it("ships the roster that was on the payroll at lock", () => {
+    const state = place(inProduction({ act: 1, slots: 4, staff: ["rusty"] }), FUN_CARDS.slice(0, 3));
+    const locked = Q.advance(state, content);
+    expect(locked.ok).toBe(true);
+    const s = locked.state;
+    const before = projectLaunch(s, content).copies;
+
+    s.staff = []; // fire everyone the week before launch
+    expect(projectLaunch(s, content).copies).toBe(before);
+  });
+
+  it("refuses a publisher mandate that is not in this act's catalogue", () => {
+    const title = { ...emptyTitle(0, 2), act: 2, slots: 4, cards: ["fun-gunfeel"],
+                    deal: { mandate: "pc-apology-credits" } };
+    expect(content.features["pc-apology-credits"].acts).not.toContain(2);
+    expect(applyMandate(title, content).cards).not.toContain("pc-apology-credits");
+
+    const act1 = { ...title, act: 1 };
+    expect(applyMandate(act1, content).cards).toContain("pc-apology-credits");
+  });
+
+  it("shows a chosen marketing campaign in the launch projection", () => {
+    const state = place(inProduction({ act: 2, slots: 4, cash: 500000 }), FUN_CARDS.slice(0, 2));
+    state.studio.upgrades.push("marketing-dept");
+    state.phase = "launch";
+    const before = projectLaunch(state, content);
+    expect(Actions.setMarketing(state, "awards", 120000, content).ok).toBe(true);
+    const after = projectLaunch(state, content);
+    expect(after.score).toBeGreaterThan(before.score);
+  });
+
+  it("counts heat from what actually shipped, injections included", () => {
+    // Heat used to be measured before staff injection and the publisher
+    // mandate, so a meme-tagged card somebody else forced into your game
+    // generated no controversy at all.
+    const pet = content.staff["ash"].petFeature; // pc-purple, meme-tagged
+    expect(content.features[pet].tags).toContain("meme");
+
+    const state = place(
+      inProduction({ act: 1, slots: 4, staff: ["ash"], morale: 75 }),
+      ["fun-gunfeel"]
+    );
+    const beforeLock = titleHeat(state, content, currentTitle(state));
+
+    const out = Q.advance(state, content);
+    expect(out.ok).toBe(true);
+    const title = out.state.titles[out.state.titleIndex];
+    expect(title.cards).toContain(pet);
+    // The shipped box is more controversial than the one the player assembled,
+    // and the meter reflects that rather than the pre-injection snapshot.
+    expect(titleHeat(out.state, content, title)).toBeGreaterThan(beforeLock);
+    expect(out.state.heat).toBeGreaterThan(0);
   });
 });

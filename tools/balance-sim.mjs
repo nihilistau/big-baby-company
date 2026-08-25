@@ -46,6 +46,10 @@ const content = buildContent({
 const TOP_RANKS = ["emperor", "dynasty"];
 const VIABLE_RANKS = ["king-baby", ...TOP_RANKS];
 
+// Note: every channel but `none` is gated behind the marketing department,
+// so an archetype that never buys it can never use a paid channel. Two of
+// these had it last or not at all, which meant the sweep that gates deploys
+// exercised almost none of the marketing system.
 const ARCHETYPES = {
   pcmax: {
     axis: "pc",
@@ -62,7 +66,7 @@ const ARCHETYPES = {
     dealPref: ["publisher-boutique", "self-fund", "crowdfund", "publisher-standard"],
     channelPref: ["honest", "festival", "trailers", "none"],
     hireInjectors: false,
-    upgradePref: ["extra-desk", "qa-lab", "engine-license", "community-team", "third-desk"],
+    upgradePref: ["extra-desk", "marketing-dept", "qa-lab", "community-team", "third-desk"],
   },
   goremax: {
     axis: "gore",
@@ -95,7 +99,7 @@ const ARCHETYPES = {
     dealPref: ["publisher-standard", "investor-seed", "self-fund", "publisher-boutique"],
     channelPref: ["trailers", "festival", "honest", "none"],
     hireInjectors: false,
-    upgradePref: ["extra-desk", "qa-lab", "marketing-dept", "ergonomic-chairs", "engine-license"],
+    upgradePref: ["extra-desk", "marketing-dept", "qa-lab", "ergonomic-chairs", "engine-license"],
   },
 };
 
@@ -445,6 +449,36 @@ function main() {
     if (top / rs.length > 0.6)
       problems.push(`${name} reaches ${TOP_RANKS[0]}+ ${pct(top, rs.length)} of the time`);
   }
+
+  // The premise, as an assertion. `control: true` exempts pcmax from having to
+  // be viable — but nothing checked that it stays the *worst*, so the one claim
+  // this whole game rests on was the only one the harness could not fail. The
+  // docs said "if it ever starts winning, the tool says so." It did not.
+  for (const name of names) {
+    if (!ARCHETYPES[name].control) continue;
+    const rs = all.filter((r) => r.archetype === name);
+    if (!rs.length) continue;
+    const controlMedian = median(rs.map((r) => r.cash));
+    const rivals = names.filter((n) => !ARCHETYPES[n].control);
+    const beaten = rivals.filter(
+      (n) => median(all.filter((r) => r.archetype === n).map((r) => r.cash)) < controlMedian
+    );
+    if (beaten.length) {
+      problems.push(`${name} is meant to be the trap but out-earns ${beaten.join(", ")}`);
+    }
+    if (rs.some((r) => TOP_RANKS.includes(r.rank))) {
+      problems.push(`${name} reached ${TOP_RANKS.join("/")} — the premise has broken`);
+    }
+  }
+
+  // The bots have to actually exercise the systems they gate deploys on. They
+  // once crunched exactly zero times across an entire sweep, which meant morale,
+  // crunch jank and the whole production-pressure axis went unmeasured while the
+  // harness reported healthy.
+  const crunches = all.reduce((n, r) => n + (r.crunches || 0), 0);
+  if (crunches === 0) problems.push("no archetype crunched once — morale and crunch jank untested");
+  const backlashes = all.reduce((n, r) => n + (r.backlashes || 0), 0);
+  if (backlashes === 0) problems.push("the backlash table never fired — heat untested");
 
   const spread = rankIds.filter((id) => all.some((r) => r.rank === id)).length;
   if (spread < 5) problems.push(`only ${spread} distinct ranks reachable`);

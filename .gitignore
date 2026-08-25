@@ -4,3 +4,6 @@ dist
 *.local
 .env
 *.tmp
+
+# Local dev-server config for the editor's preview pane, not a shipping file.
+.claude/launch.json
