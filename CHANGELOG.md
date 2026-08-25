@@ -166,7 +166,7 @@ game the demo was a mock-up of.
 
 ---
 
-## [0.1.0] — 2026-08-25
+## 0.1.0 — 2026-08-25
 
 ### Added
 
@@ -177,4 +177,6 @@ game the demo was a mock-up of.
 - Vite + vanilla JS, Vitest, painterly generated art.
 
 [1.0.0]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.0
-[0.1.0]: https://github.com/nihilistau/big-baby-company/releases/tag/v0.1.0
+
+<!-- 0.1.0 predates this repository; it exists only as the starting point the
+     1.0.0 notes describe. -->
