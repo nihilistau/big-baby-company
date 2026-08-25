@@ -54,6 +54,15 @@ All notable changes to Big Baby Company. Format follows
   and sells fewer copies, that morale is snapshotted at lock, that gains resist
   at the ceiling, and that losses still reach the disaster thresholds.
 
+### Changed
+
+- Both README captures recut under the rebalanced meters. The Act III run now
+  has all four meters visibly doing something — standing 40, trust 94, heat 17,
+  morale 81 — rather than two of them parked at their extremes, and it ends on
+  a run summary where a title scored **100** and sold **nothing**. The Act I
+  capture ends on the launch report that explains the whole premise: customers
+  paid **$11k**, the investor wired **$34k**.
+
 ### Known
 
 - **`moneymax` standing sits pinned at zero for 50% of a run.** Selling the

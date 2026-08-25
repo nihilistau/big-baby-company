@@ -2,7 +2,7 @@
 
 <img src="docs/screenshots/hero.gif" alt="Big Baby Company — the score goes up, the sales go down" width="820" />
 
-<sub>Act III. Hovering a card ghosts the result onto the HUD before you commit — the fashionable feature buys <b>+15 industry score</b> and costs you <b>1,172 sales</b>; the fun one buys +4 and <b>gains 3,755</b>. That is the whole game.</sub>
+<sub>Act III. Hovering a card ghosts the result onto the HUD before you commit — the fashionable feature buys <b>+15 industry score</b> and costs you <b>1,085 sales</b>; the fun one buys +4 and <b>gains 4,816</b>. Same box, same tick, opposite directions. The run ends on a title that scored <b>100</b> and sold <b>nothing</b>.</sub>
 
 # BIG BABY COMPANY
 
@@ -37,8 +37,9 @@ It works right up until the quarter it doesn't.
 <div align="center">
 <img src="docs/screenshots/act1.gif" alt="Act I — pitch a game, fill the box, ship it" width="900" />
 <br><em>Act I. Everything is going extremely well. One fashionable feature is
-worth <b>+21 industry score</b> and <b>every single copy you were going to
-sell</b>. The wire does not care.</em>
+worth <b>+21 industry score</b> and <b>two thirds of your sales</b>. Ship it
+anyway and the launch report explains why: customers paid you <b>$11k</b>, the
+investor wired <b>$34k</b>.</em>
 </div>
 
 ---
