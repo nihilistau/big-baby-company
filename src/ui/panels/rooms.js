@@ -1,4 +1,5 @@
 import { escapeHtml } from "../render.js";
+import { asset } from "../assets.js";
 import { count, money, moneyExact, signed } from "../format.js";
 import { currentTitle } from "../../sim/state.js";
 import { hireOffersFor, upgradeOffersFor } from "../../sim/actions.js";
@@ -46,7 +47,7 @@ export function hrPanel(ctx) {
           const injector = p.traits.includes("injector");
           return `
           <div class="staff ${hired ? "hired" : ""} ${injector ? "injector" : "talent"}" data-key="staff-${p.id}">
-            <img src="/assets/portraits/${p.id}.jpg" alt="" width="72" height="72"
+            <img src="${asset(`/assets/portraits/${p.id}.jpg`)}" alt="" width="72" height="72"
                  onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'portrait-fallback',textContent:'${escapeHtml(p.name[0])}'}))" />
             <div class="staff-main">
               <div class="staff-head">
@@ -105,7 +106,7 @@ export function storePanel(ctx) {
     <h2>Store page</h2>
     <div class="store">
       <div class="store-cover">
-        <img src="/assets/covers/${slot}-${kind}.jpg" alt="" width="200" height="267"
+        <img src="${asset(`/assets/covers/${slot}-${kind}.jpg`)}" alt="" width="200" height="267"
              onerror="this.closest('.store-cover').classList.add('no-art');this.remove()" />
         <div class="cover-fallback"><span>${escapeHtml(title.name)}</span></div>
       </div>

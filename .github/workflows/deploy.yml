@@ -1,0 +1,60 @@
+name: Deploy to Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Let a running deploy finish; queue at most one behind it.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    name: Test and build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Tests
+        run: npm test
+
+      - name: Asset integrity
+        run: node tools/gen-art.mjs --check
+
+      - name: Balance harness
+        run: node tools/balance-sim.mjs --runs 400
+
+      # Pages serves a project site from /<repo>/, so the bundle needs that
+      # prefix baked in. GITHUB_REPOSITORY is always "owner/repo".
+      # If this ever moves to a custom domain or a user site, set BASE_PATH=/.
+      - name: Build
+        run: BASE_PATH="/${GITHUB_REPOSITORY#*/}/" npm run build
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    name: Deploy
+    needs: verify
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

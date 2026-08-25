@@ -1,4 +1,5 @@
 import { escapeHtml } from "./render.js";
+import { asset } from "./assets.js";
 import {
   actRoman,
   count,
@@ -77,7 +78,7 @@ export function chromeView(ctx) {
   return `
     <header class="chrome" data-key="chrome">
       <div class="chrome-brand">
-        <img src="/assets/logo.png" alt="" width="34" height="34"
+        <img src="${asset("/assets/logo.png")}" alt="" width="34" height="34"
              onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'logo-fallback',textContent:'BB'}))" />
         <div>
           <div class="brand-name">${escapeHtml(state.studio.name)}</div>

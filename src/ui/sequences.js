@@ -1,4 +1,5 @@
 import { escapeHtml } from "./render.js";
+import { asset } from "./assets.js";
 import { count, money, moneyExact, signed } from "./format.js";
 import { currentTitle } from "../sim/state.js";
 
@@ -258,9 +259,9 @@ export function endingModal(ctx) {
   return `
     <div class="modal-wrap ending-wrap" data-key="ending" role="dialog" aria-modal="true">
       <video class="ending-sting" autoplay muted loop playsinline
-             src="/assets/video/sting-finale.mp4" onerror="this.remove()"></video>
+             src="${asset("/assets/video/sting-finale.mp4")}" onerror="this.remove()"></video>
       <div class="modal ending">
-        <img class="ending-art" src="/assets/endings/${ending.art}.jpg" alt=""
+        <img class="ending-art" src="${asset(`/assets/endings/${ending.art}.jpg`)}" alt=""
              onerror="this.remove()" />
         <span class="modal-kicker">${escapeHtml(ending.name)}</span>
         <p class="ending-line">${escapeHtml(ending.line)}</p>
@@ -374,7 +375,7 @@ export function actCard(act) {
     <div class="act-card" data-key="act-card" data-act="skip-act-card" role="button"
          tabindex="0" aria-label="Skip">
       <video class="act-sting" autoplay muted playsinline
-             src="/assets/video/${copy.sting}.mp4"
+             src="${asset(`/assets/video/${copy.sting}.mp4`)}"
              onerror="this.remove()"></video>
       <div class="act-copy">
         <span class="act-roman">${copy.roman}</span>

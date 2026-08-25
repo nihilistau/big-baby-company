@@ -6,6 +6,31 @@ All notable changes to Big Baby Company. Format follows
 
 ---
 
+## [1.0.1] — 2026-08-26
+
+### Added
+
+- **Hosted build.** The game now plays at
+  [nihilistau.github.io/big-baby-company](https://nihilistau.github.io/big-baby-company/).
+  A GitHub Actions workflow runs the full suite — 134 tests, the asset check
+  and a 400-run balance sweep — and only deploys if all three pass. A broken
+  build cannot reach the public URL, which is more process than the studio in
+  this game has ever managed.
+- A CI workflow running the same checks on pull requests.
+- An animated README hero showing the hover-ghost projection doing the one
+  thing the whole game is about.
+
+### Fixed
+
+- **Assets were resolved from absolute paths**, so every image 404'd when the
+  bundle was served from a subdirectory rather than a domain root — which is
+  exactly how GitHub Pages serves it. Hub scenes, title covers, staff
+  portraits, ending stills, the logo and the video stingers now all resolve
+  through an `asset()` helper built on `import.meta.env.BASE_URL`, and
+  `vite.config.js` honours a `BASE_PATH` environment variable.
+
+---
+
 ## [1.0.0] — 2026-08-26
 
 ### The Overhaul
@@ -176,6 +201,7 @@ game the demo was a mock-up of.
 - Hub scenes with invisible hotspots, overlay panels, localStorage save.
 - Vite + vanilla JS, Vitest, painterly generated art.
 
+[1.0.1]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.1
 [1.0.0]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.0
 
 <!-- 0.1.0 predates this repository; it exists only as the starting point the

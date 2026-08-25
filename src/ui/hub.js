@@ -1,4 +1,5 @@
 import { escapeHtml } from "./render.js";
+import { asset } from "./assets.js";
 import { currentTitle } from "../sim/state.js";
 
 /**
@@ -66,17 +67,17 @@ export function sceneFor(state) {
 /** Art variant reacts to the state of the company, not just the act. */
 export function hubArt(state, content) {
   const scene = sceneFor(state);
-  if (scene.art !== "hq") return `/assets/hubs/${scene.art}.jpg`;
-  if (state.flags.crashed) return "/assets/hubs/hq-layoff.jpg";
+  if (scene.art !== "hq") return asset(`/assets/hubs/${scene.art}.jpg`);
+  if (state.flags.crashed) return asset("/assets/hubs/hq-layoff.jpg");
   // A morale crisis outranks the purple takeover: it is the more urgent thing
   // for the room to be telling you about.
-  if (state.morale <= 30) return "/assets/hubs/hq-crunch.jpg";
+  if (state.morale <= 30) return asset("/assets/hubs/hq-crunch.jpg");
   const title = currentTitle(state);
   const pcish =
     (title?.cards || []).reduce((n, id) => n + (content.features[id]?.pc || 0), 0) +
     state.staff.length;
-  if (pcish >= 6 || state.standing >= 70) return "/assets/hubs/hq-purple.jpg";
-  return "/assets/hubs/hq-normal.jpg";
+  if (pcish >= 6 || state.standing >= 70) return asset("/assets/hubs/hq-purple.jpg");
+  return asset("/assets/hubs/hq-normal.jpg");
 }
 
 export function availableHotspots(state) {

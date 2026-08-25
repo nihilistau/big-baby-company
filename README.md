@@ -1,13 +1,19 @@
 <div align="center">
 
-<img src="docs/screenshots/01-title.webp" alt="Big Baby Company" width="820" />
+<img src="docs/screenshots/hero.gif" alt="Big Baby Company — the score goes up, the sales go down" width="820" />
+
+<sub>Hovering a card ghosts the damage onto the HUD before you commit. That is the whole game.</sub>
 
 # BIG BABY COMPANY
 
 **A satirical studio-management roguelite about what happens when the number
 you're being paid for stops being the number people are buying.**
 
-`v1.0.0` · Browser · Single-player · ~60–90 minutes per run · Zero runtime dependencies
+`v1.0.1` · Browser · Single-player · ~60–90 minutes per run · Zero runtime dependencies
+
+### [▶ Play it in your browser](https://nihilistau.github.io/big-baby-company/)
+
+<sub>No install, no account, no launcher, no season pass. It saves to your own browser and we never see it.</sub>
 
 </div>
 
@@ -37,7 +43,11 @@ It works right up until the quarter it doesn't.
 
 ## Install and play
 
-Requires **Node 18+**. Nothing else.
+**The fastest way to play is to not install it at all:**
+[nihilistau.github.io/big-baby-company](https://nihilistau.github.io/big-baby-company/).
+Every push to `main` that passes the test suite redeploys it.
+
+To run it locally you need **Node 18+**. Nothing else.
 
 ```bash
 git clone https://github.com/nihilistau/big-baby-company.git
@@ -55,6 +65,13 @@ To build a static bundle you can drop on any host:
 ```bash
 npm run build      # → dist/
 npm run preview    # serve the built bundle locally
+```
+
+If the host serves it from a subdirectory rather than a domain root, set the
+base path so the asset URLs resolve — this is what the Pages workflow does:
+
+```bash
+BASE_PATH=/big-baby-company/ npm run build
 ```
 
 ### Controls

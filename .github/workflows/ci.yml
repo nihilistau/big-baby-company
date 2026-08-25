@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Tests
+        run: npm test
+      - name: Asset integrity
+        run: node tools/gen-art.mjs --check
+      - name: Balance harness
+        run: node tools/balance-sim.mjs --runs 400
+      - name: Build
+        run: npm run build

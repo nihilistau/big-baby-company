@@ -19,5 +19,6 @@
     "vite": "^5.4.0",
     "vitest": "^2.1.0"
   },
-  "description": "Satirical studio tycoon. Stuff the box, cash the wires, survive the crash."
+  "description": "Satirical studio tycoon. Stuff the box, cash the wires, survive the crash.",
+  "version": "1.0.1"
 }

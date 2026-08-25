@@ -1,4 +1,5 @@
 import { escapeHtml } from "./render.js";
+import { asset } from "./assets.js";
 import { money } from "./format.js";
 import { DIFFICULTIES } from "../sim/balance.js";
 import { loadMeta } from "../sim/meta.js";
@@ -13,7 +14,7 @@ export function menuView(ctx) {
   return `
     <div class="menu" data-key="menu">
       <div class="menu-hero">
-        <img class="menu-logo" src="/assets/logo.png" alt="Big Baby Company"
+        <img class="menu-logo" src="${asset("/assets/logo.png")}" alt="Big Baby Company"
              onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'logo-fallback big',textContent:'BB'}))" />
         <h1>BIG BABY COMPANY</h1>
         <p class="tagline">
