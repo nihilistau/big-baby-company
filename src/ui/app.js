@@ -28,15 +28,7 @@ import {
   startFeed,
   stopFeed,
 } from "./panels/chirper.js";
-import {
-  acquisitionModal,
-  actCard,
-  crashModal,
-  endingModal,
-  eventModal,
-  gameOverModal,
-  launchReport,
-} from "./sequences.js";
+import { actCard, eventModal, stageModal } from "./sequences.js";
 import { deltaFor, projectWithCard, projectWithoutCard } from "./preview.js";
 import { initAudio, isMuted, setMusicBed, sfx, stopMusic, toggleMute } from "../audio/kit.js";
 import { burst, flash, floatText, rollNumber } from "./fx.js";
@@ -205,11 +197,7 @@ function gameView(c) {
             : ""
         }
         ${showEvent ? eventModal(c) : ""}
-        ${ui.report ? launchReport(c) : ""}
-        ${c.state.screen === "crash" ? crashModal(c) : ""}
-        ${c.state.screen === "acquisition" ? acquisitionModal(c) : ""}
-        ${c.state.screen === "ending" ? endingModal(c) : ""}
-        ${c.state.screen === "gameover" ? gameOverModal(c) : ""}
+        ${stageModal(c, ui)}
         ${ui.actCard ? actCard(ui.actCard) : ""}
         ${ui.tutorialOn ? tutorialView(ui.tutorialStep) : ""}
         <div class="fx-layer" data-key="fx" data-static></div>

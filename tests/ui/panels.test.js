@@ -26,6 +26,7 @@ import {
   eventModal,
   gameOverModal,
   launchReport,
+  stageModal,
 } from "../../src/ui/sequences.js";
 import { content, inProduction, place, FUN_CARDS } from "../helpers.js";
 
@@ -123,6 +124,51 @@ describe("sequences render", () => {
       expect(() => render(root, fn(c))).not.toThrow();
       expect(root.innerHTML.length).toBeGreaterThan(50);
     }
+  });
+
+  describe("stageModal", () => {
+    // These modals are absolutely positioned siblings sharing one z-index, so
+    // two at once means the later one silently paints over the earlier. The
+    // crash and the ending both land in the same tick as a launch report.
+    const reportFor = (state) => ({
+      result: projectLaunch(state, content),
+      backlash: null,
+      outcomes: [],
+    });
+
+    it("shows the launch report instead of the screen it resolves into", () => {
+      for (const screen of ["crash", "ending", "gameover", "acquisition"]) {
+        const state = place(inProduction({ act: 2 }), FUN_CARDS.slice(0, 3));
+        state.screen = screen;
+        state.acquisitionOffer = 4200000;
+        state.rank = content.ranks[4];
+        state.ending = content.endings[0];
+        const c = ctxFor(state, { report: reportFor(state) });
+
+        render(root, stageModal(c, { report: c.report }));
+        expect(root.querySelectorAll(".modal-wrap")).toHaveLength(1);
+        expect(root.querySelector(".report-wrap"), screen).toBeTruthy();
+        expect(root.querySelector("[data-act=dismiss-report]")).toBeTruthy();
+      }
+    });
+
+    it("shows the screen once the report is dismissed", () => {
+      const state = place(inProduction({ act: 2 }), FUN_CARDS.slice(0, 3));
+      state.screen = "ending";
+      state.rank = content.ranks[4];
+      state.ending = content.endings[0];
+      const c = ctxFor(state);
+
+      render(root, stageModal(c, { report: null }));
+      expect(root.querySelectorAll(".modal-wrap")).toHaveLength(1);
+      expect(root.querySelector(".report-wrap")).toBeNull();
+      expect(root.querySelector(".ending-wrap")).toBeTruthy();
+    });
+
+    it("renders nothing while the run is simply being played", () => {
+      const state = place(inProduction({ act: 2 }), FUN_CARDS.slice(0, 3));
+      expect(stageModal(ctxFor(state), { report: null })).toBe("");
+    });
   });
 });
 

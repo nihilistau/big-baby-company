@@ -6,6 +6,30 @@ All notable changes to Big Baby Company. Format follows
 
 ---
 
+## [1.0.2] — 2026-08-26
+
+### Fixed
+
+- **The launch report was invisible on the two launches that matter most.**
+  The report and the crash / ending / game-over screens render as absolutely
+  positioned siblings filling the same box at the same `z-index`, and the
+  screens are set in the same tick that produces the report — so on the launch
+  that ends Act I in the crash, and on the one that ends the run, whichever
+  markup came last simply painted over the other. The player never saw the
+  numbers for their final title, and the report's own Continue button sat
+  underneath an opaque screen, unreachable. Modal choice now goes through a
+  single `stageModal()` that can only ever return one of them, with the report
+  winning; dismissing it hands over to the screen underneath.
+
+### Changed
+
+- The README hero is now an Act III capture rather than an Act I one. Late-game
+  numbers are two orders of magnitude larger — 19,290 copies against 360 — and
+  the arc reads properly in the end-of-run table, where a title scoring 86 sold
+  nothing and a title scoring 0 sold 59,256.
+
+---
+
 ## [1.0.1] — 2026-08-26
 
 ### Added
@@ -201,6 +225,7 @@ game the demo was a mock-up of.
 - Hub scenes with invisible hotspots, overlay panels, localStorage save.
 - Vite + vanilla JS, Vitest, painterly generated art.
 
+[1.0.2]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.2
 [1.0.1]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.1
 [1.0.0]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.0
 

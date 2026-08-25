@@ -34,6 +34,7 @@ src/
     hub.js                  scenes, hotspots, frame fitting
     preview.js              hover-ghost projection
     sequences.js            event modal, launch report, crash, endings
+                            (`stageModal` picks exactly one — see below)
     tutorial.js             first-run coach marks
     fx.js                   particles, floats, number rolls
     format.js               money, counts, labels
@@ -145,6 +146,24 @@ delegate(root, "click", handlers);   // one listener, dispatched by data-act
 Event handling is delegated from the root and dispatched by `data-act`, so it
 survives morphing for free with no rebinding.
 
+### One stage modal at a time
+
+The launch report, the crash, the acquisition offer, the ending and the
+game-over screen all mount as absolutely positioned siblings filling the same
+box at the same `z-index`. There is no stacking order between them — whichever
+renders last wins — so they must be mutually exclusive rather than merely
+unlikely to coincide.
+
+They *do* coincide. `advance()` returns the launch result and the new
+`state.screen` in the same tick, which is exactly what happens on the launch
+that ends Act I in the crash and on the one that ends the run. Rendering both
+put the player's final numbers behind an opaque screen, along with the report's
+own Continue button.
+
+`stageModal(ctx, ui)` in [`src/ui/sequences.js`](../src/ui/sequences.js) is the
+single place that decides, and it can only return one. The report wins;
+dismissing it clears `ui.report`, redraws, and the screen underneath takes over.
+
 ### Why the hub frame is measured, not styled
 
 Hotspot rectangles are percentages of `.hub-frame`, so that frame must be
@@ -199,7 +218,7 @@ hundred lines and adds zero bytes to the bundle.
 ## Testing
 
 ```bash
-npm test        # 134 tests across 9 files
+npm test        # 137 tests across 9 files
 ```
 
 | File | Covers |
@@ -210,7 +229,7 @@ npm test        # 134 tests across 9 files
 | `content.test.js` | No dangling ids, every act playable, sequels point backwards, rank ladder has no gaps |
 | `fuzz.test.js` | 60 randomised runs asserting invariants after every action |
 | `ui/render.test.js` | Morphing, scroll and focus preservation, keyed reordering, escaping |
-| `ui/panels.test.js` | Every panel in every phase and act, sequences, save round-trip and migration |
+| `ui/panels.test.js` | Every panel in every phase and act, sequences, stage-modal exclusivity, save round-trip and migration |
 | `ui/feed.test.js` | Chirper counters, arrival marking, reach scaling |
 | `ui/hub.test.js` | Frame fitting across five window shapes, hotspot bounds |
 

@@ -353,6 +353,39 @@ export function gameOverModal(ctx) {
     </div>`;
 }
 
+// --- Stage modal selection ------------------------------------------------
+
+/**
+ * Which full-stage modal the stage should render, if any.
+ *
+ * These all mount as absolutely positioned siblings filling the same box at the
+ * same z-index, so whichever renders last simply paints over the others. They
+ * must therefore be mutually exclusive, and the launch report has to win: the
+ * two launches that most need reading are the one that ends Act I in the crash
+ * and the one that ends the run, and both of those set `state.screen` in the
+ * same tick that produces the report. Rendering both left the player's final
+ * numbers — and the report's own Continue button — behind a screen they could
+ * not see past or dismiss.
+ *
+ * Dismissing the report clears `ui.report` and redraws, at which point the
+ * screen modal underneath takes over.
+ */
+export function stageModal(ctx, ui) {
+  if (ui.report) return launchReport(ctx);
+  switch (ctx.state.screen) {
+    case "crash":
+      return crashModal(ctx);
+    case "acquisition":
+      return acquisitionModal(ctx);
+    case "ending":
+      return endingModal(ctx);
+    case "gameover":
+      return gameOverModal(ctx);
+    default:
+      return "";
+  }
+}
+
 // --- Act transition -------------------------------------------------------
 
 export function actCard(act) {

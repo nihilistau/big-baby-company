@@ -2,14 +2,14 @@
 
 <img src="docs/screenshots/hero.gif" alt="Big Baby Company — the score goes up, the sales go down" width="820" />
 
-<sub>Hovering a card ghosts the damage onto the HUD before you commit. That is the whole game.</sub>
+<sub>Act III. Hovering a card ghosts the result onto the HUD before you commit — the fashionable feature buys <b>+15 industry score</b> and costs you <b>1,172 sales</b>; the fun one buys +4 and <b>gains 3,755</b>. That is the whole game.</sub>
 
 # BIG BABY COMPANY
 
 **A satirical studio-management roguelite about what happens when the number
 you're being paid for stops being the number people are buying.**
 
-`v1.0.1` · Browser · Single-player · ~60–90 minutes per run · Zero runtime dependencies
+`v1.0.2` · Browser · Single-player · ~60–90 minutes per run · Zero runtime dependencies
 
 ### [▶ Play it in your browser](https://nihilistau.github.io/big-baby-company/)
 
@@ -403,7 +403,7 @@ second filing is the end.
 Vanilla ES modules. Vite. **Zero runtime dependencies.**
 
 ```
-9,224 lines of JavaScript · 134 tests · 55 art assets · 4,500 lines of content JSON
+9,314 lines of JavaScript · 137 tests · 54 art assets · 4,800 lines of content JSON
 ```
 
 The simulation is pure and synchronous — `advance(state, content)` takes a
@@ -418,7 +418,7 @@ is synthesised at runtime — there is not a single audio file in this project.
 ### Verify it yourself
 
 ```bash
-npm test                            # 134 tests: sim, content integrity, fuzz, UI
+npm test                            # 137 tests: sim, content integrity, fuzz, UI
 node tools/balance-sim.mjs          # Monte-Carlo balance sweep across six archetypes
 node tools/ch11-probe.mjs           # where a careful player actually goes broke
 node tools/gen-art.mjs --check      # every asset present, correct, consistent
