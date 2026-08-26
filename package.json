@@ -21,5 +21,11 @@
     "vitest": "^2.1.0"
   },
   "description": "Satirical studio tycoon. Stuff the box, cash the wires, survive the crash.",
-  "version": "1.0.7"
+  "version": "1.0.7",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nihilistau/big-baby-company.git"
+  },
+  "author": "nihilistau"
 }

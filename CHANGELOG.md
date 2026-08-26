@@ -72,6 +72,10 @@ was touched.
 
 ### Changed
 
+- **Licence is now MIT.** It was All Rights Reserved — "no permission to copy,
+  modify, distribute" — on a public repository whose README opens with
+  `git clone`. Those two things could not both be true. The clone instructions
+  stay; the licence now matches them.
 - **The balance harness can fail the premise.** `control: true` exempted `pcmax`
   from having to be viable, but nothing checked it stays the *worst* — so the
   one claim this game rests on was the only one the tool could not falsify,

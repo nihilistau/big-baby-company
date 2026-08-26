@@ -442,6 +442,19 @@ eyeballed.
 
 ---
 
+## License
+
+[MIT](LICENSE). Clone it, read it, fork it, take the renderer, take the balance
+harness, ship your own thing with it.
+
+One honest caveat that MIT does not speak to: the art in `public/assets/` was
+generated through the xAI Imagine API rather than drawn by hand. The licence
+here covers this repository's contents as far as we can grant it — if you plan
+to reuse those images commercially, check the generating provider's terms as
+well. The code, the content JSON and the writing are unambiguous.
+
+---
+
 ## A note on the joke
 
 This is satire, and it points in every direction it can reach: at consultants
