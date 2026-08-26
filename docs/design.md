@@ -181,7 +181,53 @@ premise inverted. Making advances recoup against the budget put the trap back.
 
 ---
 
-## 10. Where the numbers live
+## 10. Disclosure
+
+**If the simulation knows it and it would change a decision, the game says it.**
+
+This became a rule after three separate bugs in a row turned out to be a
+working mechanic the player could not see: marketing that never reached the
+projection it fed, a launch report painted over by the screen behind it, and a
+debt curve with no countdown. In each case the arithmetic was fine and the
+feedback was missing, which is indistinguishable from a broken game.
+
+A deliberate pass over "what does the sim know that it never tells you" found
+the following already disclosed and left them alone:
+
+| Already visible | Where |
+|---|---|
+| Backlash probability at current heat | Store page |
+| Which card an injector will force in, and their lock bonuses | People |
+| Deal quota, revenue share, burn, mandate | Pitch |
+| Every launch multiplier and its source value | Store page → *How that number was reached* |
+| Empty-slot penalty, itemised | Production |
+| Which synergies will fire | Playtest Lab upgrade — hidden by design until bought |
+
+And these were not, and now are:
+
+| Was hidden | Why it mattered |
+|---|---|
+| **Where jank comes from** | The harshest multiplier in the game (×1.00 → ×0.23) surfaced as one opaque integer. Since morale started feeding it, a studio could carry ten points purely because the team was miserable and never know. |
+| **The morale thresholds** | Crunch's real cost is the threshold it walks you toward, not the −13. The numbers — 30, 22, 15 — lived in `balance.js` and appeared nowhere a player could read them. |
+| **Genre skew on a concept** | 22 of 24 concepts amplify or dampen an axis by up to 30%. The single most consequential decision in the cycle was made blind to half its terms. |
+| **The debt curve** | Rate, next quarter's charge, and quarters of runway. See [systems](systems.md). |
+
+Two rules came out of it:
+
+**A breakdown must reconcile with its headline.** The first version of the jank
+itemisation showed rows summing to 28 under a total of 72, because the
+empty-slot penalty lived in `projectLaunch` and the itemisation lived in
+`titleJank`. That is worse than showing nothing. `launchJankBreakdown()` is now
+the list `projectLaunch` sums, so the figure and its explanation are the same
+arithmetic by construction, and a test asserts it.
+
+**Disclosure is not balance.** Nothing in this pass changed a number. If a
+mechanic is unfair, fix the mechanic; if it is fair but invisible, fix the
+telling. Conflating the two is how you end up nerfing something that was working.
+
+---
+
+## 11. Where the numbers live
 
 Every tunable constant is in `src/sim/balance.js`. Nothing else in the sim
 contains a magic number. That is what makes `tools/balance-sim.mjs` useful: it
@@ -198,7 +244,7 @@ Current health targets:
 
 ---
 
-## 11. UI decisions worth recording
+## 12. UI decisions worth recording
 
 **DOM morphing over re-rendering.** The original build did
 `app.innerHTML = ...` on every interaction, so scrolling the card list and

@@ -804,6 +804,10 @@ kbd {
 .concept-pitch { color: var(--ink-2); font-size: var(--t-sm); margin: 6px 0; }
 .concept-stats { display: flex; flex-wrap: wrap; gap: var(--s3); font-size: var(--t-sm); color: var(--muted); margin-bottom: 6px; }
 .concept-stats b { color: var(--ink); }
+/* What the genre does to each axis. 22 of 24 concepts carry one and none of it
+   used to be on screen, so the pitch was decided blind to half its terms. */
+.concept-skew { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; margin-bottom: 6px; }
+.skew-label { font-size: var(--t-xs, 11px); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-right: 2px; }
 .concept-hook, .deal-body, .channel-body, .upgrade-body { font-size: var(--t-sm); color: var(--muted); line-height: 1.5; margin: 0; }
 .upgrade-blurb { font-size: var(--t-sm); color: var(--ink-2); margin: 6px 0; }
 .deal-net { font-family: var(--font-display); font-size: var(--t-md); }

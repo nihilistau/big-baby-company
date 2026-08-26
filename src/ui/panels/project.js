@@ -2,6 +2,7 @@ import { escapeHtml } from "../render.js";
 import { money, moneyExact, signed } from "../format.js";
 import { currentTitle } from "../../sim/state.js";
 import { canPlaceCard, crunchCost, projectedEmpties } from "../../sim/economy.js";
+import { CRUNCH, MORALE } from "../../sim/balance.js";
 import { catalogFor } from "../../sim/content.js";
 import { offeredConcepts } from "../../sim/quarter.js";
 import { dealOffersFor, dealTerms, marketingChannelsFor, maxMarketingSpend } from "../../sim/actions.js";
@@ -64,6 +65,26 @@ function pitchPanel(ctx) {
                 <span>Budget <b>${money(c.budget)}</b></span>
                 ${c.sequelTo ? `<span class="chip good">Sequel</span>` : ""}
               </div>
+              ${
+                // What the genre does to each axis when it reaches the market.
+                // 22 of 24 concepts carry one of these, worth up to 30% either
+                // way, and none of it was on screen — so the single biggest
+                // decision in the cycle was being made blind to half its terms.
+                c.skew && Object.keys(c.skew).length
+                  ? `<div class="concept-skew">
+                       <span class="skew-label">This audience wants</span>
+                       ${Object.entries(c.skew)
+                         .sort((a, b) => b[1] - a[1])
+                         .map(
+                           ([axis, mul]) =>
+                             `<span class="chip axis-${axis} ${mul < 1 ? "neg" : ""}">${
+                               axis.toUpperCase()
+                             } ×${mul.toFixed(2)}</span>`
+                         )
+                         .join("")}
+                     </div>`
+                  : ""
+              }
               <p class="concept-hook">${escapeHtml(c.hook)}</p>
             </button>`;
           })
@@ -176,6 +197,55 @@ function productionPanel(ctx) {
            You can ship it anyway. People do.</p>`
         : ""
     }
+
+    ${(() => {
+      // Jank is the harshest multiplier in the game and it was a single opaque
+      // integer. Itemising it is what turns "your jank is 34" into something
+      // the player can act on — especially since morale started feeding it,
+      // which is invisible otherwise.
+      // The same list projectLaunch sums, so the rows always add up to the
+      // number in the Jank cell above them.
+      const parts = (projection?.jankParts || []).filter((p) => p.amount);
+      if (!parts.length) return "";
+      return `
+        <details class="calc-details" data-key="jank-why">
+          <summary>Where the jank is coming from</summary>
+          <table class="calc">
+            ${parts
+              .map(
+                (p) => `<tr data-key="jank-${p.label}">
+                  <td>${escapeHtml(p.label)}</td>
+                  <td class="${p.amount > 0 ? "neg" : "pos"}">${signed(Math.round(p.amount))}</td>
+                  <td class="calc-note">${escapeHtml(p.hint)}</td>
+                </tr>`
+              )
+              .join("")}
+          </table>
+        </details>`;
+    })()}
+
+    ${(() => {
+      // Crunch's real cost is the threshold it walks you toward, not the -13.
+      // The numbers were in balance.js and stated nowhere the player could see.
+      const after = state.morale + CRUNCH.morale;
+      const crossing =
+        after < MORALE.sabotageThreshold
+          ? "someone will put back the thing you cut"
+          : after < MORALE.leakThreshold
+            ? "the build will leak, and that is +10 heat"
+            : after < MORALE.quitThreshold
+              ? "someone may hand in their notice, and take their work with them"
+              : null;
+      if (!crossing) return "";
+      return `<p class="warn-line">Morale is ${state.morale}. One more crunch puts it at
+        ${Math.max(0, after)}, and below ${
+          after < MORALE.sabotageThreshold
+            ? MORALE.sabotageThreshold
+            : after < MORALE.leakThreshold
+              ? MORALE.leakThreshold
+              : MORALE.quitThreshold
+        } ${crossing}.</p>`;
+    })()}
 
     <div class="slots" data-key="slots">
       ${slots

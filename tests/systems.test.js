@@ -287,7 +287,12 @@ describe("talent contributions are counted exactly once", () => {
   });
 
   it("projects a talent jank reduction before lock and does not double it after", () => {
-    const state = inProduction({ act: 2, slots: 5, staff: ["sal"] });
+    // Morale parked at the pivot so its own jank term is zero on both sides:
+    // this test locks via applyStaffAtLock directly rather than through
+    // lockBox, so the title never gets a morale snapshot, and the comparison
+    // would otherwise be measuring that gap rather than the talent double-count
+    // it is named for. Rounding used to hide the difference.
+    const state = inProduction({ act: 2, slots: 5, staff: ["sal"], morale: MORALE.jankPivot });
     place(state, ["fun-physics", "gore-ragdoll"]);
     const projected = projectLaunch(state, content).jank;
 
@@ -754,5 +759,45 @@ describe("the debt spiral is visible before it lands", () => {
     expect(debtOutlook(state).terminal).toBe(false);
     state.flags.chapter11 = 1;
     expect(debtOutlook(state).terminal).toBe(true);
+  });
+});
+
+describe("what the game knows, it now says", () => {
+  // A visibility pass. Three separate bugs in a row turned out to be a working
+  // mechanic the player could not see, so these lock the disclosure itself.
+
+  it("the jank breakdown always adds up to the jank on the board", () => {
+    // A breakdown that does not reconcile with its headline is worse than no
+    // breakdown: it showed 72 over rows summing to 28, because the empty-slot
+    // penalty lived in projectLaunch and the itemisation lived in titleJank.
+    for (const cards of [[], FUN_CARDS.slice(0, 2), FUN_CARDS]) {
+      const state = place(inProduction({ act: 2, slots: 5, morale: 40 }), cards);
+      currentTitle(state).jank = 14;
+      const p = projectLaunch(state, content);
+      const summed = p.jankParts.reduce((n, part) => n + part.amount, 0);
+      expect(Math.max(0, Math.round(summed))).toBe(p.jank);
+    }
+  });
+
+  it("names every source it charges you for", () => {
+    const state = place(inProduction({ act: 2, slots: 6, morale: 30 }), FUN_CARDS.slice(0, 2));
+    currentTitle(state).jank = 10;
+    const labels = projectLaunch(state, content).jankParts.map((p) => p.label);
+    expect(labels).toContain("Crunch and events");
+    expect(labels).toContain("Morale"); // invisible before, and it is not small
+    expect(labels).toContain("Unfilled slots");
+    for (const part of projectLaunch(state, content).jankParts) {
+      expect(part.hint, `${part.label} needs a hint`).toBeTruthy();
+    }
+  });
+
+  it("stays quiet when there is nothing to explain", () => {
+    const state = place(
+      inProduction({ act: 2, slots: 3, morale: MORALE.jankPivot }),
+      FUN_CARDS.slice(0, 3)
+    );
+    currentTitle(state).jank = 0;
+    const parts = projectLaunch(state, content).jankParts.filter((p) => p.amount);
+    expect(parts.every((p) => p.amount !== 0)).toBe(true);
   });
 });

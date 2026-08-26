@@ -177,37 +177,83 @@ export function sums(state, content, titleOverride = null) {
 
 // --- Jank -----------------------------------------------------------------
 
+/**
+ * Where a title's jank comes from, itemised.
+ *
+ * `titleJank()` sums exactly this, so the number on the board and the
+ * explanation under it cannot drift apart. Jank is the harshest multiplier in
+ * the game — it takes copies from x1.00 to x0.23 — and it was surfaced as a
+ * single opaque integer, which told the player it was bad but never what to do
+ * about it. Since morale started feeding it, a studio could be carrying ten
+ * points of jank purely because the team was miserable and have no way to know.
+ */
+export function jankBreakdown(state, content, titleOverride = null) {
+  const title = titleOverride || currentTitle(state);
+  if (!title) return [];
+
+  const parts = [];
+  const add = (label, amount, hint) => {
+    if (amount) parts.push({ label, amount, hint });
+  };
+
+  add("Crunch and events", title.jank || 0, "the reservoir you have built up");
+
+  let fromCards = 0;
+  for (const id of title.cards) fromCards += content.features[id]?.jank || 0;
+  add("Features", fromCards, "what the cards themselves cost");
+
+  const over = Math.max(0, title.slots - devPoints(state, content));
+  add("Scope overrun", over * JANK.scopeOverrunPerSlot, `${over} slot(s) beyond your points`);
+
+  let fromUpgrades = 0;
+  for (const id of state.studio.upgrades) fromUpgrades += content.upgrades[id]?.perTitle?.jank || 0;
+  add("Studio", fromUpgrades, "engine, tooling, QA");
+
+  // Before lock these are live projections from the current roster and the
+  // current mood; after lock they are the snapshots taken at lock, so neither
+  // firing someone nor cheering the team up can retroactively change the build.
+  if (title.locked) {
+    add("The team", title.staffJank || 0, "as it was at lock");
+    add("Morale", title.moraleJank || 0, "as it was at lock");
+  } else {
+    let fromStaff = 0;
+    for (const st of state.staff) fromStaff += content.staff[st.id]?.atLock?.jank || 0;
+    add("The team", fromStaff, "applied when the box closes");
+    add("Morale", moraleJank(state.morale), `morale ${state.morale}`);
+  }
+
+  return parts;
+}
+
 export function titleJank(state, content, titleOverride = null) {
   const title = titleOverride || currentTitle(state);
   if (!title) return 0;
+  const total = jankBreakdown(state, content, title).reduce((n, p) => n + p.amount, 0);
+  return Math.max(0, Math.round(total));
+}
 
-  let jank = title.jank || 0;
-  for (const id of title.cards) {
-    jank += content.features[id]?.jank || 0;
+/**
+ * The jank on the board, itemised — base sources plus the two terms that only
+ * exist at launch: unfilled slots and the synergy bundle.
+ *
+ * `projectLaunch` sums exactly this for its raw jank, so the figure in the HUD
+ * and the explanation under it are the same arithmetic. Splitting them is how
+ * you end up showing a total of 72 over a breakdown that adds to 28.
+ */
+export function launchJankBreakdown(state, content, title, bundle) {
+  const parts = jankBreakdown(state, content, title);
+  const emptySlots = Math.max(0, title.slots - title.cards.length);
+  if (emptySlots) {
+    parts.push({
+      label: "Unfilled slots",
+      amount: emptySlots * UNFINISHED.jankPerSlot,
+      hint: `${emptySlots} slot${emptySlots > 1 ? "s" : ""} shipping empty`,
+    });
   }
-
-  // Scope overrun: slots you promised beyond the points you can actually spend.
-  const over = Math.max(0, title.slots - devPoints(state, content));
-  jank += over * JANK.scopeOverrunPerSlot;
-
-  for (const id of state.studio.upgrades) {
-    jank += content.upgrades[id]?.perTitle?.jank || 0;
+  if (bundle?.jank) {
+    parts.push({ label: "Card combinations", amount: bundle.jank, hint: "synergies and conflicts" });
   }
-  // Before the box locks this is a live projection from the current roster;
-  // after it locks it is the snapshot taken at lock, so firing someone the
-  // week before launch cannot retroactively re-bug the build.
-  if (title.locked) {
-    jank += title.staffJank || 0;
-    jank += title.moraleJank || 0;
-  } else {
-    for (const s of state.staff) {
-      jank += content.staff[s.id]?.atLock?.jank || 0;
-    }
-    // Live projection of how the team is doing, so the hover preview and the
-    // production panel show what crunching another point will actually cost.
-    jank += moraleJank(state.morale);
-  }
-  return Math.max(0, Math.round(jank));
+  return parts;
 }
 
 export function effectiveJank(state, content, rawJank) {
@@ -317,8 +363,8 @@ export function projectLaunch(state, content, opts = {}) {
   // `live-service-tax` (+18) and the hype on a dozen others. The score, copies
   // and money multipliers from the same bundle did apply, so the system looked
   // alive while half of it was inert.
-  const rawJank =
-    titleJank(state, content, title) + emptySlots * UNFINISHED.jankPerSlot + bundle.jank;
+  const jankParts = launchJankBreakdown(state, content, title, bundle);
+  const rawJank = jankParts.reduce((n, part) => n + part.amount, 0);
   const jank = effectiveJank(state, content, rawJank);
   const mkt = pendingMarketing(state, content, title);
   const hype = clamp100(titleHype(state, content, title) + bundle.hype + mkt.hype);
@@ -451,6 +497,7 @@ export function projectLaunch(state, content, opts = {}) {
     rawOrdinary: raw.ordinary,
     staffCount: raw.staffCount,
     jank,
+    jankParts,
     rawJank,
     hype,
     synergies,

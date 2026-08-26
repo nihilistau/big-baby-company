@@ -6,6 +6,42 @@ All notable changes to Big Baby Company. Format follows
 
 ---
 
+## [1.0.11] — 2026-08-26
+
+A deliberate visibility pass. Three bugs in a row had turned out to be a working
+mechanic the player could not see, so rather than keep finding them one at a
+time, this is an inventory of what the simulation knows against what any surface
+actually says. **Nothing here changes a number.**
+
+### Added
+
+- **Where the jank is coming from**, itemised on the production board. Jank is
+  the harshest multiplier in the game — it takes copies from ×1.00 to ×0.23 —
+  and it was surfaced as a single opaque integer. Since morale started feeding
+  it in 1.0.5, a studio could be carrying ten points purely because the team was
+  miserable, with no way to find that out.
+- **The morale thresholds, stated where the decision is made.** Crunch's real
+  cost is the threshold it walks you toward, not the −13. The board now warns
+  when one more crunch would cross 30, 22 or 15, and says what happens there.
+  Those numbers lived in `balance.js` and appeared nowhere a player could read.
+- **Genre skew on every concept card.** 22 of 24 concepts amplify or dampen an
+  axis by up to 30% and none of it was on screen, so the most consequential
+  decision in the cycle was being made blind to half its terms.
+
+### Fixed
+
+- **`launchJankBreakdown()` is now the list `projectLaunch` sums.** The first cut
+  of the itemisation showed rows adding to 28 under a headline of 72, because
+  the empty-slot penalty lived in the projection and the itemisation lived in
+  `titleJank`. A breakdown that does not reconcile with its own total is worse
+  than no breakdown; the two are now the same arithmetic by construction, with a
+  test asserting it across several box shapes.
+- A latent flaw in the talent-jank test, which locked a title through
+  `applyStaffAtLock` directly rather than `lockBox` and so compared a projection
+  carrying morale jank against one without it. Rounding had been hiding the gap.
+
+---
+
 ## [1.0.10] — 2026-08-26
 
 ### Added
@@ -627,6 +663,7 @@ game the demo was a mock-up of.
 - Hub scenes with invisible hotspots, overlay panels, localStorage save.
 - Vite + vanilla JS, Vitest, painterly generated art.
 
+[1.0.11]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.11
 [1.0.10]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.10
 [1.0.9]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.9
 [1.0.8]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.8
