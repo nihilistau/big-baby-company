@@ -18,6 +18,8 @@ import {
   HEAT,
   HEAT_SOURCES,
   heatDrift,
+  OPEX,
+  opexScale,
   MORALE,
   moraleDrift,
   moraleJank,
@@ -669,5 +671,48 @@ describe("1.0.7 correctness patches", () => {
     // and the meter reflects that rather than the pre-injection snapshot.
     expect(titleHeat(out.state, content, title)).toBeGreaterThan(beforeLock);
     expect(out.state.heat).toBeGreaterThan(0);
+  });
+});
+
+describe("a new act's operating costs phase in", () => {
+  // Act II is a garage at 0.35 and Act III a building at 1.2, so moving up
+  // tripled the rent on a single tick — and it landed on the same quarter the
+  // largest budget in the game started drawing down, three quarters before that
+  // title could pay for any of it.
+
+  it("eases from the previous act's scale to this one", () => {
+    expect(opexScale(3, 0)).toBeGreaterThan(OPEX.perAct[2]);
+    expect(opexScale(3, 0)).toBeLessThan(OPEX.perAct[3]);
+    expect(opexScale(3, OPEX.rampQuarters - 1)).toBeCloseTo(OPEX.perAct[3], 5);
+    // Monotonic, and settled by the end of the first title.
+    for (let q = 1; q < OPEX.rampQuarters; q++) {
+      expect(opexScale(3, q)).toBeGreaterThan(opexScale(3, q - 1));
+    }
+    expect(opexScale(3, 99)).toBe(OPEX.perAct[3]);
+  });
+
+  it("ramps downward into the garage as well as upward out of it", () => {
+    expect(opexScale(2, 0)).toBeLessThan(OPEX.perAct[1]);
+    expect(opexScale(2, 0)).toBeGreaterThan(OPEX.perAct[2]);
+    expect(opexScale(2, OPEX.rampQuarters - 1)).toBeCloseTo(OPEX.perAct[2], 5);
+  });
+
+  it("leaves Act I alone, having no act to ramp from", () => {
+    expect(opexScale(1, 0)).toBe(OPEX.perAct[1]);
+    expect(opexScale(1, 5)).toBe(OPEX.perAct[1]);
+  });
+
+  it("charges the ramped rate through a real quarter", () => {
+    const state = place(inProduction({ act: 3, slots: 4, cash: 900000 }), FUN_CARDS.slice(0, 3));
+    state.actStartedQuarter = state.quarter; // just arrived in Act III
+    const cashBefore = state.cash;
+    const out = Q.advance(state, content);
+    expect(out.ok).toBe(true);
+    const opex = out.events.find((e) => e.type === "opex");
+    expect(opex).toBeTruthy();
+    // Below what the settled Act III rate would have charged.
+    const settled = Math.round(OPEX.base * OPEX.perAct[3]);
+    expect(opex.amount).toBeLessThan(settled);
+    expect(out.state.cash).toBeLessThan(cashBefore);
   });
 });

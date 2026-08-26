@@ -6,6 +6,40 @@ All notable changes to Big Baby Company. Format follows
 
 ---
 
+## [1.0.9] — 2026-08-26
+
+### Changed
+
+- **A new act's operating costs phase in over its first title.** Act II is a
+  garage at 0.35 and Act III a building at 1.2, so moving up tripled the rent on
+  a single tick — landing on the same quarter the largest budget in the game
+  started drawing down, three quarters before that title could pay for any of
+  it. Act III is not unprofitable; it was a cash-flow cliff. The scale now eases
+  0.63 → 0.92 → 1.20 across the first title's three quarters, and ramps downward
+  into the garage the same way.
+
+### Added
+
+- **The Chapter 11 probe reports what the money went on at the moment of
+  filing**, which turns out to be the answer to a question the previous release
+  left open. The Act III concentration is **not the Act III budget**:
+
+  ```
+  cost at filing : interest 64% · opex 20% · burn 16% · payroll 0%
+  ```
+
+  It is compounding interest on debt carried out of Act II. Debt grows
+  geometrically at 10% a quarter, so a run that never climbed out arrives in
+  Act III owing enough that the interest alone — about $63k on a −$630k balance,
+  against a −$680k threshold — is what pushes it over. The player's own spending
+  that quarter is a minority of the cost.
+
+  That is Chapter 11 working as designed: it exists as the floor under a debt
+  spiral. Documented rather than changed. The opex ramp above stands on its own
+  merits and moved the Act III share of filings from 53% to 49%.
+
+---
+
 ## [1.0.8] — 2026-08-26
 
 Two follow-ups from the 1.0.7 audit, both of which turned into real findings.
@@ -572,6 +606,7 @@ game the demo was a mock-up of.
 - Hub scenes with invisible hotspots, overlay panels, localStorage save.
 - Vite + vanilla JS, Vitest, painterly generated art.
 
+[1.0.9]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.9
 [1.0.8]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.8
 [1.0.7]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.7
 [1.0.6]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.6

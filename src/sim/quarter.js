@@ -5,6 +5,7 @@ import {
   MARKETING,
   MORALE,
   OPEX,
+  opexScale,
   PENTHOUSE_WIRES,
   SCOPE_MORALE,
   heatDrift,
@@ -223,7 +224,8 @@ export function advance(state, content) {
 }
 
 function operatingCost(state) {
-  const scale = OPEX.perAct[state.act] ?? 1;
+  const into = state.quarter - (state.actStartedQuarter ?? 1);
+  const scale = opexScale(state.act, into);
   return Math.round(
     (OPEX.base +
       state.studio.upgrades.length * OPEX.perUpgrade +
@@ -510,6 +512,7 @@ function startNextTitle(state, content, events) {
 
   if (act !== state.act) {
     state.act = act;
+    state.actStartedQuarter = state.quarter;
     state.hub = act === 2 ? "garage" : act === 3 ? "loft" : "hq";
     Chirper.post(state, content, act === 2 ? "act2-start" : "act3-start");
     events.push({ type: "act", act });

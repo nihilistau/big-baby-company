@@ -74,6 +74,7 @@ export function createState(overrides = {}) {
 
     quarter: 1,
     act: overrides.mode === "endless" ? 3 : 1,
+    actStartedQuarter: 1,
     titleIndex: 0,
     phase: "pitch",
     screen: "playing", // playing | crash | acquisition | ending | gameover

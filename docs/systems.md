@@ -181,6 +181,19 @@ opex = (34,000 + 12,000 × upgrades + 8,000 × staff) × actScale
 
 Act scale is **1.0 / 0.35 / 1.2**. The garage is cheap; the empire is not.
 
+A new act's scale **phases in over the three quarters of its first title**
+rather than landing whole on the pitch quarter:
+
+| Quarters into Act III | 0 | 1 | 2+ |
+|---|---|---|---|
+| Scale | 0.63 | 0.92 | 1.20 |
+
+> **Design note.** Moving up used to triple the rent on a single tick, on the
+> same quarter the largest budget in the game started drawing down — three
+> quarters before that title could pay for any of it. Act III is not
+> unprofitable (demand base goes 1,300 to 3,700); it was a cash-flow cliff.
+> Ramping keeps the empire expensive without charging for it before it opens.
+
 ---
 
 ## 5. Jank
@@ -535,12 +548,12 @@ Current standing at 3,000 runs, Standard difficulty:
 
 ```
 archetype       median        top-rank   broke   ch11
-pcmax             $74,129         0.0%   44.6%  33.6%   ← the trap, working
-funmax         $2,639,812        22.2%    1.6%  46.2%
-goremax        $2,086,100        20.6%    2.8%  46.6%   ← highest variance
-moneymax         $586,548         0.0%    0.2%  94.8%   ← safe, low ceiling
-pcthenfun      $1,963,516         2.6%    2.0%  84.2%   ← the designed line
-balanced       $2,662,763        12.4%    0.0%  10.2%
+pcmax             $95,529         0.0%   42.8%  30.8%   ← the trap, working
+funmax         $2,737,445        25.2%    1.4%  44.0%
+goremax        $2,154,729        21.4%    2.6%  44.8%   ← highest variance
+moneymax         $613,359         0.0%    0.2%  94.4%   ← safe, low ceiling
+pcthenfun      $2,032,721         3.2%    1.2%  82.0%   ← the designed line
+balanced       $2,723,919        14.6%    0.0%   9.8%
 ```
 
 The harness fails the build if any non-control archetype can never reach King
@@ -597,7 +610,20 @@ turning unwinnable rather than tense) or if fewer than 40% of runs reach an
 ending. Both thresholds are set against that measured baseline rather than
 picked.
 
-It also prints the single biggest quarter, currently **Q21 at ~38%** of all
-filings. That is the launch quarter of the first Act III title, when the largest
-budget in the game has been drawn down in full — a legible pressure point rather
-than a fault, but the one worth watching.
+It also prints the single biggest quarter — currently **Q21 at ~37%** of all
+filings — and, more usefully, what the money went on when the filing happened:
+
+```
+cost at filing : interest 64% · opex 20% · burn 16% · payroll 0%
+```
+
+That breakdown is the answer to why the back half concentrates, and it is not
+what it looks like from outside. **It is not the Act III budget.** It is
+compounding interest on debt carried out of Act II. Debt grows geometrically at
+10% a quarter, so a run that never climbed out arrives in Act III owing enough
+that the interest alone — about $63k on a −$630k balance, against a −$680k
+filing threshold — is what pushes it over. The player's own spending that
+quarter is a minority of the cost.
+
+That is Chapter 11 working as designed: it exists precisely as the floor under a
+debt spiral. Worth knowing rather than worth fixing.

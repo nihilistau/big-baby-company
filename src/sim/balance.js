@@ -102,7 +102,37 @@ export const OPEX = {
   perUpgrade: 12000,
   perStaff: 8000,
   perAct: { 1: 1.0, 2: 0.35, 3: 1.2 },
+
+  // A new act's operating costs phase in over its first title rather than
+  // landing in full on the pitch quarter.
+  //
+  // Act II is a garage at 0.35 and Act III is a building at 1.2, so moving up
+  // used to triple the rent in a single tick — and it arrived on the same
+  // quarter the largest budget in the game started drawing down, three quarters
+  // before that title could pay for any of it. A frugal player was carrying
+  // about $54k a quarter of new cost with no new revenue, and the biggest
+  // cluster of bankruptcies in the entire game sat right there: 38% of all
+  // filings on one tick, at the end of the production quarter, immediately
+  // before the launch that would have covered it.
+  //
+  // Act III is not unprofitable — demand base goes 1,300 to 3,700 — it was
+  // purely a cash-flow cliff. Ramping the step-up over the three quarters of
+  // the first title keeps the empire expensive without bankrupting you before
+  // it opens. Measured by `tools/ch11-probe.mjs`.
+  rampQuarters: 3,
 };
+
+/**
+ * Operating-cost multiplier for the quarter, easing from the previous act's
+ * scale to this one across `OPEX.rampQuarters`.
+ */
+export function opexScale(act, quartersIntoAct) {
+  const target = OPEX.perAct[act] ?? 1;
+  const previous = OPEX.perAct[act - 1];
+  if (previous == null || !(quartersIntoAct >= 0)) return target;
+  const t = Math.min(1, (quartersIntoAct + 1) / OPEX.rampQuarters);
+  return previous + (target - previous) * t;
+}
 
 export const CLAMP = { min: 0, max: 100 };
 

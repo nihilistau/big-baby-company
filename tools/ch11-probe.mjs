@@ -65,6 +65,8 @@ function frugalTurn(state) {
 const runs = Number(process.argv[process.argv.indexOf("--runs") + 1]) || 200;
 const byQuarter = {};
 const byAct = { 1: 0, 2: 0, 3: 0 };
+// What the money actually went on, on the tick the filing happened.
+const costMix = { interest: 0, salary: 0, burn: 0, opex: 0 };
 let filed = 0;
 let ended = 0;
 const finals = [];
@@ -83,7 +85,15 @@ for (let r = 0; r < runs; r++) {
     const result = Q.advance(state, content);
     if (!result.ok) break;
     state = result.state;
-    if (!fired && state.flags.chapter11 > before) fired = { q: state.quarter, act: state.act };
+    if (!fired && state.flags.chapter11 > before) {
+      fired = { q: state.quarter, act: state.act };
+      for (const e of result.events) {
+        if (e.type === "interest") costMix.interest += Math.abs(e.amount);
+        if (e.type === "salary") costMix.salary += e.amount;
+        if (e.type === "burn") costMix.burn += e.amount;
+        if (e.type === "opex") costMix.opex += e.amount;
+      }
+    }
   }
   if (fired) {
     filed++;
@@ -133,6 +143,22 @@ if (peak) {
   );
 }
 console.log(`  act III share     : ${(act3Share * 100).toFixed(0)}%`);
+
+// Where the money went on the tick that broke them. This is the number that
+// explains the Act III concentration, and it is not what it looks like from
+// the outside: compounding interest on debt carried out of Act II is the
+// majority of it, not the Act III budget. Debt is self-accelerating, and by
+// the back half a run that never climbed out is being pushed over the line by
+// the interest alone.
+const mixTotal = Object.values(costMix).reduce((a, b) => a + b, 0);
+if (mixTotal > 0) {
+  const share = (v) => `${((v / mixTotal) * 100).toFixed(0)}%`;
+  console.log(
+    "  cost at filing    : " +
+      `interest ${share(costMix.interest)} · opex ${share(costMix.opex)} ` +
+      `· burn ${share(costMix.burn)} · payroll ${share(costMix.salary)}`
+  );
+}
 
 const problems = [];
 if (ended / runs < 0.4) {
