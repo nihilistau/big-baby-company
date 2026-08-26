@@ -329,8 +329,23 @@ export const JANK = {
 
 // --- Marketing ------------------------------------------------------------
 export const MARKETING = {
-  // hype gained per $10k spent, before channel multiplier
-  hypePer10k: 3.5,
+  // Hype bought per campaign, before the channel multiplier.
+  //
+  // This was linear at 3.5 per $10k, which made "spend the maximum you can
+  // afford" strictly optimal and turned marketing into a near-straight
+  // cash-to-copies conversion: a $220k campaign bought 77 hype, moving the
+  // copies multiplier from 0.81 to 1.23 in a single purchase. The trust meter
+  // spans a comparable range and takes a whole campaign to cross.
+  //
+  // On a square root, small campaigns are efficient and enormous ones are not,
+  // so how much to spend is a decision rather than an arithmetic maximum:
+  //
+  //     $50k -> 12 hype    $220k -> 26    $500k -> 39    $1M -> 55
+  //
+  // The constant was also read by nothing — `applyMarketing` hardcoded its own
+  // 3.5 — so the one knob on the strongest lever in the game was inert.
+  hypeCoeff: 5.5,
+  hypeFor: (spend) => Math.sqrt(Math.max(0, spend) / 10000) * MARKETING.hypeCoeff,
   maxSpendFraction: 0.6, // of current cash
 };
 

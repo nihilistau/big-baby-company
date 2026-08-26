@@ -2,6 +2,7 @@ import {
   DRIFT,
   ENDLESS,
   FEEDBACK,
+  MARKETING,
   MORALE,
   OPEX,
   PENTHOUSE_WIRES,
@@ -434,7 +435,13 @@ function applyMarketing(state, content, rng, events) {
     mul *= content.upgrades[id]?.marketingMul ?? 1;
   }
 
-  const hypeGain = (spend / 10000) * 3.5 * channel.hypeMul * mul;
+  // From the constant, not a literal. `MARKETING.hypePer10k` documented
+  // itself as "hype gained per $10k spent" and nothing read it, so the
+  // one knob on the strongest lever in the game was inert — and once the
+  // HUD started projecting the campaign, the projection used the constant
+  // while the resolution used the literal, so they would have silently
+  // disagreed the moment anyone tuned it.
+  const hypeGain = MARKETING.hypeFor(spend) * channel.hypeMul * mul;
   title.hype = (title.hype || 0) + hypeGain;
   title.marketing.copiesMul = channel.copiesMul ?? 1;
   title.marketing.scoreAdd = channel.scoreAdd ?? 0;

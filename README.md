@@ -9,7 +9,7 @@
 **A satirical studio-management roguelite about what happens when the number
 you're being paid for stops being the number people are buying.**
 
-`v1.0.7` · Browser · Single-player · ~60–90 minutes per run · Zero runtime dependencies
+`v1.0.8` · Browser · Single-player · ~60–90 minutes per run · Zero runtime dependencies
 
 ### [▶ Play it in your browser](https://nihilistau.github.io/big-baby-company/)
 

@@ -6,6 +6,45 @@ All notable changes to Big Baby Company. Format follows
 
 ---
 
+## [1.0.8] — 2026-08-26
+
+Two follow-ups from the 1.0.7 audit, both of which turned into real findings.
+
+### Fixed
+
+- **`MARKETING.hypePer10k` was read by nothing.** `applyMarketing` hardcoded its
+  own `3.5`, so the only knob on the strongest lever in the game was inert —
+  found by sweeping it and getting byte-identical results at three values. It
+  had also just become dangerous: 1.0.7 taught the HUD to project a pending
+  campaign, and that projection used the constant while the resolution used the
+  literal, so the two would have silently disagreed the moment anyone tuned it.
+
+### Changed
+
+- **Marketing hype is a curve, not a line.** Linear made "spend the maximum you
+  can afford" strictly optimal and turned marketing into a near-straight
+  cash-to-copies conversion: a $220k campaign bought 77 hype and moved the
+  copies multiplier from ×0.81 to ×1.23 in a single purchase — a range the trust
+  meter takes an entire campaign to cross. It is now
+  `sqrt(spend / 10000) × 5.5`, so small campaigns are efficient, enormous ones
+  are not, and how much to spend is a decision. Emperor falls from 15.8% of runs
+  to **9.4%**, and `funmax` and `goremax` land within two points of each other.
+- **The Chapter 11 probe's threshold is set against measurement.** It was 1.6×
+  Act II, picked to avoid tripping on a 42/38 split rather than to mean
+  anything. The measured shape is 38% of frugal runs filing, split roughly 44/56
+  across Acts II and III with **none in Act I**. The gate is now Act III taking
+  more than **65%** of filings against a measured 53–56%.
+- The probe also reports its peak quarter, currently **Q21 at ~38% of all
+  filings** — the launch quarter of the first Act III title, when the largest
+  budget in the game has been drawn down in full. Printed rather than asserted
+  on: it is a legible pressure point, not a fault, but it is the one worth
+  watching.
+- Corrected the docs, which claimed any Act III clustering was a bug. The
+  measured design is an even back-half split; only Act III *dominating* is a
+  regression.
+
+---
+
 ## [1.0.7] — 2026-08-26
 
 A correctness pass over systems that were shipped, documented and wired up but
@@ -533,6 +572,7 @@ game the demo was a mock-up of.
 - Hub scenes with invisible hotspots, overlay panels, localStorage save.
 - Vite + vanilla JS, Vitest, painterly generated art.
 
+[1.0.8]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.8
 [1.0.7]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.7
 [1.0.6]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.6
 [1.0.5]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.5

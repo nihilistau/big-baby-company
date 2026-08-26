@@ -249,7 +249,7 @@ export function pendingMarketing(state, content, title) {
   return {
     scoreAdd: channel.scoreAdd ?? 0,
     copiesMul: channel.copiesMul ?? 1,
-    hype: ((m.spend || 0) / 10000) * MARKETING.hypePer10k * (channel.hypeMul ?? 1) * mul,
+    hype: MARKETING.hypeFor(m.spend || 0) * (channel.hypeMul ?? 1) * mul,
   };
 }
 

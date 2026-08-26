@@ -119,6 +119,34 @@ trust is a real multiplier: a monetisation studio settles at trust 22 against an
 audience studio's 73, so it sells far fewer copies and has to earn more from
 each one. That is the trade, stated in arithmetic.
 
+### Marketing spend
+
+Hype bought by a campaign is a **square root** of the money, before the channel
+multiplier:
+
+```
+hype = sqrt(spend / 10000) × 5.5 × channelHypeMul
+```
+
+| Spend | Hype | Copies multiplier |
+|---|---|---|
+| — | 0 | ×0.81 |
+| $50k | 12 | ×0.89 |
+| $220k | 26 | ×0.97 |
+| $500k | 39 | ×1.06 |
+| $1M | 55 | ×1.16 |
+
+> **Design note.** This was linear at 3.5 per $10k, which made "spend the
+> maximum you can afford" strictly optimal and turned marketing into a
+> near-straight cash-to-copies conversion — a $220k campaign bought 77 hype and
+> moved the multiplier from 0.81 to 1.23 in one purchase, a range the trust
+> meter takes a whole campaign to cross. Worse, the constant was read by
+> nothing: `applyMarketing` hardcoded its own 3.5, so the only knob on the
+> strongest lever in the game was inert, and once the HUD began projecting the
+> campaign the projection used the constant while the resolution used the
+> literal. On a curve, small campaigns are efficient and enormous ones are not,
+> so how much to spend is a decision.
+
 ### The investor wire
 
 ```
@@ -503,20 +531,16 @@ lands.
 - **No single rank** absorbs more than half of all runs.
 - No run gets stuck in an unreachable `advance`.
 
-`node tools/ch11-probe.mjs` separately plays a frugal, competent player and
-reports which act bankrupts them. Clustering in Act II is the intended beat;
-clustering in Act III is a bug.
-
 Current standing at 3,000 runs, Standard difficulty:
 
 ```
 archetype       median        top-rank   broke   ch11
 pcmax             $74,129         0.0%   44.6%  33.6%   ← the trap, working
-funmax         $2,770,191        34.6%    1.6%  46.2%
-goremax        $2,144,157        23.0%    2.8%  46.6%   ← highest variance
-moneymax         $585,988         0.0%    0.2%  94.8%   ← safe, low ceiling
-pcthenfun      $1,992,057         4.4%    2.0%  84.2%   ← the designed line
-balanced       $2,998,814        29.2%    0.0%  10.2%
+funmax         $2,639,812        22.2%    1.6%  46.2%
+goremax        $2,086,100        20.6%    2.8%  46.6%   ← highest variance
+moneymax         $586,548         0.0%    0.2%  94.8%   ← safe, low ceiling
+pcthenfun      $1,963,516         2.6%    2.0%  84.2%   ← the designed line
+balanced       $2,662,763        12.4%    0.0%  10.2%
 ```
 
 The harness fails the build if any non-control archetype can never reach King
@@ -563,6 +587,17 @@ All four meters move under play. One thing is deliberately still lopsided:
   supposed to cost you the industry's respect as well as theirs. It is the only
   archetype/meter pair still parked, and it is parked for a reason.
 
-`node tools/ch11-probe.mjs` separately plays a frugal, competent player and
-fails if Act III dominates the bankruptcies or if fewer than 40% of those runs
-reach an ending at all. Clustering in Act II is the intended beat.
+`node tools/ch11-probe.mjs` separately plays a frugal, competent player. About
+**38%** of those runs file for Chapter 11, and the filings split roughly 44/56
+between Act II and Act III with **none at all in Act I** — the money runs out
+after the investors leave, which is the intended tension.
+
+It fails the build if Act III takes more than 65% of filings (the endgame
+turning unwinnable rather than tense) or if fewer than 40% of runs reach an
+ending. Both thresholds are set against that measured baseline rather than
+picked.
+
+It also prints the single biggest quarter, currently **Q21 at ~38%** of all
+filings. That is the launch quarter of the first Act III title, when the largest
+budget in the game has been drawn down in full — a legible pressure point rather
+than a fault, but the one worth watching.
