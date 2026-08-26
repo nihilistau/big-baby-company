@@ -3,6 +3,7 @@ import { asset } from "../assets.js";
 import { count, money, moneyExact, signed } from "../format.js";
 import { currentTitle } from "../../sim/state.js";
 import { hireOffersFor, upgradeOffersFor } from "../../sim/actions.js";
+import { debtOutlook } from "../../sim/economy.js";
 import { axisChips } from "./project.js";
 
 // --- HR -------------------------------------------------------------------
@@ -295,6 +296,35 @@ export function booksPanel(ctx) {
   const shipped = state.titles.filter((t) => t.result);
   return `
     <h2>The books</h2>
+    ${(() => {
+      // Debt compounds every quarter and nothing caps it, which is deliberate —
+      // Chapter 11 is the floor under that spiral. But it used to be invisible:
+      // the ledger showed interest only after charging it, and the threshold
+      // arrived with no countdown. The runway assumes no further spending and
+      // no revenue, so it is a worst case rather than a forecast.
+      const d = debtOutlook(state);
+      if (!d) return "";
+      const tight = d.quarters != null && d.quarters <= 4;
+      return `
+        <section class="stack">
+          <div class="board-status">
+            <div class="status-cell bad"><span class="sc-label">Owed</span><span class="sc-value">${moneyExact(-d.debt)}</span></div>
+            <div class="status-cell bad"><span class="sc-label">Interest next quarter</span><span class="sc-value">${money(-d.nextInterest)}</span></div>
+            <div class="status-cell ${tight ? "bad" : ""}"><span class="sc-label">Runway</span><span class="sc-value">${
+              d.quarters == null ? "—" : d.quarters + (d.quarters === 1 ? " qtr" : " qtrs")
+            }</span></div>
+          </div>
+          <p class="hint">
+            The bank charges <b>${Math.round(d.rate * 100)}%</b> a quarter on what you owe, and it
+            compounds. ${
+              d.terminal
+                ? `You have filed once. Crossing <b>${moneyExact(d.threshold)}</b> again ends the run.`
+                : `At <b>${moneyExact(d.threshold)}</b> you file for Chapter 11: the debt goes, and so does everything else you own.`
+            }
+            Runway assumes you spend nothing and sell nothing.
+          </p>
+        </section>`;
+    })()}
     <div class="board-status">
       <div class="status-cell ${state.cash < 0 ? "bad" : ""}"><span class="sc-label">Cash</span><span class="sc-value">${moneyExact(state.cash)}</span></div>
       <div class="status-cell"><span class="sc-label">Lifetime revenue</span><span class="sc-value">${money(state.stats.revenueLifetime)}</span></div>

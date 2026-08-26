@@ -21,7 +21,7 @@
     "vitest": "^2.1.0"
   },
   "description": "Satirical studio tycoon. Stuff the box, cash the wires, survive the crash.",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "license": "MIT",
   "repository": {
     "type": "git",

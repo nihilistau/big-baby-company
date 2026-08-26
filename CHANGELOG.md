@@ -6,6 +6,27 @@ All notable changes to Big Baby Company. Format follows
 
 ---
 
+## [1.0.10] — 2026-08-26
+
+### Added
+
+- **The books panel shows the debt outlook** the moment cash goes negative: what
+  is owed, what the interest will be next quarter, and how many quarters of
+  runway remain before the Chapter 11 threshold.
+
+  This was the actual gap behind the Act III bankruptcy cluster. Interest
+  compounds at 10% a quarter and is uncapped, which is deliberate — checked
+  across 720 campaigns, **51% file at least once and only 1.7% ever reach a game
+  over**, because Chapter 11 discharges the debt to zero and bounds the spiral.
+  The runway curve is the right shape too: 21 quarters at −$100k, 7 at −$350k,
+  2 at −$600k. Room to act on a small hole, almost none on a large one.
+
+  What was missing was disclosure. The ledger reported interest only after
+  charging it and the threshold arrived with no countdown, so a survivable,
+  well-shaped mechanic felt arbitrary. Nothing about the balance changed.
+
+---
+
 ## [1.0.9] — 2026-08-26
 
 ### Changed
@@ -606,6 +627,7 @@ game the demo was a mock-up of.
 - Hub scenes with invisible hotspots, overlay panels, localStorage save.
 - Vite + vanilla JS, Vitest, painterly generated art.
 
+[1.0.10]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.10
 [1.0.9]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.9
 [1.0.8]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.8
 [1.0.7]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.7

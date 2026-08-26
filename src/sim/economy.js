@@ -14,7 +14,7 @@ import {
   UNFINISHED,
 } from "./balance.js";
 import { axesOf } from "./content.js";
-import { currentTitle, staffCount } from "./state.js";
+import { currentTitle, difficultyOf, staffCount } from "./state.js";
 import * as Synergy from "./synergy.js";
 import { weightedPick } from "./rng.js";
 
@@ -94,6 +94,44 @@ export function crunchCost(state, content) {
     if (d) mul *= 1 - d;
   }
   return Math.round(cost * mul);
+}
+
+/**
+ * Where the debt is heading, for the books panel.
+ *
+ * Interest compounds at the difficulty rate every quarter and is uncapped, so
+ * a studio that never climbs out accelerates toward the filing threshold. That
+ * is deliberate — Chapter 11 exists as the floor under exactly this spiral, and
+ * it discharges the debt, so it cannot run away forever. What was missing is
+ * that none of it was visible: the ledger showed interest only after it had
+ * been charged, and the threshold arrived without a countdown.
+ *
+ * Runway assumes no further spending and no revenue, which is the honest
+ * worst case rather than a forecast.
+ */
+export function debtOutlook(state) {
+  const diff = difficultyOf(state);
+  if (state.cash >= 0) return null;
+
+  const threshold = state.flags?.chapter11 >= 1 ? diff.chapter11 : diff.chapter11;
+  const nextInterest = Math.round(Math.abs(state.cash) * diff.interest);
+
+  let cash = state.cash;
+  let quarters = 0;
+  while (cash > threshold && quarters < 99) {
+    cash -= Math.abs(cash) * diff.interest;
+    quarters++;
+  }
+
+  return {
+    debt: -state.cash,
+    rate: diff.interest,
+    nextInterest,
+    threshold,
+    quarters: quarters >= 99 ? null : quarters,
+    // A second filing ends the run; the first only takes everything you own.
+    terminal: (state.flags?.chapter11 || 0) >= 1,
+  };
 }
 
 // --- Axis sums ------------------------------------------------------------

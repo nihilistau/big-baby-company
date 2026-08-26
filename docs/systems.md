@@ -485,6 +485,30 @@ Nothing at the floor, −3 at 50, −6 at the ceiling.
 | Interest / quarter | 6% | 10% | 15% |
 | Quota step | +3 | +5 | +8 |
 
+### Debt
+
+Interest compounds on negative cash every quarter at the difficulty rate, and it
+is **not capped**. That is deliberate, and it was checked rather than assumed:
+
+| Debt | Interest next quarter | Quarters to the filing threshold |
+|---|---|---|
+| −$100k | −$10k | 21 |
+| −$200k | −$20k | 13 |
+| −$350k | −$35k | 7 |
+| −$500k | −$50k | 4 |
+| −$600k | −$60k | 2 |
+
+Runway assumes no further spending and no revenue, so it is a worst case. The
+shape is the point: plenty of room to act on a small hole, almost none on a
+large one. Across 720 campaigns **51% file for Chapter 11 at least once and only
+1.7% ever reach a game over** — the spiral is real, and it is bounded, because
+Chapter 11 discharges the debt to zero.
+
+The books panel shows all three numbers the moment cash goes negative. It used
+to show none of them: the ledger reported interest only after charging it, and
+the threshold arrived with no countdown, which made a survivable mechanic feel
+arbitrary.
+
 **Chapter 11** fires once. It discharges the debt and takes:
 
 - every studio upgrade

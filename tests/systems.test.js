@@ -8,7 +8,7 @@ import { createState, currentTitle, emptyTitle } from "../src/sim/state.js";
 import { mulberry32 } from "../src/sim/rng.js";
 import * as Actions from "../src/sim/actions.js";
 import { franchiseRoot } from "../src/sim/actions.js";
-import { devPoints, pointsLeftRaw, projectLaunch, titleHeat, titleJank } from "../src/sim/economy.js";
+import { debtOutlook, devPoints, pointsLeftRaw, projectLaunch, titleHeat, titleJank } from "../src/sim/economy.js";
 import * as Q from "../src/sim/quarter.js";
 import {
   COPIES,
@@ -714,5 +714,45 @@ describe("a new act's operating costs phase in", () => {
     const settled = Math.round(OPEX.base * OPEX.perAct[3]);
     expect(opex.amount).toBeLessThan(settled);
     expect(out.state.cash).toBeLessThan(cashBefore);
+  });
+});
+
+describe("the debt spiral is visible before it lands", () => {
+  // Interest compounds every quarter and is uncapped, which is deliberate:
+  // Chapter 11 is the floor under exactly that spiral and it discharges the
+  // debt, so it cannot run away forever. Across 720 campaigns only 1.7% ever
+  // reach a game over. What was missing was disclosure — the ledger showed
+  // interest only after charging it and the threshold arrived with no warning.
+
+  it("says nothing at all while the studio is solvent", () => {
+    const state = inProduction({ act: 2, cash: 50000 });
+    expect(debtOutlook(state)).toBeNull();
+  });
+
+  it("reports the rate, the next charge and the runway", () => {
+    const state = inProduction({ act: 2, cash: -350000 });
+    const d = debtOutlook(state);
+    expect(d.debt).toBe(350000);
+    expect(d.nextInterest).toBe(Math.round(350000 * d.rate));
+    expect(d.quarters).toBeGreaterThan(0);
+    expect(d.threshold).toBeLessThan(0);
+  });
+
+  it("gives room early and almost none late", () => {
+    // The shape that makes this tension rather than a coin flip: plenty of
+    // time to act on a small debt, very little on a large one.
+    const runway = (cash) => debtOutlook(inProduction({ act: 2, cash })).quarters;
+    expect(runway(-100000)).toBeGreaterThan(15);
+    expect(runway(-600000)).toBeLessThanOrEqual(3);
+    // Strictly decreasing as the hole gets deeper.
+    expect(runway(-200000)).toBeLessThan(runway(-100000));
+    expect(runway(-500000)).toBeLessThan(runway(-200000));
+  });
+
+  it("warns that a second filing is terminal", () => {
+    const state = inProduction({ act: 3, cash: -400000 });
+    expect(debtOutlook(state).terminal).toBe(false);
+    state.flags.chapter11 = 1;
+    expect(debtOutlook(state).terminal).toBe(true);
   });
 });
