@@ -93,7 +93,7 @@ to play than a disabled button.
 
 ## 5. Cards
 
-79 cards, each with a stat block, a dev-point cost, jank, hype, tags, and — for
+87 cards, each with a stat block, a dev-point cost, jank, hype, tags, and — for
 monetisation cards — a per-player revenue rate that is independent of box price.
 That last one is why a free-to-enter live-service title can out-earn a $70 one.
 
@@ -227,7 +227,49 @@ telling. Conflating the two is how you end up nerfing something that was working
 
 ---
 
-## 11. Where the numbers live
+## 11. Onboarding, and the thing you can miss
+
+The premise is a comparison, not a fact. Reading "score and copies move in
+opposite directions" teaches nothing; watching +20 score arrive next to −1,800
+copies teaches it in one second. The hover ghost is therefore not a convenience
+feature — it is the tutorial, and the whole game is a footnote to it.
+
+Which means there was a hole. A player who never hovered a card — clicking
+straight through Act I, or on a phone, where there is no hover at all — could
+finish three titles without the game ever having made its point. Telling them to
+try it in a coach line was not enough, because a coach line is copy and copy is
+what this teaches instead of.
+
+So it is a gate, not a hint. `src/ui/tutorial.js` holds one persisted meta flag.
+The first production board keeps a prompt up until the player has actually
+seen one of the two numbers rise while the other did not — and then never shows
+it again, on any run, forever:
+
+```js
+const instructive =
+  (ghost.score > 0 && ghost.copies <= 0) || (ghost.score <= 0 && ghost.copies > 0);
+```
+
+The `<=` is the whole trick. The first version required strictly opposing signs,
+which made the gate unsatisfiable on exactly the board it was written for: an
+empty Act I box already sells zero copies, so the clearest demonstration in the
+game — a fashionable card ghosting `+20 score / 0 copies` — had no negative to
+compare against. A card that lifts both is the one result that proves nothing,
+and that is the only case this rejects.
+
+**The first launch report says it in words, once.** Every report itemises the
+wire and the customer revenue side by side; on the first title ever shipped, one
+extra paragraph names the comparison out loud using that run's own two figures.
+It reads differently depending on which way the run went, and it never appears
+again. A joke explained twice is not a joke.
+
+**Touch gets two taps.** No hover means no ghost, so on a coarse pointer the
+first tap on a card previews it and the second commits. The projection is the
+same code path; only the trigger differs.
+
+---
+
+## 12. Where the numbers live
 
 Every tunable constant is in `src/sim/balance.js`. Nothing else in the sim
 contains a magic number. That is what makes `tools/balance-sim.mjs` useful: it
@@ -244,7 +286,7 @@ Current health targets:
 
 ---
 
-## 12. UI decisions worth recording
+## 13. UI decisions worth recording
 
 **DOM morphing over re-rendering.** The original build did
 `app.innerHTML = ...` on every interaction, so scrolling the card list and
@@ -258,6 +300,12 @@ real bug this codebase had and a regression test now covers.
 projection against a hypothetical box and ghosts both deltas onto the HUD. The
 central inversion is invisible until you watch the two numbers move in opposite
 directions, so this does more teaching than any amount of copy.
+
+**Colour never carries information alone**, and the phone layout broke that
+rule for a while. Below 560px the meter stylesheet hid the icon, the label *and*
+the value, leaving four unlabelled coloured bars in the chrome — which is not a
+compact HUD, it is a decoration. The narrow layout now keeps a short label and
+the number.
 
 **Hotspots draw nothing over the art.** The original hub had fully transparent
 hotspots — a point-and-click game with no discoverable click targets. Two

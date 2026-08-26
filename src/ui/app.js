@@ -32,7 +32,16 @@ import { actCard, eventModal, stageModal } from "./sequences.js";
 import { deltaFor, projectWithCard, projectWithoutCard } from "./preview.js";
 import { initAudio, isMuted, setMusicBed, sfx, stopMusic, toggleMute } from "../audio/kit.js";
 import { burst, flash, floatText, rollNumber } from "./fx.js";
-import { STEP_COUNT, dismiss as dismissTutorial, placeCoach, shouldShow, tutorialView } from "./tutorial.js";
+import {
+  STEP_COUNT,
+  dismiss as dismissTutorial,
+  inversionPrompt,
+  noteGhost,
+  placeCoach,
+  shouldPromptInversion,
+  shouldShow,
+  tutorialView,
+} from "./tutorial.js";
 
 const content = loadContent();
 const ACT_CARD_MS = 6200;
@@ -90,6 +99,17 @@ const PANEL_TITLES = {
 
 // --- Lifecycle ------------------------------------------------------------
 
+/**
+ * True on devices with no hover — phones and tablets.
+ *
+ * Read live rather than cached, because a laptop with a touchscreen can
+ * legitimately change its mind, and because `matchMedia` is not present in
+ * the jsdom the UI tests run under.
+ */
+function coarsePointer() {
+  return typeof matchMedia === "function" && matchMedia("(hover: none)").matches;
+}
+
 function persist() {
   if (state) saveState(state);
 }
@@ -104,6 +124,9 @@ function ctx() {
       ? projectWithoutCard(state, content, ui.hoverCard)
       : projectWithCard(state, content, ui.hoverCard);
     ghost = deltaFor(projection, other);
+    // The hover ghost is the tutorial; note it the first time it actually
+    // shows the two numbers moving apart, so the prompt can stand down.
+    noteGhost(ghost);
   }
   return {
     state,
@@ -214,6 +237,7 @@ function gameView(c) {
         ${stageModal(c, ui)}
         ${ui.actCard ? actCard(ui.actCard) : ""}
         ${ui.tutorialOn ? tutorialView(ui.tutorialStep) : ""}
+        ${!ui.tutorialOn && shouldPromptInversion(c.state) ? inversionPrompt() : ""}
         <div class="fx-layer" data-key="fx" data-static></div>
         <div class="toast-layer" data-key="toasts" data-static></div>
       </main>
@@ -237,7 +261,8 @@ export function draw() {
 
   fitHubFrame(root);
   reattachHubWatcher?.();
-  if (ui.tutorialOn) placeCoach(root);
+  // The inversion nag is a coach card too, and also needs positioning.
+  placeCoach(root);
   animateReport();
   syncFeed();
 }
@@ -484,6 +509,14 @@ const handlers = {
   // production
   "place-card": (el, ev) => {
     const id = el.dataset.id;
+    // On touch there is no hover, and the hover ghost is the entire
+    // tutorial — a phone player could otherwise commit to a card without
+    // ever seeing what it does. First tap previews, second tap commits.
+    if (coarsePointer() && ui.hoverCard !== id) {
+      ui.hoverCard = id;
+      sfx.soft();
+      return draw();
+    }
     const result = Actions.placeCard(state, id, content);
     if (!result.ok) {
       sfx.deny();
@@ -663,6 +696,8 @@ function bind() {
   delegate(root, "click", handlers);
 
   // Hover ghosting: the single most important teaching surface in the game.
+  // On a coarse pointer it is driven by tap-to-preview instead (see
+  // "place-card"), because there is no hover to ghost from.
   root.addEventListener("pointerover", (e) => {
     const card = e.target.closest?.("[data-hover]");
     const id = card?.getAttribute("data-hover") || null;

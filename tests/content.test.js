@@ -189,4 +189,56 @@ describe("content integrity", () => {
     }
     expect(unknown).toEqual([]);
   });
+
+  it("every ending opens on its own sentence", () => {
+    // Three endings used to share the identical "they're pixels" paragraph.
+    // A recurring motif is fine; three endings opening on the same sentence
+    // reads as copy-paste, and it is the first thing a reader notices.
+    const seen = new Map();
+    for (const e of content.endings) {
+      if (!e.line) continue;
+      seen.set(e.line, [...(seen.get(e.line) || []), e.id]);
+    }
+    const shared = [...seen.entries()].filter(([, ids]) => ids.length > 1);
+    expect(shared.map(([, ids]) => ids.join(" + "))).toEqual([]);
+  });
+
+  it("keeps the refrain a refrain", () => {
+    // "It's the money, baby" is the thesis and should land where the player
+    // actually chose the money. On six of eleven endings it stopped being a
+    // punchline and became a sign-off.
+    const refrain = content.endings.filter((e) => /money, baby/i.test(e.punch || ""));
+    expect(refrain.length).toBeGreaterThan(0);
+    expect(refrain.length).toBeLessThanOrEqual(Math.floor(content.endings.length / 3));
+  });
+
+  it("keeps score-and-standing rules hard to reach", () => {
+    // Widening a tag silently reprices every rule keyed on it. Adding
+    // `process` to two didactic cards and two platform cards took THE FULL
+    // PURPLE — +10 industry score and +7 standing at two of them — from a
+    // deliberate build to a PC-studio default, and the trap archetype became
+    // the best strategy in the game. The balance harness caught it.
+    //
+    // The ratio itself is not the hazard: ACTUAL VIDEO GAME fires on three of
+    // seventeen combat cards and has always been fine, because what it pays
+    // out is copies, which the trap has none of. The hazard is a rule that
+    // hands out the two things a PC studio is already optimising for.
+    const counts = {};
+    for (const f of content.featuresList) {
+      for (const t of f.tags || []) counts[t] = (counts[t] || 0) + 1;
+    }
+    for (const rule of content.synergiesList) {
+      const pays = (rule.effects?.scoreAdd || 0) > 0 || (rule.effects?.standing || 0) > 0;
+      for (const [tag, need] of Object.entries(rule.requiresTags || {})) {
+        const have = counts[tag] || 0;
+        expect(have, `${rule.id} needs ${need} "${tag}" and only ${have} exist`)
+          .toBeGreaterThanOrEqual(need);
+        if (!pays) continue;
+        expect(
+          need / have,
+          `${rule.id} pays score/standing and fires on ${need} of ${have} "${tag}" cards`
+        ).toBeGreaterThanOrEqual(0.5);
+      }
+    }
+  });
 });

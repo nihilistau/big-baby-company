@@ -36,6 +36,74 @@ const STEPS = [
   },
 ];
 
+/**
+ * The one thing a new player must not miss.
+ *
+ * The hover ghost *is* the tutorial: the whole premise is two numbers moving in
+ * opposite directions, and a player who never hovers a card next to the HUD can
+ * play a full act without noticing. Telling them to try it was not enough, so
+ * this prompt stays on the production board until they have actually seen it
+ * happen once, ever — then never appears again.
+ */
+const INVERSION_PROMPT = {
+  id: "inversion-live",
+  anchor: ".chrome-est",
+  title: "Hover a card. Watch both numbers.",
+  body:
+    "Industry score is what the press and your investors pay for. Copies is how many people bought it. " +
+    "Put your cursor over any feature in the catalogue and the HUD will show you what it does to each — " +
+    "before you commit to anything.",
+};
+
+/** True once the player has seen the two numbers move in opposite directions. */
+export function sawInversion() {
+  return !!loadMeta().sawInversion;
+}
+
+/**
+ * Record a hover that demonstrated the premise.
+ *
+ * "Opposing signs" is the obvious test and it is wrong: on an empty Act I box
+ * copies is already zero, so the clearest demonstration in the game — a PC card
+ * showing +20 industry against copies that do not move at all — has no negative
+ * to compare. What actually teaches the inversion is one number rising
+ * while the other does not, so that is the test. A card that lifts both is the
+ * one case that proves nothing.
+ */
+export function noteGhost(ghost) {
+  if (!ghost) return false;
+  const instructive =
+    (ghost.score > 0 && ghost.copies <= 0) || (ghost.score <= 0 && ghost.copies > 0);
+  if (!instructive || sawInversion()) return false;
+  const meta = loadMeta();
+  meta.sawInversion = true;
+  saveMeta(meta);
+  return true;
+}
+
+/** Whether to nag about the hover ghost on the production board. */
+export function shouldPromptInversion(state) {
+  return (
+    !!state &&
+    state.screen === "playing" &&
+    state.phase === "production" &&
+    state.titleIndex === 0 &&
+    !sawInversion()
+  );
+}
+
+export function inversionPrompt() {
+  const s = INVERSION_PROMPT;
+  return `
+    <div class="coach coach-nag" data-key="coach-inversion" data-anchor="${s.anchor}"
+         role="dialog" aria-label="${escapeHtml(s.title)}">
+      <div class="coach-card">
+        <h3>${escapeHtml(s.title)}</h3>
+        <p>${escapeHtml(s.body)}</p>
+      </div>
+    </div>`;
+}
+
 export function shouldShow(state) {
   if (!state || state.screen !== "playing") return false;
   return !loadMeta().tutorialDone;

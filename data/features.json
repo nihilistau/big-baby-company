@@ -2,700 +2,1338 @@
   {
     "id": "pc-pronouns",
     "name": "100 Pronouns Dropdown",
-    "acts": [1, 3],
+    "acts": [
+      1,
+      3
+    ],
     "cost": 1,
-    "pc": 2, "fun": 0, "gore": 0, "ordinary": 0,
-    "jank": 2, "hype": 0,
-    "tags": ["character", "ui"],
+    "pc": 2,
+    "fun": 0,
+    "gore": 0,
+    "ordinary": 0,
+    "jank": 2,
+    "hype": 0,
+    "tags": [
+      "character",
+      "ui",
+      "fashion"
+    ],
     "blurb": "Character creation opens on a scrolling list your mom will need a wiki for.",
     "body": "Before the player can walk, they must select a pronoun set from a dropdown that includes xe, fae, and a write-in field that auto-corrects to they. The tutorial NPC congratulates you for existing. Combat is later, maybe."
   },
   {
     "id": "pc-body",
     "name": "Body Type 1, 2, … X",
-    "acts": [1, 3],
+    "acts": [
+      1,
+      3
+    ],
     "cost": 1,
-    "pc": 2, "fun": 0, "gore": 0, "ordinary": 0,
-    "jank": 0, "hype": 0,
-    "tags": ["character"],
+    "pc": 2,
+    "fun": 0,
+    "gore": 0,
+    "ordinary": 0,
+    "jank": 0,
+    "hype": 0,
+    "tags": [
+      "character",
+      "fashion"
+    ],
     "blurb": "Nobody is hot. Everyone is a numbered mannequin.",
     "body": "The slider is not fat-to-fit. It is a taxonomy. Body Type 7 has a medical paper cited in the pause menu. Fans asking for a waist slider are quietly documented in a community notes appendix."
   },
   {
     "id": "pc-they",
     "name": "Everyone Is They",
-    "acts": [1, 3],
+    "acts": [
+      1,
+      3
+    ],
     "cost": 1,
-    "pc": 2, "fun": 0, "gore": 0, "ordinary": 0,
-    "jank": 1, "hype": 0,
-    "tags": ["narrative"],
+    "pc": 2,
+    "fun": 0,
+    "gore": 0,
+    "ordinary": 0,
+    "jank": 1,
+    "hype": 0,
+    "tags": [
+      "narrative",
+      "fashion"
+    ],
     "blurb": "The script has one pronoun and it is doing a lot of work.",
     "body": "Kings, bartenders, and the final boss are they. The localization team weeps with joy. A veteran writer asked if the villain could be a he for clarity and was sent to a workshop in the parking garage."
   },
   {
     "id": "pc-lecture",
     "name": "Lecture Sidequest",
-    "acts": [1, 3],
+    "acts": [
+      1,
+      3
+    ],
     "cost": 1,
-    "pc": 2, "fun": -1, "gore": 0, "ordinary": 0,
-    "jank": 0, "hype": 0,
-    "tags": ["narrative"],
+    "pc": 2,
+    "fun": -1,
+    "gore": 0,
+    "ordinary": 0,
+    "jank": 0,
+    "hype": 0,
+    "tags": [
+      "narrative"
+    ],
     "blurb": "A sidequest that pauses the game to educate the player.",
     "body": "You fetch three pamphlets and sit through a nine-minute conversation about harm. Skipping is possible after the second cutscene if you hold a button the UI forgot to mention. Your companion thanks you for doing the work."
   },
   {
     "id": "pc-males",
     "name": "Male Leads Are Clumsy",
-    "acts": [1, 3],
+    "acts": [
+      1,
+      3
+    ],
     "cost": 1,
-    "pc": 2, "fun": 0, "gore": 0, "ordinary": 0,
-    "jank": 0, "hype": 2,
-    "tags": ["character", "meme"],
+    "pc": 2,
+    "fun": 0,
+    "gore": 0,
+    "ordinary": 0,
+    "jank": 0,
+    "hype": 2,
+    "tags": [
+      "character",
+      "meme",
+      "fashion"
+    ],
     "blurb": "Every man on screen trips, apologizes, or both.",
     "body": "The male knight drops his sword in the tutorial and never lives it down. Bosses he faces lecture him about privilege between combos. His ultimate ability is to stand aside so a woman can finish the cutscene."
   },
   {
     "id": "pc-women",
     "name": "Women Are Square And Tired",
-    "acts": [1, 3],
+    "acts": [
+      1,
+      3
+    ],
     "cost": 1,
-    "pc": 2, "fun": 0, "gore": 0, "ordinary": 0,
-    "jank": 0, "hype": 2,
-    "tags": ["character", "meme"],
+    "pc": 2,
+    "fun": 0,
+    "gore": 0,
+    "ordinary": 0,
+    "jank": 0,
+    "hype": 2,
+    "tags": [
+      "character",
+      "meme",
+      "fashion"
+    ],
     "blurb": "Heroines have jawlines you could plane a door with.",
     "body": "The art director forbade cheekbones. Every woman looks like she just closed a Jira ticket about the male gaze. She is valid, she is exhausted, and she will not wear a second color."
   },
   {
     "id": "pc-purple",
     "name": "Purple Mandate",
-    "acts": [1, 3],
+    "acts": [
+      1,
+      3
+    ],
     "cost": 1,
-    "pc": 2, "fun": 0, "gore": 0, "ordinary": 0,
-    "jank": 0, "hype": 1,
-    "tags": ["art", "meme"],
+    "pc": 2,
+    "fun": 0,
+    "gore": 0,
+    "ordinary": 0,
+    "jank": 0,
+    "hype": 1,
+    "tags": [
+      "art",
+      "meme",
+      "fashion"
+    ],
     "blurb": "The brand guide has one swatch and it is ultraviolet.",
     "body": "Sky, blood, UI, and the innkeeper's apron are purple. A lighting artist tried to add sunset orange and was asked to consider how orange has been used historically. The skybox is a gradient from grape to bruise."
   },
   {
     "id": "pc-land",
     "name": "Land Acknowledgment Loading Screen",
-    "acts": [1, 3],
+    "acts": [
+      1,
+      3
+    ],
     "cost": 1,
-    "pc": 1, "fun": 0, "gore": 0, "ordinary": 0,
-    "jank": 0, "hype": 0,
-    "tags": ["ui", "narrative"],
+    "pc": 1,
+    "fun": 0,
+    "gore": 0,
+    "ordinary": 0,
+    "jank": 0,
+    "hype": 0,
+    "tags": [
+      "ui",
+      "narrative",
+      "cowardice"
+    ],
     "blurb": "Every load reminds you the pixels are on stolen earth.",
     "body": "A paragraph appears over a spinning logo. It names three nations, misspells one, and asks you to sit with that. The actual game still takes place in a made-up kingdom with a king they/them."
   },
   {
     "id": "pc-sensitivity",
     "name": "Sensitivity Pass On The Sensitivity Pass",
-    "acts": [1, 3],
+    "acts": [
+      1,
+      3
+    ],
     "cost": 2,
-    "pc": 4, "fun": -1, "gore": 0, "ordinary": 0,
-    "jank": 3, "hype": 0,
-    "tags": ["narrative", "process"],
+    "pc": 4,
+    "fun": -1,
+    "gore": 0,
+    "ordinary": 0,
+    "jank": 3,
+    "hype": 0,
+    "tags": [
+      "narrative",
+      "process"
+    ],
     "blurb": "The first consultant flagged the second consultant.",
     "body": "Two firms now bill you to disagree about a goblin. The goblin has been rewritten as a misunderstood accountant and then rewritten again because accountants are a protected profession in one of the markets. The goblin is now a cube. The cube is fine."
   },
   {
     "id": "pc-content-warning",
     "name": "Content Warning For The Content Warning",
-    "acts": [1, 3],
+    "acts": [
+      1,
+      3
+    ],
     "cost": 1,
-    "pc": 2, "fun": -1, "gore": 0, "ordinary": 0,
-    "jank": 1, "hype": 0,
-    "tags": ["ui"],
+    "pc": 2,
+    "fun": -1,
+    "gore": 0,
+    "ordinary": 0,
+    "jank": 1,
+    "hype": 0,
+    "tags": [
+      "ui",
+      "cowardice"
+    ],
     "blurb": "Nested advisories, four deep, before the studio logo.",
     "body": "Screen one warns of screen two. Screen two warns of the word on screen three. By the time the player reaches the main menu they have agreed to three things and forgotten why they bought this."
   },
   {
     "id": "pc-council",
     "name": "The Player Advisory Council",
-    "acts": [1, 3],
+    "acts": [
+      1,
+      3
+    ],
     "cost": 2,
-    "pc": 3, "fun": 0, "gore": 0, "ordinary": 0,
-    "jank": 0, "hype": 3,
-    "tags": ["process", "meme"],
+    "pc": 3,
+    "fun": 0,
+    "gore": 0,
+    "ordinary": 0,
+    "jank": 0,
+    "hype": 3,
+    "tags": [
+      "process",
+      "meme"
+    ],
     "blurb": "Nine people who don't play games now approve your combat.",
     "body": "They meet monthly, they are paid in gift cards, and they have opinions about hit reactions. The council voted seven to two that the shotgun was 'loud in a way that felt indicative.' The shotgun is now a flashlight."
   },
   {
     "id": "pc-nonviolence",
     "name": "Pacifist Route (Mandatory)",
-    "acts": [1, 3],
+    "acts": [
+      1,
+      3
+    ],
     "cost": 2,
-    "pc": 3, "fun": -1, "gore": -2, "ordinary": 0,
-    "jank": 4, "hype": 0,
-    "tags": ["combat"],
+    "pc": 3,
+    "fun": -1,
+    "gore": -2,
+    "ordinary": 0,
+    "jank": 4,
+    "hype": 0,
+    "tags": [
+      "combat",
+      "cowardice"
+    ],
     "blurb": "There is a stealth option and it is the only option.",
     "body": "You may resolve every encounter with dialogue. The dialogue is a wheel with four kindnesses. The enemy AI was written assuming they would be shot, so they stand very still while you are kind to them, forever."
   },
   {
     "id": "pc-glossary",
     "name": "In-Game Glossary Of Terms",
-    "acts": [1, 3],
+    "acts": [
+      1,
+      3
+    ],
     "cost": 1,
-    "pc": 2, "fun": 0, "gore": 0, "ordinary": 0,
-    "jank": 0, "hype": 0,
-    "tags": ["ui", "narrative"],
+    "pc": 2,
+    "fun": 0,
+    "gore": 0,
+    "ordinary": 0,
+    "jank": 0,
+    "hype": 0,
+    "tags": [
+      "ui",
+      "narrative"
+    ],
     "blurb": "Forty definitions the player must never need.",
     "body": "Press select for a searchable index of language the game will use at you. It has an entry for 'harm' with three subheadings. It does not have an entry for how to reload."
   },
   {
     "id": "pc-nocombat",
     "name": "Combat Was The Problem",
-    "acts": [1],
+    "acts": [
+      1
+    ],
     "cost": 3,
-    "pc": 6, "fun": -3, "gore": -3, "ordinary": 0,
-    "jank": 6, "hype": 4,
-    "tags": ["combat", "meme"],
+    "pc": 6,
+    "fun": -3,
+    "gore": -3,
+    "ordinary": 0,
+    "jank": 6,
+    "hype": 4,
+    "tags": [
+      "combat",
+      "meme",
+      "cowardice"
+    ],
     "blurb": "You removed the fighting. The industry stood up.",
     "body": "Eighteen months of encounter design got a memorial slide at an awards show. What remains is a walk between conversations, each of which contains the phrase 'and how did that land for you.' Three publishers called it the future. Nobody finished it."
   },
   {
     "id": "pc-hero-listens",
     "name": "The Hero Just Listens",
-    "acts": [1, 3],
+    "acts": [
+      1,
+      3
+    ],
     "cost": 2,
-    "pc": 3, "fun": -1, "gore": 0, "ordinary": 0,
-    "jank": 0, "hype": 0,
-    "tags": ["narrative", "character"],
+    "pc": 3,
+    "fun": -1,
+    "gore": 0,
+    "ordinary": 0,
+    "jank": 0,
+    "hype": 0,
+    "tags": [
+      "narrative",
+      "character",
+      "cowardice"
+    ],
     "blurb": "Your protagonist has no lines, only nodding animations.",
     "body": "We built eleven nods. Sympathetic nod, deferential nod, learning nod. The mocap actor asked what the character wants and was told the character wants to make space. She nodded. We used it."
   },
   {
     "id": "pc-representation-quota",
     "name": "Representation Spreadsheet",
-    "acts": [1, 3],
+    "acts": [
+      1,
+      3
+    ],
     "cost": 1,
-    "pc": 2, "fun": 0, "gore": 0, "ordinary": -1,
-    "jank": 2, "hype": 0,
-    "tags": ["process", "character"],
+    "pc": 2,
+    "fun": 0,
+    "gore": 0,
+    "ordinary": -1,
+    "jank": 2,
+    "hype": 0,
+    "tags": [
+      "process",
+      "character"
+    ],
     "blurb": "Every NPC has a row and the rows must balance.",
     "body": "A producer runs a pivot table over the townsfolk each Friday. Two blacksmiths were deleted to correct a skew. The village now has no blacksmith, which the spreadsheet records as a win in the underrepresented-trades column."
   },
   {
     "id": "pc-apology-credits",
     "name": "Pre-Emptive Apology In The Credits",
-    "acts": [1, 3],
+    "acts": [
+      1,
+      3
+    ],
     "cost": 1,
-    "pc": 2, "fun": 0, "gore": 0, "ordinary": 0,
-    "jank": 0, "hype": 1,
-    "tags": ["narrative"],
+    "pc": 2,
+    "fun": 0,
+    "gore": 0,
+    "ordinary": 0,
+    "jank": 0,
+    "hype": 1,
+    "tags": [
+      "narrative",
+      "cowardice"
+    ],
     "blurb": "You apologise for the game before anyone has played it.",
     "body": "Six paragraphs after the art credits, before the middleware logos. It says the team is on a journey and that this is a first step. A first step away from what is not specified. The legal team loves it."
   },
   {
     "id": "pc-accessible-difficulty",
     "name": "Difficulty Is Violence",
-    "acts": [1, 3],
+    "acts": [
+      1,
+      3
+    ],
     "cost": 1,
-    "pc": 2, "fun": -1, "gore": 0, "ordinary": 0,
-    "jank": 1, "hype": 3,
-    "tags": ["combat", "meme"],
+    "pc": 2,
+    "fun": -1,
+    "gore": 0,
+    "ordinary": 0,
+    "jank": 1,
+    "hype": 3,
+    "tags": [
+      "combat",
+      "meme",
+      "cowardice"
+    ],
     "blurb": "One difficulty. It is called Story. There is no other.",
     "body": "Enemies deal zero damage after a design review determined that losing is a form of exclusion. The boss health bar is decorative. A speedrunner completed it by falling asleep on the stick."
   },
   {
     "id": "pc-mocap-diversity",
     "name": "Every Walk Cycle Is Unique",
-    "acts": [1, 3],
+    "acts": [
+      1,
+      3
+    ],
     "cost": 2,
-    "pc": 2, "fun": 1, "gore": 0, "ordinary": 0,
-    "jank": 5, "hype": 2,
-    "tags": ["tech", "character"],
+    "pc": 2,
+    "fun": 1,
+    "gore": 0,
+    "ordinary": 0,
+    "jank": 5,
+    "hype": 2,
+    "tags": [
+      "tech",
+      "character",
+      "fashion"
+    ],
     "blurb": "Forty bespoke gaits. Memory budget: gone.",
     "body": "Nobody shares an animation set because sharing was described in a meeting as flattening. The result is genuinely beautiful and the game drops to eleven frames a second in the market square."
   },
   {
     "id": "pc-committee-boss",
     "name": "Final Boss Is A Committee",
-    "acts": [1, 3],
+    "acts": [
+      1,
+      3
+    ],
     "cost": 2,
-    "pc": 3, "fun": -1, "gore": 0, "ordinary": 0,
-    "jank": 2, "hype": 2,
-    "tags": ["combat", "narrative", "meme"],
+    "pc": 3,
+    "fun": -1,
+    "gore": 0,
+    "ordinary": 0,
+    "jank": 2,
+    "hype": 2,
+    "tags": [
+      "combat",
+      "narrative",
+      "meme",
+      "cowardice"
+    ],
     "blurb": "The antagonist is a governance structure.",
     "body": "You cannot kill it because it is a process. You defeat it by attending. The fight has three phases: agenda, discussion, and a decision deferred to the next fight."
   },
-
   {
     "id": "fun-gunfeel",
     "name": "Tight Gunfeel",
-    "acts": [1, 2, 3],
+    "acts": [
+      1,
+      2,
+      3
+    ],
     "cost": 1,
-    "pc": 0, "fun": 2, "gore": 0, "ordinary": 0,
-    "jank": 0, "hype": 3,
-    "tags": ["combat", "tech"],
+    "pc": 0,
+    "fun": 2,
+    "gore": 0,
+    "ordinary": 0,
+    "jank": 0,
+    "hype": 3,
+    "tags": [
+      "combat",
+      "tech"
+    ],
     "blurb": "The gun goes bang and the bang feels expensive.",
     "body": "Recoil, muzzle flash, and hitstop were tuned by someone who has actually been shot at in a video game. Enemies flinch like they mind. This feature has no thesis. It slaps."
   },
   {
     "id": "fun-npc",
     "name": "Funny NPCs",
-    "acts": [1, 2, 3],
+    "acts": [
+      1,
+      2,
+      3
+    ],
     "cost": 1,
-    "pc": 0, "fun": 2, "gore": 0, "ordinary": 0,
-    "jank": 0, "hype": 2,
-    "tags": ["narrative", "character"],
+    "pc": 0,
+    "fun": 2,
+    "gore": 0,
+    "ordinary": 0,
+    "jank": 0,
+    "hype": 2,
+    "tags": [
+      "narrative",
+      "character"
+    ],
     "blurb": "Townsfolk have jokes instead of lectures.",
     "body": "The baker is a coward. The guard is on the take. The kid says something unprintable about the mayor. Nobody thanks you for listening. You laugh, which is currently controversial."
   },
   {
     "id": "fun-plot",
     "name": "An Actual Plot",
-    "acts": [1, 2, 3],
+    "acts": [
+      1,
+      2,
+      3
+    ],
     "cost": 1,
-    "pc": 0, "fun": 2, "gore": 0, "ordinary": 0,
-    "jank": 0, "hype": 2,
-    "tags": ["narrative"],
+    "pc": 0,
+    "fun": 2,
+    "gore": 0,
+    "ordinary": 0,
+    "jank": 0,
+    "hype": 2,
+    "tags": [
+      "narrative"
+    ],
     "blurb": "Things happen in an order that makes you want the next thing.",
     "body": "There is a beginning, a betrayal, a bad night, and a reason to kick a door. Themes exist if you squint. Nobody stops the chase to unpack the chase. The writers were allowed to write."
   },
   {
     "id": "fun-boss",
     "name": "Boss Who Doesn't Speech",
-    "acts": [1, 2, 3],
+    "acts": [
+      1,
+      2,
+      3
+    ],
     "cost": 1,
-    "pc": 0, "fun": 2, "gore": 0, "ordinary": 0,
-    "jank": 0, "hype": 2,
-    "tags": ["combat"],
+    "pc": 0,
+    "fun": 2,
+    "gore": 0,
+    "ordinary": 0,
+    "jank": 0,
+    "hype": 2,
+    "tags": [
+      "combat"
+    ],
     "blurb": "The big bad fights you instead of assigning reading.",
     "body": "No manifesto. No 'you of all people should understand.' A health bar, a tell, a second phase that is just more of the fight. You can screenshot the kill and not a slideshow."
   },
   {
     "id": "fun-ui",
     "name": "Readable UI",
-    "acts": [1, 2, 3],
+    "acts": [
+      1,
+      2,
+      3
+    ],
     "cost": 1,
-    "pc": 0, "fun": 2, "gore": 0, "ordinary": 0,
-    "jank": -3, "hype": 1,
-    "tags": ["ui"],
+    "pc": 0,
+    "fun": 2,
+    "gore": 0,
+    "ordinary": 0,
+    "jank": -3,
+    "hype": 1,
+    "tags": [
+      "ui"
+    ],
     "blurb": "You can tell what the buttons do.",
     "body": "Health is a bar. Ammo is a number. The map is a map. A producer asked if the HUD could be more 'interrogative of the interface.' It could not."
   },
   {
     "id": "fun-movement",
     "name": "Movement That Sings",
-    "acts": [1, 2, 3],
+    "acts": [
+      1,
+      2,
+      3
+    ],
     "cost": 2,
-    "pc": 0, "fun": 4, "gore": 0, "ordinary": 0,
-    "jank": 3, "hype": 5,
-    "tags": ["tech", "combat"],
+    "pc": 0,
+    "fun": 4,
+    "gore": 0,
+    "ordinary": 0,
+    "jank": 3,
+    "hype": 5,
+    "tags": [
+      "tech",
+      "combat"
+    ],
     "blurb": "Sliding into a corner is its own reason to buy this.",
     "body": "Momentum, coyote time, a slide that cancels into a vault. Players will spend forty minutes in the first corridor and post the clip. The physics programmer has not slept and does not want to."
   },
   {
     "id": "fun-loot",
     "name": "Loot That Rattles",
-    "acts": [1, 2, 3],
+    "acts": [
+      1,
+      2,
+      3
+    ],
     "cost": 1,
-    "pc": 0, "fun": 2, "gore": 0, "ordinary": 0,
-    "jank": 1, "hype": 3,
-    "tags": ["combat", "ui"],
+    "pc": 0,
+    "fun": 2,
+    "gore": 0,
+    "ordinary": 0,
+    "jank": 1,
+    "hype": 3,
+    "tags": [
+      "combat",
+      "ui"
+    ],
     "blurb": "Numbers go up and they make a noise when they do.",
     "body": "Orange means good. The noise is a coin hitting a plate, layered with a small choir. It is Pavlovian and shameless and it is the only reason anyone is still in the third dungeon."
   },
   {
     "id": "fun-coop",
     "name": "Couch Co-op",
-    "acts": [2, 3],
+    "acts": [
+      2,
+      3
+    ],
     "cost": 2,
-    "pc": 0, "fun": 3, "gore": 0, "ordinary": 1,
-    "jank": 6, "hype": 4,
-    "tags": ["tech", "social"],
+    "pc": 0,
+    "fun": 3,
+    "gore": 0,
+    "ordinary": 1,
+    "jank": 6,
+    "hype": 4,
+    "tags": [
+      "tech",
+      "social"
+    ],
     "blurb": "Two people. One sofa. Split screen like it's 2004.",
     "body": "The engineering cost is obscene and the marketing value is infinite. Every screenshot has two players in it, which means every screenshot is a photograph of somebody having a friend."
   },
   {
     "id": "fun-secret",
     "name": "A Genuine Secret",
-    "acts": [1, 2, 3],
+    "acts": [
+      1,
+      2,
+      3
+    ],
     "cost": 1,
-    "pc": 0, "fun": 2, "gore": 0, "ordinary": 0,
-    "jank": 0, "hype": 4,
-    "tags": ["meme", "narrative"],
+    "pc": 0,
+    "fun": 2,
+    "gore": 0,
+    "ordinary": 0,
+    "jank": 0,
+    "hype": 4,
+    "tags": [
+      "meme",
+      "narrative"
+    ],
     "blurb": "Something nobody was told about, hidden behind a wall.",
     "body": "No achievement, no marker, no tutorial pop. It took a community eleven days. The thread has four thousand replies and the studio has said nothing, which is the correct amount."
   },
   {
     "id": "fun-vehicle",
     "name": "The Car Handles",
-    "acts": [2, 3],
+    "acts": [
+      2,
+      3
+    ],
     "cost": 2,
-    "pc": 0, "fun": 3, "gore": 1, "ordinary": 1,
-    "jank": 5, "hype": 3,
-    "tags": ["tech", "combat"],
+    "pc": 0,
+    "fun": 3,
+    "gore": 1,
+    "ordinary": 1,
+    "jank": 5,
+    "hype": 3,
+    "tags": [
+      "tech",
+      "combat"
+    ],
     "blurb": "You can drive it, park it, and hit a man with it.",
     "body": "A handbrake with weight behind it. Doors that dent. Someone on the team cared enough to model the suspension travel, and you can feel it in the way the whole thing settles at a stop sign."
   },
   {
     "id": "fun-soundtrack",
     "name": "A Soundtrack People Steal",
-    "acts": [1, 2, 3],
+    "acts": [
+      1,
+      2,
+      3
+    ],
     "cost": 1,
-    "pc": 0, "fun": 2, "gore": 0, "ordinary": 0,
-    "jank": 0, "hype": 5,
-    "tags": ["art", "meme"],
+    "pc": 0,
+    "fun": 2,
+    "gore": 0,
+    "ordinary": 0,
+    "jank": 0,
+    "hype": 5,
+    "tags": [
+      "art",
+      "meme"
+    ],
     "blurb": "Track four will outlive the studio.",
     "body": "Written in a week by someone who was supposed to be doing menu stingers. It gets ripped to every video platform within a day of launch and does more marketing than the entire budget you were about to spend."
   },
   {
     "id": "fun-physics",
     "name": "Physics Objects Everywhere",
-    "acts": [2, 3],
+    "acts": [
+      2,
+      3
+    ],
     "cost": 1,
-    "pc": 0, "fun": 2, "gore": 1, "ordinary": 0,
-    "jank": 8, "hype": 4,
-    "tags": ["tech", "meme"],
+    "pc": 0,
+    "fun": 2,
+    "gore": 1,
+    "ordinary": 0,
+    "jank": 8,
+    "hype": 4,
+    "tags": [
+      "tech",
+      "meme"
+    ],
     "blurb": "Every barrel, chair, and bucket is load-bearing for comedy.",
     "body": "Yes it will break. Yes a horse will end up in the ceiling. That clip is worth more than the QA hours you'd spend preventing it, and both you and the QA lead know it."
   },
   {
     "id": "fun-writing-room",
     "name": "The Writers Were Left Alone",
-    "acts": [2, 3],
+    "acts": [
+      2,
+      3
+    ],
     "cost": 2,
-    "pc": -1, "fun": 4, "gore": 0, "ordinary": 1,
-    "jank": 0, "hype": 3,
-    "tags": ["narrative"],
+    "pc": -1,
+    "fun": 4,
+    "gore": 0,
+    "ordinary": 1,
+    "jank": 0,
+    "hype": 3,
+    "tags": [
+      "narrative"
+    ],
     "blurb": "No notes. No council. One door, closed.",
     "body": "Six months, no stakeholder review, no alignment session. What came back has a joke on page one that would not have survived a single meeting. It is the best thing anyone here has shipped."
   },
   {
     "id": "fun-no-tutorial",
     "name": "It Doesn't Explain Itself",
-    "acts": [2, 3],
+    "acts": [
+      2,
+      3
+    ],
     "cost": 1,
-    "pc": 0, "fun": 2, "gore": 0, "ordinary": 0,
-    "jank": 2, "hype": 2,
-    "tags": ["ui", "narrative"],
+    "pc": 0,
+    "fun": 2,
+    "gore": 0,
+    "ordinary": 0,
+    "jank": 2,
+    "hype": 2,
+    "tags": [
+      "ui",
+      "narrative"
+    ],
     "blurb": "You are dropped in and treated like an adult.",
     "body": "No hand, no glowing paint, no companion saying 'looks like we'll need a key.' Some people will bounce off it in nine minutes. The ones who don't will talk about it for a decade."
   },
   {
     "id": "fun-endgame",
     "name": "An Ending That Ends",
-    "acts": [2, 3],
+    "acts": [
+      2,
+      3
+    ],
     "cost": 1,
-    "pc": 0, "fun": 2, "gore": 0, "ordinary": 1,
-    "jank": 0, "hype": 1,
-    "tags": ["narrative"],
+    "pc": 0,
+    "fun": 2,
+    "gore": 0,
+    "ordinary": 1,
+    "jank": 0,
+    "hype": 1,
+    "tags": [
+      "narrative"
+    ],
     "blurb": "Credits roll. Nothing is teased. The story is over.",
     "body": "No stinger, no sequel hook, no live-service door left ajar. Marketing hated it. Players finished it, sat there for a second, and then went and told someone about it."
   },
   {
     "id": "fun-jump",
     "name": "A Jump Button",
-    "acts": [1, 2, 3],
+    "acts": [
+      1,
+      2,
+      3
+    ],
     "cost": 1,
-    "pc": 0, "fun": 1, "gore": 0, "ordinary": 1,
-    "jank": -2, "hype": 1,
-    "tags": ["combat", "tech"],
+    "pc": 0,
+    "fun": 1,
+    "gore": 0,
+    "ordinary": 1,
+    "jank": -2,
+    "hype": 1,
+    "tags": [
+      "combat",
+      "tech"
+    ],
     "blurb": "The character can leave the ground. Revolutionary.",
     "body": "Three prior titles shipped without one because it complicated the navmesh. This one has it, it feels good, and every review mentions it in a tone somewhere between relief and pity."
   },
-
   {
     "id": "gore-spray",
     "name": "Arterial Spray",
-    "acts": [2, 3],
+    "acts": [
+      2,
+      3
+    ],
     "cost": 1,
-    "pc": 0, "fun": 0, "gore": 2, "ordinary": 0,
-    "jank": 1, "hype": 4,
-    "tags": ["combat", "art"],
+    "pc": 0,
+    "fun": 0,
+    "gore": 2,
+    "ordinary": 0,
+    "jank": 1,
+    "hype": 4,
+    "tags": [
+      "combat",
+      "art"
+    ],
     "blurb": "People leak like plumbing when you open them.",
     "body": "Hit a neck and the wall becomes a problem for whoever mops. The physics intern stayed late. Streaming sites will demonetize the trailer, which is free marketing."
   },
   {
     "id": "gore-dismember",
     "name": "Dismemberment",
-    "acts": [2, 3],
+    "acts": [
+      2,
+      3
+    ],
     "cost": 1,
-    "pc": 0, "fun": 0, "gore": 2, "ordinary": 0,
-    "jank": 3, "hype": 5,
-    "tags": ["combat", "tech"],
+    "pc": 0,
+    "fun": 0,
+    "gore": 2,
+    "ordinary": 0,
+    "jank": 3,
+    "hype": 5,
+    "tags": [
+      "combat",
+      "tech"
+    ],
     "blurb": "Limbs are optional after the shotgun.",
     "body": "Arms come off. Legs come off. The torso keeps the wallet. You can paint a parking space with a man who was complaining about the ticket machine. Rated M for finally."
   },
   {
     "id": "gore-headshot",
     "name": "Headshots Count",
-    "acts": [2, 3],
+    "acts": [
+      2,
+      3
+    ],
     "cost": 1,
-    "pc": 0, "fun": 0, "gore": 2, "ordinary": 0,
-    "jank": 0, "hype": 3,
-    "tags": ["combat"],
+    "pc": 0,
+    "fun": 0,
+    "gore": 2,
+    "ordinary": 0,
+    "jank": 0,
+    "hype": 3,
+    "tags": [
+      "combat"
+    ],
     "blurb": "The head is a weak point again.",
     "body": "Helmets help until they don't. A clean shot ends the conversation. The industry will call this 'unexamined violence.' The audience will call it 'the gun works.'"
   },
   {
     "id": "gore-ragdoll",
     "name": "Ragdolls With Opinions",
-    "acts": [2, 3],
+    "acts": [
+      2,
+      3
+    ],
     "cost": 1,
-    "pc": 0, "fun": 1, "gore": 2, "ordinary": 0,
-    "jank": 7, "hype": 6,
-    "tags": ["tech", "meme"],
+    "pc": 0,
+    "fun": 1,
+    "gore": 2,
+    "ordinary": 0,
+    "jank": 7,
+    "hype": 6,
+    "tags": [
+      "tech",
+      "meme"
+    ],
     "blurb": "Bodies fall downstairs with unearned comic timing.",
     "body": "The solver is slightly wrong in a way that is much funnier than correct would be. A man will fold into a shopping trolley and stay there. Do not fix it. Ship it.",
-    "unlock": { "type": "shipped-gore", "value": 4, "hint": "Ship a title with 4+ GORE." }
+    "unlock": {
+      "type": "shipped-gore",
+      "value": 4,
+      "hint": "Ship a title with 4+ GORE."
+    }
   },
   {
     "id": "gore-executions",
     "name": "Contextual Executions",
-    "acts": [2, 3],
+    "acts": [
+      2,
+      3
+    ],
     "cost": 2,
-    "pc": 0, "fun": 1, "gore": 3, "ordinary": 0,
-    "jank": 4, "hype": 5,
-    "tags": ["combat", "art"],
+    "pc": 0,
+    "fun": 1,
+    "gore": 3,
+    "ordinary": 0,
+    "jank": 4,
+    "hype": 5,
+    "tags": [
+      "combat",
+      "art"
+    ],
     "blurb": "Forty bespoke ways to end a disagreement.",
     "body": "Press the button near a wall and the wall becomes part of it. Press it near a car door and the car door becomes part of it. Each one is eight seconds of animation nobody will ever skip."
   },
   {
     "id": "gore-persistent",
     "name": "The Blood Stays",
-    "acts": [2, 3],
+    "acts": [
+      2,
+      3
+    ],
     "cost": 1,
-    "pc": 0, "fun": 0, "gore": 2, "ordinary": 1,
-    "jank": 5, "hype": 2,
-    "tags": ["tech", "art"],
+    "pc": 0,
+    "fun": 0,
+    "gore": 2,
+    "ordinary": 1,
+    "jank": 5,
+    "hype": 2,
+    "tags": [
+      "tech",
+      "art"
+    ],
     "blurb": "Decals never despawn. The level is a diary.",
     "body": "Walk back through an hour later and you can read what you did. Memory budget objected. Memory budget lost. The lighting artist calls it 'the ledger' and will not explain further."
   },
   {
     "id": "gore-weapon-weight",
     "name": "The Shotgun Has Consequences",
-    "acts": [2, 3],
+    "acts": [
+      2,
+      3
+    ],
     "cost": 2,
-    "pc": 0, "fun": 2, "gore": 2, "ordinary": 0,
-    "jank": 1, "hype": 4,
-    "tags": ["combat", "tech"],
+    "pc": 0,
+    "fun": 2,
+    "gore": 2,
+    "ordinary": 0,
+    "jank": 1,
+    "hype": 4,
+    "tags": [
+      "combat",
+      "tech"
+    ],
     "blurb": "One barrel. One decision. One very large hole.",
     "body": "It kicks, it deafens, it takes a full second to break open and reload, and every one of those frames is doing work. Nobody who fires it twice ever puts it down."
   },
   {
     "id": "gore-enemies-beg",
     "name": "They Beg",
-    "acts": [2, 3],
+    "acts": [
+      2,
+      3
+    ],
     "cost": 1,
-    "pc": -1, "fun": 0, "gore": 3, "ordinary": 1,
-    "jank": 2, "hype": 5,
-    "tags": ["combat", "narrative"],
+    "pc": -1,
+    "fun": 0,
+    "gore": 3,
+    "ordinary": 1,
+    "jank": 2,
+    "hype": 5,
+    "tags": [
+      "combat",
+      "narrative"
+    ],
     "blurb": "The last one alive drops his weapon and asks you not to.",
     "body": "You can walk away. Most people don't, the first time. The industry will write eleven thousand words about whether this is examined. The audience will go very quiet and then buy a second copy for a friend."
   },
   {
     "id": "gore-mature-rating",
     "name": "Rated M And Proud",
-    "acts": [2, 3],
+    "acts": [
+      2,
+      3
+    ],
     "cost": 1,
-    "pc": -1, "fun": 1, "gore": 2, "ordinary": 0,
-    "jank": 0, "hype": 4,
-    "tags": ["meme"],
+    "pc": -1,
+    "fun": 1,
+    "gore": 2,
+    "ordinary": 0,
+    "jank": 0,
+    "hype": 4,
+    "tags": [
+      "meme"
+    ],
     "blurb": "The rating is on the front of the box in red.",
     "body": "No apologetic press release, no 'we understand this is difficult.' A number and a letter and a promise. Two storefronts will bury you in search. The other four will not."
   },
   {
     "id": "gore-boss-hurts",
     "name": "The Boss Can Kill You",
-    "acts": [2, 3],
+    "acts": [
+      2,
+      3
+    ],
     "cost": 1,
-    "pc": 0, "fun": 2, "gore": 1, "ordinary": 0,
-    "jank": 0, "hype": 3,
-    "tags": ["combat"],
+    "pc": 0,
+    "fun": 2,
+    "gore": 1,
+    "ordinary": 0,
+    "jank": 0,
+    "hype": 3,
+    "tags": [
+      "combat"
+    ],
     "blurb": "Losing is possible, which makes winning a thing.",
     "body": "It has a real damage number and no pity mechanic. Somebody will post a nineteen-minute video about the third phase. That video is worth more than the awards push you were considering."
   },
-
   {
     "id": "ord-dad",
     "name": "Balding Dad",
-    "acts": [2, 3],
+    "acts": [
+      2,
+      3
+    ],
     "cost": 1,
-    "pc": 0, "fun": 1, "gore": 0, "ordinary": 2,
-    "jank": 0, "hype": 2,
-    "tags": ["character"],
+    "pc": 0,
+    "fun": 1,
+    "gore": 0,
+    "ordinary": 2,
+    "jank": 0,
+    "hype": 2,
+    "tags": [
+      "character"
+    ],
     "blurb": "Your lead is a guy named Mark who just wants to pick up milk.",
     "body": "He has a Costco card and a bad knee. He is not valid, he is late. The tragedy is the gallon in the back seat. Players recognize him immediately and do not need a glossary."
   },
   {
     "id": "ord-nurse",
     "name": "Exhausted Nurse",
-    "acts": [2, 3],
+    "acts": [
+      2,
+      3
+    ],
     "cost": 1,
-    "pc": 0, "fun": 1, "gore": 0, "ordinary": 2,
-    "jank": 0, "hype": 2,
-    "tags": ["character"],
+    "pc": 0,
+    "fun": 1,
+    "gore": 0,
+    "ordinary": 2,
+    "jank": 0,
+    "hype": 2,
+    "tags": [
+      "character"
+    ],
     "blurb": "She worked a double and the parking lot is not safe.",
     "body": "Scrubs, coffee, a name tag that says Linda. She is not a metaphor for care work. She is tired and she has scissors. The story is tonight, not a seminar."
   },
   {
     "id": "ord-dave",
     "name": "Dave Who Wants A Beer",
-    "acts": [2, 3],
+    "acts": [
+      2,
+      3
+    ],
     "cost": 1,
-    "pc": 0, "fun": 1, "gore": 0, "ordinary": 2,
-    "jank": 0, "hype": 3,
-    "tags": ["character", "meme"],
+    "pc": 0,
+    "fun": 1,
+    "gore": 0,
+    "ordinary": 2,
+    "jank": 0,
+    "hype": 3,
+    "tags": [
+      "character",
+      "meme"
+    ],
     "blurb": "The character creator is a man named Dave. There is no slider.",
     "body": "Dave is thirty-eight. Dave's tragic backstory is that the tap was out of lager. He will kill for a parking space and apologize to nobody. The press kit has one photo and it is Dave."
   },
   {
     "id": "ord-nightshift",
     "name": "The Night Shift",
-    "acts": [2, 3],
+    "acts": [
+      2,
+      3
+    ],
     "cost": 1,
-    "pc": 0, "fun": 1, "gore": 0, "ordinary": 2,
-    "jank": 1, "hype": 1,
-    "tags": ["art", "narrative"],
+    "pc": 0,
+    "fun": 1,
+    "gore": 0,
+    "ordinary": 2,
+    "jank": 1,
+    "hype": 1,
+    "tags": [
+      "art",
+      "narrative"
+    ],
     "blurb": "Petrol station strip lights at 3am, rendered lovingly.",
     "body": "The hum is real. The floor is wet in one corner. Nobody in this game has a destiny; they have a shift ending at six and a car that might not start."
   },
   {
     "id": "ord-mundane-dialogue",
     "name": "People Talk Like People",
-    "acts": [2, 3],
+    "acts": [
+      2,
+      3
+    ],
     "cost": 1,
-    "pc": 0, "fun": 2, "gore": 0, "ordinary": 2,
-    "jank": 0, "hype": 2,
-    "tags": ["narrative"],
+    "pc": 0,
+    "fun": 2,
+    "gore": 0,
+    "ordinary": 2,
+    "jank": 0,
+    "hype": 2,
+    "tags": [
+      "narrative"
+    ],
     "blurb": "Nobody announces a theme. They complain about parking.",
     "body": "Two men discuss a boiler for ninety seconds and by the end you would take a bullet for either of them. This is the hardest thing on this entire list to write and it costs one point."
   },
   {
     "id": "ord-small-town",
     "name": "A Town You've Driven Through",
-    "acts": [2, 3],
+    "acts": [
+      2,
+      3
+    ],
     "cost": 2,
-    "pc": 0, "fun": 1, "gore": 0, "ordinary": 3,
-    "jank": 2, "hype": 2,
-    "tags": ["art"],
+    "pc": 0,
+    "fun": 1,
+    "gore": 0,
+    "ordinary": 3,
+    "jank": 2,
+    "hype": 2,
+    "tags": [
+      "art"
+    ],
     "blurb": "Not a kingdom. A place with one good chip shop.",
     "body": "Roundabouts, a closed department store, a leisure centre with a cracked sign. Nobody built a lore bible. They built a memory, and everybody who plays it recognises a street."
   },
   {
     "id": "ord-dog",
     "name": "There Is A Dog",
-    "acts": [2, 3],
+    "acts": [
+      2,
+      3
+    ],
     "cost": 1,
-    "pc": 0, "fun": 2, "gore": 0, "ordinary": 1,
-    "jank": 1, "hype": 6,
-    "tags": ["character", "meme"],
+    "pc": 0,
+    "fun": 2,
+    "gore": 0,
+    "ordinary": 1,
+    "jank": 1,
+    "hype": 6,
+    "tags": [
+      "character",
+      "meme"
+    ],
     "blurb": "You can pet the dog. The dog does not die.",
     "body": "Marketing wanted the dog to die for the trailer. Marketing was told no by a room of people who do not usually agree on anything. The dog lives and the pre-orders doubled."
   },
   {
     "id": "ord-job",
     "name": "The Protagonist Has A Job",
-    "acts": [2, 3],
+    "acts": [
+      2,
+      3
+    ],
     "cost": 1,
-    "pc": 0, "fun": 1, "gore": 0, "ordinary": 2,
-    "jank": 0, "hype": 1,
-    "tags": ["narrative", "character"],
+    "pc": 0,
+    "fun": 1,
+    "gore": 0,
+    "ordinary": 2,
+    "jank": 0,
+    "hype": 1,
+    "tags": [
+      "narrative",
+      "character"
+    ],
     "blurb": "Not a chosen one. A regional sales rep.",
     "body": "He has a lanyard and a quota and neither of them stop mattering when the shooting starts. The best cutscene in the game is a voicemail from his area manager during a siege."
   },
-
   {
     "id": "tech-sixty",
     "name": "It Runs At Sixty",
-    "acts": [1, 2, 3],
+    "acts": [
+      1,
+      2,
+      3
+    ],
     "cost": 2,
-    "pc": 0, "fun": 2, "gore": 0, "ordinary": 1,
-    "jank": -14, "hype": 3,
-    "tags": ["tech"],
+    "pc": 0,
+    "fun": 2,
+    "gore": 0,
+    "ordinary": 1,
+    "jank": -14,
+    "hype": 3,
+    "tags": [
+      "tech"
+    ],
     "blurb": "Locked, on the base console, in the busy scene.",
     "body": "Two engineers spent a whole title on this and produced no screenshots. It is the single most expensive invisible thing you can buy and every person who plays it will feel it without knowing why."
   },
   {
     "id": "tech-loadtimes",
     "name": "No Load Screens",
-    "acts": [2, 3],
+    "acts": [
+      2,
+      3
+    ],
     "cost": 2,
-    "pc": 0, "fun": 2, "gore": 0, "ordinary": 0,
-    "jank": -8, "hype": 3,
-    "tags": ["tech"],
+    "pc": 0,
+    "fun": 2,
+    "gore": 0,
+    "ordinary": 0,
+    "jank": -8,
+    "hype": 3,
+    "tags": [
+      "tech"
+    ],
     "blurb": "Death to retry is under a second.",
     "body": "The streaming rewrite ate a quarter and a programmer's relationship with daylight. In exchange, dying stops being a punishment and starts being a rhythm, and the whole difficulty curve gets to be honest."
   },
   {
     "id": "tech-mod-support",
     "name": "Mod Tools On Day One",
-    "acts": [2, 3],
+    "acts": [
+      2,
+      3
+    ],
     "cost": 2,
-    "pc": 0, "fun": 2, "gore": 1, "ordinary": 0,
-    "jank": 4, "hype": 5,
-    "tags": ["tech", "social", "meme"],
+    "pc": 0,
+    "fun": 2,
+    "gore": 1,
+    "ordinary": 0,
+    "jank": 4,
+    "hype": 5,
+    "tags": [
+      "tech",
+      "social",
+      "meme"
+    ],
     "blurb": "You hand the players the keys and walk away.",
     "body": "Within a week somebody has replaced every enemy with a screaming version of your logo and the game is on the front page again. Within a year the mods are why anyone still owns it.",
-    "unlock": { "type": "titles-shipped", "value": 3, "hint": "Ship 3 titles across all runs." }
+    "unlock": {
+      "type": "titles-shipped",
+      "value": 3,
+      "hint": "Ship 3 titles across all runs."
+    }
   },
   {
     "id": "tech-crossplay",
     "name": "Crossplay",
-    "acts": [3],
+    "acts": [
+      3
+    ],
     "cost": 2,
-    "pc": 0, "fun": 2, "gore": 0, "ordinary": 1,
-    "jank": 9, "hype": 4,
-    "tags": ["tech", "social"],
+    "pc": 0,
+    "fun": 2,
+    "gore": 0,
+    "ordinary": 1,
+    "jank": 9,
+    "hype": 4,
+    "tags": [
+      "tech",
+      "social"
+    ],
     "blurb": "Every platform, one lobby, four legal departments.",
     "body": "Technically hard, politically harder. The certification matrix has its own producer. But the player base stops being four small ponds and becomes an actual sea, and matchmaking finally works at 2am."
   },
   {
     "id": "tech-anti-tamper",
     "name": "Aggressive Anti-Tamper",
-    "acts": [1, 3],
+    "acts": [
+      1,
+      3
+    ],
     "cost": 1,
-    "pc": 0, "fun": -2, "gore": 0, "ordinary": 0,
-    "jank": 11, "hype": 0,
-    "tags": ["tech", "monetization"],
+    "pc": 0,
+    "fun": -2,
+    "gore": 0,
+    "ordinary": 0,
+    "jank": 11,
+    "hype": 0,
+    "tags": [
+      "tech",
+      "monetization"
+    ],
     "blurb": "Piracy protection that costs the paying customer eight frames.",
     "body": "The publisher insists. It will be cracked in nine days. The nine days are worth, by their own modelling, four hundred thousand dollars, and the permanent stutter in the market square is worth, by nobody's modelling, everything."
   },
   {
     "id": "tech-always-online",
     "name": "Always Online (Single Player)",
-    "acts": [1, 3],
+    "acts": [
+      1,
+      3
+    ],
     "cost": 1,
-    "pc": 0, "fun": -2, "gore": 0, "ordinary": -1,
-    "jank": 13, "hype": 0,
-    "tags": ["tech", "monetization"],
+    "pc": 0,
+    "fun": -2,
+    "gore": 0,
+    "ordinary": -1,
+    "jank": 13,
+    "hype": 0,
+    "tags": [
+      "tech",
+      "monetization"
+    ],
     "blurb": "The campaign needs the internet for telemetry reasons.",
     "body": "There is no multiplayer. There is a dashboard. Somebody in a suite of offices you have never visited needs to see a live count, and so a man in a village with bad broadband cannot play the thing he bought."
   },
   {
     "id": "tech-ai-npcs",
     "name": "Generative NPC Chatter",
-    "acts": [3],
+    "acts": [
+      3
+    ],
     "cost": 2,
-    "pc": 1, "fun": -1, "gore": 0, "ordinary": -1,
-    "jank": 16, "hype": 7,
-    "tags": ["tech", "narrative", "meme"],
+    "pc": 1,
+    "fun": -1,
+    "gore": 0,
+    "ordinary": -1,
+    "jank": 16,
+    "hype": 7,
+    "tags": [
+      "tech",
+      "narrative",
+      "meme"
+    ],
     "blurb": "Infinite dialogue, none of it written, all of it damp.",
     "body": "The keynote demo was electrifying. In the build, the blacksmith explains his feelings for six minutes and then offers to help you find a therapist. A journalist got him to recite a recipe. That clip has nine million views."
   },
   {
     "id": "tech-engine-rewrite",
     "name": "We Rewrote The Engine",
-    "acts": [2, 3],
+    "acts": [
+      2,
+      3
+    ],
     "cost": 3,
-    "pc": 0, "fun": 3, "gore": 1, "ordinary": 0,
-    "jank": -20, "hype": 2,
-    "tags": ["tech"],
+    "pc": 0,
+    "fun": 3,
+    "gore": 1,
+    "ordinary": 0,
+    "jank": -20,
+    "hype": 2,
+    "tags": [
+      "tech"
+    ],
     "blurb": "A whole title spent on the thing under the thing.",
     "body": "No feature to demo, no bullet point for the box. Just every single thing after this being cheaper, faster and less broken. The bravest and least rewarded decision available to you."
   },
-
   {
     "id": "mon-battlepass",
     "name": "Battle Pass",
-    "acts": [1, 3],
+    "acts": [
+      1,
+      3
+    ],
     "cost": 1,
-    "pc": 0, "fun": -1, "gore": 0, "ordinary": 0,
-    "jank": 3, "hype": 2,
-    "tags": ["monetization", "ui"],
+    "pc": 0,
+    "fun": -1,
+    "gore": 0,
+    "ordinary": 0,
+    "jank": 3,
+    "hype": 2,
+    "tags": [
+      "monetization",
+      "ui"
+    ],
     "money": 0.35,
     "blurb": "A second progression bar that expires if you have a life.",
     "body": "Ninety tiers, ten weeks, one bar that fills only when you play the way the spreadsheet prefers. The design is not about fun, it is about Tuesday. Revenue is genuinely enormous."
@@ -703,11 +1341,20 @@
   {
     "id": "mon-cosmetics",
     "name": "Cosmetic Store",
-    "acts": [1, 3],
+    "acts": [
+      1,
+      3
+    ],
     "cost": 1,
-    "pc": 0, "fun": 0, "gore": 0, "ordinary": 0,
-    "jank": 2, "hype": 1,
-    "tags": ["monetization"],
+    "pc": 0,
+    "fun": 0,
+    "gore": 0,
+    "ordinary": 0,
+    "jank": 2,
+    "hype": 1,
+    "tags": [
+      "monetization"
+    ],
     "money": 0.25,
     "blurb": "The good hat costs more than the game did in 2009.",
     "body": "It rotates daily, it has a countdown timer, and the countdown timer is the product. Purely optional, entirely fine, and quietly responsible for the fact that anyone here still has a job."
@@ -715,11 +1362,21 @@
   {
     "id": "mon-lootbox",
     "name": "Surprise Mechanics",
-    "acts": [1, 3],
+    "acts": [
+      1,
+      3
+    ],
     "cost": 1,
-    "pc": 0, "fun": -2, "gore": 0, "ordinary": -1,
-    "jank": 4, "hype": 0,
-    "tags": ["monetization", "meme"],
+    "pc": 0,
+    "fun": -2,
+    "gore": 0,
+    "ordinary": -1,
+    "jank": 4,
+    "hype": 0,
+    "tags": [
+      "monetization",
+      "meme"
+    ],
     "money": 0.6,
     "blurb": "Not gambling. A surprise. Legally distinct.",
     "body": "Two jurisdictions have opened files. The publisher's legal team has a slide deck called 'Delight Loops.' The whales in this game are funding the salaries of people who would like to work on something else."
@@ -727,11 +1384,20 @@
   {
     "id": "mon-preorder-bonus",
     "name": "Pre-Order Exclusive Sword",
-    "acts": [1, 3],
+    "acts": [
+      1,
+      3
+    ],
     "cost": 1,
-    "pc": 0, "fun": -1, "gore": 0, "ordinary": 0,
-    "jank": 0, "hype": 5,
-    "tags": ["monetization"],
+    "pc": 0,
+    "fun": -1,
+    "gore": 0,
+    "ordinary": 0,
+    "jank": 0,
+    "hype": 5,
+    "tags": [
+      "monetization"
+    ],
     "money": 0.15,
     "blurb": "The best weapon is a marketing asset.",
     "body": "It trivialises the first four hours and it will be sold separately in eleven weeks. Everyone involved knows this. The pre-order graph does not care, and the pre-order graph is what gets shown to the board."
@@ -739,11 +1405,21 @@
   {
     "id": "mon-day-one-dlc",
     "name": "Day-One DLC",
-    "acts": [1, 3],
+    "acts": [
+      1,
+      3
+    ],
     "cost": 1,
-    "pc": 0, "fun": -2, "gore": 0, "ordinary": 0,
-    "jank": 1, "hype": 1,
-    "tags": ["monetization", "meme"],
+    "pc": 0,
+    "fun": -2,
+    "gore": 0,
+    "ordinary": 0,
+    "jank": 1,
+    "hype": 1,
+    "tags": [
+      "monetization",
+      "meme"
+    ],
     "money": 0.3,
     "blurb": "Content cut from the disc, sold back on the disc.",
     "body": "It was finished in July. It ships in the store on launch day at nineteen ninety-nine because a model said the attach rate was better that way. The community found the files. The community is furious. The community bought it."
@@ -751,11 +1427,19 @@
   {
     "id": "mon-season-pass",
     "name": "Season Pass For A Season That Doesn't Exist",
-    "acts": [3],
+    "acts": [
+      3
+    ],
     "cost": 1,
-    "pc": 0, "fun": -1, "gore": 0, "ordinary": 0,
-    "jank": 2, "hype": 3,
-    "tags": ["monetization"],
+    "pc": 0,
+    "fun": -1,
+    "gore": 0,
+    "ordinary": 0,
+    "jank": 2,
+    "hype": 3,
+    "tags": [
+      "monetization"
+    ],
     "money": 0.4,
     "blurb": "Sell four expansions. Greenlight one. Cancel two.",
     "body": "The roadmap graphic has four rectangles and three of them say 'and more.' It sells extraordinarily well on day one and becomes a permanent, load-bearing grievance by month five."
@@ -763,11 +1447,20 @@
   {
     "id": "mon-live-service",
     "name": "Live Service Pivot",
-    "acts": [3],
+    "acts": [
+      3
+    ],
     "cost": 3,
-    "pc": 1, "fun": -3, "gore": 0, "ordinary": -2,
-    "jank": 14, "hype": 4,
-    "tags": ["monetization", "tech"],
+    "pc": 1,
+    "fun": -3,
+    "gore": 0,
+    "ordinary": -2,
+    "jank": 14,
+    "hype": 4,
+    "tags": [
+      "monetization",
+      "tech"
+    ],
     "money": 0.9,
     "blurb": "The game is now a place. Nobody asked for a place.",
     "body": "There is a hub world where you emote at strangers, a currency with a second currency inside it, and a content treadmill that requires forty people forever. Two years in, someone will write a very good article about what this cost."
@@ -775,11 +1468,19 @@
   {
     "id": "mon-remaster",
     "name": "Remaster Of A Thing You Already Own",
-    "acts": [3],
+    "acts": [
+      3
+    ],
     "cost": 1,
-    "pc": 0, "fun": 1, "gore": 0, "ordinary": 1,
-    "jank": -4, "hype": 3,
-    "tags": ["monetization"],
+    "pc": 0,
+    "fun": 1,
+    "gore": 0,
+    "ordinary": 1,
+    "jank": -4,
+    "hype": 3,
+    "tags": [
+      "monetization"
+    ],
     "money": 0.35,
     "blurb": "Same game. New lighting. Full price.",
     "body": "Six weeks of contractor time and a colour grade. It reviews better than the original did because taste moved, and it makes more money than the original did because nostalgia is the cheapest raw material on earth."
@@ -787,11 +1488,20 @@
   {
     "id": "mon-chain-collectibles",
     "name": "Digital Collectibles On A Chain",
-    "acts": [3],
+    "acts": [
+      3
+    ],
     "cost": 1,
-    "pc": 0, "fun": -3, "gore": 0, "ordinary": -2,
-    "jank": 7, "hype": 8,
-    "tags": ["monetization", "meme"],
+    "pc": 0,
+    "fun": -3,
+    "gore": 0,
+    "ordinary": -2,
+    "jank": 7,
+    "hype": 8,
+    "tags": [
+      "monetization",
+      "meme"
+    ],
     "money": 0.5,
     "blurb": "An investor said the word and now it's in the game.",
     "body": "Announced Tuesday, trending Tuesday, walked back Thursday. The apology post uses the phrase 'we hear you' and the word 'exploring.' The heat from this is enormous and none of it is the good kind."
@@ -799,94 +1509,347 @@
   {
     "id": "mon-fomo-event",
     "name": "Limited-Time Event",
-    "acts": [3],
+    "acts": [
+      3
+    ],
     "cost": 1,
-    "pc": 0, "fun": 0, "gore": 0, "ordinary": 0,
-    "jank": 3, "hype": 4,
-    "tags": ["monetization", "social"],
+    "pc": 0,
+    "fun": 0,
+    "gore": 0,
+    "ordinary": 0,
+    "jank": 3,
+    "hype": 4,
+    "tags": [
+      "monetization",
+      "social"
+    ],
     "money": 0.3,
     "blurb": "Two weeks only, which is a threat, not an offer.",
     "body": "The best content in the game is behind a calendar. People take days off work. The engagement graph looks like a heartbeat and the design team looks like people who have not seen daylight since the roadmap was approved."
   },
-
   {
     "id": "meme-jank-charm",
     "name": "Lovable Jank",
-    "acts": [2, 3],
+    "acts": [
+      2,
+      3
+    ],
     "cost": 1,
-    "pc": 0, "fun": 2, "gore": 0, "ordinary": 2,
-    "jank": 10, "hype": 6,
-    "tags": ["meme", "tech"],
+    "pc": 0,
+    "fun": 2,
+    "gore": 0,
+    "ordinary": 2,
+    "jank": 10,
+    "hype": 6,
+    "tags": [
+      "meme",
+      "tech"
+    ],
     "blurb": "It's broken and that is somehow the selling point.",
     "body": "The animations pop, the physics lie, and a man once clipped through a church. Nobody wants it fixed. The community made a compilation and the compilation is currently your entire marketing department.",
-    "unlock": { "type": "high-jank", "value": 50, "hint": "Ship a title with 50+ jank." }
+    "unlock": {
+      "type": "high-jank",
+      "value": 50,
+      "hint": "Ship a title with 50+ jank."
+    }
   },
   {
     "id": "meme-cursed-mascot",
     "name": "A Cursed Mascot",
-    "acts": [2, 3],
+    "acts": [
+      2,
+      3
+    ],
     "cost": 1,
-    "pc": 0, "fun": 1, "gore": 1, "ordinary": 1,
-    "jank": 2, "hype": 7,
-    "tags": ["meme", "art"],
+    "pc": 0,
+    "fun": 1,
+    "gore": 1,
+    "ordinary": 1,
+    "jank": 2,
+    "hype": 7,
+    "tags": [
+      "meme",
+      "art"
+    ],
     "blurb": "Wrong eyes. Wrong smile. Enormous merchandise sales.",
     "body": "An intern drew it as a joke at 4pm on a Friday. It is now on a bedspread in eleven countries. Nobody at this studio can explain it and everybody at this studio is being paid by it."
   },
   {
     "id": "meme-fourth-wall",
     "name": "It Knows You're Playing It",
-    "acts": [2, 3],
+    "acts": [
+      2,
+      3
+    ],
     "cost": 2,
-    "pc": 0, "fun": 3, "gore": 0, "ordinary": 0,
-    "jank": 5, "hype": 5,
-    "tags": ["meme", "narrative"],
+    "pc": 0,
+    "fun": 3,
+    "gore": 0,
+    "ordinary": 0,
+    "jank": 5,
+    "hype": 5,
+    "tags": [
+      "meme",
+      "narrative"
+    ],
     "blurb": "One character reads your save file out loud.",
     "body": "Done badly this is a student film. Done once, precisely, at the correct moment in hour nine, it is the thing everybody will make you promise not to spoil for them."
   },
   {
     "id": "meme-ragebait-trailer",
     "name": "Deliberately Provocative Trailer",
-    "acts": [2, 3],
+    "acts": [
+      2,
+      3
+    ],
     "cost": 1,
-    "pc": -1, "fun": 0, "gore": 1, "ordinary": 0,
-    "jank": 0, "hype": 8,
-    "tags": ["meme", "monetization"],
+    "pc": -1,
+    "fun": 0,
+    "gore": 1,
+    "ordinary": 0,
+    "jank": 0,
+    "hype": 8,
+    "tags": [
+      "meme",
+      "monetization"
+    ],
     "blurb": "Ninety seconds engineered to start an argument.",
     "body": "It works. It always works. Two hundred quote-posts by lunch, four opinion columns by Friday, and a wishlist graph that goes up like a rocket and does not distinguish between love and fury."
   },
   {
     "id": "meme-honest-marketing",
     "name": "The Trailer Is Actual Gameplay",
-    "acts": [2, 3],
+    "acts": [
+      2,
+      3
+    ],
     "cost": 1,
-    "pc": 0, "fun": 2, "gore": 0, "ordinary": 2,
-    "jank": 0, "hype": 2,
-    "tags": ["meme"],
+    "pc": 0,
+    "fun": 2,
+    "gore": 0,
+    "ordinary": 2,
+    "jank": 0,
+    "hype": 2,
+    "tags": [
+      "meme"
+    ],
     "blurb": "No target render. No 'not representative.' Just the game.",
     "body": "It looks worse than the competition's cinematic and it is the only honest thing on the storefront. The people who notice will notice loudly, and they will still be telling people two years from now."
   },
   {
     "id": "meme-devs-in-chat",
     "name": "The Devs Are In The Discord",
-    "acts": [2, 3],
+    "acts": [
+      2,
+      3
+    ],
     "cost": 1,
-    "pc": 0, "fun": 1, "gore": 0, "ordinary": 2,
-    "jank": -3, "hype": 4,
-    "tags": ["social", "meme"],
+    "pc": 0,
+    "fun": 1,
+    "gore": 0,
+    "ordinary": 2,
+    "jank": -3,
+    "hype": 4,
+    "tags": [
+      "social",
+      "meme"
+    ],
     "blurb": "Actual humans, posting actual answers, at actual hours.",
     "body": "No community manager filter, no approved language, one programmer swearing about a memory leak at midnight. Trust goes up in a way no marketing spend has ever managed. Occasionally a PR person has to lie down."
   },
   {
     "id": "meme-kickstarter",
     "name": "Ask The Players For The Money",
-    "acts": [2],
+    "acts": [
+      2
+    ],
     "cost": 1,
-    "pc": 0, "fun": 1, "gore": 0, "ordinary": 2,
-    "jank": 2, "hype": 6,
-    "tags": ["monetization", "social"],
+    "pc": 0,
+    "fun": 1,
+    "gore": 0,
+    "ordinary": 2,
+    "jank": 2,
+    "hype": 6,
+    "tags": [
+      "monetization",
+      "social"
+    ],
     "money": 0.2,
     "blurb": "No publisher. No board. Twelve thousand strangers and a promise.",
     "body": "You film the pitch in the garage with the CRT behind you and you do not lie once. It funds in nine hours. Every one of those people now owns a small piece of your conscience, which turns out to be a better governance structure than the last one.",
-    "unlock": { "type": "went-broke", "value": 1, "hint": "End a quarter in debt." }
+    "unlock": {
+      "type": "went-broke",
+      "value": 1,
+      "hint": "End a quarter in debt."
+    }
+  },
+  {
+    "id": "plat-store-tags",
+    "name": "Whatever The Store Decides It Is",
+    "acts": [
+      2,
+      3
+    ],
+    "cost": 1,
+    "pc": 0,
+    "fun": 0,
+    "gore": 0,
+    "ordinary": 1,
+    "jank": 0,
+    "hype": 4,
+    "tags": [
+      "social",
+      "ui"
+    ],
+    "blurb": "The algorithm files you next to something you have never played.",
+    "body": "You wrote four tags. The store read the refund rate, the median session, and something it will not disclose, and shelved you between a farming sim and a horror game about a lighthouse. Half your wishlists arrive from people who wanted the lighthouse."
+  },
+  {
+    "id": "plat-sale-timing",
+    "name": "Shipped Into The Sale",
+    "acts": [
+      2,
+      3
+    ],
+    "cost": 1,
+    "pc": 0,
+    "fun": 0,
+    "gore": 0,
+    "ordinary": 0,
+    "jank": 0,
+    "hype": 7,
+    "tags": [
+      "social"
+    ],
+    "money": 0.1,
+    "blurb": "Enormous reach, next to eleven thousand games at ninety percent off.",
+    "body": "The front page for four days, which is real. You are also competing with the entire back catalogue of the medium, all of it cheaper than you, most of it finished."
+  },
+  {
+    "id": "plat-certification",
+    "name": "Certification, Third Attempt",
+    "acts": [
+      2,
+      3
+    ],
+    "cost": 1,
+    "pc": 0,
+    "fun": 0,
+    "gore": 0,
+    "ordinary": 1,
+    "jank": -14,
+    "hype": 0,
+    "tags": [
+      "tech"
+    ],
+    "blurb": "A platform holder found the bug you shipped past twice.",
+    "body": "TRC 4.2.1: the game must not lose the save if the console sleeps during an autosave. It did. Twice. The third submission passes, the build is genuinely better, and nobody outside this building will ever know it happened."
+  },
+  {
+    "id": "aud-brigade-insurance",
+    "name": "Review-Bomb Insurance",
+    "acts": [
+      2,
+      3
+    ],
+    "cost": 1,
+    "pc": 1,
+    "fun": -1,
+    "gore": 0,
+    "ordinary": 0,
+    "jank": 2,
+    "hype": 0,
+    "tags": [
+      "social",
+      "cowardice"
+    ],
+    "blurb": "A community manager whose whole job is the first forty-eight hours.",
+    "body": "They pre-write the apology, the clarification, and the clarification of the clarification. Nothing is ever a crisis because everything has already been drafted as one. Morale in that seat is a rounding error."
+  },
+  {
+    "id": "aud-discourse-plan",
+    "name": "The Discourse Is The Marketing Plan",
+    "acts": [
+      2,
+      3
+    ],
+    "cost": 2,
+    "pc": 0,
+    "fun": 0,
+    "gore": 1,
+    "ordinary": 0,
+    "jank": 0,
+    "hype": 9,
+    "tags": [
+      "social",
+      "meme"
+    ],
+    "money": 0.1,
+    "blurb": "You are not buying ads. You are picking a fight on a schedule.",
+    "body": "Nobody says the plan out loud in the meeting. The trailer has one shot in it that exists purely to be quoted angrily, the reply is drafted before the trailer goes up, and the wishlist graph does something no ad spend has ever done for you."
+  },
+  {
+    "id": "aud-preorder-bonus",
+    "name": "Pre-Order And Get The Hat",
+    "acts": [
+      1,
+      3
+    ],
+    "cost": 1,
+    "pc": 0,
+    "fun": -1,
+    "gore": 0,
+    "ordinary": 0,
+    "jank": 1,
+    "hype": 5,
+    "tags": [
+      "monetization",
+      "ui"
+    ],
+    "money": 0.25,
+    "blurb": "Money before the game exists, from people who have not seen it.",
+    "body": "The hat is three hundred triangles and took an afternoon. It moves more units than the last two trailers combined, from an audience that has decided to trust you and will say so loudly right up until the day it does not."
+  },
+  {
+    "id": "fnd-founder-stream",
+    "name": "The Founder Streamed The Crunch",
+    "acts": [
+      1,
+      3
+    ],
+    "cost": 1,
+    "pc": 0,
+    "fun": 0,
+    "gore": 0,
+    "ordinary": 0,
+    "jank": 4,
+    "hype": 8,
+    "tags": [
+      "social",
+      "meme"
+    ],
+    "blurb": "Six hours of you being inspiring at people who wanted to go home.",
+    "body": "The clip that travels is not the one about passion. It is the ninety seconds where somebody off-camera says they have a kid, and you say 'so do I' in a tone that ends the conversation. Eleven thousand people watched it live."
+  },
+  {
+    "id": "fnd-no-apology",
+    "name": "We Don't Apologise",
+    "acts": [
+      2,
+      3
+    ],
+    "cost": 1,
+    "pc": -2,
+    "fun": 1,
+    "gore": 1,
+    "ordinary": 0,
+    "jank": 0,
+    "hype": 6,
+    "tags": [
+      "social",
+      "meme"
+    ],
+    "blurb": "A statement that is going to be screenshotted either way.",
+    "body": "Four sentences, no hedging, posted at nine in the morning on purpose. Half the replies call it a spine and half call it a tell. Both halves are now aware the game exists, which was never not the point."
   }
 ]

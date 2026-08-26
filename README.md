@@ -9,7 +9,7 @@
 **A satirical studio-management roguelite about what happens when the number
 you're being paid for stops being the number people are buying.**
 
-`v1.0.11` · Browser · Single-player · ~60–90 minutes per run · Zero runtime dependencies
+`v1.1.0` · Browser · Single-player · ~60–90 minutes per run · Zero runtime dependencies
 
 ### [▶ Play it in your browser](https://nihilistau.github.io/big-baby-company/)
 
@@ -189,7 +189,7 @@ mattering.
 ## Systems
 
 <details>
-<summary><strong>Cards, synergies and conflicts</strong> — 79 features, 24 synergies, 12 conflicts</summary>
+<summary><strong>Cards, synergies and conflicts</strong> — 87 features, 26 synergies, 15 conflicts</summary>
 
 <br>
 
@@ -412,7 +412,7 @@ second filing is the end.
 Vanilla ES modules. Vite. **Zero runtime dependencies.**
 
 ```
-10,944 lines of JavaScript · 175 tests · 54 art assets · 4,804 lines of content JSON
+11,188 lines of JavaScript · 184 tests · 54 art assets · 4,804 lines of content JSON
 ```
 
 The simulation is pure and synchronous — `advance(state, content)` takes a
@@ -427,7 +427,7 @@ is synthesised at runtime — there is not a single audio file in this project.
 ### Verify it yourself
 
 ```bash
-npm test                            # 175 tests: sim, content integrity, fuzz, UI
+npm test                            # 184 tests: sim, content integrity, fuzz, UI
 node tools/balance-sim.mjs          # Monte-Carlo balance sweep across six archetypes
 node tools/ch11-probe.mjs           # where a careful player actually goes broke
 npm run probe                       # meter attribution and the frugal-player curve

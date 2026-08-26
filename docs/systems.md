@@ -273,7 +273,7 @@ so 70 heat is a 58% chance every launch and 100 is ~90%.
 > actually generate: a fun studio shipping two meme cards makes **+6.4** a
 > cycle, one that crunches twice **+7.8**. Both swallowed whole, so they sat
 > pinned at zero while a full gore box made **+41** and ran away. There was no
-> middle, and **25 of 79 cards are meme-tagged and 14 monetisation-tagged** —
+> middle, and **28 of 87 cards are meme-tagged and 15 monetisation-tagged** —
 > half the catalogue carried heat tags that did nothing for most studios.
 >
 > Two knock-ons came with fixing it. The backlash floor of 30 had been fine

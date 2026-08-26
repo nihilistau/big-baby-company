@@ -6,6 +6,64 @@ All notable changes to Big Baby Company. Format follows
 
 ---
 
+## [1.1.0] — 2026-08-27
+
+Acting on an outside audit. Its priority list ran to seven items; the first four
+are code and are done. The rest — a storefront page, outside playtesters, and any
+question of a new engine — are not things a commit can deliver.
+
+### Added
+
+- **The Act I onboarding now insists on the premise.** The hover ghost *is* the
+  tutorial, and a player who never puts a cursor over a card next to the HUD can
+  finish an act without noticing the two numbers are in tension. Telling them to
+  try it was not enough. A prompt now sits on the first production board until
+  they have actually seen it happen once, ever — then never again.
+- **The first launch report says it out loud, once**, with that run's real
+  figures in it: how many people bought the thing and what they paid, against
+  what the investor paid for the score.
+- **Eight new cards** on platforms, storefronts, audiences and the founder — the
+  thin side of the catalogue. *Whatever The Store Decides It Is*, *Shipped Into
+  The Sale*, *Certification, Third Attempt*, *Review-Bomb Insurance*, *The
+  Discourse Is The Marketing Plan*, *Pre-Order And Get The Hat*, *The Founder
+  Streamed The Crunch*, *We Don't Apologise*. The identity jokes are 2021-era
+  specific and will date; wires-versus-units and a store algorithm will not.
+- Five rules keyed to the new material, including two synergies on the platform
+  and founder cards.
+
+### Changed
+
+- **The PC catalogue is three strains, not one lever.** Twenty-two cards all
+  pushing the same axis meant that after the fifth the player was not choosing.
+  They now split into `fashion` (7), `process` (3) and `cowardice` (9), each with
+  its own rule and its own visible filter: a costume is buggy, an apparatus is
+  slow, and a game afraid of itself does not sell.
+- **Every ending opens on its own sentence.** Three shared the identical
+  "they're pixels" paragraph. The motif was fine; the copy-paste was not.
+- **The refrain is a refrain again.** "Nah. It's the money, baby." was the sign-off
+  on six of eleven endings. It now lands on the two where the player actually
+  chose the money, plus one variant.
+- **A title is a stated stopping point.** The launch report says the run is saved
+  and this is a clean place to stop. Twenty-four quarters is a long sit for a
+  browser tab and the save was silent.
+- **Tap to preview on touch.** There is no hover on a phone, so the first tap on
+  a card ghosts it and the second commits.
+- **The phone HUD carries text again.** Below 560px the meter icons, labels *and*
+  values were all hidden, leaving four unlabelled coloured bars — unreadable, and
+  against this project's own rule that colour never carries information alone.
+
+### Fixed
+
+- A tag widening that broke the premise. Adding `process` to two didactic cards
+  and two platform cards repriced THE FULL PURPLE — +10 score, +7 standing at two
+  of them — from a deliberate build into a PC-studio default, and `pcmax` went
+  from a $74k median to $1.45M and out-earned `moneymax`. The balance harness
+  caught it on the first run. `process` now means the approval apparatus and
+  nothing else, and a test states the invariant: a rule paying score or standing
+  must need at least half its tag pool.
+
+---
+
 ## [1.0.11] — 2026-08-26
 
 A deliberate visibility pass. Three bugs in a row had turned out to be a working
@@ -663,6 +721,7 @@ game the demo was a mock-up of.
 - Hub scenes with invisible hotspots, overlay panels, localStorage save.
 - Vite + vanilla JS, Vitest, painterly generated art.
 
+[1.1.0]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.1.0
 [1.0.11]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.11
 [1.0.10]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.10
 [1.0.9]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.9

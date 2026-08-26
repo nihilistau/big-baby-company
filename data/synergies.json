@@ -3,288 +3,643 @@
     "id": "the-gun-works",
     "name": "THE GUN WORKS",
     "kind": "synergy",
-    "requires": ["fun-gunfeel", "gore-headshot"],
-    "effects": { "copiesMul": 1.4, "scoreAdd": -4, "trust": 6, "hype": 6 },
+    "requires": [
+      "fun-gunfeel",
+      "gore-headshot"
+    ],
+    "effects": {
+      "copiesMul": 1.4,
+      "scoreAdd": -4,
+      "trust": 6,
+      "hype": 6
+    },
     "line": "Weight, recoil, and a head that respects it. Nobody needed the pitch document."
   },
   {
     "id": "trilogy-of-care",
     "name": "THE TRILOGY OF CARE",
     "kind": "synergy",
-    "requires": ["pc-pronouns", "pc-they", "pc-lecture"],
-    "effects": { "copiesMul": 0.7, "scoreAdd": 15, "standing": 8, "trust": -8 },
+    "requires": [
+      "pc-pronouns",
+      "pc-they",
+      "pc-lecture"
+    ],
+    "effects": {
+      "copiesMul": 0.7,
+      "scoreAdd": 15,
+      "standing": 8,
+      "trust": -8
+    },
     "line": "Three separate systems asking the player to sit with it. The industry stands and does not sit back down."
   },
   {
     "id": "purple-everything",
     "name": "TOTAL PURPLE",
     "kind": "synergy",
-    "requires": ["pc-purple", "pc-body"],
-    "effects": { "scoreAdd": 8, "copiesMul": 0.85, "standing": 5, "hype": 3 },
+    "requires": [
+      "pc-purple",
+      "pc-body"
+    ],
+    "effects": {
+      "scoreAdd": 8,
+      "copiesMul": 0.85,
+      "standing": 5,
+      "hype": 3
+    },
     "line": "A numbered mannequin in a grape skybox. The brand guide has achieved sentience."
   },
   {
     "id": "parking-lot-doctrine",
     "name": "THE PARKING LOT DOCTRINE",
     "kind": "synergy",
-    "requires": ["ord-dave", "gore-spray"],
-    "effects": { "copiesMul": 1.35, "scoreAdd": -8, "heat": 12, "trust": 7 },
+    "requires": [
+      "ord-dave",
+      "gore-spray"
+    ],
+    "effects": {
+      "copiesMul": 1.35,
+      "scoreAdd": -8,
+      "heat": 12,
+      "trust": 7
+    },
     "line": "An ordinary man does an extraordinary amount of damage over a space marked 4B."
   },
   {
     "id": "actual-video-game",
     "name": "AN ACTUAL VIDEO GAME",
     "kind": "synergy",
-    "requiresTags": { "combat": 3 },
-    "effects": { "copiesMul": 1.3, "scoreAdd": -5, "trust": 8, "hype": 4 },
+    "requiresTags": {
+      "combat": 3
+    },
+    "effects": {
+      "copiesMul": 1.3,
+      "scoreAdd": -5,
+      "trust": 8,
+      "hype": 4
+    },
     "line": "Three combat features in one box. Somebody in this building still remembers what these are for."
   },
   {
     "id": "it-just-works",
     "name": "IT JUST WORKS",
     "kind": "synergy",
-    "requires": ["tech-sixty", "fun-ui"],
-    "effects": { "jank": -12, "trust": 10, "scoreAdd": 4, "copiesMul": 1.15 },
+    "requires": [
+      "tech-sixty",
+      "fun-ui"
+    ],
+    "effects": {
+      "jank": -12,
+      "trust": 10,
+      "scoreAdd": 4,
+      "copiesMul": 1.15
+    },
     "line": "Sixty frames and a HUD you can read. Reviewers will not mention it and everyone will feel it."
   },
   {
     "id": "engine-of-theseus",
     "name": "THE ENGINE OF THESEUS",
     "kind": "synergy",
-    "requires": ["tech-engine-rewrite", "tech-loadtimes"],
-    "effects": { "jank": -20, "trust": 8, "hype": 3, "copiesMul": 1.1 },
+    "requires": [
+      "tech-engine-rewrite",
+      "tech-loadtimes"
+    ],
+    "effects": {
+      "jank": -20,
+      "trust": 8,
+      "hype": 3,
+      "copiesMul": 1.1
+    },
     "line": "Rebuilt from the mount points out. Nothing to show the board. Everything to show the player."
   },
   {
     "id": "one-good-night",
     "name": "ONE GOOD NIGHT",
     "kind": "synergy",
-    "requires": ["ord-nightshift", "ord-mundane-dialogue"],
-    "effects": { "copiesMul": 1.25, "trust": 12, "scoreAdd": 3, "hype": 2 },
+    "requires": [
+      "ord-nightshift",
+      "ord-mundane-dialogue"
+    ],
+    "effects": {
+      "copiesMul": 1.25,
+      "trust": 12,
+      "scoreAdd": 3,
+      "hype": 2
+    },
     "line": "Strip lights, a wet floor, two people talking about nothing. This is the whole medium in ninety seconds."
   },
   {
     "id": "dog-and-dad",
     "name": "A MAN AND HIS DOG",
     "kind": "synergy",
-    "requires": ["ord-dad", "ord-dog"],
-    "effects": { "copiesMul": 1.3, "trust": 14, "hype": 8, "heat": -8 },
+    "requires": [
+      "ord-dad",
+      "ord-dog"
+    ],
+    "effects": {
+      "copiesMul": 1.3,
+      "trust": 14,
+      "hype": 8,
+      "heat": -8
+    },
     "line": "Mark is late, Mark is balding, and Mark is not leaving without the dog. Pre-orders have doubled again."
   },
   {
     "id": "left-alone",
     "name": "THE ROOM WITH THE DOOR CLOSED",
     "kind": "synergy",
-    "requires": ["fun-writing-room", "fun-endgame"],
-    "effects": { "scoreAdd": 10, "copiesMul": 1.2, "trust": 12, "standing": 4 },
+    "requires": [
+      "fun-writing-room",
+      "fun-endgame"
+    ],
+    "effects": {
+      "scoreAdd": 10,
+      "copiesMul": 1.2,
+      "trust": 12,
+      "standing": 4
+    },
     "line": "Nobody gave notes and the thing actually ends. Two miracles in one box."
   },
   {
     "id": "clip-farm",
     "name": "THE CLIP FARM",
     "kind": "synergy",
-    "requires": ["fun-physics", "gore-ragdoll"],
-    "effects": { "copiesMul": 1.45, "scoreAdd": -10, "jank": 8, "heat": 10, "hype": 10 },
+    "requires": [
+      "fun-physics",
+      "gore-ragdoll"
+    ],
+    "effects": {
+      "copiesMul": 1.45,
+      "scoreAdd": -10,
+      "jank": 8,
+      "heat": 10,
+      "hype": 10
+    },
     "line": "A man folds into a shopping trolley and stays there. The compilation has four million views by Thursday."
   },
   {
     "id": "sofa-summer",
     "name": "SOFA SUMMER",
     "kind": "synergy",
-    "requires": ["fun-coop", "fun-soundtrack"],
-    "effects": { "copiesMul": 1.3, "trust": 10, "hype": 7 },
+    "requires": [
+      "fun-coop",
+      "fun-soundtrack"
+    ],
+    "effects": {
+      "copiesMul": 1.3,
+      "trust": 10,
+      "hype": 7
+    },
     "line": "Two controllers, one sofa, and track four playing over the whole holiday."
   },
   {
     "id": "honest-shop",
     "name": "THE HONEST STOREFRONT",
     "kind": "synergy",
-    "requires": ["meme-honest-marketing", "meme-devs-in-chat"],
-    "effects": { "trust": 20, "copiesMul": 1.2, "hype": -3, "heat": -10 },
+    "requires": [
+      "meme-honest-marketing",
+      "meme-devs-in-chat"
+    ],
+    "effects": {
+      "trust": 20,
+      "copiesMul": 1.2,
+      "hype": -3,
+      "heat": -10
+    },
     "line": "No target render and a programmer swearing in the Discord at midnight. Nobody has seen this before and nobody knows what to do."
   },
   {
     "id": "the-lot-remembers",
     "name": "THE LOT REMEMBERS",
     "kind": "synergy",
-    "requires": ["gore-persistent", "ord-small-town"],
-    "effects": { "copiesMul": 1.25, "scoreAdd": -4, "trust": 9, "heat": 8 },
+    "requires": [
+      "gore-persistent",
+      "ord-small-town"
+    ],
+    "effects": {
+      "copiesMul": 1.25,
+      "scoreAdd": -4,
+      "trust": 9,
+      "heat": 8
+    },
     "line": "Walk back past the roundabout an hour later and the decals are still there, spelling out your afternoon."
   },
   {
     "id": "he-asked-nicely",
     "name": "HE ASKED NICELY",
     "kind": "synergy",
-    "requires": ["gore-enemies-beg", "ord-mundane-dialogue"],
-    "effects": { "copiesMul": 1.3, "scoreAdd": -6, "heat": 18, "trust": 10 },
+    "requires": [
+      "gore-enemies-beg",
+      "ord-mundane-dialogue"
+    ],
+    "effects": {
+      "copiesMul": 1.3,
+      "scoreAdd": -6,
+      "heat": 18,
+      "trust": 10
+    },
     "line": "He talks about his boiler for ninety seconds and then he drops the weapon. The room goes very quiet."
   },
   {
     "id": "difficulty-is-the-point",
     "name": "DIFFICULTY IS THE POINT",
     "kind": "synergy",
-    "requires": ["gore-boss-hurts", "fun-movement"],
-    "effects": { "copiesMul": 1.3, "trust": 9, "hype": 8, "scoreAdd": -3 },
+    "requires": [
+      "gore-boss-hurts",
+      "fun-movement"
+    ],
+    "effects": {
+      "copiesMul": 1.3,
+      "trust": 9,
+      "hype": 8,
+      "scoreAdd": -3
+    },
     "line": "It can kill you and you can slide out of the way. That is a whole genre, right there, in two cards."
   },
   {
     "id": "no-hand-holding",
     "name": "TREATED LIKE AN ADULT",
     "kind": "synergy",
-    "requires": ["fun-no-tutorial", "fun-secret"],
-    "effects": { "copiesMul": 1.15, "trust": 14, "hype": 6, "scoreAdd": 2 },
+    "requires": [
+      "fun-no-tutorial",
+      "fun-secret"
+    ],
+    "effects": {
+      "copiesMul": 1.15,
+      "trust": 14,
+      "hype": 6,
+      "scoreAdd": 2
+    },
     "line": "No glowing paint, no marker, and something behind a wall nobody was told about. Eleven days to find it."
   },
   {
     "id": "the-shotgun-covenant",
     "name": "THE SHOTGUN COVENANT",
     "kind": "synergy",
-    "requires": ["gore-weapon-weight", "gore-dismember"],
-    "effects": { "copiesMul": 1.4, "scoreAdd": -12, "heat": 16, "hype": 8 },
+    "requires": [
+      "gore-weapon-weight",
+      "gore-dismember"
+    ],
+    "effects": {
+      "copiesMul": 1.4,
+      "scoreAdd": -12,
+      "heat": 16,
+      "hype": 8
+    },
     "line": "One barrel, one decision, and a parking space that will need repainting."
   },
   {
     "id": "mod-eternal",
     "name": "MOD ETERNAL",
     "kind": "synergy",
-    "requires": ["tech-mod-support", "meme-cursed-mascot"],
-    "effects": { "copiesMul": 1.35, "trust": 12, "hype": 10, "heat": 6 },
+    "requires": [
+      "tech-mod-support",
+      "meme-cursed-mascot"
+    ],
+    "effects": {
+      "copiesMul": 1.35,
+      "trust": 12,
+      "hype": 10,
+      "heat": 6
+    },
     "line": "Every enemy is now a screaming version of your mascot. You are on the front page again and you did nothing."
   },
   {
     "id": "committee-of-committees",
     "name": "GOVERNANCE ALL THE WAY DOWN",
     "kind": "synergy",
-    "requires": ["pc-committee-boss", "pc-council"],
-    "effects": { "scoreAdd": 14, "copiesMul": 0.7, "standing": 10, "trust": -10 },
+    "requires": [
+      "pc-committee-boss",
+      "pc-council"
+    ],
+    "effects": {
+      "scoreAdd": 14,
+      "copiesMul": 0.7,
+      "standing": 10,
+      "trust": -10
+    },
     "line": "The final boss is a committee and the combat was approved by a different committee. The circle is closed."
   },
   {
     "id": "the-full-purple",
     "name": "THE FULL PURPLE",
     "kind": "synergy",
-    "requiresTags": { "process": 2 },
-    "effects": { "scoreAdd": 10, "copiesMul": 0.8, "standing": 7, "jank": 4 },
+    "requiresTags": {
+      "process": 2
+    },
+    "effects": {
+      "scoreAdd": 10,
+      "copiesMul": 0.8,
+      "standing": 7,
+      "jank": 4
+    },
     "line": "Two separate processes now exist to approve the thing that has not been made yet."
   },
   {
     "id": "wallet-first",
     "name": "WALLET-FIRST DESIGN",
     "kind": "synergy",
-    "requiresTags": { "monetization": 3 },
-    "effects": { "copiesMul": 0.8, "moneyMul": 1.6, "trust": -18, "heat": 14 },
+    "requiresTags": {
+      "monetization": 3
+    },
+    "effects": {
+      "copiesMul": 0.8,
+      "moneyMul": 1.6,
+      "trust": -18,
+      "heat": 14
+    },
     "line": "Three separate storefronts inside the thing they already paid for. Revenue per user has never looked better."
   },
   {
     "id": "the-treadmill",
     "name": "THE TREADMILL",
     "kind": "synergy",
-    "requires": ["mon-live-service", "mon-fomo-event"],
-    "effects": { "moneyMul": 1.8, "trust": -20, "copiesMul": 0.85, "jank": 8 },
+    "requires": [
+      "mon-live-service",
+      "mon-fomo-event"
+    ],
+    "effects": {
+      "moneyMul": 1.8,
+      "trust": -20,
+      "copiesMul": 0.85,
+      "jank": 8
+    },
     "line": "A place, a calendar, and a reason to log in on Tuesday forever. The engagement graph has a pulse."
   },
   {
     "id": "pay-to-be-early",
     "name": "PAY TO BE EARLY",
     "kind": "synergy",
-    "requires": ["mon-preorder-bonus", "mon-day-one-dlc"],
-    "effects": { "moneyMul": 1.4, "hype": 8, "trust": -14, "heat": 10 },
+    "requires": [
+      "mon-preorder-bonus",
+      "mon-day-one-dlc"
+    ],
+    "effects": {
+      "moneyMul": 1.4,
+      "hype": 8,
+      "trust": -14,
+      "heat": 10
+    },
     "line": "The best sword is a pre-order and the missing chapter is on the disc. The community found the files."
   },
   {
     "id": "stutter-tax",
     "name": "THE STUTTER TAX",
     "kind": "conflict",
-    "requires": ["tech-anti-tamper", "tech-always-online"],
-    "effects": { "jank": 18, "trust": -16, "copiesMul": 0.8, "heat": 12 },
+    "requires": [
+      "tech-anti-tamper",
+      "tech-always-online"
+    ],
+    "effects": {
+      "jank": 18,
+      "trust": -16,
+      "copiesMul": 0.8,
+      "heat": 12
+    },
     "line": "It phones home and it checks your papers. In the market square it does both at once and drops to nine frames."
   },
   {
     "id": "grape-soda-massacre",
     "name": "GRAPE SODA MASSACRE",
     "kind": "conflict",
-    "requires": ["pc-purple", "gore-spray"],
-    "effects": { "goreMul": 0.5, "heat": 14, "hype": 6, "scoreAdd": -3 },
+    "requires": [
+      "pc-purple",
+      "gore-spray"
+    ],
+    "effects": {
+      "goreMul": 0.5,
+      "heat": 14,
+      "hype": 6,
+      "scoreAdd": -3
+    },
     "line": "The blood is ultraviolet because the brand guide has no exceptions. It looks like a soft drink advert and the internet has noticed."
   },
   {
     "id": "pacifist-shotgun",
     "name": "THE PACIFIST WITH A SHOTGUN",
     "kind": "conflict",
-    "requires": ["pc-nonviolence", "gore-weapon-weight"],
-    "effects": { "goreMul": 0.4, "funMul": 0.6, "jank": 12, "scoreAdd": -6 },
+    "requires": [
+      "pc-nonviolence",
+      "gore-weapon-weight"
+    ],
+    "effects": {
+      "goreMul": 0.4,
+      "funMul": 0.6,
+      "jank": 12,
+      "scoreAdd": -6
+    },
     "line": "Mandatory dialogue resolution, plus a weapon that ends dialogue. The enemy AI has stopped responding to both."
   },
   {
     "id": "no-combat-with-combat",
     "name": "THE CONTRADICTION",
     "kind": "conflict",
-    "requires": ["pc-nocombat", "fun-gunfeel"],
-    "effects": { "funMul": 0.3, "jank": 14, "scoreAdd": -8, "trust": -8 },
+    "requires": [
+      "pc-nocombat",
+      "fun-gunfeel"
+    ],
+    "effects": {
+      "funMul": 0.3,
+      "jank": 14,
+      "scoreAdd": -8,
+      "trust": -8
+    },
     "line": "Combat was removed and the gunfeel was retained. There is now a beautifully tuned weapon with nothing to point it at."
   },
   {
     "id": "story-mode-boss",
     "name": "THE DECORATIVE HEALTH BAR",
     "kind": "conflict",
-    "requires": ["pc-accessible-difficulty", "gore-boss-hurts"],
-    "effects": { "funMul": 0.6, "scoreAdd": -4, "trust": -6, "jank": 6 },
+    "requires": [
+      "pc-accessible-difficulty",
+      "gore-boss-hurts"
+    ],
+    "effects": {
+      "funMul": 0.6,
+      "scoreAdd": -4,
+      "trust": -6,
+      "jank": 6
+    },
     "line": "The boss deals zero damage and also has a real damage number. QA has filed this eleven times."
   },
   {
     "id": "generative-mundane",
     "name": "THE DAMP BLACKSMITH",
     "kind": "conflict",
-    "requires": ["tech-ai-npcs", "ord-mundane-dialogue"],
-    "effects": { "funMul": 0.5, "jank": 12, "heat": 16, "trust": -14 },
+    "requires": [
+      "tech-ai-npcs",
+      "ord-mundane-dialogue"
+    ],
+    "effects": {
+      "funMul": 0.5,
+      "jank": 12,
+      "heat": 16,
+      "trust": -14
+    },
     "line": "Ninety seconds of hand-written boiler talk, then six minutes of a machine offering the player a therapist."
   },
   {
     "id": "chain-in-the-garage",
     "name": "THE INVESTOR SAID THE WORD",
     "kind": "conflict",
-    "requires": ["mon-chain-collectibles", "meme-devs-in-chat"],
-    "effects": { "trust": -24, "heat": 22, "copiesMul": 0.8 },
+    "requires": [
+      "mon-chain-collectibles",
+      "meme-devs-in-chat"
+    ],
+    "effects": {
+      "trust": -24,
+      "heat": 22,
+      "copiesMul": 0.8
+    },
     "line": "The devs are in the Discord on the night the chain announcement lands. Nobody should have to do that."
   },
   {
     "id": "honest-lootbox",
     "name": "HONESTLY, A LOOTBOX",
     "kind": "conflict",
-    "requires": ["meme-honest-marketing", "mon-lootbox"],
-    "effects": { "trust": -18, "heat": 12, "copiesMul": 0.85 },
+    "requires": [
+      "meme-honest-marketing",
+      "mon-lootbox"
+    ],
+    "effects": {
+      "trust": -18,
+      "heat": 12,
+      "copiesMul": 0.85
+    },
     "line": "The trailer was actual gameplay and the actual gameplay opens a box for money. Both things are true and only one of them survives the thread."
   },
   {
     "id": "ending-that-doesnt",
     "name": "THE DOOR LEFT AJAR",
     "kind": "conflict",
-    "requires": ["fun-endgame", "mon-season-pass"],
-    "effects": { "trust": -14, "scoreAdd": -5, "copiesMul": 0.9 },
+    "requires": [
+      "fun-endgame",
+      "mon-season-pass"
+    ],
+    "effects": {
+      "trust": -14,
+      "scoreAdd": -5,
+      "copiesMul": 0.9
+    },
     "line": "It ends cleanly and then a rectangle appears that says 'and more.' You can hear the room deflate."
   },
   {
     "id": "unique-walks-sixty",
     "name": "FORTY GAITS, ELEVEN FRAMES",
     "kind": "conflict",
-    "requires": ["pc-mocap-diversity", "tech-sixty"],
-    "effects": { "jank": 16, "scoreAdd": -3, "copiesMul": 0.9 },
+    "requires": [
+      "pc-mocap-diversity",
+      "tech-sixty"
+    ],
+    "effects": {
+      "jank": 16,
+      "scoreAdd": -3,
+      "copiesMul": 0.9
+    },
     "line": "Every walk cycle is unique and the frame budget was not consulted. The market square is a slideshow with excellent posture."
   },
   {
     "id": "warning-about-warning",
     "name": "FOUR SCREENS BEFORE THE LOGO",
     "kind": "conflict",
-    "requires": ["pc-content-warning", "pc-land"],
-    "effects": { "funMul": 0.8, "trust": -8, "scoreAdd": 4, "hype": -4 },
+    "requires": [
+      "pc-content-warning",
+      "pc-land"
+    ],
+    "effects": {
+      "funMul": 0.8,
+      "trust": -8,
+      "scoreAdd": 4,
+      "hype": -4
+    },
     "line": "An advisory about an advisory, then a paragraph about the earth, then a spinning logo. The player has not moved yet."
   },
   {
     "id": "glossary-no-tutorial",
     "name": "FORTY DEFINITIONS, NO RELOAD BUTTON",
     "kind": "conflict",
-    "requires": ["pc-glossary", "fun-no-tutorial"],
-    "effects": { "funMul": 0.75, "jank": 6, "trust": -6 },
+    "requires": [
+      "pc-glossary",
+      "fun-no-tutorial"
+    ],
+    "effects": {
+      "funMul": 0.75,
+      "jank": 6,
+      "trust": -6
+    },
     "line": "It refuses to explain how to play and provides a searchable index of what it means by 'harm.'"
+  },
+  {
+    "id": "the-whole-costume",
+    "name": "THE WHOLE COSTUME",
+    "kind": "conflict",
+    "requiresTags": {
+      "fashion": 4
+    },
+    "effects": {
+      "jank": 15,
+      "copiesMul": 0.9,
+      "trust": -5
+    },
+    "line": "Four separate systems for how the characters look, each with its own edge cases. The wardrobe is now a subsystem and it is the buggiest thing in the build."
+  },
+  {
+    "id": "the-apparatus",
+    "name": "THE APPARATUS",
+    "kind": "conflict",
+    "requiresTags": {
+      "process": 3
+    },
+    "effects": {
+      "jank": 14,
+      "copiesMul": 0.9,
+      "hype": -6
+    },
+    "line": "A council, a spreadsheet and a pass on the pass. Every decision now takes four weeks and arrives with a document attached."
+  },
+  {
+    "id": "afraid-of-itself",
+    "name": "AFRAID OF ITSELF",
+    "kind": "conflict",
+    "requiresTags": {
+      "cowardice": 4
+    },
+    "effects": {
+      "copiesMul": 0.78,
+      "trust": -12,
+      "hype": -8,
+      "heat": -10
+    },
+    "line": "It warns you, it apologises, and then it declines to do the thing. Four separate features exist to stop the game happening to you."
+  },
+  {
+    "id": "the-plan-was-the-fight",
+    "name": "THE PLAN WAS THE FIGHT",
+    "kind": "synergy",
+    "requires": [
+      "aud-discourse-plan",
+      "fnd-no-apology"
+    ],
+    "effects": {
+      "copiesMul": 1.28,
+      "heat": 22,
+      "trust": 5,
+      "standing": -10
+    },
+    "line": "You picked the fight and then refused to end it. The wishlist graph has never looked like this and neither has your inbox."
+  },
+  {
+    "id": "shelf-placement",
+    "name": "SHELF PLACEMENT",
+    "kind": "synergy",
+    "requires": [
+      "plat-store-tags",
+      "plat-sale-timing"
+    ],
+    "effects": {
+      "copiesMul": 1.22,
+      "moneyMul": 0.92,
+      "hype": 6
+    },
+    "line": "Front page, sale week, filed next to the lighthouse game. Enormous reach at a price you did not choose."
   }
 ]

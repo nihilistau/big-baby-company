@@ -1229,9 +1229,15 @@ kbd {
 
 @media (max-width: 560px) {
   .menu { padding: var(--s5) var(--s3) var(--s7); }
-  .chrome-meters { grid-template-columns: repeat(4, 1fr); gap: 6px; }
-  .meter-value, .meter-icon { display: none; }
-  .meter-track { height: 4px; }
+  /* Four meters, two-up, each still carrying its number. Hiding the value here
+     left a phone player with four unlabelled coloured bars and no text at all —
+     unreadable, and against the rule that colour never carries information on
+     its own. The icon is the only part that can go: it duplicates the colour. */
+  .chrome-meters { grid-template-columns: repeat(2, 1fr); gap: 2px 10px; }
+  .meter-icon { display: none; }
+  .meter-label { display: inline; width: auto; font-size: 10px; }
+  .meter-value { display: inline; width: auto; margin-left: auto; padding-left: 6px; }
+  .meter-track { height: 4px; min-width: 26px; }
   .end-quarter { min-width: 0; padding: 10px 12px; }
   .report-figures { grid-template-columns: 1fr; }
   .fig-value { font-size: var(--t-xl); }
@@ -1289,6 +1295,33 @@ kbd {
 .coach-card h3 { font-size: var(--t-md); color: var(--accent); margin: 4px 0 6px; }
 .coach-card p { font-size: var(--t-sm); color: var(--ink-2); line-height: 1.55; margin: 0 0 var(--s3); }
 .coach-actions { display: flex; gap: var(--s2); justify-content: flex-end; }
+/* The inversion prompt is a nag, not a gate: no scrim and no pointer capture,
+   because the player has to be able to hover the very cards it points at. It
+   stands down the moment the ghost shows the two numbers moving apart. */
+/* Said once, on the first launch only: the premise, with that run's real
+   numbers in it. The two figures sit side by side and a player can still read
+   them as unrelated. */
+.report-lesson {
+  font-size: var(--t-sm);
+  line-height: 1.6;
+  color: var(--ink-2);
+  background: var(--panel-2, rgba(255,255,255,.04));
+  border-left: 3px solid var(--accent);
+  border-radius: 0 6px 6px 0;
+  padding: var(--s3);
+  margin: 0 0 var(--s3);
+}
+.report-lesson b { color: var(--ink); }
+/* A title is the natural unit of a session. The save is silent, so a player
+   with twenty minutes cannot tell whether this is a safe place to stop. */
+.report-saved {
+  font-size: var(--t-sm);
+  color: var(--muted);
+  margin: var(--s3) 0 0;
+  text-align: center;
+}
+.coach-nag { background: none; -webkit-mask: none; mask: none; pointer-events: none; }
+.coach-nag .coach-card { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent-dim, transparent), var(--shadow-2, 0 8px 24px rgba(0,0,0,.5)); }
 
 /* --- Act stingers -------------------------------------------------------- */
 

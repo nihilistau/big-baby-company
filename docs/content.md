@@ -6,7 +6,7 @@ edit; the integrity tests in
 a reference.
 
 ```
-79 cards · 36 synergy rules · 16 staff · 72 events · 24 concepts
+87 cards · 41 synergy rules · 16 staff · 72 events · 24 concepts
 8 deals · 20 upgrades · 7 channels · 8 backlash outcomes
 11 endings · 8 ranks · 47 achievements · 169 chirps across 14 accounts
 ```
@@ -74,15 +74,35 @@ Rules that keep it consistent:
 
 ### Families
 
-| Family | Count | Role |
-|---|---|---|
-| PC | 20 | Industry score, at the cost of everything else |
-| FUN | 16 | Copies, at the cost of industry score |
-| GORE | 10 | Copies plus heat, and the industry hates you |
-| ORDINARY | 8 | Quiet copies, high trust, no downside |
-| TECH | 8 | Jank reduction, invisible, expensive |
-| MONETIZATION | 10 | Revenue independent of price, trust destruction |
-| MEME | 7 | Hype and heat, unpredictable |
+| Family | Prefix | Count | Role |
+|---|---|---|---|
+| PC | `pc-` | 20 | Industry score, at the cost of everything else |
+| FUN | `fun-` | 16 | Copies, at the cost of industry score |
+| GORE | `gore-` | 10 | Copies plus heat, and the industry hates you |
+| ORDINARY | `ord-` | 8 | Quiet copies, high trust, no downside |
+| TECH | `tech-` | 8 | Jank reduction, invisible, expensive |
+| MONETIZATION | `mon-` | 10 | Revenue independent of price, trust destruction |
+| MEME | `meme-` | 7 | Hype and heat, unpredictable |
+| PLATFORM | `plat-` | 3 | The storefront decides what your game is |
+| AUDIENCE | `aud-` | 3 | Managing the people who will be angry |
+| FOUNDER | `fnd-` | 2 | You, personally, as a content strategy |
+
+### The PC strains
+
+Twenty cards on one axis is one card played twenty times. They split into three
+strains, each with its own rule and its own visible cost, so a purple box is
+still a choice about *which kind* of purple:
+
+| Strain | Tag | Count | The joke | The cost |
+|---|---|---|---|---|
+| Fashion | `fashion` | 7 | Wearing the politics | Buggy — **THE WHOLE COSTUME** at 4+ |
+| Process | `process` | 3 | The approval apparatus | Slow — **THE APPARATUS** at 3+ |
+| Cowardice | `cowardice` | 9 | Afraid of its own content | Doesn't sell — **AFRAID OF ITSELF** at 4+ |
+
+A rule that pays positive `scoreAdd` or `standing` off a tag count must require
+at least half that tag's pool. This is a test, not a guideline: widening a tag
+by two cards once turned a deliberate build into the default one and doubled the
+PC archetype's median cash.
 
 ### Adding one
 
@@ -96,7 +116,7 @@ Rules that keep it consistent:
 
 ## Synergies — `data/synergies.json`
 
-24 synergies, 12 conflicts. Matching is either an exact set or a tag count.
+26 synergies, 15 conflicts. Matching is either an exact set or a tag count.
 
 ```json
 {

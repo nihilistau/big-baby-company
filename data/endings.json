@@ -80,7 +80,7 @@
       },
       "art": "ending-liveservice",
       "line": "It never ends, which was the pitch. Season nineteen has a hub world inside the hub world and a currency the finance team has stopped being able to explain.",
-      "punch": "Nah. It's the money, baby.",
+      "punch": "Nobody who works here will ever finish anything again.",
       "body": "Forty people work here forever now, on a treadmill they cannot step off, funding a company that no longer makes anything else. The revenue is genuinely extraordinary. Nobody on the team has shipped an ending in six years and two of them have started saying so out loud."
     },
     {
@@ -93,7 +93,7 @@
         "acquisitionTaken": false
       },
       "art": "ending-independent",
-      "line": "Male or female. Body Type 1 or Body Type 2. They're pixels. The medium can hold more than one story.",
+      "line": "The catalogue is yours. The jokes are yours. Nobody has ever asked you to run one past a committee in a different country.",
       "punch": "And it turns out you can pay rent on that.",
       "body": "You said no to the nine figures and the building is still yours. The catalogue is yours. Nobody has to ask permission to put a joke on page one. It is smaller than the empire you could have had and every single person who works here would rather be here, which is a sentence very few people in this industry ever get to write."
     },
@@ -119,7 +119,7 @@
         "maxTrust": 45
       },
       "art": "ending-money",
-      "line": "Male or female. Body Type 1 or Body Type 2. They're pixels. The medium can hold more than one story.",
+      "line": "Somebody asks, on a podcast, whether you are proud of any of them. You do the maths on the question in real time and give the answer that tests well.",
       "punch": "Nah. It's the money, baby.",
       "body": "You worked out what the number responds to and then you pressed it, over and over, for six years. Nobody is going to write a retrospective about this. The retrospectives are for people who lost. You have a pool, and the pool was paid for by customers this time, which you did not expect to care about and do."
     },
@@ -146,7 +146,7 @@
       },
       "art": "ending-burnout",
       "line": "You won. The numbers say you won. There is nobody left in the building to tell.",
-      "punch": "Nah. It's the money, baby.",
+      "punch": "You will hire again in the spring. They will be cheaper.",
       "body": "Everyone who made the first four is gone. Not laid off — gone, one at a time, in polite conversations you did not attend. The current team is competent and new and they call it 'the IP.' The cash position is excellent. You have started leaving the office at six because there is no reason not to."
     },
     {
@@ -158,7 +158,7 @@
       },
       "art": "ending-heat",
       "line": "You have been the main character forty-one times. The wishlist graph loved every one of them.",
-      "punch": "Nah. It's the money, baby.",
+      "punch": "There is no version of tomorrow where you are not.",
       "body": "Every launch is a war and every war sells. You are the most-argued-about studio in the industry and roughly nine percent of the people arguing have installed anything. It works. It keeps working. Nobody at this company has had a quiet Tuesday since the purple years and nobody can propose stopping without proposing a smaller number."
     },
     {
@@ -192,8 +192,8 @@
       "priority": 0,
       "requires": {},
       "art": "ending-default",
-      "line": "Male or female. Body Type 1 or Body Type 2. They're pixels. The medium can hold more than one story.",
-      "punch": "Nah. It's the money, baby.",
+      "line": "No auction, no acquisition, no retrospective. On Monday there is another quarter, and you already know roughly how it goes.",
+      "punch": "You could stop. You have not.",
       "body": "Eight titles. A cash position. A number that will be in a spreadsheet somewhere for as long as anyone bothers to keep it, and then not. The next quarter starts on Monday and there is a concept document on the desk that somebody left there hoping you would read it."
     }
   ]

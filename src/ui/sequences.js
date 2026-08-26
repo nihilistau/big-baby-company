@@ -85,16 +85,35 @@ export function eventModal(ctx) {
 // --- Launch report --------------------------------------------------------
 
 export function launchReport(ctx) {
-  const { report, content } = ctx;
+  const { report, content, state } = ctx;
   if (!report) return "";
   const r = report.result;
   const income = r.revenue + r.wirePaid;
+
+  // On the very first launch, say the premise out loud once. A player can read
+  // the two figures side by side and still not register that they are in
+  // tension — the whole game is the gap between them, and this is the one
+  // moment it is standing right in front of you with real numbers on it.
+  const firstEver = (state?.stats?.titlesShipped ?? 0) <= 1;
+  const wire = r.wirePaid;
+  const fromPeople = r.revenue;
+  const punchline = !firstEver
+    ? ""
+    : wire > fromPeople
+      ? `<p class="report-lesson">Read those two numbers again. <b>${count(r.copies)}</b>
+         ${r.copies === 1 ? "person" : "people"} bought this, and paid you
+         <b>${money(fromPeople)}</b>. Your investor paid <b>${money(wire)}</b> for the
+         score. Only one of those is looking at the game.</p>`
+      : `<p class="report-lesson">Those two figures are not friends. <b>Industry score</b> is
+         what the press writes about and what the wire is calculated from.
+         <b>Copies</b> is people. This time they pointed the same way. That will not last.</p>`;
 
   return `
     <div class="modal-wrap report-wrap" data-key="launch-report" role="dialog" aria-modal="true">
       <div class="modal report">
         <span class="modal-kicker">Launch report</span>
         <h2>${escapeHtml(r.name)}</h2>
+        ${punchline}
 
         <div class="report-figures">
           <div class="fig">
@@ -174,6 +193,17 @@ export function launchReport(ctx) {
         </table>
 
         ${outcomeList(report.outcomes, content)}
+        ${
+          // A title is the natural unit of a session: three quarters, one
+          // launch, a number at the end. Twenty-four quarters is a long sit
+          // for a browser tab, and the save is silent, so a player with
+          // twenty minutes has no idea whether this is a safe place to stop.
+          // It is. Say so.
+          state?.screen === "playing"
+            ? `<p class="report-saved">Saved. That is a title done — a clean place to
+                 stop, if you want one. Continue picks up at the next pitch.</p>`
+            : ""
+        }
         <button class="btn primary" data-act="dismiss-report">Continue</button>
       </div>
     </div>`;
