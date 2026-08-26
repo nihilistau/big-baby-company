@@ -366,6 +366,15 @@
       "aspect": "wide",
       "group": "ending",
       "prompt": "An empty studio meeting room on a Monday morning, low sun through blinds, one document left face-up on the table, a chair pulled out. Nobody has arrived yet. Neutral, waiting, faintly hopeful. Bold-ink cartoon, heavy outlines, flat cel shading, no lettering anywhere."
+    },
+    {
+      "id": "cover-itch",
+      "path": "docs/store/itch-cover-art.jpg",
+      "aspect": "store",
+      "group": "store",
+      "hero": true,
+      "from": "hq-purple",
+      "prompt": "Storefront key art for a satirical game-industry management game. A smug, well-fed middle-aged executive in an oversized white nappy and an enormous gold wristwatch sits enthroned behind a vast glossy boardroom desk, arms spread wide in triumph, grinning straight at the viewer. Behind his right shoulder a colossal cartoon arrow rockets upward through the ceiling in triumphant purple. Behind his left shoulder a second colossal cartoon arrow plunges downward off the bottom of the wall in sickly green, and a tiny crowd of ordinary cartoon people at the very edge of the frame are already walking away from him with their backs turned. The room is drenched in ultraviolet purple on the arrow-up side and cold grey on the arrow-down side, split straight down the middle behind him. Wonky exaggerated perspective, oversized head, rubbery gleeful face. Arrows are plain solid graphic shapes with absolutely no lettering, numbers or markings on them. Every screen, poster and surface in the room is completely blank."
     }
   ],
   "aspects": {
@@ -380,7 +389,8 @@
     },
     "cover": {
       "hint": "Vertical 3:4 game box cover composition, one bold graphic image, comic poster energy, no border, no frame."
-    }
+    },
+    "store": "Slightly wide landscape composition, close to 5:4, filling the frame edge to edge. One bold central subject, poster energy, readable as a thumbnail. Keep the bottom fifth of the image visually simple and uncluttered. No border, no frame, no margin."
   },
   "videoDefaults": {
     "model": "grok-imagine-video"

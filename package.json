@@ -12,7 +12,9 @@
     "art:check": "node tools/gen-art.mjs --check",
     "art:missing": "node tools/gen-art.mjs --missing",
     "verify": "npm run test && npm run build && npm run art:check && node tools/balance-sim.mjs --runs 400 && node tools/ch11-probe.mjs",
-    "probe": "node tools/ch11-probe.mjs && node tools/meter-probe.mjs"
+    "probe": "node tools/ch11-probe.mjs && node tools/meter-probe.mjs",
+    "pack:itch": "node tools/pack-itch.mjs",
+    "store:cover": "node tools/make-store-cover.mjs"
   },
   "devDependencies": {
     "jsdom": "^29.1.1",
