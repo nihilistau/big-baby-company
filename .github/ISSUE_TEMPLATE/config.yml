@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Play it in your browser
+    url: https://nihilistau.github.io/big-baby-company/
+    about: No install, no account. The build these forms are asking about.
+  - name: How it works
+    url: https://github.com/nihilistau/big-baby-company/blob/main/docs/gameplay.md
+    about: The gameplay manual, before you file something that turns out to be a mechanic.

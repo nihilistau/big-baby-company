@@ -1,0 +1,68 @@
+name: Something is broken
+description: A crash, a wrong number, a button that does nothing, art that fails to load.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Press <kbd>?</kbd> in game and hit **Copy run details**. That gives you
+        everything the first three fields want. Without a seed and a difficulty
+        nobody can reproduce it, and a bug nobody can reproduce is a rumour.
+
+  - type: textarea
+    id: run
+    attributes:
+      label: Run details
+      description: Paste the block from **? → Copy run details**.
+      placeholder: |
+        Build: v1.1.0
+        Seed: amber-cassette-lament
+        Difficulty: standard
+        Quarter: Q7 (act 1, production)
+        Titles shipped: 2
+        Cash: 184000
+        Standing 51 · trust 22 · heat 14 · morale 68
+      render: text
+    validations:
+      required: true
+
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you did, and what the game did back.
+      placeholder: |
+        Crunched twice in Q7, then clicked Polish. The dev point counter went
+        to -1 and the End Quarter button stopped responding.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected instead
+    validations:
+      required: true
+
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and device
+      placeholder: Firefox 141, Windows 11 · or · Safari, iPhone 13
+    validations:
+      required: true
+
+  - type: textarea
+    id: console
+    attributes:
+      label: Console errors
+      description: Optional. F12 → Console, or long-press → Inspect on mobile. Red lines only.
+      render: text
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before you file
+      options:
+        - label: I can reproduce this on that seed, or I've said clearly that I can't.
+          required: true

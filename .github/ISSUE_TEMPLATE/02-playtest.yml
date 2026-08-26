@@ -1,0 +1,93 @@
+name: Playtest report
+description: You played a run and want to tell us what it was actually like. This is the most useful thing you can file.
+labels: ["playtest"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A full run is ~60–90 minutes. A partial one is still worth reporting —
+        **where you stopped and why** is the single most valuable line in this
+        form, and "I got bored in Act II" is a finding, not a complaint.
+
+        Press <kbd>?</kbd> in game for **Copy run details** if you're mid-run, or
+        use **Copy run summary** on the ending screen.
+
+  - type: textarea
+    id: run
+    attributes:
+      label: Run details
+      description: Paste from **? → Copy run details**, or the ending screen's **Copy run summary**.
+      render: text
+    validations:
+      required: true
+
+  - type: dropdown
+    id: difficulty
+    attributes:
+      label: Difficulty
+      options:
+        - Publisher's Darling
+        - Standard
+        - Wendy's Speedrun
+    validations:
+      required: true
+
+  - type: dropdown
+    id: outcome
+    attributes:
+      label: How far did you get
+      options:
+        - Reached an ending
+        - Stopped partway — got bored or stuck
+        - Stopped partway — hit a bug
+        - Stopped partway — ran out of time
+    validations:
+      required: true
+
+  - type: input
+    id: rank
+    attributes:
+      label: Rank and ending, if you reached one
+      placeholder: King Baby · the-craftsman
+
+  - type: dropdown
+    id: inversion
+    attributes:
+      label: The two numbers on the dashboard move in opposite directions. When did you notice?
+      description: This is the whole game. If it didn't land, that's the answer we most need.
+      options:
+        - In the first minute — the game showed me
+        - Within the first title
+        - Somewhere in Act I
+        - Not until Act II or later
+        - I hadn't noticed until this form told me
+    validations:
+      required: true
+
+  - type: textarea
+    id: bored
+    attributes:
+      label: Where did your attention go
+      description: The quarter you got bored, confused, or started clicking through text. Be specific and be unkind.
+      placeholder: |
+        Q11-ish. Once I'd worked out the ratio I was doing the same three clicks
+        per title and only reading the launch report.
+    validations:
+      required: true
+
+  - type: textarea
+    id: opaque
+    attributes:
+      label: What did the game never explain
+      description: A number you couldn't account for, a decision you made blind, a button you never understood.
+
+  - type: textarea
+    id: funny
+    attributes:
+      label: What actually landed
+      description: Cards, synergy banners, Chirper posts, endings. Naming the ones that didn't is equally useful.
+
+  - type: textarea
+    id: anything
+    attributes:
+      label: Anything else

@@ -9,7 +9,7 @@
 **A satirical studio-management roguelite about what happens when the number
 you're being paid for stops being the number people are buying.**
 
-`v1.1.0` · Browser · Single-player · ~60–90 minutes per run · Zero runtime dependencies
+`v1.1.1` · Browser · Single-player · ~60–90 minutes per run · Zero runtime dependencies
 
 ### [▶ Play it in your browser](https://nihilistau.github.io/big-baby-company/)
 
@@ -86,7 +86,7 @@ BASE_PATH=/big-baby-company/ npm run build
 | <kbd>E</kbd> | End the quarter |
 | <kbd>B</kbd> | Open the books |
 | <kbd>M</kbd> | Mute |
-| <kbd>?</kbd> | Glossary |
+| <kbd>?</kbd> | Glossary, and this run's seed — copyable for a bug report |
 | <kbd>Esc</kbd> | Close whatever is open |
 
 Everything is also clickable. Nothing is on a timer. The quarter ends when you
@@ -412,7 +412,7 @@ second filing is the end.
 Vanilla ES modules. Vite. **Zero runtime dependencies.**
 
 ```
-11,188 lines of JavaScript · 184 tests · 54 art assets · 4,804 lines of content JSON
+11,321 lines of JavaScript · 191 tests · 54 art assets · 4,804 lines of content JSON
 ```
 
 The simulation is pure and synchronous — `advance(state, content)` takes a
@@ -427,7 +427,7 @@ is synthesised at runtime — there is not a single audio file in this project.
 ### Verify it yourself
 
 ```bash
-npm test                            # 184 tests: sim, content integrity, fuzz, UI
+npm test                            # 191 tests: sim, content integrity, fuzz, UI
 node tools/balance-sim.mjs          # Monte-Carlo balance sweep across six archetypes
 node tools/ch11-probe.mjs           # where a careful player actually goes broke
 npm run probe                       # meter attribution and the frugal-player curve
@@ -439,6 +439,25 @@ The balance harness **fails** if any strategy becomes unwinnable or dominant,
 if fewer than five ranks are reachable, or if one rank absorbs more than half
 of all runs. The numbers in `src/sim/balance.js` are tuned against it, not
 eyeballed.
+
+---
+
+## Tell us it's broken
+
+[**Issues**](https://github.com/nihilistau/big-baby-company/issues/new/choose) —
+four forms: a bug, a playtest report, a balance argument, or a joke that didn't
+land.
+
+**The playtest report is the one we actually want.** A balance harness can tell
+you a strategy is dominant; it cannot tell you which quarter you got bored, or
+that you played three titles without noticing the two numbers were fighting
+each other. Twenty-four quarters is a long sit and a partial run is still a
+finding — *where you stopped and why* is the most useful line on the form.
+
+Press <kbd>?</kbd> in game and hit **Copy run details**. Seed, difficulty,
+quarter, cash and all four meters, formatted to paste straight into the form.
+Runs are deterministic, so a seed and a difficulty are the difference between a
+bug we can reproduce and a rumour.
 
 ---
 

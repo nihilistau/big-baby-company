@@ -4,6 +4,7 @@ import { money } from "./format.js";
 import { DIFFICULTIES } from "../sim/balance.js";
 import { loadMeta } from "../sim/meta.js";
 import { savePreview } from "../sim/save.js";
+import { VERSION } from "../version.js";
 
 export function menuView(ctx) {
   const { content, ui } = ctx;
@@ -192,9 +193,38 @@ function howTab() {
     </div>`;
 }
 
-export function helpPanel() {
+/**
+ * The facts an outside bug report is useless without.
+ *
+ * Seed and difficulty were only ever shown on the ending screens, which is the
+ * one moment a tester is *not* filing a bug. A run is reproducible from these
+ * five values and from nothing else, so they live behind `?` — always reachable,
+ * one button to copy — rather than being something we ask a stranger to
+ * reconstruct from memory.
+ */
+export function runDetails(state) {
+  if (!state) return "";
+  const diff = DIFFICULTIES[state.difficulty];
+  return `
+    <h3 class="section-h">This run</h3>
+    <dl class="run-details">
+      <dt>Seed</dt><dd><code>${escapeHtml(state.seed)}</code></dd>
+      <dt>Difficulty</dt><dd>${escapeHtml(diff?.name || state.difficulty)}</dd>
+      <dt>Quarter</dt><dd>Q${state.quarter} · act ${state.act} · ${escapeHtml(state.phase)}</dd>
+      <dt>Title</dt><dd>${state.stats.titlesShipped} shipped, ${state.titleIndex + 1} in hand</dd>
+      <dt>Build</dt><dd><code>v${escapeHtml(VERSION)}</code></dd>
+    </dl>
+    <p class="hint">
+      Found something wrong? Copy these into an issue — without the seed and the
+      difficulty nobody can reproduce it.
+    </p>
+    <button class="btn ghost small" data-act="copy-diagnostics">Copy run details</button>`;
+}
+
+export function helpPanel(ctx) {
   return `
     <h2>Glossary</h2>
+    ${runDetails(ctx?.state)}
     <dl class="glossary">
       <dt>Industry score</dt><dd>0–100. What the press and the board react to. Driven up by PC content and awards pushes, down by FUN, GORE and jank. It is not a quality measure and the game will never pretend otherwise.</dd>
       <dt>Copies</dt><dd>How many people actually bought it. Driven by FUN, GORE and ORDINARY, multiplied by trust, heat, hype and — downward — by jank.</dd>

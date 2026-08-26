@@ -11,6 +11,7 @@ import { delegate, escapeHtml, rememberScroll, render, restoreScroll } from "./r
 import { chromeView } from "./chrome.js";
 import { availableHotspots, dockView, fitHubFrame, hubView, watchHubFrame } from "./hub.js";
 import { menuView, helpPanel } from "./menu.js";
+import { VERSION } from "../version.js";
 import { projectPanel } from "./panels/project.js";
 import {
   boardPanel,
@@ -450,6 +451,23 @@ const handlers = {
     clearSave();
     toMenu();
   },
+  // Paste-ready for the bug-report template. Order and labels match the form's
+  // fields so a tester can drop it in whole instead of retyping five values.
+  "copy-diagnostics": () => {
+    if (!state) return;
+    const lines = [
+      `Build: v${VERSION}`,
+      `Seed: ${state.seed}`,
+      `Difficulty: ${state.difficulty}`,
+      `Quarter: Q${state.quarter} (act ${state.act}, ${state.phase})`,
+      `Titles shipped: ${state.stats.titlesShipped}`,
+      `Cash: ${state.cash}`,
+      `Standing ${state.standing} · trust ${state.trust} · heat ${state.heat} · morale ${state.morale}`,
+    ];
+    navigator.clipboard?.writeText(lines.join("\n"));
+    toast("Run details copied.", "good");
+  },
+
   "share-run": () => {
     const summary = [
       `BBC — ${state.rank?.name}`,

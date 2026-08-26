@@ -1,0 +1,32 @@
+name: A joke, a card, or a line
+description: Writing that misses, a card idea, a synergy that should exist, a typo.
+labels: ["content"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The catalogue schema and the voice notes are in
+        [`docs/content.md`](https://github.com/nihilistau/big-baby-company/blob/main/docs/content.md).
+        The satire's target is the industry and the player-as-CEO. Punching at
+        the people who make or play games is off-target and gets closed.
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What is this
+      options:
+        - A line that doesn't land
+        - A card idea
+        - A synergy or conflict that should exist
+        - A typo or a wrong fact
+        - Something else
+    validations:
+      required: true
+
+  - type: textarea
+    id: body
+    attributes:
+      label: Go on then
+      description: If it's an existing line, quote it. If it's an idea, write it the way it would appear in game.
+    validations:
+      required: true

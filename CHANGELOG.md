@@ -6,6 +6,31 @@ All notable changes to Big Baby Company. Format follows
 
 ---
 
+## [1.1.1] — 2026-08-27
+
+Opening the door for outside playtesting, and noticing that the door had no
+handle on the inside.
+
+### Added
+
+- **Four issue forms**: a bug, a playtest report, a balance argument, and a
+  joke that didn't land. The playtest form is the one that matters — it asks
+  which quarter you got bored and when you first noticed the two numbers were
+  fighting each other, because a balance harness can measure dominance and
+  cannot measure either of those.
+- **This run's seed, difficulty, quarter and build behind <kbd>?</kbd>**, with a
+  button that copies them formatted for the form. They were previously shown
+  only on the ending screens — the one moment a tester is *not* filing a bug —
+  so we were about to ask strangers to reproduce a run from memory.
+- A version stamp injected from `package.json` at build time, and a test that
+  fails if it drifts. A build number that lies points a bug report at the wrong
+  commit.
+- A test that fails if an issue form claims a label the repo doesn't define.
+  GitHub drops unknown labels silently, so triage would just quietly stop
+  working with nothing to indicate it.
+
+---
+
 ## [1.1.0] — 2026-08-27
 
 Acting on an outside audit. Its priority list ran to seven items; the first four
@@ -721,6 +746,7 @@ game the demo was a mock-up of.
 - Hub scenes with invisible hotspots, overlay panels, localStorage save.
 - Vite + vanilla JS, Vitest, painterly generated art.
 
+[1.1.1]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.1.1
 [1.1.0]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.1.0
 [1.0.11]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.11
 [1.0.10]: https://github.com/nihilistau/big-baby-company/releases/tag/v1.0.10

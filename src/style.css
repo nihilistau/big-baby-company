@@ -1027,6 +1027,21 @@ kbd {
 .glossary dt { font-family: var(--font-display); font-size: var(--t-md); color: var(--accent); margin-top: var(--s3); }
 .glossary dd { margin: 3px 0 0; font-size: var(--t-sm); color: var(--ink-2); line-height: 1.55; }
 
+/* The five values a bug report is useless without. Two columns so seed and
+   difficulty read as data to be copied, not prose to be skimmed. */
+.run-details {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2px var(--s3);
+  margin: 0 0 var(--s3);
+  padding: var(--s3);
+  border: 1px solid var(--line-soft);
+  background: var(--glass);
+}
+.run-details dt { font-size: var(--t-xs); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+.run-details dd { margin: 0; font-size: var(--t-sm); color: var(--ink); }
+.run-details code { font-family: var(--font-mono); font-size: var(--t-sm); color: var(--accent); }
+
 /* --- Modals -------------------------------------------------------------- */
 
 .modal-wrap {

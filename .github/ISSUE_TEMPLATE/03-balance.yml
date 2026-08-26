@@ -1,0 +1,49 @@
+name: Balance or design
+description: A strategy that's too strong, a card nobody would ever take, a mechanic that doesn't pay for itself.
+labels: ["balance"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Every tunable lives in [`src/sim/balance.js`](https://github.com/nihilistau/big-baby-company/blob/main/src/sim/balance.js),
+        and `npm run balance` plays 400 campaigns and asserts the run stays
+        healthy. If you can run it, its output is worth more than an impression —
+        but an impression from a real run is worth plenty on its own.
+
+  - type: textarea
+    id: claim
+    attributes:
+      label: What's wrong with the numbers
+      placeholder: |
+        Once you own the QA Lab and the Engine Licence, crunch has no downside
+        worth pricing — I crunched every quarter of Act III and shipped at 4 jank.
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: What you saw
+      description: Seeds, quarters, figures. Or paste `npm run balance` output.
+      render: text
+    validations:
+      required: true
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of problem
+      options:
+        - A strategy is dominant
+        - A choice is never worth taking
+        - A cost doesn't feel like a cost
+        - A difficulty is mistuned
+        - Something else
+    validations:
+      required: true
+
+  - type: textarea
+    id: fix
+    attributes:
+      label: What you'd change
+      description: Optional, and it's fine to say "no idea, it just felt off."
